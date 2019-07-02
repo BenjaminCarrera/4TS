@@ -1,0 +1,257 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-requerimiento-heading" jhiTranslate="App.requerimiento.home.createOrEditLabel">Create or edit a Requerimiento</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!requerimiento.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.fechaAlda" for="field_fechaAlda">Fecha Alda</label>
+                    <div class="d-flex">
+                        <input id="field_fechaAlda" type="datetime-local" class="form-control" name="fechaAlda" formControlName="fechaAlda" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('fechaAlda').invalid && (editForm.get('fechaAlda').dirty || editForm.get('fechaAlda').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fechaAlda').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fechaAlda').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
+                    <div class="d-flex">
+                        <input id="field_fechaResolucion" type="datetime-local" class="form-control" name="fechaResolucion" formControlName="fechaResolucion" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.remplazoDe" for="field_remplazoDe">Remplazo De</label>
+                    <input type="text" class="form-control" name="remplazoDe" id="field_remplazoDe"
+                           formControlName="remplazoDe"/>
+                    <div *ngIf="editForm.get('remplazoDe').invalid && (editForm.get('remplazoDe').dirty || editForm.get('remplazoDe').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('remplazoDe').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.vacantesSolicitadas" for="field_vacantesSolicitadas">Vacantes Solicitadas</label>
+                    <input type="number" class="form-control" name="vacantesSolicitadas" id="field_vacantesSolicitadas"
+                           formControlName="vacantesSolicitadas"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.proyecto" for="field_proyecto">Proyecto</label>
+                    <input type="text" class="form-control" name="proyecto" id="field_proyecto"
+                           formControlName="proyecto"/>
+                    <div *ngIf="editForm.get('proyecto').invalid && (editForm.get('proyecto').dirty || editForm.get('proyecto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('proyecto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.nombreContacto" for="field_nombreContacto">Nombre Contacto</label>
+                    <input type="text" class="form-control" name="nombreContacto" id="field_nombreContacto"
+                           formControlName="nombreContacto"/>
+                    <div *ngIf="editForm.get('nombreContacto').invalid && (editForm.get('nombreContacto').dirty || editForm.get('nombreContacto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombreContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.tarifaSueldoNet" for="field_tarifaSueldoNet">Tarifa Sueldo Net</label>
+                    <input type="number" class="form-control" name="tarifaSueldoNet" id="field_tarifaSueldoNet"
+                           formControlName="tarifaSueldoNet"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.prestaciones" for="field_prestaciones">Prestaciones</label>
+                    <input type="text" class="form-control" name="prestaciones" id="field_prestaciones"
+                           formControlName="prestaciones"/>
+                    <div *ngIf="editForm.get('prestaciones').invalid && (editForm.get('prestaciones').dirty || editForm.get('prestaciones').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prestaciones').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.duracionAsignacion" for="field_duracionAsignacion">Duracion Asignacion</label>
+                    <input type="number" class="form-control" name="duracionAsignacion" id="field_duracionAsignacion"
+                           formControlName="duracionAsignacion"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.lugarTrabajo" for="field_lugarTrabajo">Lugar Trabajo</label>
+                    <input type="text" class="form-control" name="lugarTrabajo" id="field_lugarTrabajo"
+                           formControlName="lugarTrabajo"/>
+                    <div *ngIf="editForm.get('lugarTrabajo').invalid && (editForm.get('lugarTrabajo').dirty || editForm.get('lugarTrabajo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lugarTrabajo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.coorLat" for="field_coorLat">Coor Lat</label>
+                    <input type="number" class="form-control" name="coorLat" id="field_coorLat"
+                           formControlName="coorLat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.coorLong" for="field_coorLong">Coor Long</label>
+                    <input type="number" class="form-control" name="coorLong" id="field_coorLong"
+                           formControlName="coorLong"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.horario" for="field_horario">Horario</label>
+                    <input type="text" class="form-control" name="horario" id="field_horario"
+                           formControlName="horario"/>
+                    <div *ngIf="editForm.get('horario').invalid && (editForm.get('horario').dirty || editForm.get('horario').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('horario').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 300 }">
+                        This field cannot be longer than 300 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.informacionExamen" for="field_informacionExamen">Informacion Examen</label>
+                    <input type="text" class="form-control" name="informacionExamen" id="field_informacionExamen"
+                           formControlName="informacionExamen"/>
+                    <div *ngIf="editForm.get('informacionExamen').invalid && (editForm.get('informacionExamen').dirty || editForm.get('informacionExamen').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('informacionExamen').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.informacionAdicional" for="field_informacionAdicional">Informacion Adicional</label>
+                    <input type="text" class="form-control" name="informacionAdicional" id="field_informacionAdicional"
+                           formControlName="informacionAdicional"/>
+                    <div *ngIf="editForm.get('informacionAdicional').invalid && (editForm.get('informacionAdicional').dirty || editForm.get('informacionAdicional').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('informacionAdicional').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
+                        This field cannot be longer than 1000 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.cuenta" for="field_cuenta">Cuenta</label>
+                    <select class="form-control" id="field_cuenta" name="cuenta" formControlName="cuentaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.subCuenta" for="field_subCuenta">Sub Cuenta</label>
+                    <select class="form-control" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioCreador" for="field_usuarioCreador">Usuario Creador</label>
+                    <select class="form-control" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioAsignado" for="field_usuarioAsignado">Usuario Asignado</label>
+                    <select class="form-control" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.estatusRequerimiento" for="field_estatusRequerimiento">Estatus Requerimiento</label>
+                    <select class="form-control" id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">{{estatusRequerimientoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.prioridad" for="field_prioridad">Prioridad</label>
+                    <select class="form-control" id="field_prioridad" name="prioridad" formControlName="prioridadId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoSolicitud" for="field_tipoSolicitud">Tipo Solicitud</label>
+                    <select class="form-control" id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">{{tipoSolicitudOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoIngreso" for="field_tipoIngreso">Tipo Ingreso</label>
+                    <select class="form-control" id="field_tipoIngreso" name="tipoIngreso" formControlName="tipoIngresoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById">{{tipoIngresoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.baseTarifa" for="field_baseTarifa">Base Tarifa</label>
+                    <select class="form-control" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{baseTarifaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.esquemaContratacion" for="field_esquemaContratacion">Esquema Contratacion</label>
+                    <select class="form-control" id="field_esquemaContratacion" name="esquemaContratacion" formControlName="esquemaContratacionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.perfil" for="field_perfil">Perfil</label>
+                    <select class="form-control" id="field_perfil" name="perfil" formControlName="perfilId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.nivelPerfil" for="field_nivelPerfil">Nivel Perfil</label>
+                    <select class="form-control" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.estatusReqCan" for="field_estatusReqCan">Estatus Req Can</label>
+                    <select class="form-control" id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{estReqCerradoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoPeriodo" for="field_tipoPeriodo">Tipo Periodo</label>
+                    <select class="form-control" id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

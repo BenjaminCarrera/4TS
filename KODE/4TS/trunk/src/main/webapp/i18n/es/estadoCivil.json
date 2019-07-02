@@ -1,0 +1,9 @@
+{
+  "App": {
+    "EstadoCivil": {
+      "null": "",
+      "SOLTERO": "SOLTERO",
+      "CASADO": "CASADO"
+    }
+  }
+}

@@ -1,0 +1,523 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-candidato-heading" jhiTranslate="App.candidato.home.createOrEditLabel">Create or edit a Candidato</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!candidato.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.anosExperiencia" for="field_anosExperiencia">Anos Experiencia</label>
+                    <input type="number" class="form-control" name="anosExperiencia" id="field_anosExperiencia"
+                           formControlName="anosExperiencia"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                           formControlName="nombre"/>
+                    <div *ngIf="editForm.get('nombre').invalid && (editForm.get('nombre').dirty || editForm.get('nombre').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.apellidoPaterno" for="field_apellidoPaterno">Apellido Paterno</label>
+                    <input type="text" class="form-control" name="apellidoPaterno" id="field_apellidoPaterno"
+                           formControlName="apellidoPaterno"/>
+                    <div *ngIf="editForm.get('apellidoPaterno').invalid && (editForm.get('apellidoPaterno').dirty || editForm.get('apellidoPaterno').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellidoPaterno').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellidoPaterno').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.apellidoMaterno" for="field_apellidoMaterno">Apellido Materno</label>
+                    <input type="text" class="form-control" name="apellidoMaterno" id="field_apellidoMaterno"
+                           formControlName="apellidoMaterno"/>
+                    <div *ngIf="editForm.get('apellidoMaterno').invalid && (editForm.get('apellidoMaterno').dirty || editForm.get('apellidoMaterno').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellidoMaterno').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.fechaNacimiento" for="field_fechaNacimiento">Fecha Nacimiento</label>
+                    <div class="input-group">
+                        <input id="field_fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" ngbDatepicker  #fechaNacimientoDp="ngbDatepicker" formControlName="fechaNacimiento"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaNacimientoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.edad" for="field_edad">Edad</label>
+                    <input type="number" class="form-control" name="edad" id="field_edad"
+                           formControlName="edad"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.emailPrincipal" for="field_emailPrincipal">Email Principal</label>
+                    <input type="text" class="form-control" name="emailPrincipal" id="field_emailPrincipal"
+                           formControlName="emailPrincipal"/>
+                    <div *ngIf="editForm.get('emailPrincipal').invalid && (editForm.get('emailPrincipal').dirty || editForm.get('emailPrincipal').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailPrincipal').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailPrincipal').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.emailAdicional" for="field_emailAdicional">Email Adicional</label>
+                    <input type="text" class="form-control" name="emailAdicional" id="field_emailAdicional"
+                           formControlName="emailAdicional"/>
+                    <div *ngIf="editForm.get('emailAdicional').invalid && (editForm.get('emailAdicional').dirty || editForm.get('emailAdicional').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailAdicional').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.emailAsignacion" for="field_emailAsignacion">Email Asignacion</label>
+                    <input type="text" class="form-control" name="emailAsignacion" id="field_emailAsignacion"
+                           formControlName="emailAsignacion"/>
+                    <div *ngIf="editForm.get('emailAsignacion').invalid && (editForm.get('emailAsignacion').dirty || editForm.get('emailAsignacion').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailAsignacion').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.emailKode" for="field_emailKode">Email Kode</label>
+                    <input type="text" class="form-control" name="emailKode" id="field_emailKode"
+                           formControlName="emailKode"/>
+                    <div *ngIf="editForm.get('emailKode').invalid && (editForm.get('emailKode').dirty || editForm.get('emailKode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailKode').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.web" for="field_web">Web</label>
+                    <input type="text" class="form-control" name="web" id="field_web"
+                           formControlName="web"/>
+                    <div *ngIf="editForm.get('web').invalid && (editForm.get('web').dirty || editForm.get('web').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('web').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.telefonoCasa" for="field_telefonoCasa">Telefono Casa</label>
+                    <input type="text" class="form-control" name="telefonoCasa" id="field_telefonoCasa"
+                           formControlName="telefonoCasa"/>
+                    <div *ngIf="editForm.get('telefonoCasa').invalid && (editForm.get('telefonoCasa').dirty || editForm.get('telefonoCasa').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefonoCasa').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.telefonoTrabajo" for="field_telefonoTrabajo">Telefono Trabajo</label>
+                    <input type="text" class="form-control" name="telefonoTrabajo" id="field_telefonoTrabajo"
+                           formControlName="telefonoTrabajo"/>
+                    <div *ngIf="editForm.get('telefonoTrabajo').invalid && (editForm.get('telefonoTrabajo').dirty || editForm.get('telefonoTrabajo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefonoTrabajo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.telefonoCelular" for="field_telefonoCelular">Telefono Celular</label>
+                    <input type="text" class="form-control" name="telefonoCelular" id="field_telefonoCelular"
+                           formControlName="telefonoCelular"/>
+                    <div *ngIf="editForm.get('telefonoCelular').invalid && (editForm.get('telefonoCelular').dirty || editForm.get('telefonoCelular').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefonoCelular').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.telefonoAdicional" for="field_telefonoAdicional">Telefono Adicional</label>
+                    <input type="text" class="form-control" name="telefonoAdicional" id="field_telefonoAdicional"
+                           formControlName="telefonoAdicional"/>
+                    <div *ngIf="editForm.get('telefonoAdicional').invalid && (editForm.get('telefonoAdicional').dirty || editForm.get('telefonoAdicional').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefonoAdicional').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.coorLat" for="field_coorLat">Coor Lat</label>
+                    <input type="number" class="form-control" name="coorLat" id="field_coorLat"
+                           formControlName="coorLat"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.coorLong" for="field_coorLong">Coor Long</label>
+                    <input type="number" class="form-control" name="coorLong" id="field_coorLong"
+                           formControlName="coorLong"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.dirCodigoPostal" for="field_dirCodigoPostal">Dir Codigo Postal</label>
+                    <input type="text" class="form-control" name="dirCodigoPostal" id="field_dirCodigoPostal"
+                           formControlName="dirCodigoPostal"/>
+                    <div *ngIf="editForm.get('dirCodigoPostal').invalid && (editForm.get('dirCodigoPostal').dirty || editForm.get('dirCodigoPostal').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dirCodigoPostal').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.dirCalle" for="field_dirCalle">Dir Calle</label>
+                    <input type="text" class="form-control" name="dirCalle" id="field_dirCalle"
+                           formControlName="dirCalle"/>
+                    <div *ngIf="editForm.get('dirCalle').invalid && (editForm.get('dirCalle').dirty || editForm.get('dirCalle').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dirCalle').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.noExt" for="field_noExt">No Ext</label>
+                    <input type="text" class="form-control" name="noExt" id="field_noExt"
+                           formControlName="noExt"/>
+                    <div *ngIf="editForm.get('noExt').invalid && (editForm.get('noExt').dirty || editForm.get('noExt').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('noExt').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.noInt" for="field_noInt">No Int</label>
+                    <input type="text" class="form-control" name="noInt" id="field_noInt"
+                           formControlName="noInt"/>
+                    <div *ngIf="editForm.get('noInt').invalid && (editForm.get('noInt').dirty || editForm.get('noInt').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('noInt').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.salarioNeto" for="field_salarioNeto">Salario Neto</label>
+                    <input type="number" class="form-control" name="salarioNeto" id="field_salarioNeto"
+                           formControlName="salarioNeto"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.costoTotal" for="field_costoTotal">Costo Total</label>
+                    <input type="number" class="form-control" name="costoTotal" id="field_costoTotal"
+                           formControlName="costoTotal"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.contatoDuracionMinima" for="field_contatoDuracionMinima">Contato Duracion Minima</label>
+                    <input type="number" class="form-control" name="contatoDuracionMinima" id="field_contatoDuracionMinima"
+                           formControlName="contatoDuracionMinima"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadEntrevistaFecha" for="field_disponibilidadEntrevistaFecha">Disponibilidad Entrevista Fecha</label>
+                    <div class="input-group">
+                        <input id="field_disponibilidadEntrevistaFecha" type="text" class="form-control" name="disponibilidadEntrevistaFecha" ngbDatepicker  #disponibilidadEntrevistaFechaDp="ngbDatepicker" formControlName="disponibilidadEntrevistaFecha"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="disponibilidadEntrevistaFechaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodo" for="field_disponibilidadEntrevistaPeriodo">Disponibilidad Entrevista Periodo</label>
+                    <input type="number" class="form-control" name="disponibilidadEntrevistaPeriodo" id="field_disponibilidadEntrevistaPeriodo"
+                           formControlName="disponibilidadEntrevistaPeriodo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadAsignacionFecha" for="field_disponibilidadAsignacionFecha">Disponibilidad Asignacion Fecha</label>
+                    <div class="input-group">
+                        <input id="field_disponibilidadAsignacionFecha" type="text" class="form-control" name="disponibilidadAsignacionFecha" ngbDatepicker  #disponibilidadAsignacionFechaDp="ngbDatepicker" formControlName="disponibilidadAsignacionFecha"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="disponibilidadAsignacionFechaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadAsignacionPeriodo" for="field_disponibilidadAsignacionPeriodo">Disponibilidad Asignacion Periodo</label>
+                    <input type="text" class="form-control" name="disponibilidadAsignacionPeriodo" id="field_disponibilidadAsignacionPeriodo"
+                           formControlName="disponibilidadAsignacionPeriodo"/>
+                    <div *ngIf="editForm.get('disponibilidadAsignacionPeriodo').invalid && (editForm.get('disponibilidadAsignacionPeriodo').dirty || editForm.get('disponibilidadAsignacionPeriodo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('disponibilidadAsignacionPeriodo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.antecedenteUltimoEmpleador" for="field_antecedenteUltimoEmpleador">Antecedente Ultimo Empleador</label>
+                    <input type="text" class="form-control" name="antecedenteUltimoEmpleador" id="field_antecedenteUltimoEmpleador"
+                           formControlName="antecedenteUltimoEmpleador"/>
+                    <div *ngIf="editForm.get('antecedenteUltimoEmpleador').invalid && (editForm.get('antecedenteUltimoEmpleador').dirty || editForm.get('antecedenteUltimoEmpleador').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('antecedenteUltimoEmpleador').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.antecedenteSalarioNeto" for="field_antecedenteSalarioNeto">Antecedente Salario Neto</label>
+                    <input type="number" class="form-control" name="antecedenteSalarioNeto" id="field_antecedenteSalarioNeto"
+                           formControlName="antecedenteSalarioNeto"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.notas" for="field_notas">Notas</label>
+                    <input type="text" class="form-control" name="notas" id="field_notas"
+                           formControlName="notas"/>
+                    <div *ngIf="editForm.get('notas').invalid && (editForm.get('notas').dirty || editForm.get('notas').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('notas').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
+                        This field cannot be longer than 1000 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.porcentajeIngles" for="field_porcentajeIngles">Porcentaje Ingles</label>
+                    <input type="number" class="form-control" name="porcentajeIngles" id="field_porcentajeIngles"
+                           formControlName="porcentajeIngles"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.curp" for="field_curp">Curp</label>
+                    <input type="text" class="form-control" name="curp" id="field_curp"
+                           formControlName="curp"/>
+                    <div *ngIf="editForm.get('curp').invalid && (editForm.get('curp').dirty || editForm.get('curp').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('curp').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.rfc" for="field_rfc">Rfc</label>
+                    <input type="text" class="form-control" name="rfc" id="field_rfc"
+                           formControlName="rfc"/>
+                    <div *ngIf="editForm.get('rfc').invalid && (editForm.get('rfc').dirty || editForm.get('rfc').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('rfc').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.nss" for="field_nss">Nss</label>
+                    <input type="text" class="form-control" name="nss" id="field_nss"
+                           formControlName="nss"/>
+                    <div *ngIf="editForm.get('nss').invalid && (editForm.get('nss').dirty || editForm.get('nss').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nss').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.sexo" for="field_sexo">Sexo</label>
+                    <select class="form-control" name="sexo" formControlName="sexo" id="field_sexo">
+                        <option value="MASCULINO">{{'App.Sexo.MASCULINO' | translate}}</option>
+                        <option value="FEMENINO">{{'App.Sexo.FEMENINO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estadoCivil" for="field_estadoCivil">Estado Civil</label>
+                    <select class="form-control" name="estadoCivil" formControlName="estadoCivil" id="field_estadoCivil">
+                        <option value="SOLTERO">{{'App.EstadoCivil.SOLTERO' | translate}}</option>
+                        <option value="CASADO">{{'App.EstadoCivil.CASADO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
+                    <div class="d-flex">
+                        <input id="field_fechaAlta" type="datetime-local" class="form-control" name="fechaAlta" formControlName="fechaAlta" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.fechaUltimoSeguimiento" for="field_fechaUltimoSeguimiento">Fecha Ultimo Seguimiento</label>
+                    <div class="d-flex">
+                        <input id="field_fechaUltimoSeguimiento" type="datetime-local" class="form-control" name="fechaUltimoSeguimiento" formControlName="fechaUltimoSeguimiento" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.foto" for="field_foto">Foto</label>
+                    <input type="text" class="form-control" name="foto" id="field_foto"
+                           formControlName="foto"/>
+                    <div *ngIf="editForm.get('foto').invalid && (editForm.get('foto').dirty || editForm.get('foto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('foto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
+                        This field cannot be longer than 1000 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodoTiempo" for="field_disponibilidadEntrevistaPeriodoTiempo">Disponibilidad Entrevista Periodo Tiempo</label>
+                    <select class="form-control" id="field_disponibilidadEntrevistaPeriodoTiempo" name="disponibilidadEntrevistaPeriodoTiempo" formControlName="disponibilidadEntrevistaPeriodoTiempoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.disponibilidadAsignacionPeriodoTiempo" for="field_disponibilidadAsignacionPeriodoTiempo">Disponibilidad Asignacion Periodo Tiempo</label>
+                    <select class="form-control" id="field_disponibilidadAsignacionPeriodoTiempo" name="disponibilidadAsignacionPeriodoTiempo" formControlName="disponibilidadAsignacionPeriodoTiempoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.usuarioCreador" for="field_usuarioCreador">Usuario Creador</label>
+                    <select class="form-control" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.usuarioAsignado" for="field_usuarioAsignado">Usuario Asignado</label>
+                    <select class="form-control" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.documento" for="field_documento">Documento</label>
+                    <select class="form-control" id="field_documento" name="documento" formControlName="documentoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="documentoOption.id" *ngFor="let documentoOption of documentos; trackBy: trackDocumentoById">{{documentoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="App.candidato.cuentaInteres" for="field_cuentaInteres">Cuenta Interes</label>
+                    <select class="form-control" id="field_cuentaInteres" multiple name="cuentaInteres" formControlName="cuentaInteres">
+                        <option [ngValue]="getSelected(editForm.get('cuentaInteres').value, cuentaOption)" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="App.candidato.cuentaRechazadas" for="field_cuentaRechazadas">Cuenta Rechazadas</label>
+                    <select class="form-control" id="field_cuentaRechazadas" multiple name="cuentaRechazadas" formControlName="cuentaRechazadas">
+                        <option [ngValue]="getSelected(editForm.get('cuentaRechazadas').value, cuentaOption)" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.fuenteReclutamiento" for="field_fuenteReclutamiento">Fuente Reclutamiento</label>
+                    <select class="form-control" id="field_fuenteReclutamiento" name="fuenteReclutamiento" formControlName="fuenteReclutamientoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="fuenteReclutamientoOption.id" *ngFor="let fuenteReclutamientoOption of fuentereclutamientos; trackBy: trackFuenteReclutamientoById">{{fuenteReclutamientoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estatusCandidato" for="field_estatusCandidato">Estatus Candidato</label>
+                    <select class="form-control" id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById">{{estatusCandidatoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.perfil" for="field_perfil">Perfil</label>
+                    <select class="form-control" id="field_perfil" name="perfil" formControlName="perfilId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.nivelPerfil" for="field_nivelPerfil">Nivel Perfil</label>
+                    <select class="form-control" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.institucionAcademica" for="field_institucionAcademica">Institucion Academica</label>
+                    <select class="form-control" id="field_institucionAcademica" name="institucionAcademica" formControlName="institucionAcademicaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="institucionAcademicaOption.id" *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">{{institucionAcademicaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estatusAcademico" for="field_estatusAcademico">Estatus Academico</label>
+                    <select class="form-control" id="field_estatusAcademico" name="estatusAcademico" formControlName="estatusAcademicoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estatusAcademicoOption.id" *ngFor="let estatusAcademicoOption of estatusacademicos; trackBy: trackEstatusAcademicoById">{{estatusAcademicoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.esquemaContratacionKode" for="field_esquemaContratacionKode">Esquema Contratacion Kode</label>
+                    <select class="form-control" id="field_esquemaContratacionKode" name="esquemaContratacionKode" formControlName="esquemaContratacionKodeId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="esquemaContratacionKodeOption.id" *ngFor="let esquemaContratacionKodeOption of esquemacontratacionkodes; trackBy: trackEsquemaContratacionKodeById">{{esquemaContratacionKodeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estatusLaboral" for="field_estatusLaboral">Estatus Laboral</label>
+                    <select class="form-control" id="field_estatusLaboral" name="estatusLaboral" formControlName="estatusLaboralId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estatusLaboralOption.id" *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById">{{estatusLaboralOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.colonia" for="field_colonia">Colonia</label>
+                    <select class="form-control" id="field_colonia" name="colonia" formControlName="coloniaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="coloniaOption.id" *ngFor="let coloniaOption of colonias; trackBy: trackColoniaById">{{coloniaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.antecedentesEsquemaContratacion" for="field_antecedentesEsquemaContratacion">Antecedentes Esquema Contratacion</label>
+                    <select class="form-control" id="field_antecedentesEsquemaContratacion" name="antecedentesEsquemaContratacion" formControlName="antecedentesEsquemaContratacionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estudios" for="field_estudios">Estudios</label>
+                    <select class="form-control" id="field_estudios" name="estudios" formControlName="estudiosId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="formacionAcademicaOption.id" *ngFor="let formacionAcademicaOption of formacionacademicas; trackBy: trackFormacionAcademicaById">{{formacionAcademicaOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.candidato.estCanInactivo" for="field_estCanInactivo">Est Can Inactivo</label>
+                    <select class="form-control" id="field_estCanInactivo" name="estCanInactivo" formControlName="estCanInactivoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="estCanInactivoOption.id" *ngFor="let estCanInactivoOption of estcaninactivos; trackBy: trackEstCanInactivoById">{{estCanInactivoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

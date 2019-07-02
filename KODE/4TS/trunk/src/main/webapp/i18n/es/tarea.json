@@ -1,0 +1,29 @@
+{
+  "App": {
+    "tarea": {
+      "home": {
+        "title": "Tareas",
+        "createLabel": "Crear nuevo Tarea",
+        "createOrEditLabel": "Crear o editar Tarea"
+      },
+      "created": "Un nuevo Tarea ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tarea ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tarea ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tarea {{ id }}?"
+      },
+      "detail": {
+        "title": "Tarea"
+      },
+      "descripcion": "Descripcion",
+      "titulo": "Titulo",
+      "bitacora": "Bitacora",
+      "usuarioCreador": "Usuario Creador",
+      "usuarioEjecutor": "Usuario Ejecutor",
+      "requerimiento": "Requerimiento",
+      "candidato": "Candidato",
+      "estatusTarea": "Estatus Tarea",
+      "tipoTarea": "Tipo Tarea"
+    }
+  }
+}

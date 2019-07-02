@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="estCanInactivo">
+            <h2><span jhiTranslate="App.estCanInactivo.detail.title">Est Can Inactivo</span> {{estCanInactivo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.estCanInactivo.motivo">Motivo</span></dt>
+                <dd>
+                    <span>{{estCanInactivo.motivo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.estCanInactivo.estatusCandidato">Estatus Candidato</span></dt>
+                <dd>
+                    <div *ngIf="estCanInactivo.estatusCandidatoId">
+                        <a [routerLink]="['/estatus-candidato', estCanInactivo.estatusCandidatoId, 'view']">{{estCanInactivo.estatusCandidatoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/est-can-inactivo', estCanInactivo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

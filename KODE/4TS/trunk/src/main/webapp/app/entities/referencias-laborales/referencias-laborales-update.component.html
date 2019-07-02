@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-referencias-laborales-heading" jhiTranslate="App.referenciasLaborales.home.createOrEditLabel">Create or edit a Referencias Laborales</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!referenciasLaborales.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.empresa" for="field_empresa">Empresa</label>
+                    <input type="text" class="form-control" name="empresa" id="field_empresa"
+                           formControlName="empresa"/>
+                    <div *ngIf="editForm.get('empresa').invalid && (editForm.get('empresa').dirty || editForm.get('empresa').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('empresa').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.nombreContacto" for="field_nombreContacto">Nombre Contacto</label>
+                    <input type="text" class="form-control" name="nombreContacto" id="field_nombreContacto"
+                           formControlName="nombreContacto"/>
+                    <div *ngIf="editForm.get('nombreContacto').invalid && (editForm.get('nombreContacto').dirty || editForm.get('nombreContacto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombreContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.puestoContacto" for="field_puestoContacto">Puesto Contacto</label>
+                    <input type="text" class="form-control" name="puestoContacto" id="field_puestoContacto"
+                           formControlName="puestoContacto"/>
+                    <div *ngIf="editForm.get('puestoContacto').invalid && (editForm.get('puestoContacto').dirty || editForm.get('puestoContacto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('puestoContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.emailContaco" for="field_emailContaco">Email Contaco</label>
+                    <input type="text" class="form-control" name="emailContaco" id="field_emailContaco"
+                           formControlName="emailContaco"/>
+                    <div *ngIf="editForm.get('emailContaco').invalid && (editForm.get('emailContaco').dirty || editForm.get('emailContaco').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('emailContaco').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.telefonoContacto" for="field_telefonoContacto">Telefono Contacto</label>
+                    <input type="text" class="form-control" name="telefonoContacto" id="field_telefonoContacto"
+                           formControlName="telefonoContacto"/>
+                    <div *ngIf="editForm.get('telefonoContacto').invalid && (editForm.get('telefonoContacto').dirty || editForm.get('telefonoContacto').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('telefonoContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.referenciasLaborales.candidato" for="field_candidato">Candidato</label>
+                    <select class="form-control" id="field_candidato" name="candidato" formControlName="candidatoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="skillCandidato">
+            <h2><span jhiTranslate="App.skillCandidato.detail.title">Skill Candidato</span> {{skillCandidato.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.skillCandidato.calificacionSkill">Calificacion Skill</span></dt>
+                <dd>
+                    <span>{{skillCandidato.calificacionSkill}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.skillCandidato.idCandidato">Id Candidato</span></dt>
+                <dd>
+                    <div *ngIf="skillCandidato.idCandidatoId">
+                        <a [routerLink]="['/candidato', skillCandidato.idCandidatoId, 'view']">{{skillCandidato.idCandidatoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.skillCandidato.idSkill">Id Skill</span></dt>
+                <dd>
+                    <div *ngIf="skillCandidato.idSkillId">
+                        <a [routerLink]="['/skill', skillCandidato.idSkillId, 'view']">{{skillCandidato.idSkillId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.skillCandidato.nivelSkill">Nivel Skill</span></dt>
+                <dd>
+                    <div *ngIf="skillCandidato.nivelSkillId">
+                        <a [routerLink]="['/dominio-skill', skillCandidato.nivelSkillId, 'view']">{{skillCandidato.nivelSkillId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/skill-candidato', skillCandidato.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

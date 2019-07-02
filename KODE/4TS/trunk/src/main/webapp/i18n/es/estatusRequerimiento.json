@@ -1,0 +1,23 @@
+{
+  "App": {
+    "estatusRequerimiento": {
+      "home": {
+        "title": "Estatus Requerimientos",
+        "createLabel": "Crear nuevo Estatus Requerimiento",
+        "createOrEditLabel": "Crear o editar Estatus Requerimiento"
+      },
+      "created": "Un nuevo Estatus Requerimiento ha sido creado con el identificador {{ param }}",
+      "updated": "Un Estatus Requerimiento ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Estatus Requerimiento ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Estatus Requerimiento {{ id }}?"
+      },
+      "detail": {
+        "title": "Estatus Requerimiento"
+      },
+      "estatus": "Estatus",
+      "requerimiento": "Requerimiento",
+      "estReqCerrado": "Est Req Cerrado"
+    }
+  }
+}

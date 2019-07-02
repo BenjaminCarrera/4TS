@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-codigo-postal-heading" jhiTranslate="App.codigoPostal.home.createOrEditLabel">Create or edit a Codigo Postal</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!codigoPostal.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.codigoPostal.codigoPostal" for="field_codigoPostal">Codigo Postal</label>
+                    <input type="text" class="form-control" name="codigoPostal" id="field_codigoPostal"
+                           formControlName="codigoPostal"/>
+                    <div *ngIf="editForm.get('codigoPostal').invalid && (editForm.get('codigoPostal').dirty || editForm.get('codigoPostal').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codigoPostal').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="App.codigoPostal.municipio" for="field_municipios">Municipio</label>
+                    <select class="form-control" id="field_municipios" multiple name="municipios" formControlName="municipios">
+                        <option [ngValue]="getSelected(editForm.get('municipios').value, municipioOption)" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

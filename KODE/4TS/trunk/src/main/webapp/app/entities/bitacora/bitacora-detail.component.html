@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bitacora">
+            <h2><span jhiTranslate="App.bitacora.detail.title">Bitacora</span> {{bitacora.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.bitacora.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{bitacora.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.bitacora.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{bitacora.comentario}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.bitacora.usuario">Usuario</span></dt>
+                <dd>
+                    {{bitacora.usuarioId}}
+                </dd>
+                <dt><span jhiTranslate="App.bitacora.requerimiento">Requerimiento</span></dt>
+                <dd>
+                    <div *ngIf="bitacora.requerimientoId">
+                        <a [routerLink]="['/requerimiento', bitacora.requerimientoId, 'view']">{{bitacora.requerimientoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.bitacora.candidato">Candidato</span></dt>
+                <dd>
+                    <div *ngIf="bitacora.candidatoId">
+                        <a [routerLink]="['/candidato', bitacora.candidatoId, 'view']">{{bitacora.candidatoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.bitacora.tarea">Tarea</span></dt>
+                <dd>
+                    <div *ngIf="bitacora.tareaId">
+                        <a [routerLink]="['/tarea', bitacora.tareaId, 'view']">{{bitacora.tareaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bitacora', bitacora.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

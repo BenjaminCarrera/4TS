@@ -1,0 +1,24 @@
+{
+  "App": {
+    "reqCan": {
+      "home": {
+        "title": "Req Cans",
+        "createLabel": "Crear nuevo Req Can",
+        "createOrEditLabel": "Crear o editar Req Can"
+      },
+      "created": "Un nuevo Req Can ha sido creado con el identificador {{ param }}",
+      "updated": "Un Req Can ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Req Can ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Req Can {{ id }}?"
+      },
+      "detail": {
+        "title": "Req Can"
+      },
+      "candidato": "Candidato",
+      "requerimiento": "Requerimiento",
+      "estatusReqCan": "Estatus Req Can",
+      "estatusReqCanRec": "Estatus Req Can Rec"
+    }
+  }
+}

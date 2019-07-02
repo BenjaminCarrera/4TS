@@ -1,0 +1,22 @@
+{
+  "App": {
+    "tipoIngreso": {
+      "home": {
+        "title": "Tipo Ingresos",
+        "createLabel": "Crear nuevo Tipo Ingreso",
+        "createOrEditLabel": "Crear o editar Tipo Ingreso"
+      },
+      "created": "Un nuevo Tipo Ingreso ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Ingreso ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Ingreso ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Ingreso {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Ingreso"
+      },
+      "tipo": "Tipo",
+      "requerimiento": "Requerimiento"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fuenteReclutamiento">
+            <h2><span jhiTranslate="App.fuenteReclutamiento.detail.title">Fuente Reclutamiento</span> {{fuenteReclutamiento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.fuenteReclutamiento.fuente">Fuente</span></dt>
+                <dd>
+                    <span>{{fuenteReclutamiento.fuente}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fuente-reclutamiento', fuenteReclutamiento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

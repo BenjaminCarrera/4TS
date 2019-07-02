@@ -1,0 +1,23 @@
+{
+  "App": {
+    "estCanInactivo": {
+      "home": {
+        "title": "Est Can Inactivos",
+        "createLabel": "Crear nuevo Est Can Inactivo",
+        "createOrEditLabel": "Crear o editar Est Can Inactivo"
+      },
+      "created": "Un nuevo Est Can Inactivo ha sido creado con el identificador {{ param }}",
+      "updated": "Un Est Can Inactivo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Est Can Inactivo ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Est Can Inactivo {{ id }}?"
+      },
+      "detail": {
+        "title": "Est Can Inactivo"
+      },
+      "motivo": "Motivo",
+      "candidato": "Candidato",
+      "estatusCandidato": "Estatus Candidato"
+    }
+  }
+}

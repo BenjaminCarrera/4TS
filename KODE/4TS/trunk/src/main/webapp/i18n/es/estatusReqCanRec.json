@@ -1,0 +1,22 @@
+{
+  "App": {
+    "estatusReqCanRec": {
+      "home": {
+        "title": "Estatus Req Can Recs",
+        "createLabel": "Crear nuevo Estatus Req Can Rec",
+        "createOrEditLabel": "Crear o editar Estatus Req Can Rec"
+      },
+      "created": "Un nuevo Estatus Req Can Rec ha sido creado con el identificador {{ param }}",
+      "updated": "Un Estatus Req Can Rec ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Estatus Req Can Rec ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Estatus Req Can Rec {{ id }}?"
+      },
+      "detail": {
+        "title": "Estatus Req Can Rec"
+      },
+      "motivo": "Motivo",
+      "estatusReqCan": "Estatus Req Can"
+    }
+  }
+}

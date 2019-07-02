@@ -1,0 +1,293 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="candidato">
+            <h2><span jhiTranslate="App.candidato.detail.title">Candidato</span> {{candidato.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.candidato.anosExperiencia">Anos Experiencia</span></dt>
+                <dd>
+                    <span>{{candidato.anosExperiencia}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{candidato.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.apellidoPaterno">Apellido Paterno</span></dt>
+                <dd>
+                    <span>{{candidato.apellidoPaterno}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.apellidoMaterno">Apellido Materno</span></dt>
+                <dd>
+                    <span>{{candidato.apellidoMaterno}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.fechaNacimiento">Fecha Nacimiento</span></dt>
+                <dd>
+                    <span>{{candidato.fechaNacimiento}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.edad">Edad</span></dt>
+                <dd>
+                    <span>{{candidato.edad}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.emailPrincipal">Email Principal</span></dt>
+                <dd>
+                    <span>{{candidato.emailPrincipal}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.emailAdicional">Email Adicional</span></dt>
+                <dd>
+                    <span>{{candidato.emailAdicional}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.emailAsignacion">Email Asignacion</span></dt>
+                <dd>
+                    <span>{{candidato.emailAsignacion}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.emailKode">Email Kode</span></dt>
+                <dd>
+                    <span>{{candidato.emailKode}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.web">Web</span></dt>
+                <dd>
+                    <span>{{candidato.web}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.telefonoCasa">Telefono Casa</span></dt>
+                <dd>
+                    <span>{{candidato.telefonoCasa}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.telefonoTrabajo">Telefono Trabajo</span></dt>
+                <dd>
+                    <span>{{candidato.telefonoTrabajo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.telefonoCelular">Telefono Celular</span></dt>
+                <dd>
+                    <span>{{candidato.telefonoCelular}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.telefonoAdicional">Telefono Adicional</span></dt>
+                <dd>
+                    <span>{{candidato.telefonoAdicional}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.coorLat">Coor Lat</span></dt>
+                <dd>
+                    <span>{{candidato.coorLat}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.coorLong">Coor Long</span></dt>
+                <dd>
+                    <span>{{candidato.coorLong}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.dirCodigoPostal">Dir Codigo Postal</span></dt>
+                <dd>
+                    <span>{{candidato.dirCodigoPostal}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.dirCalle">Dir Calle</span></dt>
+                <dd>
+                    <span>{{candidato.dirCalle}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.noExt">No Ext</span></dt>
+                <dd>
+                    <span>{{candidato.noExt}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.noInt">No Int</span></dt>
+                <dd>
+                    <span>{{candidato.noInt}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.salarioNeto">Salario Neto</span></dt>
+                <dd>
+                    <span>{{candidato.salarioNeto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.costoTotal">Costo Total</span></dt>
+                <dd>
+                    <span>{{candidato.costoTotal}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.contatoDuracionMinima">Contato Duracion Minima</span></dt>
+                <dd>
+                    <span>{{candidato.contatoDuracionMinima}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadEntrevistaFecha">Disponibilidad Entrevista Fecha</span></dt>
+                <dd>
+                    <span>{{candidato.disponibilidadEntrevistaFecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodo">Disponibilidad Entrevista Periodo</span></dt>
+                <dd>
+                    <span>{{candidato.disponibilidadEntrevistaPeriodo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadAsignacionFecha">Disponibilidad Asignacion Fecha</span></dt>
+                <dd>
+                    <span>{{candidato.disponibilidadAsignacionFecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadAsignacionPeriodo">Disponibilidad Asignacion Periodo</span></dt>
+                <dd>
+                    <span>{{candidato.disponibilidadAsignacionPeriodo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.antecedenteUltimoEmpleador">Antecedente Ultimo Empleador</span></dt>
+                <dd>
+                    <span>{{candidato.antecedenteUltimoEmpleador}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.antecedenteSalarioNeto">Antecedente Salario Neto</span></dt>
+                <dd>
+                    <span>{{candidato.antecedenteSalarioNeto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.notas">Notas</span></dt>
+                <dd>
+                    <span>{{candidato.notas}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.porcentajeIngles">Porcentaje Ingles</span></dt>
+                <dd>
+                    <span>{{candidato.porcentajeIngles}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.curp">Curp</span></dt>
+                <dd>
+                    <span>{{candidato.curp}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.rfc">Rfc</span></dt>
+                <dd>
+                    <span>{{candidato.rfc}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.nss">Nss</span></dt>
+                <dd>
+                    <span>{{candidato.nss}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.sexo">Sexo</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'App.Sexo.' + candidato.sexo}}">{{candidato.sexo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estadoCivil">Estado Civil</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'App.EstadoCivil.' + candidato.estadoCivil}}">{{candidato.estadoCivil}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.fechaAlta">Fecha Alta</span></dt>
+                <dd>
+                    <span>{{candidato.fechaAlta}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.fechaUltimoSeguimiento">Fecha Ultimo Seguimiento</span></dt>
+                <dd>
+                    <span>{{candidato.fechaUltimoSeguimiento}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.foto">Foto</span></dt>
+                <dd>
+                    <span>{{candidato.foto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodoTiempo">Disponibilidad Entrevista Periodo Tiempo</span></dt>
+                <dd>
+                    <div *ngIf="candidato.disponibilidadEntrevistaPeriodoTiempoId">
+                        <a [routerLink]="['/tipo-periodo', candidato.disponibilidadEntrevistaPeriodoTiempoId, 'view']">{{candidato.disponibilidadEntrevistaPeriodoTiempoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.disponibilidadAsignacionPeriodoTiempo">Disponibilidad Asignacion Periodo Tiempo</span></dt>
+                <dd>
+                    <div *ngIf="candidato.disponibilidadAsignacionPeriodoTiempoId">
+                        <a [routerLink]="['/tipo-periodo', candidato.disponibilidadAsignacionPeriodoTiempoId, 'view']">{{candidato.disponibilidadAsignacionPeriodoTiempoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.usuarioCreador">Usuario Creador</span></dt>
+                <dd>
+                    {{candidato.usuarioCreadorId}}
+                </dd>
+                <dt><span jhiTranslate="App.candidato.usuarioAsignado">Usuario Asignado</span></dt>
+                <dd>
+                    {{candidato.usuarioAsignadoId}}
+                </dd>
+                <dt><span jhiTranslate="App.candidato.documento">Documento</span></dt>
+                <dd>
+                    <div *ngIf="candidato.documentoId">
+                        <a [routerLink]="['/documento', candidato.documentoId, 'view']">{{candidato.documentoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.cuentaInteres">Cuenta Interes</span></dt>
+                <dd>
+                    <span *ngFor="let cuentaInteres of candidato.cuentaInteres; let last = last">
+                        <a [routerLink]="['/cuenta', cuentaInteres?.id, 'view' ]">{{cuentaInteres.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.cuentaRechazadas">Cuenta Rechazadas</span></dt>
+                <dd>
+                    <span *ngFor="let cuentaRechazadas of candidato.cuentaRechazadas; let last = last">
+                        <a [routerLink]="['/cuenta', cuentaRechazadas?.id, 'view' ]">{{cuentaRechazadas.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.fuenteReclutamiento">Fuente Reclutamiento</span></dt>
+                <dd>
+                    <div *ngIf="candidato.fuenteReclutamientoId">
+                        <a [routerLink]="['/fuente-reclutamiento', candidato.fuenteReclutamientoId, 'view']">{{candidato.fuenteReclutamientoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estatusCandidato">Estatus Candidato</span></dt>
+                <dd>
+                    <div *ngIf="candidato.estatusCandidatoId">
+                        <a [routerLink]="['/estatus-candidato', candidato.estatusCandidatoId, 'view']">{{candidato.estatusCandidatoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.perfil">Perfil</span></dt>
+                <dd>
+                    <div *ngIf="candidato.perfilId">
+                        <a [routerLink]="['/perfil', candidato.perfilId, 'view']">{{candidato.perfilId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.nivelPerfil">Nivel Perfil</span></dt>
+                <dd>
+                    <div *ngIf="candidato.nivelPerfilId">
+                        <a [routerLink]="['/nivel-perfil', candidato.nivelPerfilId, 'view']">{{candidato.nivelPerfilId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.institucionAcademica">Institucion Academica</span></dt>
+                <dd>
+                    <div *ngIf="candidato.institucionAcademicaId">
+                        <a [routerLink]="['/institucion-academica', candidato.institucionAcademicaId, 'view']">{{candidato.institucionAcademicaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estatusAcademico">Estatus Academico</span></dt>
+                <dd>
+                    <div *ngIf="candidato.estatusAcademicoId">
+                        <a [routerLink]="['/estatus-academico', candidato.estatusAcademicoId, 'view']">{{candidato.estatusAcademicoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.esquemaContratacionKode">Esquema Contratacion Kode</span></dt>
+                <dd>
+                    <div *ngIf="candidato.esquemaContratacionKodeId">
+                        <a [routerLink]="['/esquema-contratacion-kode', candidato.esquemaContratacionKodeId, 'view']">{{candidato.esquemaContratacionKodeId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estatusLaboral">Estatus Laboral</span></dt>
+                <dd>
+                    <div *ngIf="candidato.estatusLaboralId">
+                        <a [routerLink]="['/estatus-laboral', candidato.estatusLaboralId, 'view']">{{candidato.estatusLaboralId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.colonia">Colonia</span></dt>
+                <dd>
+                    <div *ngIf="candidato.coloniaId">
+                        <a [routerLink]="['/colonia', candidato.coloniaId, 'view']">{{candidato.coloniaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.antecedentesEsquemaContratacion">Antecedentes Esquema Contratacion</span></dt>
+                <dd>
+                    <div *ngIf="candidato.antecedentesEsquemaContratacionId">
+                        <a [routerLink]="['/esq-cont-rec', candidato.antecedentesEsquemaContratacionId, 'view']">{{candidato.antecedentesEsquemaContratacionId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estudios">Estudios</span></dt>
+                <dd>
+                    <div *ngIf="candidato.estudiosId">
+                        <a [routerLink]="['/formacion-academica', candidato.estudiosId, 'view']">{{candidato.estudiosId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.candidato.estCanInactivo">Est Can Inactivo</span></dt>
+                <dd>
+                    <div *ngIf="candidato.estCanInactivoId">
+                        <a [routerLink]="['/est-can-inactivo', candidato.estCanInactivoId, 'view']">{{candidato.estCanInactivoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/candidato', candidato.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

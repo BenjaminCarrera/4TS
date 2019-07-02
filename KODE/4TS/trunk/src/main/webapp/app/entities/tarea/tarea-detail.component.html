@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tarea">
+            <h2><span jhiTranslate="App.tarea.detail.title">Tarea</span> {{tarea.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.tarea.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{tarea.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.tarea.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{tarea.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.tarea.usuarioCreador">Usuario Creador</span></dt>
+                <dd>
+                    {{tarea.usuarioCreadorId}}
+                </dd>
+                <dt><span jhiTranslate="App.tarea.usuarioEjecutor">Usuario Ejecutor</span></dt>
+                <dd>
+                    {{tarea.usuarioEjecutorId}}
+                </dd>
+                <dt><span jhiTranslate="App.tarea.requerimiento">Requerimiento</span></dt>
+                <dd>
+                    <div *ngIf="tarea.requerimientoId">
+                        <a [routerLink]="['/requerimiento', tarea.requerimientoId, 'view']">{{tarea.requerimientoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.tarea.candidato">Candidato</span></dt>
+                <dd>
+                    <div *ngIf="tarea.candidatoId">
+                        <a [routerLink]="['/candidato', tarea.candidatoId, 'view']">{{tarea.candidatoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.tarea.estatusTarea">Estatus Tarea</span></dt>
+                <dd>
+                    <div *ngIf="tarea.estatusTareaId">
+                        <a [routerLink]="['/estatus-tarea', tarea.estatusTareaId, 'view']">{{tarea.estatusTareaId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.tarea.tipoTarea">Tipo Tarea</span></dt>
+                <dd>
+                    <div *ngIf="tarea.tipoTareaId">
+                        <a [routerLink]="['/tipo-tarea', tarea.tipoTareaId, 'view']">{{tarea.tipoTareaId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tarea', tarea.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

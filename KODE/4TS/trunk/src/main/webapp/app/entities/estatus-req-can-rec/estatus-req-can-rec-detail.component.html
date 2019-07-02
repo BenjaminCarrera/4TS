@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="estatusReqCanRec">
+            <h2><span jhiTranslate="App.estatusReqCanRec.detail.title">Estatus Req Can Rec</span> {{estatusReqCanRec.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.estatusReqCanRec.motivo">Motivo</span></dt>
+                <dd>
+                    <span>{{estatusReqCanRec.motivo}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.estatusReqCanRec.estatusReqCan">Estatus Req Can</span></dt>
+                <dd>
+                    <div *ngIf="estatusReqCanRec.estatusReqCanId">
+                        <a [routerLink]="['/estatus-req-can', estatusReqCanRec.estatusReqCanId, 'view']">{{estatusReqCanRec.estatusReqCanId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/estatus-req-can-rec', estatusReqCanRec.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

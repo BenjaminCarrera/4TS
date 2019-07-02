@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Colonia.
+    -->
+    <changeSet id="20190702004250-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="municipio_id"
+                                 baseTableName="colonia"
+                                 constraintName="fk_colonia_municipio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="municipio"/>
+
+        <addForeignKeyConstraint baseColumnNames="codigo_postal_id"
+                                 baseTableName="colonia"
+                                 constraintName="fk_colonia_codigo_postal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="codigo_postal"/>
+
+    </changeSet>
+</databaseChangeLog>

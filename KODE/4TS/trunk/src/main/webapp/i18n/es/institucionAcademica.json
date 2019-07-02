@@ -1,0 +1,22 @@
+{
+  "App": {
+    "institucionAcademica": {
+      "home": {
+        "title": "Institucion Academicas",
+        "createLabel": "Crear nuevo Institucion Academica",
+        "createOrEditLabel": "Crear o editar Institucion Academica"
+      },
+      "created": "Un nuevo Institucion Academica ha sido creado con el identificador {{ param }}",
+      "updated": "Un Institucion Academica ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Institucion Academica ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Institucion Academica {{ id }}?"
+      },
+      "detail": {
+        "title": "Institucion Academica"
+      },
+      "institucion": "Institucion",
+      "candidato": "Candidato"
+    }
+  }
+}

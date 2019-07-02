@@ -1,0 +1,267 @@
+entity Candidato {
+    anosExperiencia Float,
+    nombre String required maxlength(100),
+    apellidoPaterno String required maxlength(100),
+    apellidoMaterno String maxlength(100),
+    fechaNacimiento LocalDate,
+    edad Integer,
+    emailPrincipal String required maxlength(100),
+    emailAdicional String maxlength(100),
+    emailAsignacion String maxlength(100),
+    emailKode String maxlength(100),
+    web String maxlength(100),
+    telefonoCasa String maxlength(20),
+    telefonoTrabajo String maxlength(20),
+    telefonoCelular String maxlength(20),
+    telefonoAdicional String maxlength(20),
+    coorLat Float,
+    coorLong Float,
+    dirCodigoPostal String maxlength(5),
+    dirCalle String maxlength(100),
+    noExt String maxlength(100),
+    noInt String maxlength(100),
+    salarioNeto Float,
+    costoTotal Float,
+    contatoDuracionMinima Integer,
+    disponibilidadEntrevistaFecha LocalDate,
+    disponibilidadEntrevistaPeriodo Integer,
+    disponibilidadAsignacionFecha LocalDate,
+    disponibilidadAsignacionPeriodo String maxlength(100),
+    antecedenteUltimoEmpleador String maxlength(100),
+    antecedenteSalarioNeto Integer,
+    notas String maxlength(1000),
+    porcentajeIngles Integer,
+    curp String maxlength(50),
+    rfc String maxlength(50),
+    nss String maxlength(50),
+    sexo Sexo,
+    estadoCivil EstadoCivil,
+    fechaAlta Instant,
+    fechaUltimoSeguimiento Instant,
+    foto String maxlength(1000)
+}
+entity Documento{
+    
+}
+entity FormacionAcademica{
+    
+}
+entity Colonia{
+    colonia String maxlength(100)
+}
+entity Municipio{
+    municipio String maxlength(100)
+}
+entity Estado{
+    estado String maxlength(100)
+}
+entity CodigoPostal{
+    codigoPostal String maxlength(5)
+}
+entity Perfil{
+    
+}
+entity InstitucionAcademica{
+    institucion String maxlength(200)
+}
+entity EstatusCandidato{
+    estatus String maxlength(200)
+}
+entity EstCanInactivo {
+    motivo String maxlength(200)
+}
+enum EstadoCivil {
+    SOLTERO, CASADO
+}
+entity TipoPeriodo {
+    periodo String maxlength(200)
+}
+enum Sexo {
+    MASCULINO, FEMENINO
+}
+entity NivelPerfil{
+    nivel String maxlength(200)
+}
+entity ReferenciasLaborales{
+    empresa String maxlength(200)
+    nombreContacto String maxlength(200),
+    puestoContacto String maxlength(100),
+    emailContaco String maxlength(100),
+    telefonoContacto String maxlength(20)
+}
+entity EstatusAcademico{
+    estatus String maxlength(100)
+}
+entity FuenteReclutamiento{
+    fuente String maxlength(100)
+}
+entity EsquemaContratacionKode{
+    esquema String maxlength(100)
+}
+entity EsqContRec{
+    esquema String maxlength(100)
+}
+entity EstatusLaboral{
+    estatus String maxlength(100)
+}
+entity Cuenta{
+    clave String maxlength(100),
+    nombre String maxlength(100)
+}
+entity Skill{
+    nombre String maxlength(100)
+}
+entity TipoSkill{
+    tipo String maxlength(100)
+}
+entity CategoriaSkill{
+    categoria String maxlength(100)
+}
+entity SkillCandidato{
+    calificacionSkill Float
+}
+entity DominioSkill{
+    dominio String maxlength(100)
+}
+relationship OneToMany {
+    Candidato to ReferenciasLaborales{candidato},
+    FuenteReclutamiento to Candidato{fuenteReclutamiento},
+    EstatusCandidato to Candidato{estatusCandidato},
+    EstatusCandidato to EstCanInactivo{estatusCandidato},
+    Perfil to Candidato{perfil},
+    NivelPerfil to Candidato{nivelPerfil},
+    InstitucionAcademica to Candidato{institucionAcademica},
+    EstatusAcademico to Candidato{estatusAcademico},   
+    FuenteReclutamiento to Candidato{fuenteReclutamiento}, 
+    EsquemaContratacionKode to Candidato{esquemaContratacionKode},
+    EstatusLaboral to Candidato{estatusLaboral},
+    Estado to Municipio{estado},
+    Municipio to Colonia,
+    CodigoPostal to Colonia{codigoPostal},
+    Colonia to Candidato{colonia},
+    EsqContRec to Candidato{antecedentesEsquemaContratacion},
+    FormacionAcademica to Candidato{estudios},
+    Candidato to SkillCandidato{idCandidato},
+    Skill to SkillCandidato{idSkill},
+    DominioSkill to SkillCandidato{nivelSkill},
+    CategoriaSkill to Skill{categoriaSkill},
+    EstCanInactivo to Candidato{estCanInactivo}
+}
+relationship ManyToOne {
+    Requerimiento{Cuenta} to Cuenta,
+    Requerimiento{subCuenta} to Cuenta,
+    ReqCan{Candidato} to Candidato,
+    ReqCan{Requerimiento} to Requerimiento,
+    ReqCan{estatusReqCan} to EstatusReqCan,
+    ReqCan{estatusReqCanRec} to EstatusReqCanRec,
+    Candidato{disponibilidadEntrevistaPeriodoTiempo} to TipoPeriodo,
+    Candidato{disponibilidadAsignacionPeriodoTiempo} to TipoPeriodo,
+    Candidato{usuarioCreador} to User,
+    Candidato{usuarioAsignado} to User,
+    Requerimiento{usuarioCreador} to User,
+    Requerimiento{usuarioAsignado} to User,
+    Tarea{usuarioCreador} to User,
+    Tarea{usuarioEjecutor} to User,
+    Bitacora{usuario} to User,
+    Candidato{Documento} to Documento
+}
+relationship ManyToMany {
+    Candidato{cuentaInteres} to Cuenta{candidatoInteres},
+    Candidato{cuentaRechazadas} to Cuenta{candidatoRechazadas},
+    CodigoPostal to Municipio
+}
+entity Requerimiento{
+    fechaAlda Instant required,
+    fechaResolucion Instant,
+    remplazoDe String maxlength(500),
+    vacantesSolicitadas Integer,
+    proyecto String maxlength(200),
+    nombreContacto String maxlength(100),
+    tarifaSueldoNet Float,
+    prestaciones String maxlength(500),
+    duracionAsignacion Integer,
+    lugarTrabajo String maxlength(500),
+    coorLat Float,
+    coorLong Float,
+    horario String maxlength(300),
+    informacionExamen String maxlength(500),
+    informacionAdicional String maxlength(1000)
+}
+entity EstatusRequerimiento{
+    estatus String maxlength(100)
+}
+entity EstReqCerrado{
+    motivo String maxlength(100)
+}
+entity PrioridadReq{
+    prioridad String maxlength(100)
+}
+entity TipoSolicitud{
+    solicitud String maxlength(100)
+}
+entity TipoIngreso{
+    tipo String maxlength(100)
+}
+entity BaseTarifa{
+    base String maxlength(100)
+}
+entity SkillRequerimiento{
+}
+entity EstatusReqCan{
+    estatus String maxlength(100)
+}
+entity EstatusReqCanRec{
+    motivo String maxlength(100)
+}
+relationship OneToMany {
+    EstatusRequerimiento to Requerimiento{estatusRequerimiento},
+    EstatusRequerimiento to EstReqCerrado{estatusRequerimiento},
+    PrioridadReq to Requerimiento{prioridad},
+    TipoSolicitud to Requerimiento{tipoSolicitud},
+    TipoIngreso to Requerimiento{tipoIngreso},
+    BaseTarifa to Requerimiento{baseTarifa},
+    EsqContRec to Requerimiento{esquemaContratacion},
+    Perfil to Requerimiento{perfil},
+    NivelPerfil to Requerimiento{nivelPerfil},
+    Requerimiento to SkillRequerimiento{idRequerimiento},
+    Skill to SkillRequerimiento{idSkill},
+    TipoSkill to SkillRequerimiento{tipoSkill},
+    EstatusReqCan to EstatusReqCanRec{estatusReqCan},
+    EstReqCerrado to Requerimiento{estatusReqCan},
+    TipoPeriodo to Requerimiento{tipoPeriodo}
+}
+entity Tarea{
+    descripcion String maxlength(300),
+    titulo String maxlength(100)
+}
+entity EstatusTarea{
+    estatus String maxlength(100)
+}
+entity TipoTarea{
+    tipo String maxlength(100)
+}
+relationship OneToMany {
+    Requerimiento to Tarea{Requerimiento},
+    Candidato to Tarea{Candidato},
+    EstatusTarea to Tarea{estatusTarea},
+    TipoTarea to Tarea{tipoTarea}
+}
+entity Bitacora{
+    fecha ZonedDateTime,
+    comentario String maxlength(500)
+}
+relationship OneToMany {
+    Requerimiento to Bitacora{requerimiento},
+    Candidato to Bitacora{candidato},
+    Tarea to Bitacora{tarea},
+}
+entity ReqCan{
+    
+}
+// Set pagination options
+paginate * with pagination
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceImpl
+filter *
