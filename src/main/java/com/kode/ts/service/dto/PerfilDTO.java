@@ -9,6 +9,8 @@ public class PerfilDTO implements Serializable {
 
     private Long id;
 
+    private String perfil;
+
 
     public Long getId() {
         return id;
@@ -16,6 +18,14 @@ public class PerfilDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
     @Override
@@ -43,6 +53,7 @@ public class PerfilDTO implements Serializable {
     public String toString() {
         return "PerfilDTO{" +
             "id=" + getId() +
+            ", perfil='" + getPerfil() + "'" +
             "}";
     }
 }

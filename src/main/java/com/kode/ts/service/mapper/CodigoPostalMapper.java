@@ -11,8 +11,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {MunicipioMapper.class})
 public interface CodigoPostalMapper extends EntityMapper<CodigoPostalDTO, CodigoPostal> {
 
+    @Mapping(source = "municipio.id", target = "municipioId")
+    CodigoPostalDTO toDto(CodigoPostal codigoPostal);
 
     @Mapping(target = "colonias", ignore = true)
+    @Mapping(source = "municipioId", target = "municipio")
     CodigoPostal toEntity(CodigoPostalDTO codigoPostalDTO);
 
     default CodigoPostal fromId(Long id) {

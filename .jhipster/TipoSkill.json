@@ -1,0 +1,30 @@
+{
+    "name": "TipoSkill",
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillRequerimiento",
+            "otherEntityRelationshipName": "tipoSkill",
+            "relationshipName": "skillRequerimiento"
+        }
+    ],
+    "changelogDate": "20190702164709",
+    "entityTableName": "tipo_skill",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

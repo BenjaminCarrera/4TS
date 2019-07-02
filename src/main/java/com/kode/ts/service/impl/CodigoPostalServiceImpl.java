@@ -61,15 +61,6 @@ public class CodigoPostalServiceImpl implements CodigoPostalService {
             .map(codigoPostalMapper::toDto);
     }
 
-    /**
-     * Get all the codigoPostals with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<CodigoPostalDTO> findAllWithEagerRelationships(Pageable pageable) {
-        return codigoPostalRepository.findAllWithEagerRelationships(pageable).map(codigoPostalMapper::toDto);
-    }
-    
 
     /**
      * Get one codigoPostal by id.
@@ -81,7 +72,7 @@ public class CodigoPostalServiceImpl implements CodigoPostalService {
     @Transactional(readOnly = true)
     public Optional<CodigoPostalDTO> findOne(Long id) {
         log.debug("Request to get CodigoPostal : {}", id);
-        return codigoPostalRepository.findOneWithEagerRelationships(id)
+        return codigoPostalRepository.findById(id)
             .map(codigoPostalMapper::toDto);
     }
 

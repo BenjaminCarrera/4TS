@@ -1,0 +1,432 @@
+{
+    "name": "Candidato",
+    "fields": [
+        {
+            "fieldName": "anosExperiencia",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "apellidoPaterno",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "apellidoMaterno",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "fechaNacimiento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "edad",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "emailPrincipal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "emailAdicional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "emailAsignacion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "emailKode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "web",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "telefonoCasa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "telefonoTrabajo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "telefonoCelular",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "telefonoAdicional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "coorLat",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "coorLong",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "dirCodigoPostal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 5
+        },
+        {
+            "fieldName": "dirCalle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "noExt",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "noInt",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "salarioNeto",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "costoTotal",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "contatoDuracionMinima",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "disponibilidadEntrevistaFecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "disponibilidadEntrevistaPeriodo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "disponibilidadAsignacionFecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "disponibilidadAsignacionPeriodo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "antecedenteUltimoEmpleador",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "antecedenteSalarioNeto",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "notas",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "porcentajeIngles",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "curp",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "rfc",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "nss",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "sexo",
+            "fieldType": "Sexo",
+            "fieldValues": "MASCULINO,FEMENINO"
+        },
+        {
+            "fieldName": "estadoCivil",
+            "fieldType": "EstadoCivil",
+            "fieldValues": "SOLTERO,CASADO"
+        },
+        {
+            "fieldName": "fechaAlta",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaUltimoSeguimiento",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "referenciasLaborales",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "referenciasLaborales"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillCandidato",
+            "otherEntityRelationshipName": "idCandidato",
+            "relationshipName": "skillCandidato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tarea",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "tarea"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "bitacora",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "bitacora"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoPeriodo",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "disponibilidadEntrevistaPeriodoTiempo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoPeriodo",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "disponibilidadAsignacionPeriodoTiempo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "usuarioCreador",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "usuarioAsignado",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "documento",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "documento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "cuenta",
+            "otherEntityRelationshipName": "candidatoInteres",
+            "relationshipName": "cuentaInteres",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "cuenta",
+            "otherEntityRelationshipName": "candidatoRechazadas",
+            "relationshipName": "cuentaRechazadas",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "fuenteReclutamiento",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "fuenteReclutamiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusCandidato",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "estatusCandidato",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "perfil",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "perfil",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nivelPerfil",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "nivelPerfil",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "institucionAcademica",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "institucionAcademica",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusAcademico",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "estatusAcademico",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "esquemaContratacionKode",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "esquemaContratacionKode",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusLaboral",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "estatusLaboral",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "colonia",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "colonia",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "esqContRec",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "antecedentesEsquemaContratacion",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "formacionAcademica",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "estudios",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estCanInactivo",
+            "otherEntityRelationshipName": "candidato",
+            "relationshipName": "estCanInactivo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164648",
+    "entityTableName": "candidato",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

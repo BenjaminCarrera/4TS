@@ -1,0 +1,36 @@
+{
+    "name": "EstatusRequerimiento",
+    "fields": [
+        {
+            "fieldName": "estatus",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "estatusRequerimiento",
+            "relationshipName": "requerimiento"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "estReqCerrado",
+            "otherEntityRelationshipName": "estatusRequerimiento",
+            "relationshipName": "estReqCerrado"
+        }
+    ],
+    "changelogDate": "20190702164714",
+    "entityTableName": "estatus_requerimiento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

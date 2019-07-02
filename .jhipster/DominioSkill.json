@@ -1,0 +1,30 @@
+{
+    "name": "DominioSkill",
+    "fields": [
+        {
+            "fieldName": "dominio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillCandidato",
+            "otherEntityRelationshipName": "nivelSkill",
+            "relationshipName": "skillCandidato"
+        }
+    ],
+    "changelogDate": "20190702164712",
+    "entityTableName": "dominio_skill",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

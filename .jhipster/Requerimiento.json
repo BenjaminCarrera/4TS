@@ -1,0 +1,227 @@
+{
+    "name": "Requerimiento",
+    "fields": [
+        {
+            "fieldName": "fechaAlda",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaResolucion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "remplazoDe",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "vacantesSolicitadas",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "proyecto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "nombreContacto",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "tarifaSueldoNet",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "prestaciones",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "duracionAsignacion",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lugarTrabajo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "coorLat",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "coorLong",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "horario",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 300
+        },
+        {
+            "fieldName": "informacionExamen",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "informacionAdicional",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillRequerimiento",
+            "otherEntityRelationshipName": "idRequerimiento",
+            "relationshipName": "skillRequerimiento"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tarea",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "tarea"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "bitacora",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "bitacora"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cuenta",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "cuenta",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cuenta",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "subCuenta",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "usuarioCreador",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "usuarioAsignado",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusRequerimiento",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "estatusRequerimiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "prioridadReq",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "prioridad",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoSolicitud",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "tipoSolicitud",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoIngreso",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "tipoIngreso",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "baseTarifa",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "baseTarifa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "esqContRec",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "esquemaContratacion",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "perfil",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "perfil",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nivelPerfil",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "nivelPerfil",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estReqCerrado",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "estatusReqCan",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoPeriodo",
+            "otherEntityRelationshipName": "requerimiento",
+            "relationshipName": "tipoPeriodo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164713",
+    "entityTableName": "requerimiento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

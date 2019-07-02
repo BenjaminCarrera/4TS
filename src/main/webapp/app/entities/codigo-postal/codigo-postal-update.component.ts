@@ -23,7 +23,7 @@ export class CodigoPostalUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     codigoPostal: [null, [Validators.maxLength(5)]],
-    municipios: []
+    municipioId: []
   });
 
   constructor(
@@ -53,7 +53,7 @@ export class CodigoPostalUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: codigoPostal.id,
       codigoPostal: codigoPostal.codigoPostal,
-      municipios: codigoPostal.municipios
+      municipioId: codigoPostal.municipioId
     });
   }
 
@@ -76,7 +76,7 @@ export class CodigoPostalUpdateComponent implements OnInit {
       ...new CodigoPostal(),
       id: this.editForm.get(['id']).value,
       codigoPostal: this.editForm.get(['codigoPostal']).value,
-      municipios: this.editForm.get(['municipios']).value
+      municipioId: this.editForm.get(['municipioId']).value
     };
     return entity;
   }
@@ -99,16 +99,5 @@ export class CodigoPostalUpdateComponent implements OnInit {
 
   trackMunicipioById(index: number, item: IMunicipio) {
     return item.id;
-  }
-
-  getSelected(selectedVals: Array<any>, option: any) {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

@@ -26,6 +26,9 @@ public class Perfil implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "perfil")
+    private String perfil;
+
     @OneToMany(mappedBy = "perfil")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Candidato> candidatoes = new HashSet<>();
@@ -41,6 +44,19 @@ public class Perfil implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public Perfil perfil(String perfil) {
+        this.perfil = perfil;
+        return this;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
     public Set<Candidato> getCandidatoes() {
@@ -114,6 +130,7 @@ public class Perfil implements Serializable {
     public String toString() {
         return "Perfil{" +
             "id=" + getId() +
+            ", perfil='" + getPerfil() + "'" +
             "}";
     }
 }

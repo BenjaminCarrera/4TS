@@ -1,0 +1,43 @@
+{
+    "name": "ReqCan",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "reqCan",
+            "relationshipName": "candidato",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "reqCan",
+            "relationshipName": "requerimiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusReqCan",
+            "otherEntityRelationshipName": "reqCan",
+            "relationshipName": "estatusReqCan",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusReqCanRec",
+            "otherEntityRelationshipName": "reqCan",
+            "relationshipName": "estatusReqCanRec",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164727",
+    "entityTableName": "req_can",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

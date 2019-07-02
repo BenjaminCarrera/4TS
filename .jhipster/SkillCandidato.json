@@ -1,0 +1,41 @@
+{
+    "name": "SkillCandidato",
+    "fields": [
+        {
+            "fieldName": "calificacionSkill",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "skillCandidato",
+            "relationshipName": "idCandidato",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "skill",
+            "otherEntityRelationshipName": "skillCandidato",
+            "relationshipName": "idSkill",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "dominioSkill",
+            "otherEntityRelationshipName": "skillCandidato",
+            "relationshipName": "nivelSkill",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164711",
+    "entityTableName": "skill_candidato",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -26,6 +26,8 @@ public class PerfilCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
+    private StringFilter perfil;
+
     private LongFilter candidatoId;
 
     private LongFilter requerimientoId;
@@ -35,6 +37,7 @@ public class PerfilCriteria implements Serializable, Criteria {
 
     public PerfilCriteria(PerfilCriteria other){
         this.id = other.id == null ? null : other.id.copy();
+        this.perfil = other.perfil == null ? null : other.perfil.copy();
         this.candidatoId = other.candidatoId == null ? null : other.candidatoId.copy();
         this.requerimientoId = other.requerimientoId == null ? null : other.requerimientoId.copy();
     }
@@ -50,6 +53,14 @@ public class PerfilCriteria implements Serializable, Criteria {
 
     public void setId(LongFilter id) {
         this.id = id;
+    }
+
+    public StringFilter getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(StringFilter perfil) {
+        this.perfil = perfil;
     }
 
     public LongFilter getCandidatoId() {
@@ -80,6 +91,7 @@ public class PerfilCriteria implements Serializable, Criteria {
         final PerfilCriteria that = (PerfilCriteria) o;
         return
             Objects.equals(id, that.id) &&
+            Objects.equals(perfil, that.perfil) &&
             Objects.equals(candidatoId, that.candidatoId) &&
             Objects.equals(requerimientoId, that.requerimientoId);
     }
@@ -88,6 +100,7 @@ public class PerfilCriteria implements Serializable, Criteria {
     public int hashCode() {
         return Objects.hash(
         id,
+        perfil,
         candidatoId,
         requerimientoId
         );
@@ -97,6 +110,7 @@ public class PerfilCriteria implements Serializable, Criteria {
     public String toString() {
         return "PerfilCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
+                (perfil != null ? "perfil=" + perfil + ", " : "") +
                 (candidatoId != null ? "candidatoId=" + candidatoId + ", " : "") +
                 (requerimientoId != null ? "requerimientoId=" + requerimientoId + ", " : "") +
             "}";

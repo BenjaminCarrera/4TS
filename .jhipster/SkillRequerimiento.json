@@ -1,0 +1,36 @@
+{
+    "name": "SkillRequerimiento",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "skillRequerimiento",
+            "relationshipName": "idRequerimiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "skill",
+            "otherEntityRelationshipName": "skillRequerimiento",
+            "relationshipName": "idSkill",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoSkill",
+            "otherEntityRelationshipName": "skillRequerimiento",
+            "relationshipName": "tipoSkill",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164720",
+    "entityTableName": "skill_requerimiento",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

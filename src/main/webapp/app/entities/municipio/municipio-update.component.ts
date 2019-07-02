@@ -9,8 +9,6 @@ import { IMunicipio, Municipio } from 'app/shared/model/municipio.model';
 import { MunicipioService } from './municipio.service';
 import { IEstado } from 'app/shared/model/estado.model';
 import { EstadoService } from 'app/entities/estado';
-import { ICodigoPostal } from 'app/shared/model/codigo-postal.model';
-import { CodigoPostalService } from 'app/entities/codigo-postal';
 
 @Component({
   selector: 'jhi-municipio-update',
@@ -22,8 +20,6 @@ export class MunicipioUpdateComponent implements OnInit {
 
   estados: IEstado[];
 
-  codigopostals: ICodigoPostal[];
-
   editForm = this.fb.group({
     id: [],
     municipio: [null, [Validators.maxLength(100)]],
@@ -34,7 +30,6 @@ export class MunicipioUpdateComponent implements OnInit {
     protected jhiAlertService: JhiAlertService,
     protected municipioService: MunicipioService,
     protected estadoService: EstadoService,
-    protected codigoPostalService: CodigoPostalService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -52,13 +47,6 @@ export class MunicipioUpdateComponent implements OnInit {
         map((response: HttpResponse<IEstado[]>) => response.body)
       )
       .subscribe((res: IEstado[]) => (this.estados = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.codigoPostalService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<ICodigoPostal[]>) => mayBeOk.ok),
-        map((response: HttpResponse<ICodigoPostal[]>) => response.body)
-      )
-      .subscribe((res: ICodigoPostal[]) => (this.codigopostals = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(municipio: IMunicipio) {
@@ -111,20 +99,5 @@ export class MunicipioUpdateComponent implements OnInit {
 
   trackEstadoById(index: number, item: IEstado) {
     return item.id;
-  }
-
-  trackCodigoPostalById(index: number, item: ICodigoPostal) {
-    return item.id;
-  }
-
-  getSelected(selectedVals: Array<any>, option: any) {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

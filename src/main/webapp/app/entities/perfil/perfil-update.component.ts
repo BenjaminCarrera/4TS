@@ -15,7 +15,8 @@ export class PerfilUpdateComponent implements OnInit {
   isSaving: boolean;
 
   editForm = this.fb.group({
-    id: []
+    id: [],
+    perfil: []
   });
 
   constructor(protected perfilService: PerfilService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -30,7 +31,8 @@ export class PerfilUpdateComponent implements OnInit {
 
   updateForm(perfil: IPerfil) {
     this.editForm.patchValue({
-      id: perfil.id
+      id: perfil.id,
+      perfil: perfil.perfil
     });
   }
 
@@ -51,7 +53,8 @@ export class PerfilUpdateComponent implements OnInit {
   private createFromForm(): IPerfil {
     const entity = {
       ...new Perfil(),
-      id: this.editForm.get(['id']).value
+      id: this.editForm.get(['id']).value,
+      perfil: this.editForm.get(['perfil']).value
     };
     return entity;
   }

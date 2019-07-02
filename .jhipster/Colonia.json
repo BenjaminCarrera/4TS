@@ -1,0 +1,44 @@
+{
+    "name": "Colonia",
+    "fields": [
+        {
+            "fieldName": "colonia",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "colonia",
+            "relationshipName": "candidato"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "municipio",
+            "otherEntityRelationshipName": "colonia",
+            "relationshipName": "municipio",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "codigoPostal",
+            "otherEntityRelationshipName": "colonia",
+            "relationshipName": "codigoPostal",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164651",
+    "entityTableName": "colonia",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

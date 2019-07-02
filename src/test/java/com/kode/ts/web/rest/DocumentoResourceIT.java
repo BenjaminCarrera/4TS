@@ -38,6 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 public class DocumentoResourceIT {
 
+    private static final String DEFAULT_DOCUMENTO = "AAAAAAAAAA";
+    private static final String UPDATED_DOCUMENTO = "BBBBBBBBBB";
+
     @Autowired
     private DocumentoRepository documentoRepository;
 
@@ -88,7 +91,8 @@ public class DocumentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Documento createEntity(EntityManager em) {
-        Documento documento = new Documento();
+        Documento documento = new Documento()
+            .documento(DEFAULT_DOCUMENTO);
         return documento;
     }
     /**
@@ -98,7 +102,8 @@ public class DocumentoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Documento createUpdatedEntity(EntityManager em) {
-        Documento documento = new Documento();
+        Documento documento = new Documento()
+            .documento(UPDATED_DOCUMENTO);
         return documento;
     }
 
@@ -123,6 +128,7 @@ public class DocumentoResourceIT {
         List<Documento> documentoList = documentoRepository.findAll();
         assertThat(documentoList).hasSize(databaseSizeBeforeCreate + 1);
         Documento testDocumento = documentoList.get(documentoList.size() - 1);
+        assertThat(testDocumento.getDocumento()).isEqualTo(DEFAULT_DOCUMENTO);
     }
 
     @Test
@@ -156,7 +162,8 @@ public class DocumentoResourceIT {
         restDocumentoMockMvc.perform(get("/api/documentos?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(documento.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(documento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO.toString())));
     }
     
     @Test
@@ -169,7 +176,47 @@ public class DocumentoResourceIT {
         restDocumentoMockMvc.perform(get("/api/documentos/{id}", documento.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(documento.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(documento.getId().intValue()))
+            .andExpect(jsonPath("$.documento").value(DEFAULT_DOCUMENTO.toString()));
+    }
+
+    @Test
+    @Transactional
+    public void getAllDocumentosByDocumentoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        documentoRepository.saveAndFlush(documento);
+
+        // Get all the documentoList where documento equals to DEFAULT_DOCUMENTO
+        defaultDocumentoShouldBeFound("documento.equals=" + DEFAULT_DOCUMENTO);
+
+        // Get all the documentoList where documento equals to UPDATED_DOCUMENTO
+        defaultDocumentoShouldNotBeFound("documento.equals=" + UPDATED_DOCUMENTO);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDocumentosByDocumentoIsInShouldWork() throws Exception {
+        // Initialize the database
+        documentoRepository.saveAndFlush(documento);
+
+        // Get all the documentoList where documento in DEFAULT_DOCUMENTO or UPDATED_DOCUMENTO
+        defaultDocumentoShouldBeFound("documento.in=" + DEFAULT_DOCUMENTO + "," + UPDATED_DOCUMENTO);
+
+        // Get all the documentoList where documento equals to UPDATED_DOCUMENTO
+        defaultDocumentoShouldNotBeFound("documento.in=" + UPDATED_DOCUMENTO);
+    }
+
+    @Test
+    @Transactional
+    public void getAllDocumentosByDocumentoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        documentoRepository.saveAndFlush(documento);
+
+        // Get all the documentoList where documento is not null
+        defaultDocumentoShouldBeFound("documento.specified=true");
+
+        // Get all the documentoList where documento is null
+        defaultDocumentoShouldNotBeFound("documento.specified=false");
     }
     /**
      * Executes the search, and checks that the default entity is returned.
@@ -178,7 +225,8 @@ public class DocumentoResourceIT {
         restDocumentoMockMvc.perform(get("/api/documentos?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(documento.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(documento.getId().intValue())))
+            .andExpect(jsonPath("$.[*].documento").value(hasItem(DEFAULT_DOCUMENTO)));
 
         // Check, that the count call also returns 1
         restDocumentoMockMvc.perform(get("/api/documentos/count?sort=id,desc&" + filter))
@@ -225,6 +273,8 @@ public class DocumentoResourceIT {
         Documento updatedDocumento = documentoRepository.findById(documento.getId()).get();
         // Disconnect from session so that the updates on updatedDocumento are not directly saved in db
         em.detach(updatedDocumento);
+        updatedDocumento
+            .documento(UPDATED_DOCUMENTO);
         DocumentoDTO documentoDTO = documentoMapper.toDto(updatedDocumento);
 
         restDocumentoMockMvc.perform(put("/api/documentos")
@@ -236,6 +286,7 @@ public class DocumentoResourceIT {
         List<Documento> documentoList = documentoRepository.findAll();
         assertThat(documentoList).hasSize(databaseSizeBeforeUpdate);
         Documento testDocumento = documentoList.get(documentoList.size() - 1);
+        assertThat(testDocumento.getDocumento()).isEqualTo(UPDATED_DOCUMENTO);
     }
 
     @Test

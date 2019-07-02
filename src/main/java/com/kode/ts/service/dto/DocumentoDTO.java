@@ -9,6 +9,8 @@ public class DocumentoDTO implements Serializable {
 
     private Long id;
 
+    private String documento;
+
 
     public Long getId() {
         return id;
@@ -16,6 +18,14 @@ public class DocumentoDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     @Override
@@ -43,6 +53,7 @@ public class DocumentoDTO implements Serializable {
     public String toString() {
         return "DocumentoDTO{" +
             "id=" + getId() +
+            ", documento='" + getDocumento() + "'" +
             "}";
     }
 }

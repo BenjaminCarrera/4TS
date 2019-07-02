@@ -89,6 +89,9 @@ public class FormacionAcademicaQueryService extends QueryService<FormacionAcadem
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), FormacionAcademica_.id));
             }
+            if (criteria.getFormacionAcademica() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFormacionAcademica(), FormacionAcademica_.formacionAcademica));
+            }
             if (criteria.getCandidatoId() != null) {
                 specification = specification.and(buildSpecification(criteria.getCandidatoId(),
                     root -> root.join(FormacionAcademica_.candidatoes, JoinType.LEFT).get(Candidato_.id)));

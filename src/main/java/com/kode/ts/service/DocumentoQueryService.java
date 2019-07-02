@@ -89,6 +89,9 @@ public class DocumentoQueryService extends QueryService<Documento> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), Documento_.id));
             }
+            if (criteria.getDocumento() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDocumento(), Documento_.documento));
+            }
         }
         return specification;
     }

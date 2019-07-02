@@ -1,0 +1,30 @@
+{
+    "name": "EsquemaContratacionKode",
+    "fields": [
+        {
+            "fieldName": "esquema",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "esquemaContratacionKode",
+            "relationshipName": "candidato"
+        }
+    ],
+    "changelogDate": "20190702164704",
+    "entityTableName": "esquema_contratacion_kode",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

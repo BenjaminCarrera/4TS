@@ -1,0 +1,80 @@
+{
+    "name": "Tarea",
+    "fields": [
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 300
+        },
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "bitacora",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "bitacora"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "usuarioCreador",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "usuarioEjecutor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "requerimiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "candidato",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusTarea",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "estatusTarea",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoTarea",
+            "otherEntityRelationshipName": "tarea",
+            "relationshipName": "tipoTarea",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164723",
+    "entityTableName": "tarea",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,30 @@
+{
+    "name": "PrioridadReq",
+    "fields": [
+        {
+            "fieldName": "prioridad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "prioridad",
+            "relationshipName": "requerimiento"
+        }
+    ],
+    "changelogDate": "20190702164716",
+    "entityTableName": "prioridad_req",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

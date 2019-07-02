@@ -1,0 +1,37 @@
+{
+    "name": "EstCanInactivo",
+    "fields": [
+        {
+            "fieldName": "motivo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "estCanInactivo",
+            "relationshipName": "candidato"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "estatusCandidato",
+            "otherEntityRelationshipName": "estCanInactivo",
+            "relationshipName": "estatusCandidato",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164658",
+    "entityTableName": "est_can_inactivo",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

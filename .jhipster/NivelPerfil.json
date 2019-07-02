@@ -1,0 +1,36 @@
+{
+    "name": "NivelPerfil",
+    "fields": [
+        {
+            "fieldName": "nivel",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "nivelPerfil",
+            "relationshipName": "candidato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "nivelPerfil",
+            "relationshipName": "requerimiento"
+        }
+    ],
+    "changelogDate": "20190702164700",
+    "entityTableName": "nivel_perfil",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

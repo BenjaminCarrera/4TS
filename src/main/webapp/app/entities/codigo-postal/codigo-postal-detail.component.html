@@ -11,9 +11,9 @@
                 </dd>
                 <dt><span jhiTranslate="App.codigoPostal.municipio">Municipio</span></dt>
                 <dd>
-                    <span *ngFor="let municipio of codigoPostal.municipios; let last = last">
-                        <a [routerLink]="['/municipio', municipio?.id, 'view' ]">{{municipio.id}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <div *ngIf="codigoPostal.municipioId">
+                        <a [routerLink]="['/municipio', codigoPostal.municipioId, 'view']">{{codigoPostal.municipioId}}</a>
+                    </div>
                 </dd>
             </dl>
 

@@ -1,0 +1,30 @@
+{
+    "name": "InstitucionAcademica",
+    "fields": [
+        {
+            "fieldName": "institucion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "institucionAcademica",
+            "relationshipName": "candidato"
+        }
+    ],
+    "changelogDate": "20190702164656",
+    "entityTableName": "institucion_academica",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

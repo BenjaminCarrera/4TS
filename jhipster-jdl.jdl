@@ -41,10 +41,10 @@ entity Candidato {
     foto String maxlength(1000)
 }
 entity Documento{
-    
+    documento String
 }
 entity FormacionAcademica{
-    
+    formacionAcademica String
 }
 entity Colonia{
     colonia String maxlength(100)
@@ -59,7 +59,7 @@ entity CodigoPostal{
     codigoPostal String maxlength(5)
 }
 entity Perfil{
-    
+    perfil String
 }
 entity InstitucionAcademica{
     institucion String maxlength(200)
@@ -137,6 +137,7 @@ relationship OneToMany {
     EstatusLaboral to Candidato{estatusLaboral},
     Estado to Municipio{estado},
     Municipio to Colonia,
+    Municipio to CodigoPostal{municipio}, 
     CodigoPostal to Colonia{codigoPostal},
     Colonia to Candidato{colonia},
     EsqContRec to Candidato{antecedentesEsquemaContratacion},
@@ -168,7 +169,6 @@ relationship ManyToOne {
 relationship ManyToMany {
     Candidato{cuentaInteres} to Cuenta{candidatoInteres},
     Candidato{cuentaRechazadas} to Cuenta{candidatoRechazadas},
-    CodigoPostal to Municipio
 }
 entity Requerimiento{
     fechaAlda Instant required,
