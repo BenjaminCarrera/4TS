@@ -15,7 +15,7 @@
     "enableHibernateCache": true,
     "websocket": false,
     "databaseType": "sql",
-    "devDatabaseType": "h2Disk",
+    "devDatabaseType": "mysql",
     "prodDatabaseType": "mysql",
     "searchEngine": false,
     "messageBroker": false,
@@ -33,7 +33,9 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "es",
-    "languages": ["es"],
+    "languages": [
+      "es"
+    ],
     "clientTheme": "none"
   }
 }
