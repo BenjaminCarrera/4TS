@@ -1,0 +1,238 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="App.candidato.home.title">Candidatoes</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-candidato" [routerLink]="['/candidato/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="App.candidato.home.createLabel">
+            Create new Candidato
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="candidatoes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="anosExperiencia"><span jhiTranslate="App.candidato.anosExperiencia">Anos Experiencia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="App.candidato.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="apellidoPaterno"><span jhiTranslate="App.candidato.apellidoPaterno">Apellido Paterno</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="apellidoMaterno"><span jhiTranslate="App.candidato.apellidoMaterno">Apellido Materno</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaNacimiento"><span jhiTranslate="App.candidato.fechaNacimiento">Fecha Nacimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="edad"><span jhiTranslate="App.candidato.edad">Edad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailPrincipal"><span jhiTranslate="App.candidato.emailPrincipal">Email Principal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailAdicional"><span jhiTranslate="App.candidato.emailAdicional">Email Adicional</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailAsignacion"><span jhiTranslate="App.candidato.emailAsignacion">Email Asignacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="emailKode"><span jhiTranslate="App.candidato.emailKode">Email Kode</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="web"><span jhiTranslate="App.candidato.web">Web</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoCasa"><span jhiTranslate="App.candidato.telefonoCasa">Telefono Casa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoTrabajo"><span jhiTranslate="App.candidato.telefonoTrabajo">Telefono Trabajo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoCelular"><span jhiTranslate="App.candidato.telefonoCelular">Telefono Celular</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefonoAdicional"><span jhiTranslate="App.candidato.telefonoAdicional">Telefono Adicional</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="coorLat"><span jhiTranslate="App.candidato.coorLat">Coor Lat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="coorLong"><span jhiTranslate="App.candidato.coorLong">Coor Long</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dirCodigoPostal"><span jhiTranslate="App.candidato.dirCodigoPostal">Dir Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dirCalle"><span jhiTranslate="App.candidato.dirCalle">Dir Calle</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="noExt"><span jhiTranslate="App.candidato.noExt">No Ext</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="noInt"><span jhiTranslate="App.candidato.noInt">No Int</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="salarioNeto"><span jhiTranslate="App.candidato.salarioNeto">Salario Neto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="costoTotal"><span jhiTranslate="App.candidato.costoTotal">Costo Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contatoDuracionMinima"><span jhiTranslate="App.candidato.contatoDuracionMinima">Contato Duracion Minima</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadEntrevistaFecha"><span jhiTranslate="App.candidato.disponibilidadEntrevistaFecha">Disponibilidad Entrevista Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadEntrevistaPeriodo"><span jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodo">Disponibilidad Entrevista Periodo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadAsignacionFecha"><span jhiTranslate="App.candidato.disponibilidadAsignacionFecha">Disponibilidad Asignacion Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadAsignacionPeriodo"><span jhiTranslate="App.candidato.disponibilidadAsignacionPeriodo">Disponibilidad Asignacion Periodo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="antecedenteUltimoEmpleador"><span jhiTranslate="App.candidato.antecedenteUltimoEmpleador">Antecedente Ultimo Empleador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="antecedenteSalarioNeto"><span jhiTranslate="App.candidato.antecedenteSalarioNeto">Antecedente Salario Neto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="notas"><span jhiTranslate="App.candidato.notas">Notas</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="porcentajeIngles"><span jhiTranslate="App.candidato.porcentajeIngles">Porcentaje Ingles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="curp"><span jhiTranslate="App.candidato.curp">Curp</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="rfc"><span jhiTranslate="App.candidato.rfc">Rfc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nss"><span jhiTranslate="App.candidato.nss">Nss</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sexo"><span jhiTranslate="App.candidato.sexo">Sexo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estadoCivil"><span jhiTranslate="App.candidato.estadoCivil">Estado Civil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaAlta"><span jhiTranslate="App.candidato.fechaAlta">Fecha Alta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaUltimoSeguimiento"><span jhiTranslate="App.candidato.fechaUltimoSeguimiento">Fecha Ultimo Seguimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="foto"><span jhiTranslate="App.candidato.foto">Foto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadEntrevistaPeriodoTiempoId"><span jhiTranslate="App.candidato.disponibilidadEntrevistaPeriodoTiempo">Disponibilidad Entrevista Periodo Tiempo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="disponibilidadAsignacionPeriodoTiempoId"><span jhiTranslate="App.candidato.disponibilidadAsignacionPeriodoTiempo">Disponibilidad Asignacion Periodo Tiempo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioCreadorId"><span jhiTranslate="App.candidato.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioAsignadoId"><span jhiTranslate="App.candidato.usuarioAsignado">Usuario Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="documentoId"><span jhiTranslate="App.candidato.documento">Documento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fuenteReclutamientoId"><span jhiTranslate="App.candidato.fuenteReclutamiento">Fuente Reclutamiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusCandidatoId"><span jhiTranslate="App.candidato.estatusCandidato">Estatus Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="perfilId"><span jhiTranslate="App.candidato.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nivelPerfilId"><span jhiTranslate="App.candidato.nivelPerfil">Nivel Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="institucionAcademicaId"><span jhiTranslate="App.candidato.institucionAcademica">Institucion Academica</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusAcademicoId"><span jhiTranslate="App.candidato.estatusAcademico">Estatus Academico</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="esquemaContratacionKodeId"><span jhiTranslate="App.candidato.esquemaContratacionKode">Esquema Contratacion Kode</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusLaboralId"><span jhiTranslate="App.candidato.estatusLaboral">Estatus Laboral</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="coloniaId"><span jhiTranslate="App.candidato.colonia">Colonia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="antecedentesEsquemaContratacionId"><span jhiTranslate="App.candidato.antecedentesEsquemaContratacion">Antecedentes Esquema Contratacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estudiosId"><span jhiTranslate="App.candidato.estudios">Estudios</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estCanInactivoId"><span jhiTranslate="App.candidato.estCanInactivo">Est Can Inactivo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let candidato of candidatoes ;trackBy: trackId">
+                <td><a [routerLink]="['/candidato', candidato.id, 'view' ]">{{candidato.id}}</a></td>
+                <td>{{candidato.anosExperiencia}}</td>
+                <td>{{candidato.nombre}}</td>
+                <td>{{candidato.apellidoPaterno}}</td>
+                <td>{{candidato.apellidoMaterno}}</td>
+                <td>{{candidato.fechaNacimiento | date:'mediumDate'}}</td>
+                <td>{{candidato.edad}}</td>
+                <td>{{candidato.emailPrincipal}}</td>
+                <td>{{candidato.emailAdicional}}</td>
+                <td>{{candidato.emailAsignacion}}</td>
+                <td>{{candidato.emailKode}}</td>
+                <td>{{candidato.web}}</td>
+                <td>{{candidato.telefonoCasa}}</td>
+                <td>{{candidato.telefonoTrabajo}}</td>
+                <td>{{candidato.telefonoCelular}}</td>
+                <td>{{candidato.telefonoAdicional}}</td>
+                <td>{{candidato.coorLat}}</td>
+                <td>{{candidato.coorLong}}</td>
+                <td>{{candidato.dirCodigoPostal}}</td>
+                <td>{{candidato.dirCalle}}</td>
+                <td>{{candidato.noExt}}</td>
+                <td>{{candidato.noInt}}</td>
+                <td>{{candidato.salarioNeto}}</td>
+                <td>{{candidato.costoTotal}}</td>
+                <td>{{candidato.contatoDuracionMinima}}</td>
+                <td>{{candidato.disponibilidadEntrevistaFecha | date:'mediumDate'}}</td>
+                <td>{{candidato.disponibilidadEntrevistaPeriodo}}</td>
+                <td>{{candidato.disponibilidadAsignacionFecha | date:'mediumDate'}}</td>
+                <td>{{candidato.disponibilidadAsignacionPeriodo}}</td>
+                <td>{{candidato.antecedenteUltimoEmpleador}}</td>
+                <td>{{candidato.antecedenteSalarioNeto}}</td>
+                <td>{{candidato.notas}}</td>
+                <td>{{candidato.porcentajeIngles}}</td>
+                <td>{{candidato.curp}}</td>
+                <td>{{candidato.rfc}}</td>
+                <td>{{candidato.nss}}</td>
+                <td jhiTranslate="{{'App.Sexo.' + candidato.sexo}}">{{candidato.sexo}}</td>
+                <td jhiTranslate="{{'App.EstadoCivil.' + candidato.estadoCivil}}">{{candidato.estadoCivil}}</td>
+                <td>{{candidato.fechaAlta | date:'medium'}}</td>
+                <td>{{candidato.fechaUltimoSeguimiento | date:'medium'}}</td>
+                <td>{{candidato.foto}}</td>
+                <td>
+                    <div *ngIf="candidato.disponibilidadEntrevistaPeriodoTiempoId">
+                        <a [routerLink]="['../tipo-periodo', candidato.disponibilidadEntrevistaPeriodoTiempoId , 'view' ]" >{{candidato.disponibilidadEntrevistaPeriodoTiempoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.disponibilidadAsignacionPeriodoTiempoId">
+                        <a [routerLink]="['../tipo-periodo', candidato.disponibilidadAsignacionPeriodoTiempoId , 'view' ]" >{{candidato.disponibilidadAsignacionPeriodoTiempoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{candidato.usuarioCreadorId}}
+                </td>
+                <td>
+                    {{candidato.usuarioAsignadoId}}
+                </td>
+                <td>
+                    <div *ngIf="candidato.documentoId">
+                        <a [routerLink]="['../documento', candidato.documentoId , 'view' ]" >{{candidato.documentoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.fuenteReclutamientoId">
+                        <a [routerLink]="['../fuente-reclutamiento', candidato.fuenteReclutamientoId , 'view' ]" >{{candidato.fuenteReclutamientoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.estatusCandidatoId">
+                        <a [routerLink]="['../estatus-candidato', candidato.estatusCandidatoId , 'view' ]" >{{candidato.estatusCandidatoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.perfilId">
+                        <a [routerLink]="['../perfil', candidato.perfilId , 'view' ]" >{{candidato.perfilId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.nivelPerfilId">
+                        <a [routerLink]="['../nivel-perfil', candidato.nivelPerfilId , 'view' ]" >{{candidato.nivelPerfilId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.institucionAcademicaId">
+                        <a [routerLink]="['../institucion-academica', candidato.institucionAcademicaId , 'view' ]" >{{candidato.institucionAcademicaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.estatusAcademicoId">
+                        <a [routerLink]="['../estatus-academico', candidato.estatusAcademicoId , 'view' ]" >{{candidato.estatusAcademicoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.esquemaContratacionKodeId">
+                        <a [routerLink]="['../esquema-contratacion-kode', candidato.esquemaContratacionKodeId , 'view' ]" >{{candidato.esquemaContratacionKodeId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.estatusLaboralId">
+                        <a [routerLink]="['../estatus-laboral', candidato.estatusLaboralId , 'view' ]" >{{candidato.estatusLaboralId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.coloniaId">
+                        <a [routerLink]="['../colonia', candidato.coloniaId , 'view' ]" >{{candidato.coloniaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.antecedentesEsquemaContratacionId">
+                        <a [routerLink]="['../esq-cont-rec', candidato.antecedentesEsquemaContratacionId , 'view' ]" >{{candidato.antecedentesEsquemaContratacionId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.estudiosId">
+                        <a [routerLink]="['../formacion-academica', candidato.estudiosId , 'view' ]" >{{candidato.estudiosId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="candidato.estCanInactivoId">
+                        <a [routerLink]="['../est-can-inactivo', candidato.estCanInactivoId , 'view' ]" >{{candidato.estCanInactivoId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/candidato', candidato.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/candidato', candidato.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'candidato', { outlets: { popup: candidato.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="candidatoes && candidatoes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

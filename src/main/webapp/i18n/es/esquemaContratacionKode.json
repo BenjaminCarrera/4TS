@@ -1,0 +1,22 @@
+{
+  "App": {
+    "esquemaContratacionKode": {
+      "home": {
+        "title": "Esquema Contratacion Kodes",
+        "createLabel": "Crear nuevo Esquema Contratacion Kode",
+        "createOrEditLabel": "Crear o editar Esquema Contratacion Kode"
+      },
+      "created": "Un nuevo Esquema Contratacion Kode ha sido creado con el identificador {{ param }}",
+      "updated": "Un Esquema Contratacion Kode ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Esquema Contratacion Kode ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Esquema Contratacion Kode {{ id }}?"
+      },
+      "detail": {
+        "title": "Esquema Contratacion Kode"
+      },
+      "esquema": "Esquema",
+      "candidato": "Candidato"
+    }
+  }
+}

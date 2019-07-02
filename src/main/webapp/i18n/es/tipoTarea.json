@@ -1,0 +1,22 @@
+{
+  "App": {
+    "tipoTarea": {
+      "home": {
+        "title": "Tipo Tareas",
+        "createLabel": "Crear nuevo Tipo Tarea",
+        "createOrEditLabel": "Crear o editar Tipo Tarea"
+      },
+      "created": "Un nuevo Tipo Tarea ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Tarea ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Tarea ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Tarea {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Tarea"
+      },
+      "tipo": "Tipo",
+      "tarea": "Tarea"
+    }
+  }
+}

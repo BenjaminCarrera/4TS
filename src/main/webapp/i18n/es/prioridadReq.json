@@ -1,0 +1,22 @@
+{
+  "App": {
+    "prioridadReq": {
+      "home": {
+        "title": "Prioridad Reqs",
+        "createLabel": "Crear nuevo Prioridad Req",
+        "createOrEditLabel": "Crear o editar Prioridad Req"
+      },
+      "created": "Un nuevo Prioridad Req ha sido creado con el identificador {{ param }}",
+      "updated": "Un Prioridad Req ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Prioridad Req ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Prioridad Req {{ id }}?"
+      },
+      "detail": {
+        "title": "Prioridad Req"
+      },
+      "prioridad": "Prioridad",
+      "requerimiento": "Requerimiento"
+    }
+  }
+}

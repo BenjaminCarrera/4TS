@@ -1,0 +1,22 @@
+{
+  "App": {
+    "baseTarifa": {
+      "home": {
+        "title": "Base Tarifas",
+        "createLabel": "Crear nuevo Base Tarifa",
+        "createOrEditLabel": "Crear o editar Base Tarifa"
+      },
+      "created": "Un nuevo Base Tarifa ha sido creado con el identificador {{ param }}",
+      "updated": "Un Base Tarifa ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Base Tarifa ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Base Tarifa {{ id }}?"
+      },
+      "detail": {
+        "title": "Base Tarifa"
+      },
+      "base": "Base",
+      "requerimiento": "Requerimiento"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "App": {
+    "bitacora": {
+      "home": {
+        "title": "Bitacoras",
+        "createLabel": "Crear nuevo Bitacora",
+        "createOrEditLabel": "Crear o editar Bitacora"
+      },
+      "created": "Un nuevo Bitacora ha sido creado con el identificador {{ param }}",
+      "updated": "Un Bitacora ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Bitacora ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Bitacora {{ id }}?"
+      },
+      "detail": {
+        "title": "Bitacora"
+      },
+      "fecha": "Fecha",
+      "comentario": "Comentario",
+      "usuario": "Usuario",
+      "requerimiento": "Requerimiento",
+      "candidato": "Candidato",
+      "tarea": "Tarea"
+    }
+  }
+}

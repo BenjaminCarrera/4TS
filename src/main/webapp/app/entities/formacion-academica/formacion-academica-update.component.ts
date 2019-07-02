@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IFormacionAcademica, FormacionAcademica } from 'app/shared/model/formacion-academica.model';
+import { FormacionAcademicaService } from './formacion-academica.service';
+
+@Component({
+  selector: 'jhi-formacion-academica-update',
+  templateUrl: './formacion-academica-update.component.html'
+})
+export class FormacionAcademicaUpdateComponent implements OnInit {
+  formacionAcademica: IFormacionAcademica;
+  isSaving: boolean;
+
+  editForm = this.fb.group({
+    id: []
+  });
+
+  constructor(
+    protected formacionAcademicaService: FormacionAcademicaService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit() {
+    this.isSaving = false;
+    this.activatedRoute.data.subscribe(({ formacionAcademica }) => {
+      this.updateForm(formacionAcademica);
+      this.formacionAcademica = formacionAcademica;
+    });
+  }
+
+  updateForm(formacionAcademica: IFormacionAcademica) {
+    this.editForm.patchValue({
+      id: formacionAcademica.id
+    });
+  }
+
+  previousState() {
+    window.history.back();
+  }
+
+  save() {
+    this.isSaving = true;
+    const formacionAcademica = this.createFromForm();
+    if (formacionAcademica.id !== undefined) {
+      this.subscribeToSaveResponse(this.formacionAcademicaService.update(formacionAcademica));
+    } else {
+      this.subscribeToSaveResponse(this.formacionAcademicaService.create(formacionAcademica));
+    }
+  }
+
+  private createFromForm(): IFormacionAcademica {
+    const entity = {
+      ...new FormacionAcademica(),
+      id: this.editForm.get(['id']).value
+    };
+    return entity;
+  }
+
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IFormacionAcademica>>) {
+    result.subscribe((res: HttpResponse<IFormacionAcademica>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+  }
+
+  protected onSaveSuccess() {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  protected onSaveError() {
+    this.isSaving = false;
+  }
+}

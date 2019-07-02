@@ -1,0 +1,23 @@
+{
+  "App": {
+    "codigoPostal": {
+      "home": {
+        "title": "Codigo Postals",
+        "createLabel": "Crear nuevo Codigo Postal",
+        "createOrEditLabel": "Crear o editar Codigo Postal"
+      },
+      "created": "Un nuevo Codigo Postal ha sido creado con el identificador {{ param }}",
+      "updated": "Un Codigo Postal ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Codigo Postal ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Codigo Postal {{ id }}?"
+      },
+      "detail": {
+        "title": "Codigo Postal"
+      },
+      "codigoPostal": "Codigo Postal",
+      "colonia": "Colonia",
+      "municipio": "Municipio"
+    }
+  }
+}

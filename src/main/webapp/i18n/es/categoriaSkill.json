@@ -1,0 +1,22 @@
+{
+  "App": {
+    "categoriaSkill": {
+      "home": {
+        "title": "Categoria Skills",
+        "createLabel": "Crear nuevo Categoria Skill",
+        "createOrEditLabel": "Crear o editar Categoria Skill"
+      },
+      "created": "Un nuevo Categoria Skill ha sido creado con el identificador {{ param }}",
+      "updated": "Un Categoria Skill ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Categoria Skill ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Categoria Skill {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Skill"
+      },
+      "categoria": "Categoria",
+      "skill": "Skill"
+    }
+  }
+}

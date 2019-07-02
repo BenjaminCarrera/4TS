@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="colonia">
+            <h2><span jhiTranslate="App.colonia.detail.title">Colonia</span> {{colonia.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.colonia.colonia">Colonia</span></dt>
+                <dd>
+                    <span>{{colonia.colonia}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.colonia.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="colonia.municipioId">
+                        <a [routerLink]="['/municipio', colonia.municipioId, 'view']">{{colonia.municipioId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.colonia.codigoPostal">Codigo Postal</span></dt>
+                <dd>
+                    <div *ngIf="colonia.codigoPostalId">
+                        <a [routerLink]="['/codigo-postal', colonia.codigoPostalId, 'view']">{{colonia.codigoPostalId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/colonia', colonia.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "App": {
+    "fuenteReclutamiento": {
+      "home": {
+        "title": "Fuente Reclutamientos",
+        "createLabel": "Crear nuevo Fuente Reclutamiento",
+        "createOrEditLabel": "Crear o editar Fuente Reclutamiento"
+      },
+      "created": "Un nuevo Fuente Reclutamiento ha sido creado con el identificador {{ param }}",
+      "updated": "Un Fuente Reclutamiento ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Fuente Reclutamiento ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Fuente Reclutamiento {{ id }}?"
+      },
+      "detail": {
+        "title": "Fuente Reclutamiento"
+      },
+      "fuente": "Fuente",
+      "candidato": "Candidato"
+    }
+  }
+}

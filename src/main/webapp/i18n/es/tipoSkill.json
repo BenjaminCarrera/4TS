@@ -1,0 +1,22 @@
+{
+  "App": {
+    "tipoSkill": {
+      "home": {
+        "title": "Tipo Skills",
+        "createLabel": "Crear nuevo Tipo Skill",
+        "createOrEditLabel": "Crear o editar Tipo Skill"
+      },
+      "created": "Un nuevo Tipo Skill ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Skill ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Skill ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Skill {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Skill"
+      },
+      "tipo": "Tipo",
+      "skillRequerimiento": "Skill Requerimiento"
+    }
+  }
+}

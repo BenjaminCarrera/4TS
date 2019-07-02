@@ -1,0 +1,22 @@
+{
+  "App": {
+    "estatusAcademico": {
+      "home": {
+        "title": "Estatus Academicos",
+        "createLabel": "Crear nuevo Estatus Academico",
+        "createOrEditLabel": "Crear o editar Estatus Academico"
+      },
+      "created": "Un nuevo Estatus Academico ha sido creado con el identificador {{ param }}",
+      "updated": "Un Estatus Academico ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Estatus Academico ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Estatus Academico {{ id }}?"
+      },
+      "detail": {
+        "title": "Estatus Academico"
+      },
+      "estatus": "Estatus",
+      "candidato": "Candidato"
+    }
+  }
+}

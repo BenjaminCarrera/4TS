@@ -1,0 +1,26 @@
+{
+  "App": {
+    "referenciasLaborales": {
+      "home": {
+        "title": "Referencias Laborales",
+        "createLabel": "Crear nuevo Referencias Laborales",
+        "createOrEditLabel": "Crear o editar Referencias Laborales"
+      },
+      "created": "Un nuevo Referencias Laborales ha sido creado con el identificador {{ param }}",
+      "updated": "Un Referencias Laborales ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Referencias Laborales ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Referencias Laborales {{ id }}?"
+      },
+      "detail": {
+        "title": "Referencias Laborales"
+      },
+      "empresa": "Empresa",
+      "nombreContacto": "Nombre Contacto",
+      "puestoContacto": "Puesto Contacto",
+      "emailContaco": "Email Contaco",
+      "telefonoContacto": "Telefono Contacto",
+      "candidato": "Candidato"
+    }
+  }
+}

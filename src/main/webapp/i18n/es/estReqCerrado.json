@@ -1,0 +1,23 @@
+{
+  "App": {
+    "estReqCerrado": {
+      "home": {
+        "title": "Est Req Cerrados",
+        "createLabel": "Crear nuevo Est Req Cerrado",
+        "createOrEditLabel": "Crear o editar Est Req Cerrado"
+      },
+      "created": "Un nuevo Est Req Cerrado ha sido creado con el identificador {{ param }}",
+      "updated": "Un Est Req Cerrado ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Est Req Cerrado ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Est Req Cerrado {{ id }}?"
+      },
+      "detail": {
+        "title": "Est Req Cerrado"
+      },
+      "motivo": "Motivo",
+      "requerimiento": "Requerimiento",
+      "estatusRequerimiento": "Estatus Requerimiento"
+    }
+  }
+}

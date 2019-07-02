@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="referenciasLaborales">
+            <h2><span jhiTranslate="App.referenciasLaborales.detail.title">Referencias Laborales</span> {{referenciasLaborales.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.referenciasLaborales.empresa">Empresa</span></dt>
+                <dd>
+                    <span>{{referenciasLaborales.empresa}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.referenciasLaborales.nombreContacto">Nombre Contacto</span></dt>
+                <dd>
+                    <span>{{referenciasLaborales.nombreContacto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.referenciasLaborales.puestoContacto">Puesto Contacto</span></dt>
+                <dd>
+                    <span>{{referenciasLaborales.puestoContacto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.referenciasLaborales.emailContaco">Email Contaco</span></dt>
+                <dd>
+                    <span>{{referenciasLaborales.emailContaco}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.referenciasLaborales.telefonoContacto">Telefono Contacto</span></dt>
+                <dd>
+                    <span>{{referenciasLaborales.telefonoContacto}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.referenciasLaborales.candidato">Candidato</span></dt>
+                <dd>
+                    <div *ngIf="referenciasLaborales.candidatoId">
+                        <a [routerLink]="['/candidato', referenciasLaborales.candidatoId, 'view']">{{referenciasLaborales.candidatoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/referencias-laborales', referenciasLaborales.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

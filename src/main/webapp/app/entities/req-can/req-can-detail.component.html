@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reqCan">
+            <h2><span jhiTranslate="App.reqCan.detail.title">Req Can</span> {{reqCan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.reqCan.candidato">Candidato</span></dt>
+                <dd>
+                    <div *ngIf="reqCan.candidatoId">
+                        <a [routerLink]="['/candidato', reqCan.candidatoId, 'view']">{{reqCan.candidatoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.reqCan.requerimiento">Requerimiento</span></dt>
+                <dd>
+                    <div *ngIf="reqCan.requerimientoId">
+                        <a [routerLink]="['/requerimiento', reqCan.requerimientoId, 'view']">{{reqCan.requerimientoId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.reqCan.estatusReqCan">Estatus Req Can</span></dt>
+                <dd>
+                    <div *ngIf="reqCan.estatusReqCanId">
+                        <a [routerLink]="['/estatus-req-can', reqCan.estatusReqCanId, 'view']">{{reqCan.estatusReqCanId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="App.reqCan.estatusReqCanRec">Estatus Req Can Rec</span></dt>
+                <dd>
+                    <div *ngIf="reqCan.estatusReqCanRecId">
+                        <a [routerLink]="['/estatus-req-can-rec', reqCan.estatusReqCanRecId, 'view']">{{reqCan.estatusReqCanRecId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/req-can', reqCan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

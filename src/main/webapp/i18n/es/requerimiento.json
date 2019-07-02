@@ -1,0 +1,52 @@
+{
+  "App": {
+    "requerimiento": {
+      "home": {
+        "title": "Requerimientos",
+        "createLabel": "Crear nuevo Requerimiento",
+        "createOrEditLabel": "Crear o editar Requerimiento"
+      },
+      "created": "Un nuevo Requerimiento ha sido creado con el identificador {{ param }}",
+      "updated": "Un Requerimiento ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Requerimiento ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Requerimiento {{ id }}?"
+      },
+      "detail": {
+        "title": "Requerimiento"
+      },
+      "fechaAlda": "Fecha Alda",
+      "fechaResolucion": "Fecha Resolucion",
+      "remplazoDe": "Remplazo De",
+      "vacantesSolicitadas": "Vacantes Solicitadas",
+      "proyecto": "Proyecto",
+      "nombreContacto": "Nombre Contacto",
+      "tarifaSueldoNet": "Tarifa Sueldo Net",
+      "prestaciones": "Prestaciones",
+      "duracionAsignacion": "Duracion Asignacion",
+      "lugarTrabajo": "Lugar Trabajo",
+      "coorLat": "Coor Lat",
+      "coorLong": "Coor Long",
+      "horario": "Horario",
+      "informacionExamen": "Informacion Examen",
+      "informacionAdicional": "Informacion Adicional",
+      "skillRequerimiento": "Skill Requerimiento",
+      "tarea": "Tarea",
+      "bitacora": "Bitacora",
+      "cuenta": "Cuenta",
+      "subCuenta": "Sub Cuenta",
+      "usuarioCreador": "Usuario Creador",
+      "usuarioAsignado": "Usuario Asignado",
+      "estatusRequerimiento": "Estatus Requerimiento",
+      "prioridad": "Prioridad",
+      "tipoSolicitud": "Tipo Solicitud",
+      "tipoIngreso": "Tipo Ingreso",
+      "baseTarifa": "Base Tarifa",
+      "esquemaContratacion": "Esquema Contratacion",
+      "perfil": "Perfil",
+      "nivelPerfil": "Nivel Perfil",
+      "estatusReqCan": "Estatus Req Can",
+      "tipoPeriodo": "Tipo Periodo"
+    }
+  }
+}

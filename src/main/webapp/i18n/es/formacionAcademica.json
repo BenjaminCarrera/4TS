@@ -1,0 +1,21 @@
+{
+  "App": {
+    "formacionAcademica": {
+      "home": {
+        "title": "Formacion Academicas",
+        "createLabel": "Crear nuevo Formacion Academica",
+        "createOrEditLabel": "Crear o editar Formacion Academica"
+      },
+      "created": "Un nuevo Formacion Academica ha sido creado con el identificador {{ param }}",
+      "updated": "Un Formacion Academica ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Formacion Academica ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Formacion Academica {{ id }}?"
+      },
+      "detail": {
+        "title": "Formacion Academica"
+      },
+      "candidato": "Candidato"
+    }
+  }
+}

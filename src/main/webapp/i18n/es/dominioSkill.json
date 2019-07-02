@@ -1,0 +1,22 @@
+{
+  "App": {
+    "dominioSkill": {
+      "home": {
+        "title": "Dominio Skills",
+        "createLabel": "Crear nuevo Dominio Skill",
+        "createOrEditLabel": "Crear o editar Dominio Skill"
+      },
+      "created": "Un nuevo Dominio Skill ha sido creado con el identificador {{ param }}",
+      "updated": "Un Dominio Skill ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Dominio Skill ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Dominio Skill {{ id }}?"
+      },
+      "detail": {
+        "title": "Dominio Skill"
+      },
+      "dominio": "Dominio",
+      "skillCandidato": "Skill Candidato"
+    }
+  }
+}

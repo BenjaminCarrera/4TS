@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.kode.ts",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "4TS",
+    "packageName": "com.kode.ts",
+    "packageFolder": "com/kode/ts",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZmViNzk0NDBkNjU2NmE4OWUxYjgxY2YwYjQ2YTUwZmYyMDdhZWZhMWQ3Yjc5YTRmM2QwYjI3ZTU0ZDI5MzY0OTI1MWUwMTI1Y2IwYjc2NjYzNTI0M2M3YTNhNzZmMTk3ZTU1NTFlZmJiZDY3YzYwMTRiM2Q1OWViNWNmYjQ3NDQ=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": ["es"],
+    "clientTheme": "none"
+  }
+}

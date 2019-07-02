@@ -1,0 +1,23 @@
+{
+  "App": {
+    "estatusCandidato": {
+      "home": {
+        "title": "Estatus Candidatoes",
+        "createLabel": "Crear nuevo Estatus Candidato",
+        "createOrEditLabel": "Crear o editar Estatus Candidato"
+      },
+      "created": "Un nuevo Estatus Candidato ha sido creado con el identificador {{ param }}",
+      "updated": "Un Estatus Candidato ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Estatus Candidato ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Estatus Candidato {{ id }}?"
+      },
+      "detail": {
+        "title": "Estatus Candidato"
+      },
+      "estatus": "Estatus",
+      "candidato": "Candidato",
+      "estCanInactivo": "Est Can Inactivo"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cuenta">
+            <h2><span jhiTranslate="App.cuenta.detail.title">Cuenta</span> {{cuenta.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.cuenta.clave">Clave</span></dt>
+                <dd>
+                    <span>{{cuenta.clave}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.cuenta.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{cuenta.nombre}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cuenta', cuenta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

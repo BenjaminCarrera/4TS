@@ -1,0 +1,24 @@
+{
+  "App": {
+    "colonia": {
+      "home": {
+        "title": "Colonias",
+        "createLabel": "Crear nuevo Colonia",
+        "createOrEditLabel": "Crear o editar Colonia"
+      },
+      "created": "Un nuevo Colonia ha sido creado con el identificador {{ param }}",
+      "updated": "Un Colonia ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Colonia ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Colonia {{ id }}?"
+      },
+      "detail": {
+        "title": "Colonia"
+      },
+      "colonia": "Colonia",
+      "candidato": "Candidato",
+      "municipio": "Municipio",
+      "codigoPostal": "Codigo Postal"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "App": {
+    "skillCandidato": {
+      "home": {
+        "title": "Skill Candidatoes",
+        "createLabel": "Crear nuevo Skill Candidato",
+        "createOrEditLabel": "Crear o editar Skill Candidato"
+      },
+      "created": "Un nuevo Skill Candidato ha sido creado con el identificador {{ param }}",
+      "updated": "Un Skill Candidato ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Skill Candidato ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Skill Candidato {{ id }}?"
+      },
+      "detail": {
+        "title": "Skill Candidato"
+      },
+      "calificacionSkill": "Calificacion Skill",
+      "idCandidato": "Id Candidato",
+      "idSkill": "Id Skill",
+      "nivelSkill": "Nivel Skill"
+    }
+  }
+}

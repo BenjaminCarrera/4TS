@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-bitacora-heading" jhiTranslate="App.bitacora.home.createOrEditLabel">Create or edit a Bitacora</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!bitacora.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.fecha" for="field_fecha">Fecha</label>
+                    <div class="d-flex">
+                        <input id="field_fecha" type="datetime-local" class="form-control" name="fecha" formControlName="fecha" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.comentario" for="field_comentario">Comentario</label>
+                    <input type="text" class="form-control" name="comentario" id="field_comentario"
+                           formControlName="comentario"/>
+                    <div *ngIf="editForm.get('comentario').invalid && (editForm.get('comentario').dirty || editForm.get('comentario').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('comentario').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.usuario" for="field_usuario">Usuario</label>
+                    <select class="form-control" id="field_usuario" name="usuario" formControlName="usuarioId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.requerimiento" for="field_requerimiento">Requerimiento</label>
+                    <select class="form-control" id="field_requerimiento" name="requerimiento" formControlName="requerimientoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.candidato" for="field_candidato">Candidato</label>
+                    <select class="form-control" id="field_candidato" name="candidato" formControlName="candidatoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="App.bitacora.tarea" for="field_tarea">Tarea</label>
+                    <select class="form-control" id="field_tarea" name="tarea" formControlName="tareaId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tareaOption.id" *ngFor="let tareaOption of tareas; trackBy: trackTareaById">{{tareaOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

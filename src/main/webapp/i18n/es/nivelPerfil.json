@@ -1,0 +1,23 @@
+{
+  "App": {
+    "nivelPerfil": {
+      "home": {
+        "title": "Nivel Perfils",
+        "createLabel": "Crear nuevo Nivel Perfil",
+        "createOrEditLabel": "Crear o editar Nivel Perfil"
+      },
+      "created": "Un nuevo Nivel Perfil ha sido creado con el identificador {{ param }}",
+      "updated": "Un Nivel Perfil ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Nivel Perfil ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Nivel Perfil {{ id }}?"
+      },
+      "detail": {
+        "title": "Nivel Perfil"
+      },
+      "nivel": "Nivel",
+      "candidato": "Candidato",
+      "requerimiento": "Requerimiento"
+    }
+  }
+}
