@@ -31,7 +31,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164727",
+    "changelogDate": "20190702185317",
     "entityTableName": "req_can",
     "dto": "mapstruct",
     "pagination": "pagination",

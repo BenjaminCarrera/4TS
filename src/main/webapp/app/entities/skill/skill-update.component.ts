@@ -15,7 +15,6 @@ import { CategoriaSkillService } from 'app/entities/categoria-skill';
   templateUrl: './skill-update.component.html'
 })
 export class SkillUpdateComponent implements OnInit {
-  skill: ISkill;
   isSaving: boolean;
 
   categoriaskills: ICategoriaSkill[];
@@ -38,7 +37,6 @@ export class SkillUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ skill }) => {
       this.updateForm(skill);
-      this.skill = skill;
     });
     this.categoriaSkillService
       .query()
@@ -72,17 +70,16 @@ export class SkillUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ISkill {
-    const entity = {
+    return {
       ...new Skill(),
       id: this.editForm.get(['id']).value,
       nombre: this.editForm.get(['nombre']).value,
       categoriaSkillId: this.editForm.get(['categoriaSkillId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ISkill>>) {
-    result.subscribe((res: HttpResponse<ISkill>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

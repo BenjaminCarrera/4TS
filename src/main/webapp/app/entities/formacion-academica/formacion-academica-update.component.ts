@@ -11,7 +11,6 @@ import { FormacionAcademicaService } from './formacion-academica.service';
   templateUrl: './formacion-academica-update.component.html'
 })
 export class FormacionAcademicaUpdateComponent implements OnInit {
-  formacionAcademica: IFormacionAcademica;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class FormacionAcademicaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ formacionAcademica }) => {
       this.updateForm(formacionAcademica);
-      this.formacionAcademica = formacionAcademica;
     });
   }
 
@@ -55,16 +53,15 @@ export class FormacionAcademicaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IFormacionAcademica {
-    const entity = {
+    return {
       ...new FormacionAcademica(),
       id: this.editForm.get(['id']).value,
       formacionAcademica: this.editForm.get(['formacionAcademica']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFormacionAcademica>>) {
-    result.subscribe((res: HttpResponse<IFormacionAcademica>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

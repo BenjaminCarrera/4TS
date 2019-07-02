@@ -341,7 +341,7 @@ public class CategoriaSkillResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<CategoriaSkill> categoriaSkillList = categoriaSkillRepository.findAll();
         assertThat(categoriaSkillList).hasSize(databaseSizeBeforeDelete - 1);
     }

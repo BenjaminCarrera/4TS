@@ -44,7 +44,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164726",
+    "changelogDate": "20190702185316",
     "entityTableName": "bitacora",
     "dto": "mapstruct",
     "pagination": "pagination",

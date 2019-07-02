@@ -13,6 +13,7 @@ public interface EstatusReqCanMapper extends EntityMapper<EstatusReqCanDTO, Esta
 
 
     @Mapping(target = "estatusReqCanRecs", ignore = true)
+    @Mapping(target = "removeEstatusReqCanRec", ignore = true)
     EstatusReqCan toEntity(EstatusReqCanDTO estatusReqCanDTO);
 
     default EstatusReqCan fromId(Long id) {

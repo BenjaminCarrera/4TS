@@ -4,7 +4,8 @@
       "home": {
         "title": "Estatus Candidatoes",
         "createLabel": "Crear nuevo Estatus Candidato",
-        "createOrEditLabel": "Crear o editar Estatus Candidato"
+        "createOrEditLabel": "Crear o editar Estatus Candidato",
+        "notFound": "No Estatus Candidato found"
       },
       "created": "Un nuevo Estatus Candidato ha sido creado con el identificador {{ param }}",
       "updated": "Un Estatus Candidato ha sido actualizado con el identificador {{ param }}",

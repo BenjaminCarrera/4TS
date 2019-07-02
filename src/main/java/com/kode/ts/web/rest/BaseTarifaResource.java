@@ -95,6 +95,8 @@ public class BaseTarifaResource {
      * {@code GET  /base-tarifas} : get all the baseTarifas.
      *
      * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of baseTarifas in body.
      */

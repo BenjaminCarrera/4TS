@@ -19,7 +19,6 @@ import { TipoSkillService } from 'app/entities/tipo-skill';
   templateUrl: './skill-requerimiento-update.component.html'
 })
 export class SkillRequerimientoUpdateComponent implements OnInit {
-  skillRequerimiento: ISkillRequerimiento;
   isSaving: boolean;
 
   requerimientos: IRequerimiento[];
@@ -49,7 +48,6 @@ export class SkillRequerimientoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ skillRequerimiento }) => {
       this.updateForm(skillRequerimiento);
-      this.skillRequerimiento = skillRequerimiento;
     });
     this.requerimientoService
       .query()
@@ -98,18 +96,17 @@ export class SkillRequerimientoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ISkillRequerimiento {
-    const entity = {
+    return {
       ...new SkillRequerimiento(),
       id: this.editForm.get(['id']).value,
       idRequerimientoId: this.editForm.get(['idRequerimientoId']).value,
       idSkillId: this.editForm.get(['idSkillId']).value,
       tipoSkillId: this.editForm.get(['tipoSkillId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ISkillRequerimiento>>) {
-    result.subscribe((res: HttpResponse<ISkillRequerimiento>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

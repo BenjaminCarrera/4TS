@@ -13,6 +13,7 @@ public interface BaseTarifaMapper extends EntityMapper<BaseTarifaDTO, BaseTarifa
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     BaseTarifa toEntity(BaseTarifaDTO baseTarifaDTO);
 
     default BaseTarifa fromId(Long id) {

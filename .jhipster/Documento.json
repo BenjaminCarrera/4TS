@@ -7,7 +7,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190702164649",
+    "changelogDate": "20190702185239",
     "entityTableName": "documento",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -4,7 +4,8 @@
       "home": {
         "title": "Institucion Academicas",
         "createLabel": "Crear nuevo Institucion Academica",
-        "createOrEditLabel": "Crear o editar Institucion Academica"
+        "createOrEditLabel": "Crear o editar Institucion Academica",
+        "notFound": "No Institucion Academica found"
       },
       "created": "Un nuevo Institucion Academica ha sido creado con el identificador {{ param }}",
       "updated": "Un Institucion Academica ha sido actualizado con el identificador {{ param }}",

@@ -4,7 +4,8 @@
       "home": {
         "title": "Tipo Ingresos",
         "createLabel": "Crear nuevo Tipo Ingreso",
-        "createOrEditLabel": "Crear o editar Tipo Ingreso"
+        "createOrEditLabel": "Crear o editar Tipo Ingreso",
+        "notFound": "No Tipo Ingreso found"
       },
       "created": "Un nuevo Tipo Ingreso ha sido creado con el identificador {{ param }}",
       "updated": "Un Tipo Ingreso ha sido actualizado con el identificador {{ param }}",

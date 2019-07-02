@@ -4,7 +4,7 @@
             <h2 id="jhi-institucion-academica-heading" jhiTranslate="App.institucionAcademica.home.createOrEditLabel">Create or edit a Institucion Academica</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!institucionAcademica.id">
+                <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />

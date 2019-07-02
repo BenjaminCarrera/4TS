@@ -11,7 +11,6 @@ import { EstatusLaboralService } from './estatus-laboral.service';
   templateUrl: './estatus-laboral-update.component.html'
 })
 export class EstatusLaboralUpdateComponent implements OnInit {
-  estatusLaboral: IEstatusLaboral;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class EstatusLaboralUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusLaboral }) => {
       this.updateForm(estatusLaboral);
-      this.estatusLaboral = estatusLaboral;
     });
   }
 
@@ -51,16 +49,15 @@ export class EstatusLaboralUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusLaboral {
-    const entity = {
+    return {
       ...new EstatusLaboral(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusLaboral>>) {
-    result.subscribe((res: HttpResponse<IEstatusLaboral>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

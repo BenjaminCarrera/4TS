@@ -330,7 +330,7 @@ public class SkillRequerimientoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<SkillRequerimiento> skillRequerimientoList = skillRequerimientoRepository.findAll();
         assertThat(skillRequerimientoList).hasSize(databaseSizeBeforeDelete - 1);
     }

@@ -13,6 +13,7 @@ public interface TipoSolicitudMapper extends EntityMapper<TipoSolicitudDTO, Tipo
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     TipoSolicitud toEntity(TipoSolicitudDTO tipoSolicitudDTO);
 
     default TipoSolicitud fromId(Long id) {

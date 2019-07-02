@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Candidato.
+    -->
+    <changeSet id="20190702185238-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="disponibilidad_entrevista_periodo_tiempo_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_disponibilidad_entrevista_periodo_tiempo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_periodo"/>
+
+        <addForeignKeyConstraint baseColumnNames="disponibilidad_asignacion_periodo_tiempo_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_disponibilidad_asignacion_periodo_tiempo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_periodo"/>
+
+        <addForeignKeyConstraint baseColumnNames="usuario_creador_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_usuario_creador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="usuario_asignado_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_usuario_asignado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="documento_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_documento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="documento"/>
+
+        <addForeignKeyConstraint baseColumnNames="candidato_id"
+                                 baseTableName="candidato_cuenta_interes"
+                                 constraintName="fk_candidato_cuenta_interes_candidato_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="candidato"/>
+
+        <addForeignKeyConstraint baseColumnNames="cuenta_interes_id"
+                                 baseTableName="candidato_cuenta_interes"
+                                 constraintName="fk_candidato_cuenta_interes_cuenta_interes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cuenta"/>
+        
+        <addForeignKeyConstraint baseColumnNames="candidato_id"
+                                 baseTableName="candidato_cuenta_rechazadas"
+                                 constraintName="fk_candidato_cuenta_rechazadas_candidato_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="candidato"/>
+
+        <addForeignKeyConstraint baseColumnNames="cuenta_rechazadas_id"
+                                 baseTableName="candidato_cuenta_rechazadas"
+                                 constraintName="fk_candidato_cuenta_rechazadas_cuenta_rechazadas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cuenta"/>
+        
+        <addForeignKeyConstraint baseColumnNames="fuente_reclutamiento_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_fuente_reclutamiento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fuente_reclutamiento"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_candidato_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_estatus_candidato_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_candidato"/>
+
+        <addForeignKeyConstraint baseColumnNames="perfil_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_perfil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="perfil"/>
+
+        <addForeignKeyConstraint baseColumnNames="nivel_perfil_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_nivel_perfil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="nivel_perfil"/>
+
+        <addForeignKeyConstraint baseColumnNames="institucion_academica_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_institucion_academica_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="institucion_academica"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_academico_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_estatus_academico_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_academico"/>
+
+        <addForeignKeyConstraint baseColumnNames="esquema_contratacion_kode_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_esquema_contratacion_kode_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="esquema_contratacion_kode"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_laboral_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_estatus_laboral_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_laboral"/>
+
+        <addForeignKeyConstraint baseColumnNames="colonia_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_colonia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="colonia"/>
+
+        <addForeignKeyConstraint baseColumnNames="antecedentes_esquema_contratacion_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_antecedentes_esquema_contratacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="esq_cont_rec"/>
+
+        <addForeignKeyConstraint baseColumnNames="estudios_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_estudios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="formacion_academica"/>
+
+        <addForeignKeyConstraint baseColumnNames="est_can_inactivo_id"
+                                 baseTableName="candidato"
+                                 constraintName="fk_candidato_est_can_inactivo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="est_can_inactivo"/>
+
+    </changeSet>
+</databaseChangeLog>

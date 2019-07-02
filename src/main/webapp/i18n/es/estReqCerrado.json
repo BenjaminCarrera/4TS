@@ -4,7 +4,8 @@
       "home": {
         "title": "Est Req Cerrados",
         "createLabel": "Crear nuevo Est Req Cerrado",
-        "createOrEditLabel": "Crear o editar Est Req Cerrado"
+        "createOrEditLabel": "Crear o editar Est Req Cerrado",
+        "notFound": "No Est Req Cerrado found"
       },
       "created": "Un nuevo Est Req Cerrado ha sido creado con el identificador {{ param }}",
       "updated": "Un Est Req Cerrado ha sido actualizado con el identificador {{ param }}",

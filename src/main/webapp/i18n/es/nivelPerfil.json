@@ -4,7 +4,8 @@
       "home": {
         "title": "Nivel Perfils",
         "createLabel": "Crear nuevo Nivel Perfil",
-        "createOrEditLabel": "Crear o editar Nivel Perfil"
+        "createOrEditLabel": "Crear o editar Nivel Perfil",
+        "notFound": "No Nivel Perfil found"
       },
       "created": "Un nuevo Nivel Perfil ha sido creado con el identificador {{ param }}",
       "updated": "Un Nivel Perfil ha sido actualizado con el identificador {{ param }}",

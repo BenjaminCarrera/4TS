@@ -341,7 +341,7 @@ public class FuenteReclutamientoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<FuenteReclutamiento> fuenteReclutamientoList = fuenteReclutamientoRepository.findAll();
         assertThat(fuenteReclutamientoList).hasSize(databaseSizeBeforeDelete - 1);
     }

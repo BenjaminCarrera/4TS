@@ -4,7 +4,8 @@
       "home": {
         "title": "Estatus Req Cans",
         "createLabel": "Crear nuevo Estatus Req Can",
-        "createOrEditLabel": "Crear o editar Estatus Req Can"
+        "createOrEditLabel": "Crear o editar Estatus Req Can",
+        "notFound": "No Estatus Req Can found"
       },
       "created": "Un nuevo Estatus Req Can ha sido creado con el identificador {{ param }}",
       "updated": "Un Estatus Req Can ha sido actualizado con el identificador {{ param }}",

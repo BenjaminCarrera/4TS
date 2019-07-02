@@ -95,6 +95,8 @@ public class CategoriaSkillResource {
      * {@code GET  /categoria-skills} : get all the categoriaSkills.
      *
      * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of categoriaSkills in body.
      */

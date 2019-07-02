@@ -11,7 +11,6 @@ import { EstatusTareaService } from './estatus-tarea.service';
   templateUrl: './estatus-tarea-update.component.html'
 })
 export class EstatusTareaUpdateComponent implements OnInit {
-  estatusTarea: IEstatusTarea;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class EstatusTareaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusTarea }) => {
       this.updateForm(estatusTarea);
-      this.estatusTarea = estatusTarea;
     });
   }
 
@@ -51,16 +49,15 @@ export class EstatusTareaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusTarea {
-    const entity = {
+    return {
       ...new EstatusTarea(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusTarea>>) {
-    result.subscribe((res: HttpResponse<IEstatusTarea>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -11,7 +11,6 @@ import { EstatusCandidatoService } from './estatus-candidato.service';
   templateUrl: './estatus-candidato-update.component.html'
 })
 export class EstatusCandidatoUpdateComponent implements OnInit {
-  estatusCandidato: IEstatusCandidato;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class EstatusCandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusCandidato }) => {
       this.updateForm(estatusCandidato);
-      this.estatusCandidato = estatusCandidato;
     });
   }
 
@@ -55,16 +53,15 @@ export class EstatusCandidatoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusCandidato {
-    const entity = {
+    return {
       ...new EstatusCandidato(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusCandidato>>) {
-    result.subscribe((res: HttpResponse<IEstatusCandidato>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -341,7 +341,7 @@ public class EsquemaContratacionKodeResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<EsquemaContratacionKode> esquemaContratacionKodeList = esquemaContratacionKodeRepository.findAll();
         assertThat(esquemaContratacionKodeList).hasSize(databaseSizeBeforeDelete - 1);
     }

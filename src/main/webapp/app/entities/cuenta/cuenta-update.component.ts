@@ -15,7 +15,6 @@ import { CandidatoService } from 'app/entities/candidato';
   templateUrl: './cuenta-update.component.html'
 })
 export class CuentaUpdateComponent implements OnInit {
-  cuenta: ICuenta;
   isSaving: boolean;
 
   candidatoes: ICandidato[];
@@ -38,7 +37,6 @@ export class CuentaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ cuenta }) => {
       this.updateForm(cuenta);
-      this.cuenta = cuenta;
     });
     this.candidatoService
       .query()
@@ -72,17 +70,16 @@ export class CuentaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ICuenta {
-    const entity = {
+    return {
       ...new Cuenta(),
       id: this.editForm.get(['id']).value,
       clave: this.editForm.get(['clave']).value,
       nombre: this.editForm.get(['nombre']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICuenta>>) {
-    result.subscribe((res: HttpResponse<ICuenta>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

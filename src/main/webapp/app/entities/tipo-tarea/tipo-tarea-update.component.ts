@@ -11,7 +11,6 @@ import { TipoTareaService } from './tipo-tarea.service';
   templateUrl: './tipo-tarea-update.component.html'
 })
 export class TipoTareaUpdateComponent implements OnInit {
-  tipoTarea: ITipoTarea;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class TipoTareaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tipoTarea }) => {
       this.updateForm(tipoTarea);
-      this.tipoTarea = tipoTarea;
     });
   }
 
@@ -51,16 +49,15 @@ export class TipoTareaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITipoTarea {
-    const entity = {
+    return {
       ...new TipoTarea(),
       id: this.editForm.get(['id']).value,
       tipo: this.editForm.get(['tipo']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITipoTarea>>) {
-    result.subscribe((res: HttpResponse<ITipoTarea>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

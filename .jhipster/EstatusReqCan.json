@@ -18,7 +18,7 @@
             "relationshipName": "estatusReqCanRec"
         }
     ],
-    "changelogDate": "20190702164721",
+    "changelogDate": "20190702185311",
     "entityTableName": "estatus_req_can",
     "dto": "mapstruct",
     "pagination": "pagination",

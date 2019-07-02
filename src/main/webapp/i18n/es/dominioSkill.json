@@ -4,7 +4,8 @@
       "home": {
         "title": "Dominio Skills",
         "createLabel": "Crear nuevo Dominio Skill",
-        "createOrEditLabel": "Crear o editar Dominio Skill"
+        "createOrEditLabel": "Crear o editar Dominio Skill",
+        "notFound": "No Dominio Skill found"
       },
       "created": "Un nuevo Dominio Skill ha sido creado con el identificador {{ param }}",
       "updated": "Un Dominio Skill ha sido actualizado con el identificador {{ param }}",

@@ -13,6 +13,7 @@ public interface TipoPeriodoMapper extends EntityMapper<TipoPeriodoDTO, TipoPeri
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     TipoPeriodo toEntity(TipoPeriodoDTO tipoPeriodoDTO);
 
     default TipoPeriodo fromId(Long id) {

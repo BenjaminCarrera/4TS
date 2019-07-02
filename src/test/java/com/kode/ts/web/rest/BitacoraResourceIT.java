@@ -483,7 +483,7 @@ public class BitacoraResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<Bitacora> bitacoraList = bitacoraRepository.findAll();
         assertThat(bitacoraList).hasSize(databaseSizeBeforeDelete - 1);
     }

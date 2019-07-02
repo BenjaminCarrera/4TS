@@ -38,7 +38,6 @@ import { TipoPeriodoService } from 'app/entities/tipo-periodo';
   templateUrl: './requerimiento-update.component.html'
 })
 export class RequerimientoUpdateComponent implements OnInit {
-  requerimiento: IRequerimiento;
   isSaving: boolean;
 
   cuentas: ICuenta[];
@@ -121,7 +120,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.updateForm(requerimiento);
-      this.requerimiento = requerimiento;
     });
     this.cuentaService
       .query()
@@ -262,7 +260,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IRequerimiento {
-    const entity = {
+    return {
       ...new Requerimiento(),
       id: this.editForm.get(['id']).value,
       fechaAlda:
@@ -299,11 +297,10 @@ export class RequerimientoUpdateComponent implements OnInit {
       estatusReqCanId: this.editForm.get(['estatusReqCanId']).value,
       tipoPeriodoId: this.editForm.get(['tipoPeriodoId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IRequerimiento>>) {
-    result.subscribe((res: HttpResponse<IRequerimiento>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

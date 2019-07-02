@@ -95,6 +95,8 @@ public class EstatusCandidatoResource {
      * {@code GET  /estatus-candidatoes} : get all the estatusCandidatoes.
      *
      * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of estatusCandidatoes in body.
      */

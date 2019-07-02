@@ -341,7 +341,7 @@ public class TipoPeriodoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<TipoPeriodo> tipoPeriodoList = tipoPeriodoRepository.findAll();
         assertThat(tipoPeriodoList).hasSize(databaseSizeBeforeDelete - 1);
     }

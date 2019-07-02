@@ -46,7 +46,6 @@ import { EstCanInactivoService } from 'app/entities/est-can-inactivo';
   templateUrl: './candidato-update.component.html'
 })
 export class CandidatoUpdateComponent implements OnInit {
-  candidato: ICandidato;
   isSaving: boolean;
 
   tipoperiodos: ITipoPeriodo[];
@@ -174,7 +173,6 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ candidato }) => {
       this.updateForm(candidato);
-      this.candidato = candidato;
     });
     this.tipoPeriodoService
       .query()
@@ -376,7 +374,7 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ICandidato {
-    const entity = {
+    return {
       ...new Candidato(),
       id: this.editForm.get(['id']).value,
       anosExperiencia: this.editForm.get(['anosExperiencia']).value,
@@ -443,11 +441,10 @@ export class CandidatoUpdateComponent implements OnInit {
       estudiosId: this.editForm.get(['estudiosId']).value,
       estCanInactivoId: this.editForm.get(['estCanInactivoId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICandidato>>) {
-    result.subscribe((res: HttpResponse<ICandidato>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

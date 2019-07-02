@@ -13,6 +13,7 @@ public interface TipoIngresoMapper extends EntityMapper<TipoIngresoDTO, TipoIngr
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     TipoIngreso toEntity(TipoIngresoDTO tipoIngresoDTO);
 
     default TipoIngreso fromId(Long id) {

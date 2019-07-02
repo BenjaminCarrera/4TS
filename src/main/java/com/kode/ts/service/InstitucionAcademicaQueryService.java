@@ -81,8 +81,10 @@ public class InstitucionAcademicaQueryService extends QueryService<InstitucionAc
     }
 
     /**
-     * Function to convert InstitucionAcademicaCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<InstitucionAcademica> createSpecification(InstitucionAcademicaCriteria criteria) {
         Specification<InstitucionAcademica> specification = Specification.where(null);
         if (criteria != null) {

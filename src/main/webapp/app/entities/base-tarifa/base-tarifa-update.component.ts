@@ -11,7 +11,6 @@ import { BaseTarifaService } from './base-tarifa.service';
   templateUrl: './base-tarifa-update.component.html'
 })
 export class BaseTarifaUpdateComponent implements OnInit {
-  baseTarifa: IBaseTarifa;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class BaseTarifaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ baseTarifa }) => {
       this.updateForm(baseTarifa);
-      this.baseTarifa = baseTarifa;
     });
   }
 
@@ -51,16 +49,15 @@ export class BaseTarifaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IBaseTarifa {
-    const entity = {
+    return {
       ...new BaseTarifa(),
       id: this.editForm.get(['id']).value,
       base: this.editForm.get(['base']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IBaseTarifa>>) {
-    result.subscribe((res: HttpResponse<IBaseTarifa>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

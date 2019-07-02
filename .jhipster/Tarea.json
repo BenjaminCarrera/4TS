@@ -68,7 +68,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164723",
+    "changelogDate": "20190702185313",
     "entityTableName": "tarea",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -24,7 +24,7 @@
             "relationshipName": "requerimiento"
         }
     ],
-    "changelogDate": "20190702164705",
+    "changelogDate": "20190702185255",
     "entityTableName": "esq_cont_rec",
     "dto": "mapstruct",
     "pagination": "pagination",

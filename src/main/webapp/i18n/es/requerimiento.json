@@ -4,7 +4,8 @@
       "home": {
         "title": "Requerimientos",
         "createLabel": "Crear nuevo Requerimiento",
-        "createOrEditLabel": "Crear o editar Requerimiento"
+        "createOrEditLabel": "Crear o editar Requerimiento",
+        "notFound": "No Requerimiento found"
       },
       "created": "Un nuevo Requerimiento ha sido creado con el identificador {{ param }}",
       "updated": "Un Requerimiento ha sido actualizado con el identificador {{ param }}",

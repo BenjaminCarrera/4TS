@@ -4,7 +4,8 @@
       "home": {
         "title": "Formacion Academicas",
         "createLabel": "Crear nuevo Formacion Academica",
-        "createOrEditLabel": "Crear o editar Formacion Academica"
+        "createOrEditLabel": "Crear o editar Formacion Academica",
+        "notFound": "No Formacion Academica found"
       },
       "created": "Un nuevo Formacion Academica ha sido creado con el identificador {{ param }}",
       "updated": "Un Formacion Academica ha sido actualizado con el identificador {{ param }}",

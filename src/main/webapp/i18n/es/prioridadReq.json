@@ -4,7 +4,8 @@
       "home": {
         "title": "Prioridad Reqs",
         "createLabel": "Crear nuevo Prioridad Req",
-        "createOrEditLabel": "Crear o editar Prioridad Req"
+        "createOrEditLabel": "Crear o editar Prioridad Req",
+        "notFound": "No Prioridad Req found"
       },
       "created": "Un nuevo Prioridad Req ha sido creado con el identificador {{ param }}",
       "updated": "Un Prioridad Req ha sido actualizado con el identificador {{ param }}",

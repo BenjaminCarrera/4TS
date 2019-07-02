@@ -22,7 +22,6 @@ import { TareaService } from 'app/entities/tarea';
   templateUrl: './bitacora-update.component.html'
 })
 export class BitacoraUpdateComponent implements OnInit {
-  bitacora: IBitacora;
   isSaving: boolean;
 
   users: IUser[];
@@ -58,7 +57,6 @@ export class BitacoraUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ bitacora }) => {
       this.updateForm(bitacora);
-      this.bitacora = bitacora;
     });
     this.userService
       .query()
@@ -117,7 +115,7 @@ export class BitacoraUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IBitacora {
-    const entity = {
+    return {
       ...new Bitacora(),
       id: this.editForm.get(['id']).value,
       fecha: this.editForm.get(['fecha']).value != null ? moment(this.editForm.get(['fecha']).value, DATE_TIME_FORMAT) : undefined,
@@ -127,11 +125,10 @@ export class BitacoraUpdateComponent implements OnInit {
       candidatoId: this.editForm.get(['candidatoId']).value,
       tareaId: this.editForm.get(['tareaId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IBitacora>>) {
-    result.subscribe((res: HttpResponse<IBitacora>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

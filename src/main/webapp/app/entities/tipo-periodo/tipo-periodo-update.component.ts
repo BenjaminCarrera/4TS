@@ -11,7 +11,6 @@ import { TipoPeriodoService } from './tipo-periodo.service';
   templateUrl: './tipo-periodo-update.component.html'
 })
 export class TipoPeriodoUpdateComponent implements OnInit {
-  tipoPeriodo: ITipoPeriodo;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class TipoPeriodoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tipoPeriodo }) => {
       this.updateForm(tipoPeriodo);
-      this.tipoPeriodo = tipoPeriodo;
     });
   }
 
@@ -51,16 +49,15 @@ export class TipoPeriodoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITipoPeriodo {
-    const entity = {
+    return {
       ...new TipoPeriodo(),
       id: this.editForm.get(['id']).value,
       periodo: this.editForm.get(['periodo']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITipoPeriodo>>) {
-    result.subscribe((res: HttpResponse<ITipoPeriodo>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

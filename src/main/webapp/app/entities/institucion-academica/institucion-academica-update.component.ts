@@ -11,7 +11,6 @@ import { InstitucionAcademicaService } from './institucion-academica.service';
   templateUrl: './institucion-academica-update.component.html'
 })
 export class InstitucionAcademicaUpdateComponent implements OnInit {
-  institucionAcademica: IInstitucionAcademica;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class InstitucionAcademicaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ institucionAcademica }) => {
       this.updateForm(institucionAcademica);
-      this.institucionAcademica = institucionAcademica;
     });
   }
 
@@ -55,16 +53,15 @@ export class InstitucionAcademicaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IInstitucionAcademica {
-    const entity = {
+    return {
       ...new InstitucionAcademica(),
       id: this.editForm.get(['id']).value,
       institucion: this.editForm.get(['institucion']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IInstitucionAcademica>>) {
-    result.subscribe((res: HttpResponse<IInstitucionAcademica>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

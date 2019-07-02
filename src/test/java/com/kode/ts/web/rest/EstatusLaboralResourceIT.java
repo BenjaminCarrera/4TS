@@ -341,7 +341,7 @@ public class EstatusLaboralResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<EstatusLaboral> estatusLaboralList = estatusLaboralRepository.findAll();
         assertThat(estatusLaboralList).hasSize(databaseSizeBeforeDelete - 1);
     }

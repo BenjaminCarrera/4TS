@@ -15,7 +15,6 @@ import { CandidatoService } from 'app/entities/candidato';
   templateUrl: './referencias-laborales-update.component.html'
 })
 export class ReferenciasLaboralesUpdateComponent implements OnInit {
-  referenciasLaborales: IReferenciasLaborales;
   isSaving: boolean;
 
   candidatoes: ICandidato[];
@@ -42,7 +41,6 @@ export class ReferenciasLaboralesUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ referenciasLaborales }) => {
       this.updateForm(referenciasLaborales);
-      this.referenciasLaborales = referenciasLaborales;
     });
     this.candidatoService
       .query()
@@ -80,7 +78,7 @@ export class ReferenciasLaboralesUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IReferenciasLaborales {
-    const entity = {
+    return {
       ...new ReferenciasLaborales(),
       id: this.editForm.get(['id']).value,
       empresa: this.editForm.get(['empresa']).value,
@@ -90,11 +88,10 @@ export class ReferenciasLaboralesUpdateComponent implements OnInit {
       telefonoContacto: this.editForm.get(['telefonoContacto']).value,
       candidatoId: this.editForm.get(['candidatoId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IReferenciasLaborales>>) {
-    result.subscribe((res: HttpResponse<IReferenciasLaborales>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

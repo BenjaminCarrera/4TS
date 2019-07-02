@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity Requerimiento.
+    -->
+    <changeSet id="20190702185303-1" author="jhipster">
+        <createTable tableName="requerimiento">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fecha_alda" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="fecha_resolucion" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="remplazo_de" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vacantes_solicitadas" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="proyecto" type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nombre_contacto" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tarifa_sueldo_net" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prestaciones" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="duracion_asignacion" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lugar_trabajo" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="coor_lat" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="coor_long" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="horario" type="varchar(300)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="informacion_examen" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="informacion_adicional" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cuenta_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sub_cuenta_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="usuario_creador_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="usuario_asignado_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estatus_requerimiento_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prioridad_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_solicitud_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_ingreso_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="base_tarifa_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="esquema_contratacion_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="perfil_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nivel_perfil_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="estatus_req_can_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tipo_periodo_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+        <dropDefaultValue tableName="requerimiento" columnName="fecha_alda" columnDataType="datetime"/>
+        <dropDefaultValue tableName="requerimiento" columnName="fecha_resolucion" columnDataType="datetime"/>
+    </changeSet>
+
+    <changeSet id="20190702185303-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20190702185303-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/requerimiento.csv"
+                  separator=";"
+                  tableName="requerimiento">
+            <column name="id" type="numeric"/>
+            <column name="fecha_alda" type="datetime"/>
+            <column name="fecha_resolucion" type="datetime"/>
+            <column name="remplazo_de" type="string"/>
+            <column name="vacantes_solicitadas" type="numeric"/>
+            <column name="proyecto" type="string"/>
+            <column name="nombre_contacto" type="string"/>
+            <column name="tarifa_sueldo_net" type="numeric"/>
+            <column name="prestaciones" type="string"/>
+            <column name="duracion_asignacion" type="numeric"/>
+            <column name="lugar_trabajo" type="string"/>
+            <column name="coor_lat" type="numeric"/>
+            <column name="coor_long" type="numeric"/>
+            <column name="horario" type="string"/>
+            <column name="informacion_examen" type="string"/>
+            <column name="informacion_adicional" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

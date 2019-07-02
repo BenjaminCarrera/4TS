@@ -4,7 +4,8 @@
       "home": {
         "title": "Documentos",
         "createLabel": "Crear nuevo Documento",
-        "createOrEditLabel": "Crear o editar Documento"
+        "createOrEditLabel": "Crear o editar Documento",
+        "notFound": "No Documento found"
       },
       "created": "Un nuevo Documento ha sido creado con el identificador {{ param }}",
       "updated": "Un Documento ha sido actualizado con el identificador {{ param }}",

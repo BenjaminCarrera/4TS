@@ -4,7 +4,7 @@
             <h2 id="jhi-skill-heading" jhiTranslate="App.skill.home.createOrEditLabel">Create or edit a Skill</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!skill.id">
+                <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />

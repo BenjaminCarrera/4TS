@@ -341,7 +341,7 @@ public class FormacionAcademicaResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<FormacionAcademica> formacionAcademicaList = formacionAcademicaRepository.findAll();
         assertThat(formacionAcademicaList).hasSize(databaseSizeBeforeDelete - 1);
     }

@@ -361,7 +361,7 @@ public class EstReqCerradoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<EstReqCerrado> estReqCerradoList = estReqCerradoRepository.findAll();
         assertThat(estReqCerradoList).hasSize(databaseSizeBeforeDelete - 1);
     }

@@ -4,7 +4,8 @@
       "home": {
         "title": "Base Tarifas",
         "createLabel": "Crear nuevo Base Tarifa",
-        "createOrEditLabel": "Crear o editar Base Tarifa"
+        "createOrEditLabel": "Crear o editar Base Tarifa",
+        "notFound": "No Base Tarifa found"
       },
       "created": "Un nuevo Base Tarifa ha sido creado con el identificador {{ param }}",
       "updated": "Un Base Tarifa ha sido actualizado con el identificador {{ param }}",

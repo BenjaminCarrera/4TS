@@ -4,7 +4,8 @@
       "home": {
         "title": "Codigo Postals",
         "createLabel": "Crear nuevo Codigo Postal",
-        "createOrEditLabel": "Crear o editar Codigo Postal"
+        "createOrEditLabel": "Crear o editar Codigo Postal",
+        "notFound": "No Codigo Postal found"
       },
       "created": "Un nuevo Codigo Postal ha sido creado con el identificador {{ param }}",
       "updated": "Un Codigo Postal ha sido actualizado con el identificador {{ param }}",

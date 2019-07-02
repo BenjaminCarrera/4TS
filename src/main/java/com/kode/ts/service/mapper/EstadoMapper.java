@@ -13,6 +13,7 @@ public interface EstadoMapper extends EntityMapper<EstadoDTO, Estado> {
 
 
     @Mapping(target = "municipios", ignore = true)
+    @Mapping(target = "removeMunicipio", ignore = true)
     Estado toEntity(EstadoDTO estadoDTO);
 
     default Estado fromId(Long id) {

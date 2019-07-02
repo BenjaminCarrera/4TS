@@ -4,7 +4,8 @@
       "home": {
         "title": "Colonias",
         "createLabel": "Crear nuevo Colonia",
-        "createOrEditLabel": "Crear o editar Colonia"
+        "createOrEditLabel": "Crear o editar Colonia",
+        "notFound": "No Colonia found"
       },
       "created": "Un nuevo Colonia ha sido creado con el identificador {{ param }}",
       "updated": "Un Colonia ha sido actualizado con el identificador {{ param }}",

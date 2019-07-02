@@ -4,7 +4,8 @@
       "home": {
         "title": "Estatus Tareas",
         "createLabel": "Crear nuevo Estatus Tarea",
-        "createOrEditLabel": "Crear o editar Estatus Tarea"
+        "createOrEditLabel": "Crear o editar Estatus Tarea",
+        "notFound": "No Estatus Tarea found"
       },
       "created": "Un nuevo Estatus Tarea ha sido creado con el identificador {{ param }}",
       "updated": "Un Estatus Tarea ha sido actualizado con el identificador {{ param }}",

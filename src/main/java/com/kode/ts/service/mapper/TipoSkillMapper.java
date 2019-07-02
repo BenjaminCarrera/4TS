@@ -13,6 +13,7 @@ public interface TipoSkillMapper extends EntityMapper<TipoSkillDTO, TipoSkill> {
 
 
     @Mapping(target = "skillRequerimientos", ignore = true)
+    @Mapping(target = "removeSkillRequerimiento", ignore = true)
     TipoSkill toEntity(TipoSkillDTO tipoSkillDTO);
 
     default TipoSkill fromId(Long id) {

@@ -81,8 +81,10 @@ public class SkillCandidatoQueryService extends QueryService<SkillCandidato> {
     }
 
     /**
-     * Function to convert SkillCandidatoCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<SkillCandidato> createSpecification(SkillCandidatoCriteria criteria) {
         Specification<SkillCandidato> specification = Specification.where(null);
         if (criteria != null) {

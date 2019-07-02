@@ -4,7 +4,8 @@
       "home": {
         "title": "Skill Requerimientos",
         "createLabel": "Crear nuevo Skill Requerimiento",
-        "createOrEditLabel": "Crear o editar Skill Requerimiento"
+        "createOrEditLabel": "Crear o editar Skill Requerimiento",
+        "notFound": "No Skill Requerimiento found"
       },
       "created": "Un nuevo Skill Requerimiento ha sido creado con el identificador {{ param }}",
       "updated": "Un Skill Requerimiento ha sido actualizado con el identificador {{ param }}",

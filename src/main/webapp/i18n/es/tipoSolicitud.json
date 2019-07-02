@@ -4,7 +4,8 @@
       "home": {
         "title": "Tipo Solicituds",
         "createLabel": "Crear nuevo Tipo Solicitud",
-        "createOrEditLabel": "Crear o editar Tipo Solicitud"
+        "createOrEditLabel": "Crear o editar Tipo Solicitud",
+        "notFound": "No Tipo Solicitud found"
       },
       "created": "Un nuevo Tipo Solicitud ha sido creado con el identificador {{ param }}",
       "updated": "Un Tipo Solicitud ha sido actualizado con el identificador {{ param }}",

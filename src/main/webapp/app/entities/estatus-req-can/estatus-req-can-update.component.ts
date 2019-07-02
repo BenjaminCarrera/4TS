@@ -11,7 +11,6 @@ import { EstatusReqCanService } from './estatus-req-can.service';
   templateUrl: './estatus-req-can-update.component.html'
 })
 export class EstatusReqCanUpdateComponent implements OnInit {
-  estatusReqCan: IEstatusReqCan;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class EstatusReqCanUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusReqCan }) => {
       this.updateForm(estatusReqCan);
-      this.estatusReqCan = estatusReqCan;
     });
   }
 
@@ -51,16 +49,15 @@ export class EstatusReqCanUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusReqCan {
-    const entity = {
+    return {
       ...new EstatusReqCan(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusReqCan>>) {
-    result.subscribe((res: HttpResponse<IEstatusReqCan>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

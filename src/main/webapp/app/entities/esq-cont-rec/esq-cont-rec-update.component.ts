@@ -11,7 +11,6 @@ import { EsqContRecService } from './esq-cont-rec.service';
   templateUrl: './esq-cont-rec-update.component.html'
 })
 export class EsqContRecUpdateComponent implements OnInit {
-  esqContRec: IEsqContRec;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class EsqContRecUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ esqContRec }) => {
       this.updateForm(esqContRec);
-      this.esqContRec = esqContRec;
     });
   }
 
@@ -51,16 +49,15 @@ export class EsqContRecUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEsqContRec {
-    const entity = {
+    return {
       ...new EsqContRec(),
       id: this.editForm.get(['id']).value,
       esquema: this.editForm.get(['esquema']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEsqContRec>>) {
-    result.subscribe((res: HttpResponse<IEsqContRec>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

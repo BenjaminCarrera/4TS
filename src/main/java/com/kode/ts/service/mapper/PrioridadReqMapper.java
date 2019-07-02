@@ -13,6 +13,7 @@ public interface PrioridadReqMapper extends EntityMapper<PrioridadReqDTO, Priori
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     PrioridadReq toEntity(PrioridadReqDTO prioridadReqDTO);
 
     default PrioridadReq fromId(Long id) {

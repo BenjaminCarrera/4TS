@@ -18,7 +18,7 @@
             "relationshipName": "requerimiento"
         }
     ],
-    "changelogDate": "20190702164719",
+    "changelogDate": "20190702185309",
     "entityTableName": "base_tarifa",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -11,7 +11,6 @@ import { CategoriaSkillService } from './categoria-skill.service';
   templateUrl: './categoria-skill-update.component.html'
 })
 export class CategoriaSkillUpdateComponent implements OnInit {
-  categoriaSkill: ICategoriaSkill;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class CategoriaSkillUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ categoriaSkill }) => {
       this.updateForm(categoriaSkill);
-      this.categoriaSkill = categoriaSkill;
     });
   }
 
@@ -51,16 +49,15 @@ export class CategoriaSkillUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ICategoriaSkill {
-    const entity = {
+    return {
       ...new CategoriaSkill(),
       id: this.editForm.get(['id']).value,
       categoria: this.editForm.get(['categoria']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICategoriaSkill>>) {
-    result.subscribe((res: HttpResponse<ICategoriaSkill>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

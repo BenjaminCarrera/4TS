@@ -81,8 +81,10 @@ public class CodigoPostalQueryService extends QueryService<CodigoPostal> {
     }
 
     /**
-     * Function to convert CodigoPostalCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<CodigoPostal> createSpecification(CodigoPostalCriteria criteria) {
         Specification<CodigoPostal> specification = Specification.where(null);
         if (criteria != null) {

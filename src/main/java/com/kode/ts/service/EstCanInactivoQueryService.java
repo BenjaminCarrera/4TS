@@ -81,8 +81,10 @@ public class EstCanInactivoQueryService extends QueryService<EstCanInactivo> {
     }
 
     /**
-     * Function to convert EstCanInactivoCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<EstCanInactivo> createSpecification(EstCanInactivoCriteria criteria) {
         Specification<EstCanInactivo> specification = Specification.where(null);
         if (criteria != null) {

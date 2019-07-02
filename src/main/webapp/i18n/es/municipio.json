@@ -4,7 +4,8 @@
       "home": {
         "title": "Municipios",
         "createLabel": "Crear nuevo Municipio",
-        "createOrEditLabel": "Crear o editar Municipio"
+        "createOrEditLabel": "Crear o editar Municipio",
+        "notFound": "No Municipio found"
       },
       "created": "Un nuevo Municipio ha sido creado con el identificador {{ param }}",
       "updated": "Un Municipio ha sido actualizado con el identificador {{ param }}",

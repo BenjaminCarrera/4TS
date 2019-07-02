@@ -13,7 +13,9 @@ public interface EsqContRecMapper extends EntityMapper<EsqContRecDTO, EsqContRec
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     EsqContRec toEntity(EsqContRecDTO esqContRecDTO);
 
     default EsqContRec fromId(Long id) {

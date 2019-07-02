@@ -22,7 +22,6 @@ import { TipoTareaService } from 'app/entities/tipo-tarea';
   templateUrl: './tarea-update.component.html'
 })
 export class TareaUpdateComponent implements OnInit {
-  tarea: ITarea;
   isSaving: boolean;
 
   users: IUser[];
@@ -63,7 +62,6 @@ export class TareaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tarea }) => {
       this.updateForm(tarea);
-      this.tarea = tarea;
     });
     this.userService
       .query()
@@ -131,7 +129,7 @@ export class TareaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITarea {
-    const entity = {
+    return {
       ...new Tarea(),
       id: this.editForm.get(['id']).value,
       descripcion: this.editForm.get(['descripcion']).value,
@@ -143,11 +141,10 @@ export class TareaUpdateComponent implements OnInit {
       estatusTareaId: this.editForm.get(['estatusTareaId']).value,
       tipoTareaId: this.editForm.get(['tipoTareaId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITarea>>) {
-    result.subscribe((res: HttpResponse<ITarea>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -13,7 +13,9 @@ public interface CuentaMapper extends EntityMapper<CuentaDTO, Cuenta> {
 
 
     @Mapping(target = "candidatoInteres", ignore = true)
+    @Mapping(target = "removeCandidatoInteres", ignore = true)
     @Mapping(target = "candidatoRechazadas", ignore = true)
+    @Mapping(target = "removeCandidatoRechazadas", ignore = true)
     Cuenta toEntity(CuentaDTO cuentaDTO);
 
     default Cuenta fromId(Long id) {

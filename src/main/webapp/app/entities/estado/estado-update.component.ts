@@ -11,7 +11,6 @@ import { EstadoService } from './estado.service';
   templateUrl: './estado-update.component.html'
 })
 export class EstadoUpdateComponent implements OnInit {
-  estado: IEstado;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class EstadoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estado }) => {
       this.updateForm(estado);
-      this.estado = estado;
     });
   }
 
@@ -51,16 +49,15 @@ export class EstadoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstado {
-    const entity = {
+    return {
       ...new Estado(),
       id: this.editForm.get(['id']).value,
       estado: this.editForm.get(['estado']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstado>>) {
-    result.subscribe((res: HttpResponse<IEstado>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

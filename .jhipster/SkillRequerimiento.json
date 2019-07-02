@@ -24,7 +24,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164720",
+    "changelogDate": "20190702185310",
     "entityTableName": "skill_requerimiento",
     "dto": "mapstruct",
     "pagination": "pagination",
