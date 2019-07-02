@@ -3,8 +3,8 @@ package com.kode.ts.web.rest;
 import com.kode.ts.Application;
 import com.kode.ts.domain.Municipio;
 import com.kode.ts.domain.Colonia;
-import com.kode.ts.domain.Estado;
 import com.kode.ts.domain.CodigoPostal;
+import com.kode.ts.domain.Estado;
 import com.kode.ts.repository.MunicipioRepository;
 import com.kode.ts.service.MunicipioService;
 import com.kode.ts.service.dto.MunicipioDTO;
@@ -243,25 +243,6 @@ public class MunicipioResourceIT {
 
     @Test
     @Transactional
-    public void getAllMunicipiosByEstadoIsEqualToSomething() throws Exception {
-        // Initialize the database
-        Estado estado = EstadoResourceIT.createEntity(em);
-        em.persist(estado);
-        em.flush();
-        municipio.setEstado(estado);
-        municipioRepository.saveAndFlush(municipio);
-        Long estadoId = estado.getId();
-
-        // Get all the municipioList where estado equals to estadoId
-        defaultMunicipioShouldBeFound("estadoId.equals=" + estadoId);
-
-        // Get all the municipioList where estado equals to estadoId + 1
-        defaultMunicipioShouldNotBeFound("estadoId.equals=" + (estadoId + 1));
-    }
-
-
-    @Test
-    @Transactional
     public void getAllMunicipiosByCodigoPostalIsEqualToSomething() throws Exception {
         // Initialize the database
         CodigoPostal codigoPostal = CodigoPostalResourceIT.createEntity(em);
@@ -276,6 +257,25 @@ public class MunicipioResourceIT {
 
         // Get all the municipioList where codigoPostal equals to codigoPostalId + 1
         defaultMunicipioShouldNotBeFound("codigoPostalId.equals=" + (codigoPostalId + 1));
+    }
+
+
+    @Test
+    @Transactional
+    public void getAllMunicipiosByEstadoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Estado estado = EstadoResourceIT.createEntity(em);
+        em.persist(estado);
+        em.flush();
+        municipio.setEstado(estado);
+        municipioRepository.saveAndFlush(municipio);
+        Long estadoId = estado.getId();
+
+        // Get all the municipioList where estado equals to estadoId
+        defaultMunicipioShouldBeFound("estadoId.equals=" + estadoId);
+
+        // Get all the municipioList where estado equals to estadoId + 1
+        defaultMunicipioShouldNotBeFound("estadoId.equals=" + (estadoId + 1));
     }
 
     /**

@@ -98,7 +98,7 @@ public class CodigoPostalQueryService extends QueryService<CodigoPostal> {
             }
             if (criteria.getMunicipioId() != null) {
                 specification = specification.and(buildSpecification(criteria.getMunicipioId(),
-                    root -> root.join(CodigoPostal_.municipios, JoinType.LEFT).get(Municipio_.id)));
+                    root -> root.join(CodigoPostal_.municipio, JoinType.LEFT).get(Municipio_.id)));
             }
         }
         return specification;

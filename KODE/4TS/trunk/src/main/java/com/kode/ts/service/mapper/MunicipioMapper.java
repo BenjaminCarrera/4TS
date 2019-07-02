@@ -15,8 +15,8 @@ public interface MunicipioMapper extends EntityMapper<MunicipioDTO, Municipio> {
     MunicipioDTO toDto(Municipio municipio);
 
     @Mapping(target = "colonias", ignore = true)
-    @Mapping(source = "estadoId", target = "estado")
     @Mapping(target = "codigoPostals", ignore = true)
+    @Mapping(source = "estadoId", target = "estado")
     Municipio toEntity(MunicipioDTO municipioDTO);
 
     default Municipio fromId(Long id) {

@@ -22,9 +22,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="App.codigoPostal.municipio" for="field_municipios">Municipio</label>
-                    <select class="form-control" id="field_municipios" multiple name="municipios" formControlName="municipios">
-                        <option [ngValue]="getSelected(editForm.get('municipios').value, municipioOption)" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.id}}</option>
+                    <label class="form-control-label" jhiTranslate="App.codigoPostal.municipio" for="field_municipio">Municipio</label>
+                    <select class="form-control" id="field_municipio" name="municipio" formControlName="municipioId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.id}}</option>
                     </select>
                 </div>
             </div>

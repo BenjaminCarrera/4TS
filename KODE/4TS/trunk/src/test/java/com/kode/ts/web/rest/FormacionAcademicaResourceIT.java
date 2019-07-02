@@ -39,6 +39,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 public class FormacionAcademicaResourceIT {
 
+    private static final String DEFAULT_FORMACION_ACADEMICA = "AAAAAAAAAA";
+    private static final String UPDATED_FORMACION_ACADEMICA = "BBBBBBBBBB";
+
     @Autowired
     private FormacionAcademicaRepository formacionAcademicaRepository;
 
@@ -89,7 +92,8 @@ public class FormacionAcademicaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static FormacionAcademica createEntity(EntityManager em) {
-        FormacionAcademica formacionAcademica = new FormacionAcademica();
+        FormacionAcademica formacionAcademica = new FormacionAcademica()
+            .formacionAcademica(DEFAULT_FORMACION_ACADEMICA);
         return formacionAcademica;
     }
     /**
@@ -99,7 +103,8 @@ public class FormacionAcademicaResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static FormacionAcademica createUpdatedEntity(EntityManager em) {
-        FormacionAcademica formacionAcademica = new FormacionAcademica();
+        FormacionAcademica formacionAcademica = new FormacionAcademica()
+            .formacionAcademica(UPDATED_FORMACION_ACADEMICA);
         return formacionAcademica;
     }
 
@@ -124,6 +129,7 @@ public class FormacionAcademicaResourceIT {
         List<FormacionAcademica> formacionAcademicaList = formacionAcademicaRepository.findAll();
         assertThat(formacionAcademicaList).hasSize(databaseSizeBeforeCreate + 1);
         FormacionAcademica testFormacionAcademica = formacionAcademicaList.get(formacionAcademicaList.size() - 1);
+        assertThat(testFormacionAcademica.getFormacionAcademica()).isEqualTo(DEFAULT_FORMACION_ACADEMICA);
     }
 
     @Test
@@ -157,7 +163,8 @@ public class FormacionAcademicaResourceIT {
         restFormacionAcademicaMockMvc.perform(get("/api/formacion-academicas?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(formacionAcademica.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(formacionAcademica.getId().intValue())))
+            .andExpect(jsonPath("$.[*].formacionAcademica").value(hasItem(DEFAULT_FORMACION_ACADEMICA.toString())));
     }
     
     @Test
@@ -170,7 +177,47 @@ public class FormacionAcademicaResourceIT {
         restFormacionAcademicaMockMvc.perform(get("/api/formacion-academicas/{id}", formacionAcademica.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(formacionAcademica.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(formacionAcademica.getId().intValue()))
+            .andExpect(jsonPath("$.formacionAcademica").value(DEFAULT_FORMACION_ACADEMICA.toString()));
+    }
+
+    @Test
+    @Transactional
+    public void getAllFormacionAcademicasByFormacionAcademicaIsEqualToSomething() throws Exception {
+        // Initialize the database
+        formacionAcademicaRepository.saveAndFlush(formacionAcademica);
+
+        // Get all the formacionAcademicaList where formacionAcademica equals to DEFAULT_FORMACION_ACADEMICA
+        defaultFormacionAcademicaShouldBeFound("formacionAcademica.equals=" + DEFAULT_FORMACION_ACADEMICA);
+
+        // Get all the formacionAcademicaList where formacionAcademica equals to UPDATED_FORMACION_ACADEMICA
+        defaultFormacionAcademicaShouldNotBeFound("formacionAcademica.equals=" + UPDATED_FORMACION_ACADEMICA);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFormacionAcademicasByFormacionAcademicaIsInShouldWork() throws Exception {
+        // Initialize the database
+        formacionAcademicaRepository.saveAndFlush(formacionAcademica);
+
+        // Get all the formacionAcademicaList where formacionAcademica in DEFAULT_FORMACION_ACADEMICA or UPDATED_FORMACION_ACADEMICA
+        defaultFormacionAcademicaShouldBeFound("formacionAcademica.in=" + DEFAULT_FORMACION_ACADEMICA + "," + UPDATED_FORMACION_ACADEMICA);
+
+        // Get all the formacionAcademicaList where formacionAcademica equals to UPDATED_FORMACION_ACADEMICA
+        defaultFormacionAcademicaShouldNotBeFound("formacionAcademica.in=" + UPDATED_FORMACION_ACADEMICA);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFormacionAcademicasByFormacionAcademicaIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        formacionAcademicaRepository.saveAndFlush(formacionAcademica);
+
+        // Get all the formacionAcademicaList where formacionAcademica is not null
+        defaultFormacionAcademicaShouldBeFound("formacionAcademica.specified=true");
+
+        // Get all the formacionAcademicaList where formacionAcademica is null
+        defaultFormacionAcademicaShouldNotBeFound("formacionAcademica.specified=false");
     }
 
     @Test
@@ -198,7 +245,8 @@ public class FormacionAcademicaResourceIT {
         restFormacionAcademicaMockMvc.perform(get("/api/formacion-academicas?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(formacionAcademica.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(formacionAcademica.getId().intValue())))
+            .andExpect(jsonPath("$.[*].formacionAcademica").value(hasItem(DEFAULT_FORMACION_ACADEMICA)));
 
         // Check, that the count call also returns 1
         restFormacionAcademicaMockMvc.perform(get("/api/formacion-academicas/count?sort=id,desc&" + filter))
@@ -245,6 +293,8 @@ public class FormacionAcademicaResourceIT {
         FormacionAcademica updatedFormacionAcademica = formacionAcademicaRepository.findById(formacionAcademica.getId()).get();
         // Disconnect from session so that the updates on updatedFormacionAcademica are not directly saved in db
         em.detach(updatedFormacionAcademica);
+        updatedFormacionAcademica
+            .formacionAcademica(UPDATED_FORMACION_ACADEMICA);
         FormacionAcademicaDTO formacionAcademicaDTO = formacionAcademicaMapper.toDto(updatedFormacionAcademica);
 
         restFormacionAcademicaMockMvc.perform(put("/api/formacion-academicas")
@@ -256,6 +306,7 @@ public class FormacionAcademicaResourceIT {
         List<FormacionAcademica> formacionAcademicaList = formacionAcademicaRepository.findAll();
         assertThat(formacionAcademicaList).hasSize(databaseSizeBeforeUpdate);
         FormacionAcademica testFormacionAcademica = formacionAcademicaList.get(formacionAcademicaList.size() - 1);
+        assertThat(testFormacionAcademica.getFormacionAcademica()).isEqualTo(UPDATED_FORMACION_ACADEMICA);
     }
 
     @Test

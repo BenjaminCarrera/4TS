@@ -17,8 +17,8 @@
       },
       "municipio": "Municipio",
       "colonia": "Colonia",
-      "estado": "Estado",
-      "codigoPostal": "Codigo Postal"
+      "codigoPostal": "Codigo Postal",
+      "estado": "Estado"
     }
   }
 }

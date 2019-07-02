@@ -26,11 +26,14 @@ public class DocumentoCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
+    private StringFilter documento;
+
     public DocumentoCriteria(){
     }
 
     public DocumentoCriteria(DocumentoCriteria other){
         this.id = other.id == null ? null : other.id.copy();
+        this.documento = other.documento == null ? null : other.documento.copy();
     }
 
     @Override
@@ -46,6 +49,14 @@ public class DocumentoCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
+    public StringFilter getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(StringFilter documento) {
+        this.documento = documento;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -57,13 +68,15 @@ public class DocumentoCriteria implements Serializable, Criteria {
         }
         final DocumentoCriteria that = (DocumentoCriteria) o;
         return
-            Objects.equals(id, that.id);
+            Objects.equals(id, that.id) &&
+            Objects.equals(documento, that.documento);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-        id
+        id,
+        documento
         );
     }
 
@@ -71,6 +84,7 @@ public class DocumentoCriteria implements Serializable, Criteria {
     public String toString() {
         return "DocumentoCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
+                (documento != null ? "documento=" + documento + ", " : "") +
             "}";
     }
 

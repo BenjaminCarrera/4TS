@@ -1,0 +1,26 @@
+{
+    "name": "FormacionAcademica",
+    "fields": [
+        {
+            "fieldName": "formacionAcademica",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "estudios",
+            "relationshipName": "candidato"
+        }
+    ],
+    "changelogDate": "20190702164650",
+    "entityTableName": "formacion_academica",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -26,6 +26,9 @@ public class FormacionAcademica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "formacion_academica")
+    private String formacionAcademica;
+
     @OneToMany(mappedBy = "estudios")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Candidato> candidatoes = new HashSet<>();
@@ -37,6 +40,19 @@ public class FormacionAcademica implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFormacionAcademica() {
+        return formacionAcademica;
+    }
+
+    public FormacionAcademica formacionAcademica(String formacionAcademica) {
+        this.formacionAcademica = formacionAcademica;
+        return this;
+    }
+
+    public void setFormacionAcademica(String formacionAcademica) {
+        this.formacionAcademica = formacionAcademica;
     }
 
     public Set<Candidato> getCandidatoes() {
@@ -85,6 +101,7 @@ public class FormacionAcademica implements Serializable {
     public String toString() {
         return "FormacionAcademica{" +
             "id=" + getId() +
+            ", formacionAcademica='" + getFormacionAcademica() + "'" +
             "}";
     }
 }

@@ -1,8 +1,6 @@
 package com.kode.ts.service.dto;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -16,7 +14,7 @@ public class CodigoPostalDTO implements Serializable {
     private String codigoPostal;
 
 
-    private Set<MunicipioDTO> municipios = new HashSet<>();
+    private Long municipioId;
 
     public Long getId() {
         return id;
@@ -34,12 +32,12 @@ public class CodigoPostalDTO implements Serializable {
         this.codigoPostal = codigoPostal;
     }
 
-    public Set<MunicipioDTO> getMunicipios() {
-        return municipios;
+    public Long getMunicipioId() {
+        return municipioId;
     }
 
-    public void setMunicipios(Set<MunicipioDTO> municipios) {
-        this.municipios = municipios;
+    public void setMunicipioId(Long municipioId) {
+        this.municipioId = municipioId;
     }
 
     @Override
@@ -68,6 +66,7 @@ public class CodigoPostalDTO implements Serializable {
         return "CodigoPostalDTO{" +
             "id=" + getId() +
             ", codigoPostal='" + getCodigoPostal() + "'" +
+            ", municipio=" + getMunicipioId() +
             "}";
     }
 }

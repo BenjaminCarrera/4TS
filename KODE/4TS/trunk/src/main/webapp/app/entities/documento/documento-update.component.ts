@@ -15,7 +15,8 @@ export class DocumentoUpdateComponent implements OnInit {
   isSaving: boolean;
 
   editForm = this.fb.group({
-    id: []
+    id: [],
+    documento: []
   });
 
   constructor(protected documentoService: DocumentoService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -30,7 +31,8 @@ export class DocumentoUpdateComponent implements OnInit {
 
   updateForm(documento: IDocumento) {
     this.editForm.patchValue({
-      id: documento.id
+      id: documento.id,
+      documento: documento.documento
     });
   }
 
@@ -51,7 +53,8 @@ export class DocumentoUpdateComponent implements OnInit {
   private createFromForm(): IDocumento {
     const entity = {
       ...new Documento(),
-      id: this.editForm.get(['id']).value
+      id: this.editForm.get(['id']).value,
+      documento: this.editForm.get(['documento']).value
     };
     return entity;
   }

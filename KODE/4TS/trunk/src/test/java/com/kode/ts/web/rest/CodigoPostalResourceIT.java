@@ -14,12 +14,9 @@ import com.kode.ts.service.CodigoPostalQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -29,13 +26,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.kode.ts.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -51,14 +46,8 @@ public class CodigoPostalResourceIT {
     @Autowired
     private CodigoPostalRepository codigoPostalRepository;
 
-    @Mock
-    private CodigoPostalRepository codigoPostalRepositoryMock;
-
     @Autowired
     private CodigoPostalMapper codigoPostalMapper;
-
-    @Mock
-    private CodigoPostalService codigoPostalServiceMock;
 
     @Autowired
     private CodigoPostalService codigoPostalService;
@@ -179,39 +168,6 @@ public class CodigoPostalResourceIT {
             .andExpect(jsonPath("$.[*].codigoPostal").value(hasItem(DEFAULT_CODIGO_POSTAL.toString())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllCodigoPostalsWithEagerRelationshipsIsEnabled() throws Exception {
-        CodigoPostalResource codigoPostalResource = new CodigoPostalResource(codigoPostalServiceMock, codigoPostalQueryService);
-        when(codigoPostalServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        MockMvc restCodigoPostalMockMvc = MockMvcBuilders.standaloneSetup(codigoPostalResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restCodigoPostalMockMvc.perform(get("/api/codigo-postals?eagerload=true"))
-        .andExpect(status().isOk());
-
-        verify(codigoPostalServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllCodigoPostalsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CodigoPostalResource codigoPostalResource = new CodigoPostalResource(codigoPostalServiceMock, codigoPostalQueryService);
-            when(codigoPostalServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restCodigoPostalMockMvc = MockMvcBuilders.standaloneSetup(codigoPostalResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restCodigoPostalMockMvc.perform(get("/api/codigo-postals?eagerload=true"))
-        .andExpect(status().isOk());
-
-            verify(codigoPostalServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getCodigoPostal() throws Exception {
@@ -291,7 +247,7 @@ public class CodigoPostalResourceIT {
         Municipio municipio = MunicipioResourceIT.createEntity(em);
         em.persist(municipio);
         em.flush();
-        codigoPostal.addMunicipio(municipio);
+        codigoPostal.setMunicipio(municipio);
         codigoPostalRepository.saveAndFlush(codigoPostal);
         Long municipioId = municipio.getId();
 

@@ -36,14 +36,13 @@ public class Municipio implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Colonia> colonias = new HashSet<>();
 
+    @OneToMany(mappedBy = "municipio")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CodigoPostal> codigoPostals = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties("municipios")
     private Estado estado;
-
-    @ManyToMany(mappedBy = "municipios")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<CodigoPostal> codigoPostals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -92,19 +91,6 @@ public class Municipio implements Serializable {
         this.colonias = colonias;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public Municipio estado(Estado estado) {
-        this.estado = estado;
-        return this;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     public Set<CodigoPostal> getCodigoPostals() {
         return codigoPostals;
     }
@@ -116,18 +102,31 @@ public class Municipio implements Serializable {
 
     public Municipio addCodigoPostal(CodigoPostal codigoPostal) {
         this.codigoPostals.add(codigoPostal);
-        codigoPostal.getMunicipios().add(this);
+        codigoPostal.setMunicipio(this);
         return this;
     }
 
     public Municipio removeCodigoPostal(CodigoPostal codigoPostal) {
         this.codigoPostals.remove(codigoPostal);
-        codigoPostal.getMunicipios().remove(this);
+        codigoPostal.setMunicipio(null);
         return this;
     }
 
     public void setCodigoPostals(Set<CodigoPostal> codigoPostals) {
         this.codigoPostals = codigoPostals;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public Municipio estado(Estado estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

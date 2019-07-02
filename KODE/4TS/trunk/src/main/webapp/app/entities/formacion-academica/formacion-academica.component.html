@@ -15,12 +15,14 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="formacionAcademica"><span jhiTranslate="App.formacionAcademica.formacionAcademica">Formacion Academica</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let formacionAcademica of formacionAcademicas ;trackBy: trackId">
                 <td><a [routerLink]="['/formacion-academica', formacionAcademica.id, 'view' ]">{{formacionAcademica.id}}</a></td>
+                <td>{{formacionAcademica.formacionAcademica}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

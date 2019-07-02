@@ -1,0 +1,56 @@
+{
+    "name": "Bitacora",
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "comentario",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "bitacora",
+            "relationshipName": "usuario",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "bitacora",
+            "relationshipName": "requerimiento",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "bitacora",
+            "relationshipName": "candidato",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tarea",
+            "otherEntityRelationshipName": "bitacora",
+            "relationshipName": "tarea",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164726",
+    "entityTableName": "bitacora",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

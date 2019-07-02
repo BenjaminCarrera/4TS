@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ReqCan.
+    -->
+    <changeSet id="20190702164727-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="candidato_id"
+                                 baseTableName="req_can"
+                                 constraintName="fk_req_can_candidato_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="candidato"/>
+
+        <addForeignKeyConstraint baseColumnNames="requerimiento_id"
+                                 baseTableName="req_can"
+                                 constraintName="fk_req_can_requerimiento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="requerimiento"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_req_can_id"
+                                 baseTableName="req_can"
+                                 constraintName="fk_req_can_estatus_req_can_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_req_can"/>
+
+        <addForeignKeyConstraint baseColumnNames="estatus_req_can_rec_id"
+                                 baseTableName="req_can"
+                                 constraintName="fk_req_can_estatus_req_can_rec_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_req_can_rec"/>
+
+    </changeSet>
+</databaseChangeLog>

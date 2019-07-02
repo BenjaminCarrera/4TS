@@ -9,6 +9,8 @@ public class FormacionAcademicaDTO implements Serializable {
 
     private Long id;
 
+    private String formacionAcademica;
+
 
     public Long getId() {
         return id;
@@ -16,6 +18,14 @@ public class FormacionAcademicaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFormacionAcademica() {
+        return formacionAcademica;
+    }
+
+    public void setFormacionAcademica(String formacionAcademica) {
+        this.formacionAcademica = formacionAcademica;
     }
 
     @Override
@@ -43,6 +53,7 @@ public class FormacionAcademicaDTO implements Serializable {
     public String toString() {
         return "FormacionAcademicaDTO{" +
             "id=" + getId() +
+            ", formacionAcademica='" + getFormacionAcademica() + "'" +
             "}";
     }
 }

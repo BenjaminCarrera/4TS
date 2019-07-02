@@ -89,6 +89,9 @@ public class PerfilQueryService extends QueryService<Perfil> {
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), Perfil_.id));
             }
+            if (criteria.getPerfil() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getPerfil(), Perfil_.perfil));
+            }
             if (criteria.getCandidatoId() != null) {
                 specification = specification.and(buildSpecification(criteria.getCandidatoId(),
                     root -> root.join(Perfil_.candidatoes, JoinType.LEFT).get(Candidato_.id)));

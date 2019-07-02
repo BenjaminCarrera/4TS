@@ -16,6 +16,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="codigoPostal"><span jhiTranslate="App.codigoPostal.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="municipioId"><span jhiTranslate="App.codigoPostal.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -23,6 +24,11 @@
             <tr *ngFor="let codigoPostal of codigoPostals ;trackBy: trackId">
                 <td><a [routerLink]="['/codigo-postal', codigoPostal.id, 'view' ]">{{codigoPostal.id}}</a></td>
                 <td>{{codigoPostal.codigoPostal}}</td>
+                <td>
+                    <div *ngIf="codigoPostal.municipioId">
+                        <a [routerLink]="['../municipio', codigoPostal.municipioId , 'view' ]" >{{codigoPostal.municipioId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

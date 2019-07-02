@@ -15,12 +15,14 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="perfil"><span jhiTranslate="App.perfil.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let perfil of perfils ;trackBy: trackId">
                 <td><a [routerLink]="['/perfil', perfil.id, 'view' ]">{{perfil.id}}</a></td>
+                <td>{{perfil.perfil}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

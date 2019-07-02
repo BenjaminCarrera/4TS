@@ -28,13 +28,7 @@ public interface CodigoPostalService {
      */
     Page<CodigoPostalDTO> findAll(Pageable pageable);
 
-    /**
-     * Get all the codigoPostals with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    Page<CodigoPostalDTO> findAllWithEagerRelationships(Pageable pageable);
-    
+
     /**
      * Get the "id" codigoPostal.
      *

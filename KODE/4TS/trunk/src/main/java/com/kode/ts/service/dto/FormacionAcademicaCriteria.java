@@ -26,6 +26,8 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
+    private StringFilter formacionAcademica;
+
     private LongFilter candidatoId;
 
     public FormacionAcademicaCriteria(){
@@ -33,6 +35,7 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
 
     public FormacionAcademicaCriteria(FormacionAcademicaCriteria other){
         this.id = other.id == null ? null : other.id.copy();
+        this.formacionAcademica = other.formacionAcademica == null ? null : other.formacionAcademica.copy();
         this.candidatoId = other.candidatoId == null ? null : other.candidatoId.copy();
     }
 
@@ -47,6 +50,14 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
 
     public void setId(LongFilter id) {
         this.id = id;
+    }
+
+    public StringFilter getFormacionAcademica() {
+        return formacionAcademica;
+    }
+
+    public void setFormacionAcademica(StringFilter formacionAcademica) {
+        this.formacionAcademica = formacionAcademica;
     }
 
     public LongFilter getCandidatoId() {
@@ -69,6 +80,7 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
         final FormacionAcademicaCriteria that = (FormacionAcademicaCriteria) o;
         return
             Objects.equals(id, that.id) &&
+            Objects.equals(formacionAcademica, that.formacionAcademica) &&
             Objects.equals(candidatoId, that.candidatoId);
     }
 
@@ -76,6 +88,7 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
     public int hashCode() {
         return Objects.hash(
         id,
+        formacionAcademica,
         candidatoId
         );
     }
@@ -84,6 +97,7 @@ public class FormacionAcademicaCriteria implements Serializable, Criteria {
     public String toString() {
         return "FormacionAcademicaCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
+                (formacionAcademica != null ? "formacionAcademica=" + formacionAcademica + ", " : "") +
                 (candidatoId != null ? "candidatoId=" + candidatoId + ", " : "") +
             "}";
     }

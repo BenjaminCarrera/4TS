@@ -40,6 +40,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 public class PerfilResourceIT {
 
+    private static final String DEFAULT_PERFIL = "AAAAAAAAAA";
+    private static final String UPDATED_PERFIL = "BBBBBBBBBB";
+
     @Autowired
     private PerfilRepository perfilRepository;
 
@@ -90,7 +93,8 @@ public class PerfilResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Perfil createEntity(EntityManager em) {
-        Perfil perfil = new Perfil();
+        Perfil perfil = new Perfil()
+            .perfil(DEFAULT_PERFIL);
         return perfil;
     }
     /**
@@ -100,7 +104,8 @@ public class PerfilResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Perfil createUpdatedEntity(EntityManager em) {
-        Perfil perfil = new Perfil();
+        Perfil perfil = new Perfil()
+            .perfil(UPDATED_PERFIL);
         return perfil;
     }
 
@@ -125,6 +130,7 @@ public class PerfilResourceIT {
         List<Perfil> perfilList = perfilRepository.findAll();
         assertThat(perfilList).hasSize(databaseSizeBeforeCreate + 1);
         Perfil testPerfil = perfilList.get(perfilList.size() - 1);
+        assertThat(testPerfil.getPerfil()).isEqualTo(DEFAULT_PERFIL);
     }
 
     @Test
@@ -158,7 +164,8 @@ public class PerfilResourceIT {
         restPerfilMockMvc.perform(get("/api/perfils?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(perfil.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(perfil.getId().intValue())))
+            .andExpect(jsonPath("$.[*].perfil").value(hasItem(DEFAULT_PERFIL.toString())));
     }
     
     @Test
@@ -171,7 +178,47 @@ public class PerfilResourceIT {
         restPerfilMockMvc.perform(get("/api/perfils/{id}", perfil.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(perfil.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(perfil.getId().intValue()))
+            .andExpect(jsonPath("$.perfil").value(DEFAULT_PERFIL.toString()));
+    }
+
+    @Test
+    @Transactional
+    public void getAllPerfilsByPerfilIsEqualToSomething() throws Exception {
+        // Initialize the database
+        perfilRepository.saveAndFlush(perfil);
+
+        // Get all the perfilList where perfil equals to DEFAULT_PERFIL
+        defaultPerfilShouldBeFound("perfil.equals=" + DEFAULT_PERFIL);
+
+        // Get all the perfilList where perfil equals to UPDATED_PERFIL
+        defaultPerfilShouldNotBeFound("perfil.equals=" + UPDATED_PERFIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPerfilsByPerfilIsInShouldWork() throws Exception {
+        // Initialize the database
+        perfilRepository.saveAndFlush(perfil);
+
+        // Get all the perfilList where perfil in DEFAULT_PERFIL or UPDATED_PERFIL
+        defaultPerfilShouldBeFound("perfil.in=" + DEFAULT_PERFIL + "," + UPDATED_PERFIL);
+
+        // Get all the perfilList where perfil equals to UPDATED_PERFIL
+        defaultPerfilShouldNotBeFound("perfil.in=" + UPDATED_PERFIL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllPerfilsByPerfilIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        perfilRepository.saveAndFlush(perfil);
+
+        // Get all the perfilList where perfil is not null
+        defaultPerfilShouldBeFound("perfil.specified=true");
+
+        // Get all the perfilList where perfil is null
+        defaultPerfilShouldNotBeFound("perfil.specified=false");
     }
 
     @Test
@@ -218,7 +265,8 @@ public class PerfilResourceIT {
         restPerfilMockMvc.perform(get("/api/perfils?sort=id,desc&" + filter))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(perfil.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(perfil.getId().intValue())))
+            .andExpect(jsonPath("$.[*].perfil").value(hasItem(DEFAULT_PERFIL)));
 
         // Check, that the count call also returns 1
         restPerfilMockMvc.perform(get("/api/perfils/count?sort=id,desc&" + filter))
@@ -265,6 +313,8 @@ public class PerfilResourceIT {
         Perfil updatedPerfil = perfilRepository.findById(perfil.getId()).get();
         // Disconnect from session so that the updates on updatedPerfil are not directly saved in db
         em.detach(updatedPerfil);
+        updatedPerfil
+            .perfil(UPDATED_PERFIL);
         PerfilDTO perfilDTO = perfilMapper.toDto(updatedPerfil);
 
         restPerfilMockMvc.perform(put("/api/perfils")
@@ -276,6 +326,7 @@ public class PerfilResourceIT {
         List<Perfil> perfilList = perfilRepository.findAll();
         assertThat(perfilList).hasSize(databaseSizeBeforeUpdate);
         Perfil testPerfil = perfilList.get(perfilList.size() - 1);
+        assertThat(testPerfil.getPerfil()).isEqualTo(UPDATED_PERFIL);
     }
 
     @Test

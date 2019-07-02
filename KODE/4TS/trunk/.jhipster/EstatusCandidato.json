@@ -1,0 +1,36 @@
+{
+    "name": "EstatusCandidato",
+    "fields": [
+        {
+            "fieldName": "estatus",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "estatusCandidato",
+            "relationshipName": "candidato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "estCanInactivo",
+            "otherEntityRelationshipName": "estatusCandidato",
+            "relationshipName": "estCanInactivo"
+        }
+    ],
+    "changelogDate": "20190702164657",
+    "entityTableName": "estatus_candidato",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

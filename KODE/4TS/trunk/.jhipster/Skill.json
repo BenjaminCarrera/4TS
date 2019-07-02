@@ -1,0 +1,43 @@
+{
+    "name": "Skill",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillCandidato",
+            "otherEntityRelationshipName": "idSkill",
+            "relationshipName": "skillCandidato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "skillRequerimiento",
+            "otherEntityRelationshipName": "idSkill",
+            "relationshipName": "skillRequerimiento"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categoriaSkill",
+            "otherEntityRelationshipName": "skill",
+            "relationshipName": "categoriaSkill",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190702164708",
+    "entityTableName": "skill",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

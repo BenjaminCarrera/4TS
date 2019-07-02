@@ -30,9 +30,9 @@ public class MunicipioCriteria implements Serializable, Criteria {
 
     private LongFilter coloniaId;
 
-    private LongFilter estadoId;
-
     private LongFilter codigoPostalId;
+
+    private LongFilter estadoId;
 
     public MunicipioCriteria(){
     }
@@ -41,8 +41,8 @@ public class MunicipioCriteria implements Serializable, Criteria {
         this.id = other.id == null ? null : other.id.copy();
         this.municipio = other.municipio == null ? null : other.municipio.copy();
         this.coloniaId = other.coloniaId == null ? null : other.coloniaId.copy();
-        this.estadoId = other.estadoId == null ? null : other.estadoId.copy();
         this.codigoPostalId = other.codigoPostalId == null ? null : other.codigoPostalId.copy();
+        this.estadoId = other.estadoId == null ? null : other.estadoId.copy();
     }
 
     @Override
@@ -74,20 +74,20 @@ public class MunicipioCriteria implements Serializable, Criteria {
         this.coloniaId = coloniaId;
     }
 
-    public LongFilter getEstadoId() {
-        return estadoId;
-    }
-
-    public void setEstadoId(LongFilter estadoId) {
-        this.estadoId = estadoId;
-    }
-
     public LongFilter getCodigoPostalId() {
         return codigoPostalId;
     }
 
     public void setCodigoPostalId(LongFilter codigoPostalId) {
         this.codigoPostalId = codigoPostalId;
+    }
+
+    public LongFilter getEstadoId() {
+        return estadoId;
+    }
+
+    public void setEstadoId(LongFilter estadoId) {
+        this.estadoId = estadoId;
     }
 
 
@@ -104,8 +104,8 @@ public class MunicipioCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(municipio, that.municipio) &&
             Objects.equals(coloniaId, that.coloniaId) &&
-            Objects.equals(estadoId, that.estadoId) &&
-            Objects.equals(codigoPostalId, that.codigoPostalId);
+            Objects.equals(codigoPostalId, that.codigoPostalId) &&
+            Objects.equals(estadoId, that.estadoId);
     }
 
     @Override
@@ -114,8 +114,8 @@ public class MunicipioCriteria implements Serializable, Criteria {
         id,
         municipio,
         coloniaId,
-        estadoId,
-        codigoPostalId
+        codigoPostalId,
+        estadoId
         );
     }
 
@@ -125,8 +125,8 @@ public class MunicipioCriteria implements Serializable, Criteria {
                 (id != null ? "id=" + id + ", " : "") +
                 (municipio != null ? "municipio=" + municipio + ", " : "") +
                 (coloniaId != null ? "coloniaId=" + coloniaId + ", " : "") +
-                (estadoId != null ? "estadoId=" + estadoId + ", " : "") +
                 (codigoPostalId != null ? "codigoPostalId=" + codigoPostalId + ", " : "") +
+                (estadoId != null ? "estadoId=" + estadoId + ", " : "") +
             "}";
     }
 

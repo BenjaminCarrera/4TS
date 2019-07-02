@@ -15,7 +15,8 @@ export class FormacionAcademicaUpdateComponent implements OnInit {
   isSaving: boolean;
 
   editForm = this.fb.group({
-    id: []
+    id: [],
+    formacionAcademica: []
   });
 
   constructor(
@@ -34,7 +35,8 @@ export class FormacionAcademicaUpdateComponent implements OnInit {
 
   updateForm(formacionAcademica: IFormacionAcademica) {
     this.editForm.patchValue({
-      id: formacionAcademica.id
+      id: formacionAcademica.id,
+      formacionAcademica: formacionAcademica.formacionAcademica
     });
   }
 
@@ -55,7 +57,8 @@ export class FormacionAcademicaUpdateComponent implements OnInit {
   private createFromForm(): IFormacionAcademica {
     const entity = {
       ...new FormacionAcademica(),
-      id: this.editForm.get(['id']).value
+      id: this.editForm.get(['id']).value,
+      formacionAcademica: this.editForm.get(['formacionAcademica']).value
     };
     return entity;
   }

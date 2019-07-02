@@ -96,13 +96,13 @@ public class MunicipioQueryService extends QueryService<Municipio> {
                 specification = specification.and(buildSpecification(criteria.getColoniaId(),
                     root -> root.join(Municipio_.colonias, JoinType.LEFT).get(Colonia_.id)));
             }
-            if (criteria.getEstadoId() != null) {
-                specification = specification.and(buildSpecification(criteria.getEstadoId(),
-                    root -> root.join(Municipio_.estado, JoinType.LEFT).get(Estado_.id)));
-            }
             if (criteria.getCodigoPostalId() != null) {
                 specification = specification.and(buildSpecification(criteria.getCodigoPostalId(),
                     root -> root.join(Municipio_.codigoPostals, JoinType.LEFT).get(CodigoPostal_.id)));
+            }
+            if (criteria.getEstadoId() != null) {
+                specification = specification.and(buildSpecification(criteria.getEstadoId(),
+                    root -> root.join(Municipio_.estado, JoinType.LEFT).get(Estado_.id)));
             }
         }
         return specification;

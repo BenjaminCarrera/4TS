@@ -1,0 +1,36 @@
+{
+    "name": "EsqContRec",
+    "fields": [
+        {
+            "fieldName": "esquema",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "candidato",
+            "otherEntityRelationshipName": "antecedentesEsquemaContratacion",
+            "relationshipName": "candidato"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "requerimiento",
+            "otherEntityRelationshipName": "esquemaContratacion",
+            "relationshipName": "requerimiento"
+        }
+    ],
+    "changelogDate": "20190702164705",
+    "entityTableName": "esq_cont_rec",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
