@@ -341,7 +341,7 @@ public class TipoIngresoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<TipoIngreso> tipoIngresoList = tipoIngresoRepository.findAll();
         assertThat(tipoIngresoList).hasSize(databaseSizeBeforeDelete - 1);
     }

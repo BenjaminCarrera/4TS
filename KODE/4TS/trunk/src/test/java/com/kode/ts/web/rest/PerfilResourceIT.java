@@ -361,7 +361,7 @@ public class PerfilResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<Perfil> perfilList = perfilRepository.findAll();
         assertThat(perfilList).hasSize(databaseSizeBeforeDelete - 1);
     }

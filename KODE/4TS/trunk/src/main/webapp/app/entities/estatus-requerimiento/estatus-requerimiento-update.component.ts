@@ -11,7 +11,6 @@ import { EstatusRequerimientoService } from './estatus-requerimiento.service';
   templateUrl: './estatus-requerimiento-update.component.html'
 })
 export class EstatusRequerimientoUpdateComponent implements OnInit {
-  estatusRequerimiento: IEstatusRequerimiento;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class EstatusRequerimientoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusRequerimiento }) => {
       this.updateForm(estatusRequerimiento);
-      this.estatusRequerimiento = estatusRequerimiento;
     });
   }
 
@@ -55,16 +53,15 @@ export class EstatusRequerimientoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusRequerimiento {
-    const entity = {
+    return {
       ...new EstatusRequerimiento(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusRequerimiento>>) {
-    result.subscribe((res: HttpResponse<IEstatusRequerimiento>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

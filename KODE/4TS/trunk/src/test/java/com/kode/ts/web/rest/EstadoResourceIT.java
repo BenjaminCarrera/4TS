@@ -341,7 +341,7 @@ public class EstadoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<Estado> estadoList = estadoRepository.findAll();
         assertThat(estadoList).hasSize(databaseSizeBeforeDelete - 1);
     }

@@ -13,7 +13,9 @@ public interface NivelPerfilMapper extends EntityMapper<NivelPerfilDTO, NivelPer
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     NivelPerfil toEntity(NivelPerfilDTO nivelPerfilDTO);
 
     default NivelPerfil fromId(Long id) {

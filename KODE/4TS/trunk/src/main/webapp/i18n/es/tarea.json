@@ -4,7 +4,8 @@
       "home": {
         "title": "Tareas",
         "createLabel": "Crear nuevo Tarea",
-        "createOrEditLabel": "Crear o editar Tarea"
+        "createOrEditLabel": "Crear o editar Tarea",
+        "notFound": "No Tarea found"
       },
       "created": "Un nuevo Tarea ha sido creado con el identificador {{ param }}",
       "updated": "Un Tarea ha sido actualizado con el identificador {{ param }}",

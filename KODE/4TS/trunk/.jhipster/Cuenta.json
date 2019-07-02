@@ -36,7 +36,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190702164707",
+    "changelogDate": "20190702185257",
     "entityTableName": "cuenta",
     "dto": "mapstruct",
     "pagination": "pagination",

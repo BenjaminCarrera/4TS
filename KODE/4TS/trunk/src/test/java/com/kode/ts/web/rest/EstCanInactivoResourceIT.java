@@ -361,7 +361,7 @@ public class EstCanInactivoResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<EstCanInactivo> estCanInactivoList = estCanInactivoRepository.findAll();
         assertThat(estCanInactivoList).hasSize(databaseSizeBeforeDelete - 1);
     }

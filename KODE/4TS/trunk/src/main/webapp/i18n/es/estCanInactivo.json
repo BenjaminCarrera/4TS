@@ -4,7 +4,8 @@
       "home": {
         "title": "Est Can Inactivos",
         "createLabel": "Crear nuevo Est Can Inactivo",
-        "createOrEditLabel": "Crear o editar Est Can Inactivo"
+        "createOrEditLabel": "Crear o editar Est Can Inactivo",
+        "notFound": "No Est Can Inactivo found"
       },
       "created": "Un nuevo Est Can Inactivo ha sido creado con el identificador {{ param }}",
       "updated": "Un Est Can Inactivo ha sido actualizado con el identificador {{ param }}",

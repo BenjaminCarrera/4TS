@@ -15,6 +15,7 @@ public interface EstReqCerradoMapper extends EntityMapper<EstReqCerradoDTO, EstR
     EstReqCerradoDTO toDto(EstReqCerrado estReqCerrado);
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     @Mapping(source = "estatusRequerimientoId", target = "estatusRequerimiento")
     EstReqCerrado toEntity(EstReqCerradoDTO estReqCerradoDTO);
 

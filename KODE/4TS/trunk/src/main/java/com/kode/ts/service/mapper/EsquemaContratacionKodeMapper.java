@@ -13,6 +13,7 @@ public interface EsquemaContratacionKodeMapper extends EntityMapper<EsquemaContr
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     EsquemaContratacionKode toEntity(EsquemaContratacionKodeDTO esquemaContratacionKodeDTO);
 
     default EsquemaContratacionKode fromId(Long id) {

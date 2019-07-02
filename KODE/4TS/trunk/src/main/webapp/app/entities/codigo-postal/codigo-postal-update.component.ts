@@ -15,7 +15,6 @@ import { MunicipioService } from 'app/entities/municipio';
   templateUrl: './codigo-postal-update.component.html'
 })
 export class CodigoPostalUpdateComponent implements OnInit {
-  codigoPostal: ICodigoPostal;
   isSaving: boolean;
 
   municipios: IMunicipio[];
@@ -38,7 +37,6 @@ export class CodigoPostalUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ codigoPostal }) => {
       this.updateForm(codigoPostal);
-      this.codigoPostal = codigoPostal;
     });
     this.municipioService
       .query()
@@ -72,17 +70,16 @@ export class CodigoPostalUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ICodigoPostal {
-    const entity = {
+    return {
       ...new CodigoPostal(),
       id: this.editForm.get(['id']).value,
       codigoPostal: this.editForm.get(['codigoPostal']).value,
       municipioId: this.editForm.get(['municipioId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICodigoPostal>>) {
-    result.subscribe((res: HttpResponse<ICodigoPostal>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -11,7 +11,6 @@ import { TipoIngresoService } from './tipo-ingreso.service';
   templateUrl: './tipo-ingreso-update.component.html'
 })
 export class TipoIngresoUpdateComponent implements OnInit {
-  tipoIngreso: ITipoIngreso;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class TipoIngresoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tipoIngreso }) => {
       this.updateForm(tipoIngreso);
-      this.tipoIngreso = tipoIngreso;
     });
   }
 
@@ -51,16 +49,15 @@ export class TipoIngresoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITipoIngreso {
-    const entity = {
+    return {
       ...new TipoIngreso(),
       id: this.editForm.get(['id']).value,
       tipo: this.editForm.get(['tipo']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITipoIngreso>>) {
-    result.subscribe((res: HttpResponse<ITipoIngreso>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

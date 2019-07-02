@@ -541,7 +541,7 @@ public class ReferenciasLaboralesResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<ReferenciasLaborales> referenciasLaboralesList = referenciasLaboralesRepository.findAll();
         assertThat(referenciasLaboralesList).hasSize(databaseSizeBeforeDelete - 1);
     }

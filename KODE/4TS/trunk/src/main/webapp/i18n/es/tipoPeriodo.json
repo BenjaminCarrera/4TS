@@ -4,7 +4,8 @@
       "home": {
         "title": "Tipo Periodos",
         "createLabel": "Crear nuevo Tipo Periodo",
-        "createOrEditLabel": "Crear o editar Tipo Periodo"
+        "createOrEditLabel": "Crear o editar Tipo Periodo",
+        "notFound": "No Tipo Periodo found"
       },
       "created": "Un nuevo Tipo Periodo ha sido creado con el identificador {{ param }}",
       "updated": "Un Tipo Periodo ha sido actualizado con el identificador {{ param }}",

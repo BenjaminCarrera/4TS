@@ -11,7 +11,6 @@ import { PrioridadReqService } from './prioridad-req.service';
   templateUrl: './prioridad-req-update.component.html'
 })
 export class PrioridadReqUpdateComponent implements OnInit {
-  prioridadReq: IPrioridadReq;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class PrioridadReqUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ prioridadReq }) => {
       this.updateForm(prioridadReq);
-      this.prioridadReq = prioridadReq;
     });
   }
 
@@ -51,16 +49,15 @@ export class PrioridadReqUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IPrioridadReq {
-    const entity = {
+    return {
       ...new PrioridadReq(),
       id: this.editForm.get(['id']).value,
       prioridad: this.editForm.get(['prioridad']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPrioridadReq>>) {
-    result.subscribe((res: HttpResponse<IPrioridadReq>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

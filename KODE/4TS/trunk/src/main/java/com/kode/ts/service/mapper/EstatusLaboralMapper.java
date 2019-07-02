@@ -13,6 +13,7 @@ public interface EstatusLaboralMapper extends EntityMapper<EstatusLaboralDTO, Es
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     EstatusLaboral toEntity(EstatusLaboralDTO estatusLaboralDTO);
 
     default EstatusLaboral fromId(Long id) {

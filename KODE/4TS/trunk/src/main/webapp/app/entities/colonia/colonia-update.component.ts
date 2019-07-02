@@ -17,7 +17,6 @@ import { CodigoPostalService } from 'app/entities/codigo-postal';
   templateUrl: './colonia-update.component.html'
 })
 export class ColoniaUpdateComponent implements OnInit {
-  colonia: IColonia;
   isSaving: boolean;
 
   municipios: IMunicipio[];
@@ -44,7 +43,6 @@ export class ColoniaUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ colonia }) => {
       this.updateForm(colonia);
-      this.colonia = colonia;
     });
     this.municipioService
       .query()
@@ -86,18 +84,17 @@ export class ColoniaUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IColonia {
-    const entity = {
+    return {
       ...new Colonia(),
       id: this.editForm.get(['id']).value,
       colonia: this.editForm.get(['colonia']).value,
       municipioId: this.editForm.get(['municipioId']).value,
       codigoPostalId: this.editForm.get(['codigoPostalId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IColonia>>) {
-    result.subscribe((res: HttpResponse<IColonia>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

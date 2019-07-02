@@ -4,7 +4,8 @@
       "home": {
         "title": "Esquema Contratacion Kodes",
         "createLabel": "Crear nuevo Esquema Contratacion Kode",
-        "createOrEditLabel": "Crear o editar Esquema Contratacion Kode"
+        "createOrEditLabel": "Crear o editar Esquema Contratacion Kode",
+        "notFound": "No Esquema Contratacion Kode found"
       },
       "created": "Un nuevo Esquema Contratacion Kode ha sido creado con el identificador {{ param }}",
       "updated": "Un Esquema Contratacion Kode ha sido actualizado con el identificador {{ param }}",

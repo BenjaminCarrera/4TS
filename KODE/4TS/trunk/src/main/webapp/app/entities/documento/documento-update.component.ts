@@ -11,7 +11,6 @@ import { DocumentoService } from './documento.service';
   templateUrl: './documento-update.component.html'
 })
 export class DocumentoUpdateComponent implements OnInit {
-  documento: IDocumento;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class DocumentoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ documento }) => {
       this.updateForm(documento);
-      this.documento = documento;
     });
   }
 
@@ -51,16 +49,15 @@ export class DocumentoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IDocumento {
-    const entity = {
+    return {
       ...new Documento(),
       id: this.editForm.get(['id']).value,
       documento: this.editForm.get(['documento']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDocumento>>) {
-    result.subscribe((res: HttpResponse<IDocumento>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

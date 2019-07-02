@@ -81,8 +81,10 @@ public class TipoIngresoQueryService extends QueryService<TipoIngreso> {
     }
 
     /**
-     * Function to convert TipoIngresoCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<TipoIngreso> createSpecification(TipoIngresoCriteria criteria) {
         Specification<TipoIngreso> specification = Specification.where(null);
         if (criteria != null) {

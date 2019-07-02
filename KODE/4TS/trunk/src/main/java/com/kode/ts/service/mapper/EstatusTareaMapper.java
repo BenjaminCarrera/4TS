@@ -13,6 +13,7 @@ public interface EstatusTareaMapper extends EntityMapper<EstatusTareaDTO, Estatu
 
 
     @Mapping(target = "tareas", ignore = true)
+    @Mapping(target = "removeTarea", ignore = true)
     EstatusTarea toEntity(EstatusTareaDTO estatusTareaDTO);
 
     default EstatusTarea fromId(Long id) {

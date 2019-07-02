@@ -31,7 +31,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164652",
+    "changelogDate": "20190702185242",
     "entityTableName": "municipio",
     "dto": "mapstruct",
     "pagination": "pagination",

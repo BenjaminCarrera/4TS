@@ -4,7 +4,8 @@
       "home": {
         "title": "Tipo Skills",
         "createLabel": "Crear nuevo Tipo Skill",
-        "createOrEditLabel": "Crear o editar Tipo Skill"
+        "createOrEditLabel": "Crear o editar Tipo Skill",
+        "notFound": "No Tipo Skill found"
       },
       "created": "Un nuevo Tipo Skill ha sido creado con el identificador {{ param }}",
       "updated": "Un Tipo Skill ha sido actualizado con el identificador {{ param }}",

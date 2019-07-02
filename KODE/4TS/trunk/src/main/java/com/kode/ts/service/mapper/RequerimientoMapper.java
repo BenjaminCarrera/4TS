@@ -28,8 +28,11 @@ public interface RequerimientoMapper extends EntityMapper<RequerimientoDTO, Requ
     RequerimientoDTO toDto(Requerimiento requerimiento);
 
     @Mapping(target = "skillRequerimientos", ignore = true)
+    @Mapping(target = "removeSkillRequerimiento", ignore = true)
     @Mapping(target = "tareas", ignore = true)
+    @Mapping(target = "removeTarea", ignore = true)
     @Mapping(target = "bitacoras", ignore = true)
+    @Mapping(target = "removeBitacora", ignore = true)
     @Mapping(source = "cuentaId", target = "cuenta")
     @Mapping(source = "subCuentaId", target = "subCuenta")
     @Mapping(source = "usuarioCreadorId", target = "usuarioCreador")

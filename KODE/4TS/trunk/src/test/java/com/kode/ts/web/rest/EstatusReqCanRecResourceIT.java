@@ -341,7 +341,7 @@ public class EstatusReqCanRecResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<EstatusReqCanRec> estatusReqCanRecList = estatusReqCanRecRepository.findAll();
         assertThat(estatusReqCanRecList).hasSize(databaseSizeBeforeDelete - 1);
     }

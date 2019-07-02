@@ -4,7 +4,8 @@
       "home": {
         "title": "Cuentas",
         "createLabel": "Crear nuevo Cuenta",
-        "createOrEditLabel": "Crear o editar Cuenta"
+        "createOrEditLabel": "Crear o editar Cuenta",
+        "notFound": "No Cuenta found"
       },
       "created": "Un nuevo Cuenta ha sido creado con el identificador {{ param }}",
       "updated": "Un Cuenta ha sido actualizado con el identificador {{ param }}",

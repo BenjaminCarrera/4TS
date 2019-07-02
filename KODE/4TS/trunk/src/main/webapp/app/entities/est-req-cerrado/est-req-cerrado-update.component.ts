@@ -15,7 +15,6 @@ import { EstatusRequerimientoService } from 'app/entities/estatus-requerimiento'
   templateUrl: './est-req-cerrado-update.component.html'
 })
 export class EstReqCerradoUpdateComponent implements OnInit {
-  estReqCerrado: IEstReqCerrado;
   isSaving: boolean;
 
   estatusrequerimientos: IEstatusRequerimiento[];
@@ -38,7 +37,6 @@ export class EstReqCerradoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estReqCerrado }) => {
       this.updateForm(estReqCerrado);
-      this.estReqCerrado = estReqCerrado;
     });
     this.estatusRequerimientoService
       .query()
@@ -75,17 +73,16 @@ export class EstReqCerradoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstReqCerrado {
-    const entity = {
+    return {
       ...new EstReqCerrado(),
       id: this.editForm.get(['id']).value,
       motivo: this.editForm.get(['motivo']).value,
       estatusRequerimientoId: this.editForm.get(['estatusRequerimientoId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstReqCerrado>>) {
-    result.subscribe((res: HttpResponse<IEstReqCerrado>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -9,8 +9,66 @@
 
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="clob" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185238_added_entity_Candidato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185239_added_entity_Documento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185240_added_entity_FormacionAcademica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185241_added_entity_Colonia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185242_added_entity_Municipio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185243_added_entity_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185244_added_entity_CodigoPostal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185245_added_entity_Perfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185246_added_entity_InstitucionAcademica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185247_added_entity_EstatusCandidato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185248_added_entity_EstCanInactivo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185249_added_entity_TipoPeriodo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185250_added_entity_NivelPerfil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185251_added_entity_ReferenciasLaborales.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185252_added_entity_EstatusAcademico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185253_added_entity_FuenteReclutamiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185254_added_entity_EsquemaContratacionKode.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185255_added_entity_EsqContRec.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185256_added_entity_EstatusLaboral.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185257_added_entity_Cuenta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185258_added_entity_Skill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185259_added_entity_TipoSkill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185300_added_entity_CategoriaSkill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185301_added_entity_SkillCandidato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185302_added_entity_DominioSkill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185303_added_entity_Requerimiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185304_added_entity_EstatusRequerimiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185305_added_entity_EstReqCerrado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185306_added_entity_PrioridadReq.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185307_added_entity_TipoSolicitud.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185308_added_entity_TipoIngreso.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185309_added_entity_BaseTarifa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185310_added_entity_SkillRequerimiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185311_added_entity_EstatusReqCan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185312_added_entity_EstatusReqCanRec.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185313_added_entity_Tarea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185314_added_entity_EstatusTarea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185315_added_entity_TipoTarea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185316_added_entity_Bitacora.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185317_added_entity_ReqCan.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190702185238_added_entity_constraints_Candidato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185241_added_entity_constraints_Colonia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185242_added_entity_constraints_Municipio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185244_added_entity_constraints_CodigoPostal.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185248_added_entity_constraints_EstCanInactivo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185251_added_entity_constraints_ReferenciasLaborales.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185258_added_entity_constraints_Skill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185301_added_entity_constraints_SkillCandidato.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185303_added_entity_constraints_Requerimiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185305_added_entity_constraints_EstReqCerrado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185310_added_entity_constraints_SkillRequerimiento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185312_added_entity_constraints_EstatusReqCanRec.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185313_added_entity_constraints_Tarea.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185316_added_entity_constraints_Bitacora.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190702185317_added_entity_constraints_ReqCan.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

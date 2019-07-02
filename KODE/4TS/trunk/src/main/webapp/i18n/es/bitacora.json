@@ -4,7 +4,8 @@
       "home": {
         "title": "Bitacoras",
         "createLabel": "Crear nuevo Bitacora",
-        "createOrEditLabel": "Crear o editar Bitacora"
+        "createOrEditLabel": "Crear o editar Bitacora",
+        "notFound": "No Bitacora found"
       },
       "created": "Un nuevo Bitacora ha sido creado con el identificador {{ param }}",
       "updated": "Un Bitacora ha sido actualizado con el identificador {{ param }}",

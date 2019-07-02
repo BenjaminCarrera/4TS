@@ -13,7 +13,9 @@ public interface EstatusCandidatoMapper extends EntityMapper<EstatusCandidatoDTO
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     @Mapping(target = "estCanInactivos", ignore = true)
+    @Mapping(target = "removeEstCanInactivo", ignore = true)
     EstatusCandidato toEntity(EstatusCandidatoDTO estatusCandidatoDTO);
 
     default EstatusCandidato fromId(Long id) {

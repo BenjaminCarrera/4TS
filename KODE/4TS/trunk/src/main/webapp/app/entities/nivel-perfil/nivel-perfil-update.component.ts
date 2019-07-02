@@ -11,7 +11,6 @@ import { NivelPerfilService } from './nivel-perfil.service';
   templateUrl: './nivel-perfil-update.component.html'
 })
 export class NivelPerfilUpdateComponent implements OnInit {
-  nivelPerfil: INivelPerfil;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class NivelPerfilUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ nivelPerfil }) => {
       this.updateForm(nivelPerfil);
-      this.nivelPerfil = nivelPerfil;
     });
   }
 
@@ -51,16 +49,15 @@ export class NivelPerfilUpdateComponent implements OnInit {
   }
 
   private createFromForm(): INivelPerfil {
-    const entity = {
+    return {
       ...new NivelPerfil(),
       id: this.editForm.get(['id']).value,
       nivel: this.editForm.get(['nivel']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<INivelPerfil>>) {
-    result.subscribe((res: HttpResponse<INivelPerfil>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

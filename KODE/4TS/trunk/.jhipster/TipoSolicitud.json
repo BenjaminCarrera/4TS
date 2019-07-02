@@ -18,7 +18,7 @@
             "relationshipName": "requerimiento"
         }
     ],
-    "changelogDate": "20190702164717",
+    "changelogDate": "20190702185307",
     "entityTableName": "tipo_solicitud",
     "dto": "mapstruct",
     "pagination": "pagination",

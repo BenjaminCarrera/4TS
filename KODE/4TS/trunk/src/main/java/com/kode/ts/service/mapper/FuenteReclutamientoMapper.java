@@ -13,6 +13,7 @@ public interface FuenteReclutamientoMapper extends EntityMapper<FuenteReclutamie
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     FuenteReclutamiento toEntity(FuenteReclutamientoDTO fuenteReclutamientoDTO);
 
     default FuenteReclutamiento fromId(Long id) {

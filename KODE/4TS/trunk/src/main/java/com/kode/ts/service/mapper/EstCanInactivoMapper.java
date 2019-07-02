@@ -15,6 +15,7 @@ public interface EstCanInactivoMapper extends EntityMapper<EstCanInactivoDTO, Es
     EstCanInactivoDTO toDto(EstCanInactivo estCanInactivo);
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     @Mapping(source = "estatusCandidatoId", target = "estatusCandidato")
     EstCanInactivo toEntity(EstCanInactivoDTO estCanInactivoDTO);
 

@@ -4,7 +4,8 @@
       "home": {
         "title": "Skill Candidatoes",
         "createLabel": "Crear nuevo Skill Candidato",
-        "createOrEditLabel": "Crear o editar Skill Candidato"
+        "createOrEditLabel": "Crear o editar Skill Candidato",
+        "notFound": "No Skill Candidato found"
       },
       "created": "Un nuevo Skill Candidato ha sido creado con el identificador {{ param }}",
       "updated": "Un Skill Candidato ha sido actualizado con el identificador {{ param }}",

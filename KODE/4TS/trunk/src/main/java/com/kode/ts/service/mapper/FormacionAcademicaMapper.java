@@ -13,6 +13,7 @@ public interface FormacionAcademicaMapper extends EntityMapper<FormacionAcademic
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     FormacionAcademica toEntity(FormacionAcademicaDTO formacionAcademicaDTO);
 
     default FormacionAcademica fromId(Long id) {

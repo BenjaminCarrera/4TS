@@ -4,7 +4,8 @@
       "home": {
         "title": "Skills",
         "createLabel": "Crear nuevo Skill",
-        "createOrEditLabel": "Crear o editar Skill"
+        "createOrEditLabel": "Crear o editar Skill",
+        "notFound": "No Skill found"
       },
       "created": "Un nuevo Skill ha sido creado con el identificador {{ param }}",
       "updated": "Un Skill ha sido actualizado con el identificador {{ param }}",

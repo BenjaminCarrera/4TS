@@ -18,7 +18,7 @@
             "relationshipName": "tarea"
         }
     ],
-    "changelogDate": "20190702164724",
+    "changelogDate": "20190702185314",
     "entityTableName": "estatus_tarea",
     "dto": "mapstruct",
     "pagination": "pagination",

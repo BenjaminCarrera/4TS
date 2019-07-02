@@ -4,7 +4,8 @@
       "home": {
         "title": "Estatus Academicos",
         "createLabel": "Crear nuevo Estatus Academico",
-        "createOrEditLabel": "Crear o editar Estatus Academico"
+        "createOrEditLabel": "Crear o editar Estatus Academico",
+        "notFound": "No Estatus Academico found"
       },
       "created": "Un nuevo Estatus Academico ha sido creado con el identificador {{ param }}",
       "updated": "Un Estatus Academico ha sido actualizado con el identificador {{ param }}",

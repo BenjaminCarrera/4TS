@@ -15,7 +15,6 @@ import { EstadoService } from 'app/entities/estado';
   templateUrl: './municipio-update.component.html'
 })
 export class MunicipioUpdateComponent implements OnInit {
-  municipio: IMunicipio;
   isSaving: boolean;
 
   estados: IEstado[];
@@ -38,7 +37,6 @@ export class MunicipioUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ municipio }) => {
       this.updateForm(municipio);
-      this.municipio = municipio;
     });
     this.estadoService
       .query()
@@ -72,17 +70,16 @@ export class MunicipioUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IMunicipio {
-    const entity = {
+    return {
       ...new Municipio(),
       id: this.editForm.get(['id']).value,
       municipio: this.editForm.get(['municipio']).value,
       estadoId: this.editForm.get(['estadoId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IMunicipio>>) {
-    result.subscribe((res: HttpResponse<IMunicipio>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

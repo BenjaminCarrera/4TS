@@ -10,7 +10,10 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="reqCans">
+    <div class="alert alert-warning" *ngIf="reqCans?.length === 0">
+        <span jhiTranslate="App.reqCan.home.notFound">No reqCans found</span>
+    </div>
+    <div class="table-responsive" *ngIf="reqCans?.length > 0">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -73,7 +76,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="reqCans && reqCans.length">
+    <div [hidden]="reqCans?.length === 0">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

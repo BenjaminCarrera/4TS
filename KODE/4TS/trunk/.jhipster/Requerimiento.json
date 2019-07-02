@@ -215,7 +215,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164713",
+    "changelogDate": "20190702185303",
     "entityTableName": "requerimiento",
     "dto": "mapstruct",
     "pagination": "pagination",

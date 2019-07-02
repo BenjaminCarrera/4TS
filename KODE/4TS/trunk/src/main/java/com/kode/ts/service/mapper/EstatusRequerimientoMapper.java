@@ -13,7 +13,9 @@ public interface EstatusRequerimientoMapper extends EntityMapper<EstatusRequerim
 
 
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     @Mapping(target = "estReqCerrados", ignore = true)
+    @Mapping(target = "removeEstReqCerrado", ignore = true)
     EstatusRequerimiento toEntity(EstatusRequerimientoDTO estatusRequerimientoDTO);
 
     default EstatusRequerimiento fromId(Long id) {

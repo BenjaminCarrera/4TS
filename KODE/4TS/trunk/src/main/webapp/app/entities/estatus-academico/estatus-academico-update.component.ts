@@ -11,7 +11,6 @@ import { EstatusAcademicoService } from './estatus-academico.service';
   templateUrl: './estatus-academico-update.component.html'
 })
 export class EstatusAcademicoUpdateComponent implements OnInit {
-  estatusAcademico: IEstatusAcademico;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class EstatusAcademicoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ estatusAcademico }) => {
       this.updateForm(estatusAcademico);
-      this.estatusAcademico = estatusAcademico;
     });
   }
 
@@ -55,16 +53,15 @@ export class EstatusAcademicoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEstatusAcademico {
-    const entity = {
+    return {
       ...new EstatusAcademico(),
       id: this.editForm.get(['id']).value,
       estatus: this.editForm.get(['estatus']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEstatusAcademico>>) {
-    result.subscribe((res: HttpResponse<IEstatusAcademico>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

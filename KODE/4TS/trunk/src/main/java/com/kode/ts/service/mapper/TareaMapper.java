@@ -20,6 +20,7 @@ public interface TareaMapper extends EntityMapper<TareaDTO, Tarea> {
     TareaDTO toDto(Tarea tarea);
 
     @Mapping(target = "bitacoras", ignore = true)
+    @Mapping(target = "removeBitacora", ignore = true)
     @Mapping(source = "usuarioCreadorId", target = "usuarioCreador")
     @Mapping(source = "usuarioEjecutorId", target = "usuarioEjecutor")
     @Mapping(source = "requerimientoId", target = "requerimiento")

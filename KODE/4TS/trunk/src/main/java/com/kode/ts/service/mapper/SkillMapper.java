@@ -15,7 +15,9 @@ public interface SkillMapper extends EntityMapper<SkillDTO, Skill> {
     SkillDTO toDto(Skill skill);
 
     @Mapping(target = "skillCandidatoes", ignore = true)
+    @Mapping(target = "removeSkillCandidato", ignore = true)
     @Mapping(target = "skillRequerimientos", ignore = true)
+    @Mapping(target = "removeSkillRequerimiento", ignore = true)
     @Mapping(source = "categoriaSkillId", target = "categoriaSkill")
     Skill toEntity(SkillDTO skillDTO);
 

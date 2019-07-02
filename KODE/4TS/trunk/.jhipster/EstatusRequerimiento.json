@@ -24,7 +24,7 @@
             "relationshipName": "estReqCerrado"
         }
     ],
-    "changelogDate": "20190702164714",
+    "changelogDate": "20190702185304",
     "entityTableName": "estatus_requerimiento",
     "dto": "mapstruct",
     "pagination": "pagination",

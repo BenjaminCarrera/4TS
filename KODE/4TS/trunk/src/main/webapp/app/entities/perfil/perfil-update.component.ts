@@ -11,7 +11,6 @@ import { PerfilService } from './perfil.service';
   templateUrl: './perfil-update.component.html'
 })
 export class PerfilUpdateComponent implements OnInit {
-  perfil: IPerfil;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class PerfilUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ perfil }) => {
       this.updateForm(perfil);
-      this.perfil = perfil;
     });
   }
 
@@ -51,16 +49,15 @@ export class PerfilUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IPerfil {
-    const entity = {
+    return {
       ...new Perfil(),
       id: this.editForm.get(['id']).value,
       perfil: this.editForm.get(['perfil']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPerfil>>) {
-    result.subscribe((res: HttpResponse<IPerfil>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

@@ -4,7 +4,8 @@
       "home": {
         "title": "Req Cans",
         "createLabel": "Crear nuevo Req Can",
-        "createOrEditLabel": "Crear o editar Req Can"
+        "createOrEditLabel": "Crear o editar Req Can",
+        "notFound": "No Req Can found"
       },
       "created": "Un nuevo Req Can ha sido creado con el identificador {{ param }}",
       "updated": "Un Req Can ha sido actualizado con el identificador {{ param }}",

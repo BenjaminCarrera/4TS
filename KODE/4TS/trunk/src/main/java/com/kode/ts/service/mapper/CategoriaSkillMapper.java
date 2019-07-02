@@ -13,6 +13,7 @@ public interface CategoriaSkillMapper extends EntityMapper<CategoriaSkillDTO, Ca
 
 
     @Mapping(target = "skills", ignore = true)
+    @Mapping(target = "removeSkill", ignore = true)
     CategoriaSkill toEntity(CategoriaSkillDTO categoriaSkillDTO);
 
     default CategoriaSkill fromId(Long id) {

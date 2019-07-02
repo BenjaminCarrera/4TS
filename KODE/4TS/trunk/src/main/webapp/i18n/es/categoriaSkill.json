@@ -4,7 +4,8 @@
       "home": {
         "title": "Categoria Skills",
         "createLabel": "Crear nuevo Categoria Skill",
-        "createOrEditLabel": "Crear o editar Categoria Skill"
+        "createOrEditLabel": "Crear o editar Categoria Skill",
+        "notFound": "No Categoria Skill found"
       },
       "created": "Un nuevo Categoria Skill ha sido creado con el identificador {{ param }}",
       "updated": "Un Categoria Skill ha sido actualizado con el identificador {{ param }}",

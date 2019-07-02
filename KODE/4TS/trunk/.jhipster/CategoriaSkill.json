@@ -18,7 +18,7 @@
             "relationshipName": "skill"
         }
     ],
-    "changelogDate": "20190702164710",
+    "changelogDate": "20190702185300",
     "entityTableName": "categoria_skill",
     "dto": "mapstruct",
     "pagination": "pagination",

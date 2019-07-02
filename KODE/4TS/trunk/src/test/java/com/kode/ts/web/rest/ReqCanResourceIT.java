@@ -350,7 +350,7 @@ public class ReqCanResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database is empty
+        // Validate the database contains one less item
         List<ReqCan> reqCanList = reqCanRepository.findAll();
         assertThat(reqCanList).hasSize(databaseSizeBeforeDelete - 1);
     }

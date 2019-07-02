@@ -32,7 +32,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164651",
+    "changelogDate": "20190702185241",
     "entityTableName": "colonia",
     "dto": "mapstruct",
     "pagination": "pagination",

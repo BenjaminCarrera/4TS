@@ -13,6 +13,7 @@ public interface TipoTareaMapper extends EntityMapper<TipoTareaDTO, TipoTarea> {
 
 
     @Mapping(target = "tareas", ignore = true)
+    @Mapping(target = "removeTarea", ignore = true)
     TipoTarea toEntity(TipoTareaDTO tipoTareaDTO);
 
     default TipoTarea fromId(Long id) {

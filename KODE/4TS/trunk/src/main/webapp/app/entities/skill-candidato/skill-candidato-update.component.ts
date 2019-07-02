@@ -19,7 +19,6 @@ import { DominioSkillService } from 'app/entities/dominio-skill';
   templateUrl: './skill-candidato-update.component.html'
 })
 export class SkillCandidatoUpdateComponent implements OnInit {
-  skillCandidato: ISkillCandidato;
   isSaving: boolean;
 
   candidatoes: ICandidato[];
@@ -50,7 +49,6 @@ export class SkillCandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ skillCandidato }) => {
       this.updateForm(skillCandidato);
-      this.skillCandidato = skillCandidato;
     });
     this.candidatoService
       .query()
@@ -100,7 +98,7 @@ export class SkillCandidatoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ISkillCandidato {
-    const entity = {
+    return {
       ...new SkillCandidato(),
       id: this.editForm.get(['id']).value,
       calificacionSkill: this.editForm.get(['calificacionSkill']).value,
@@ -108,11 +106,10 @@ export class SkillCandidatoUpdateComponent implements OnInit {
       idSkillId: this.editForm.get(['idSkillId']).value,
       nivelSkillId: this.editForm.get(['nivelSkillId']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ISkillCandidato>>) {
-    result.subscribe((res: HttpResponse<ISkillCandidato>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

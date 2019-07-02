@@ -11,7 +11,6 @@ import { TipoSolicitudService } from './tipo-solicitud.service';
   templateUrl: './tipo-solicitud-update.component.html'
 })
 export class TipoSolicitudUpdateComponent implements OnInit {
-  tipoSolicitud: ITipoSolicitud;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class TipoSolicitudUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tipoSolicitud }) => {
       this.updateForm(tipoSolicitud);
-      this.tipoSolicitud = tipoSolicitud;
     });
   }
 
@@ -51,16 +49,15 @@ export class TipoSolicitudUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITipoSolicitud {
-    const entity = {
+    return {
       ...new TipoSolicitud(),
       id: this.editForm.get(['id']).value,
       solicitud: this.editForm.get(['solicitud']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITipoSolicitud>>) {
-    result.subscribe((res: HttpResponse<ITipoSolicitud>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

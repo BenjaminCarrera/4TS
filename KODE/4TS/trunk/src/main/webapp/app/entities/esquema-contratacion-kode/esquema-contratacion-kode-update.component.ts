@@ -11,7 +11,6 @@ import { EsquemaContratacionKodeService } from './esquema-contratacion-kode.serv
   templateUrl: './esquema-contratacion-kode-update.component.html'
 })
 export class EsquemaContratacionKodeUpdateComponent implements OnInit {
-  esquemaContratacionKode: IEsquemaContratacionKode;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class EsquemaContratacionKodeUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ esquemaContratacionKode }) => {
       this.updateForm(esquemaContratacionKode);
-      this.esquemaContratacionKode = esquemaContratacionKode;
     });
   }
 
@@ -55,16 +53,15 @@ export class EsquemaContratacionKodeUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IEsquemaContratacionKode {
-    const entity = {
+    return {
       ...new EsquemaContratacionKode(),
       id: this.editForm.get(['id']).value,
       esquema: this.editForm.get(['esquema']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEsquemaContratacionKode>>) {
-    result.subscribe((res: HttpResponse<IEsquemaContratacionKode>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

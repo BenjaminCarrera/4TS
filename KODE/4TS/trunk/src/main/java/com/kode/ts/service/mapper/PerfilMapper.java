@@ -13,7 +13,9 @@ public interface PerfilMapper extends EntityMapper<PerfilDTO, Perfil> {
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     @Mapping(target = "requerimientos", ignore = true)
+    @Mapping(target = "removeRequerimiento", ignore = true)
     Perfil toEntity(PerfilDTO perfilDTO);
 
     default Perfil fromId(Long id) {

@@ -13,6 +13,7 @@ public interface EstatusAcademicoMapper extends EntityMapper<EstatusAcademicoDTO
 
 
     @Mapping(target = "candidatoes", ignore = true)
+    @Mapping(target = "removeCandidato", ignore = true)
     EstatusAcademico toEntity(EstatusAcademicoDTO estatusAcademicoDTO);
 
     default EstatusAcademico fromId(Long id) {

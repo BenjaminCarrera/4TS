@@ -11,7 +11,6 @@ import { DominioSkillService } from './dominio-skill.service';
   templateUrl: './dominio-skill-update.component.html'
 })
 export class DominioSkillUpdateComponent implements OnInit {
-  dominioSkill: IDominioSkill;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class DominioSkillUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ dominioSkill }) => {
       this.updateForm(dominioSkill);
-      this.dominioSkill = dominioSkill;
     });
   }
 
@@ -51,16 +49,15 @@ export class DominioSkillUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IDominioSkill {
-    const entity = {
+    return {
       ...new DominioSkill(),
       id: this.editForm.get(['id']).value,
       dominio: this.editForm.get(['dominio']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDominioSkill>>) {
-    result.subscribe((res: HttpResponse<IDominioSkill>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

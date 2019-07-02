@@ -25,7 +25,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164654",
+    "changelogDate": "20190702185244",
     "entityTableName": "codigo_postal",
     "dto": "mapstruct",
     "pagination": "pagination",

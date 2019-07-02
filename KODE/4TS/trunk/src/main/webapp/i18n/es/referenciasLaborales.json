@@ -4,7 +4,8 @@
       "home": {
         "title": "Referencias Laborales",
         "createLabel": "Crear nuevo Referencias Laborales",
-        "createOrEditLabel": "Crear o editar Referencias Laborales"
+        "createOrEditLabel": "Crear o editar Referencias Laborales",
+        "notFound": "No Referencias Laborales found"
       },
       "created": "Un nuevo Referencias Laborales ha sido creado con el identificador {{ param }}",
       "updated": "Un Referencias Laborales ha sido actualizado con el identificador {{ param }}",

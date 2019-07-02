@@ -15,6 +15,7 @@ public interface CodigoPostalMapper extends EntityMapper<CodigoPostalDTO, Codigo
     CodigoPostalDTO toDto(CodigoPostal codigoPostal);
 
     @Mapping(target = "colonias", ignore = true)
+    @Mapping(target = "removeColonia", ignore = true)
     @Mapping(source = "municipioId", target = "municipio")
     CodigoPostal toEntity(CodigoPostalDTO codigoPostalDTO);
 

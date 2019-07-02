@@ -11,7 +11,6 @@ import { TipoSkillService } from './tipo-skill.service';
   templateUrl: './tipo-skill-update.component.html'
 })
 export class TipoSkillUpdateComponent implements OnInit {
-  tipoSkill: ITipoSkill;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -25,7 +24,6 @@ export class TipoSkillUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ tipoSkill }) => {
       this.updateForm(tipoSkill);
-      this.tipoSkill = tipoSkill;
     });
   }
 
@@ -51,16 +49,15 @@ export class TipoSkillUpdateComponent implements OnInit {
   }
 
   private createFromForm(): ITipoSkill {
-    const entity = {
+    return {
       ...new TipoSkill(),
       id: this.editForm.get(['id']).value,
       tipo: this.editForm.get(['tipo']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITipoSkill>>) {
-    result.subscribe((res: HttpResponse<ITipoSkill>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

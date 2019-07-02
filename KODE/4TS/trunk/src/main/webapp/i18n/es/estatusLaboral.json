@@ -4,7 +4,8 @@
       "home": {
         "title": "Estatus Laborals",
         "createLabel": "Crear nuevo Estatus Laboral",
-        "createOrEditLabel": "Crear o editar Estatus Laboral"
+        "createOrEditLabel": "Crear o editar Estatus Laboral",
+        "notFound": "No Estatus Laboral found"
       },
       "created": "Un nuevo Estatus Laboral ha sido creado con el identificador {{ param }}",
       "updated": "Un Estatus Laboral ha sido actualizado con el identificador {{ param }}",

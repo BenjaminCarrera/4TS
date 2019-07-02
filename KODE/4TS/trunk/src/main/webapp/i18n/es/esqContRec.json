@@ -4,7 +4,8 @@
       "home": {
         "title": "Esq Cont Recs",
         "createLabel": "Crear nuevo Esq Cont Rec",
-        "createOrEditLabel": "Crear o editar Esq Cont Rec"
+        "createOrEditLabel": "Crear o editar Esq Cont Rec",
+        "notFound": "No Esq Cont Rec found"
       },
       "created": "Un nuevo Esq Cont Rec ha sido creado con el identificador {{ param }}",
       "updated": "Un Esq Cont Rec ha sido actualizado con el identificador {{ param }}",

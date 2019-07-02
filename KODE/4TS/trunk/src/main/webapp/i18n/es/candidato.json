@@ -4,7 +4,8 @@
       "home": {
         "title": "Candidatoes",
         "createLabel": "Crear nuevo Candidato",
-        "createOrEditLabel": "Crear o editar Candidato"
+        "createOrEditLabel": "Crear o editar Candidato",
+        "notFound": "No Candidato found"
       },
       "created": "Un nuevo Candidato ha sido creado con el identificador {{ param }}",
       "updated": "Un Candidato ha sido actualizado con el identificador {{ param }}",

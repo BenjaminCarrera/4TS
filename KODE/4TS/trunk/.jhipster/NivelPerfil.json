@@ -24,7 +24,7 @@
             "relationshipName": "requerimiento"
         }
     ],
-    "changelogDate": "20190702164700",
+    "changelogDate": "20190702185250",
     "entityTableName": "nivel_perfil",
     "dto": "mapstruct",
     "pagination": "pagination",

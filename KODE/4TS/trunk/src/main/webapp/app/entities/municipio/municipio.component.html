@@ -10,7 +10,10 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="municipios">
+    <div class="alert alert-warning" *ngIf="municipios?.length === 0">
+        <span jhiTranslate="App.municipio.home.notFound">No municipios found</span>
+    </div>
+    <div class="table-responsive" *ngIf="municipios?.length > 0">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -57,7 +60,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="municipios && municipios.length">
+    <div [hidden]="municipios?.length === 0">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

@@ -11,7 +11,6 @@ import { FuenteReclutamientoService } from './fuente-reclutamiento.service';
   templateUrl: './fuente-reclutamiento-update.component.html'
 })
 export class FuenteReclutamientoUpdateComponent implements OnInit {
-  fuenteReclutamiento: IFuenteReclutamiento;
   isSaving: boolean;
 
   editForm = this.fb.group({
@@ -29,7 +28,6 @@ export class FuenteReclutamientoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ fuenteReclutamiento }) => {
       this.updateForm(fuenteReclutamiento);
-      this.fuenteReclutamiento = fuenteReclutamiento;
     });
   }
 
@@ -55,16 +53,15 @@ export class FuenteReclutamientoUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IFuenteReclutamiento {
-    const entity = {
+    return {
       ...new FuenteReclutamiento(),
       id: this.editForm.get(['id']).value,
       fuente: this.editForm.get(['fuente']).value
     };
-    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IFuenteReclutamiento>>) {
-    result.subscribe((res: HttpResponse<IFuenteReclutamiento>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
   protected onSaveSuccess() {

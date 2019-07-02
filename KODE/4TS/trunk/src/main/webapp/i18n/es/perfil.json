@@ -4,7 +4,8 @@
       "home": {
         "title": "Perfils",
         "createLabel": "Crear nuevo Perfil",
-        "createOrEditLabel": "Crear o editar Perfil"
+        "createOrEditLabel": "Crear o editar Perfil",
+        "notFound": "No Perfil found"
       },
       "created": "Un nuevo Perfil ha sido creado con el identificador {{ param }}",
       "updated": "Un Perfil ha sido actualizado con el identificador {{ param }}",

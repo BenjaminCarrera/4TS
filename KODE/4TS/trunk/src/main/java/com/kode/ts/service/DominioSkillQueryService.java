@@ -81,8 +81,10 @@ public class DominioSkillQueryService extends QueryService<DominioSkill> {
     }
 
     /**
-     * Function to convert DominioSkillCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<DominioSkill> createSpecification(DominioSkillCriteria criteria) {
         Specification<DominioSkill> specification = Specification.where(null);
         if (criteria != null) {

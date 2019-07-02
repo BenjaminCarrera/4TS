@@ -81,8 +81,10 @@ public class BaseTarifaQueryService extends QueryService<BaseTarifa> {
     }
 
     /**
-     * Function to convert BaseTarifaCriteria to a {@link Specification}.
-     */
+     * Function to convert ConsumerCriteria to a {@link Specification}
+     * @param criteria The object which holds all the filters, which the entities should match.
+     * @return the matching {@link Specification} of the entity.
+     */    
     private Specification<BaseTarifa> createSpecification(BaseTarifaCriteria criteria) {
         Specification<BaseTarifa> specification = Specification.where(null);
         if (criteria != null) {

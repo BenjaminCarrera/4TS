@@ -19,7 +19,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190702164722",
+    "changelogDate": "20190702185312",
     "entityTableName": "estatus_req_can_rec",
     "dto": "mapstruct",
     "pagination": "pagination",

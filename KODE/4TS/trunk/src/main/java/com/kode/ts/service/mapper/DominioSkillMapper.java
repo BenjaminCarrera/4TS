@@ -13,6 +13,7 @@ public interface DominioSkillMapper extends EntityMapper<DominioSkillDTO, Domini
 
 
     @Mapping(target = "skillCandidatoes", ignore = true)
+    @Mapping(target = "removeSkillCandidato", ignore = true)
     DominioSkill toEntity(DominioSkillDTO dominioSkillDTO);
 
     default DominioSkill fromId(Long id) {
