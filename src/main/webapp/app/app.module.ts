@@ -24,12 +24,17 @@ import { AppResConreqModule } from './res-conreq/res-conreq.module';
 import { AppAgregCandModule } from './agreg-cand/agreg-cand.module';
 import { AppResConcandModule } from './res-concand/res-concand.module';
 import { AppConCandModule } from './con-cand/con-cand.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import 'hammerjs';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 @NgModule({
   imports: [
     BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
     NgJhipsterModule.forRoot({
       // set below to true to make alerts look like toast
