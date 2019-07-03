@@ -1,11 +1,352 @@
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <h6 class="text-right">{{message}}</h6>
-    <h1 class="text-capitalize text-center" jhiTranslate="agreg-req.title">Title</h1>
-    <h5 class="text-center" jhiTranslate="agreg-req.subtitle">Subtitle</h5>
-    <hr/>
-    <p class="text-justify" jhiTranslate="agreg-req.content">Content</p>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+<h3>Agregar nuevo requerimiento</h3>
+<mat-tab-group [selectedIndex]="selected1.value"
+(selectedIndexChange)="selected1.setValue($event)">
+    <mat-tab label="Generales">
+        <br>
+        <div class="row">
+            <div class="col">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h4>Datos generales</h4>
+                            </div>
+                            <div class="col-sm-4">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Fecha de alta">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="fieldset-content">
+                            <div class="form-group">
+                                <Br>
+                                <mat-form-field class="full-width">
+                                    <mat-select placeholder="Ejecutivo asignado">
+                                        <mat-option value="option">Andrea Jimenez Otero</mat-option>
+                                        <mat-option value="option">Paola Lopez Cruz</mat-option>
+                                        <mat-option value="option">Ernesto Cruz Lopez</mat-option>
+                                        <mat-option value="option">David Alejandro Ruiz Jimenez</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <p>
+                                    Estatus del requerimiento:
+                                    <br>
+                                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos2">
+                                        <mat-button-toggle value="bold" (click)="show = false"> Todos
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="cursiva" (click)="show = false"> Abierto
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="underline" (click)="show = true"> Cerrado
+                                        </mat-button-toggle>
+                                        <mat-button-toggle value="underline" (click)="show = false"> En espera
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </p>
+                            </div>
+                            <div class="form-group" *ngIf="show">
+                                Motivo de cierre de requerimiento
+                                <br>
+                                <select class="form-control" id="motCieReq" name="motCieReq">
+                                    <option>Seleccionar</option>
+                                    <option>Mensual</option>
+                                    <option>Quincenal</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        Tipo de solicitud:
+                                        <br>
+                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos3">
+                                            <mat-button-toggle value="bold"> Outsourcing </mat-button-toggle>
+                                            <mat-button-toggle value="cursiva"> Reclutamiento </mat-button-toggle>
+                                            <mat-button-toggle value="underline"> Interna </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>
+                                        Tipo de ingreso:
+                                        <br>
+                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+                                            <mat-button-toggle value="bold" (click)="show2 = false"> Nuevo
+                                            </mat-button-toggle>
+                                            <mat-button-toggle value="cursiva" (click)="show2 = true"> Reemplazo
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6" *ngIf="show2">
+                                    <mat-form-field class="">
+                                        <input matInput placeholder="Reemplazo de">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Vacantes solicitadas">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Cuenta">
+                                                <mat-option value="option">234454354354</mat-option>
+                                                <mat-option value="option">6516565165165</mat-option>
+                                                <mat-option value="option">651651651643</mat-option>
+                                                <mat-option value="option">32432432432432</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Subcuenta">
+                                                <mat-option value="option">234454354354</mat-option>
+                                                <mat-option value="option">6516565165165</mat-option>
+                                                <mat-option value="option">651651651643</mat-option>
+                                                <mat-option value="option">32432432432432</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Proyecto">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Proyecto2">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="">
+                                        <input matInput placeholder=" Tarifa / Sueldo neto">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="">
+                                        <input matInput placeholder="Base de tarifa / Base de sueldo neto">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Esquema de contratación">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Prestaciones"  rows="9" ></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <h4>Datos del perfil</h4>
+                    <br>
+                    <div class="fieldset-content">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                        <mat-form-field >
+                                            <input matInput placeholder="Perfil">
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <mat-form-field class="full-width">
+                                        <mat-select placeholder="Nivel de perfil">
+                                            <mat-option value="option">Java trainee</mat-option>
+                                            <mat-option value="option">Java Junior</mat-option>
+                                            <mat-option value="option">Java Semi-senior</mat-option>
+                                            <mat-option value="option">Java Senior</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <mat-form-field >
+                                        <input matInput placeholder="Duración de asignación">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <mat-form-field class="full-width">
+                                        <mat-select placeholder="Tipo de periodo">
+                                            <mat-option value="option">Dia</mat-option>
+                                            <mat-option value="option">Semana</mat-option>
+                                            <mat-option value="option">Mes</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                    <mat-form-field >
+                                        <input matInput placeholder="Lugar de trabajo">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="google-maps">
+                                    <iframe frameborder="0" height="450"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12698.017302765014!2d-5.924386855443038!3d37.28317952472348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd12705c945f7355%3A0x1f6735c306757c59!2sDos+Hermanas%2C+Sevilla%2C+Espa%C3%B1a!5e0!3m2!1ses!2s!4v1387797719272"
+                                        width="600"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <mat-form-field >
+                                        <input matInput placeholder="Horario">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="Información del examen"   rows="9"></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="Información adicional"  rows="10" ></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <input  type="hidden" [formControl]="selected1">
+      <div class="text-center">
+          <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
+      </div>
+        <br>
+    </mat-tab>
+    <mat-tab label="Skills">
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>Skills solicitados</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList aria-label="Requeridos">
+                      <mat-chip
+                        *ngFor="let fruit of fruits"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(fruit)">
+                        {{fruit}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input
+                        placeholder="Requeridos"
+                        #fruitInput
+                        [formControl]="fruitCtrl"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                        {{fruit}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Opcionales" rows="4"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Escenciales" rows="4"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-danger"> Guardar requerimiento </button>
+            </div>
+        </div>
+        <br>
+    </mat-tab>
+</mat-tab-group>
