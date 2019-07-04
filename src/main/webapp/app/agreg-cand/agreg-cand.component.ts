@@ -150,3 +150,4 @@ export class AgregCandComponent implements OnInit {
     // Inicio primer chip autocompletable
     // Fin primer chip autocompletable
 }
+  }

@@ -143,7 +143,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <mat-form-field class="">
-                                            <input matInput placeholder="Proyecto2">
+                                            <input matInput placeholder="Nombre de contacto">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -190,19 +190,26 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                        <mat-form-field >
-                                            <input matInput placeholder="Perfil">
-                                        </mat-form-field>
+                                    <mat-form-field class="full-width">
+                                        <mat-select placeholder="Perfil">
+                                            <mat-option value="option">Java</mat-option>
+                                            <mat-option value="option">Php</mat-option>
+                                            <mat-option value="option">Python</mat-option>
+                                            <mat-option value="option">Ruby</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <mat-form-field class="full-width">
                                         <mat-select placeholder="Nivel de perfil">
-                                            <mat-option value="option">Java trainee</mat-option>
-                                            <mat-option value="option">Java Junior</mat-option>
-                                            <mat-option value="option">Java Semi-senior</mat-option>
-                                            <mat-option value="option">Java Senior</mat-option>
+                                            <mat-option value="option">Becario</mat-option>
+                                            <mat-option value="option">Trainee</mat-option>
+                                            <mat-option value="option">Jr</mat-option>
+                                            <mat-option value="option">Semi Sr</mat-option>
+                                            <mat-option value="option">Sr</mat-option>
+                                            <mat-option value="option">Arquitecto</mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
@@ -329,16 +336,46 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Opcionales" rows="4"></textarea>
-                </mat-form-field>
+                    <mat-form-field class="example-chip-list">
+                      <mat-chip-list #chipList2 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable2" [removable]="removable2"
+                          (removed)="remove2(fruit2)" color="primary" selected>
+                          {{fruit}}
+                          <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Opcionales" #fruitInput2 [formControl]="fruitCtrl2"
+                          [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2"
+                          (matChipInputTokenEnd)="add2($event2)">
+                      </mat-chip-list>
+                      <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
+                        <mat-option *ngFor="let fruit of filteredFruits2 | async" [value]="fruit2">
+                          {{fruit}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Escenciales" rows="4"></textarea>
-                </mat-form-field>
+                    <mat-form-field class="example-chip-list">
+                      <mat-chip-list #chipList3 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of fruits3" [selectable]="selectable3" [removable]="removable3"
+                          (removed)="remove3(fruit3)" color="primary" selected>
+                          {{fruit}}
+                          <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Escenciales" #fruitInput3 [formControl]="fruitCtrl3"
+                          [matAutocomplete]="auto3" [matChipInputFor]="chipList3"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3"
+                          (matChipInputTokenEnd)="add3($event3)">
+                      </mat-chip-list>
+                      <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
+                        <mat-option *ngFor="let fruit of filteredFruits3 | async" [value]="fruit3">
+                          {{fruit}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
             </div>
         </div>
         <br>
