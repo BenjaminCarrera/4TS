@@ -628,53 +628,7 @@
         <br>
         <div>
             <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceTarea" matSort
-                (matSortChange)="sortData($event)">
-                <!-- Fecha Column -->
-                <ng-container matColumnDef="Fecha">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
-                </ng-container>
-
-                <!-- Creador Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Creador </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Creador}} </td>
-                </ng-container>
-
-                <!-- Comentario Column -->
-                <ng-container matColumnDef="Comentario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Comentario}} </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsTarea;"></tr>
-            </table>
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-        </div>
-    </mat-tab>
-    <mat-tab label="Bitacora">
-        <br>
-        <div class="row">
-            <div class="col-sm-6">
-                <h4>Bitácora</h4>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-11 esp-arriba">
-                <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" />
-            </div>
-            <div class="col-sm-1 esp-arriba">
-                <button type="submit" class="btn btn-danger">
-                    Añadir Bitácora
-                </button>
-            </div>
-        </div>
-        <br><br>
-        <div>
-            <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceBitacora" matSort
-                (matSortChange)="sortDataBitacora($event)">
+                (matSortChange)="sortDataTarea($event)">
                 <!-- Position Column -->
                 <ng-container matColumnDef="Id">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
@@ -708,11 +662,56 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
                     <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
                 </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsTarea;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-tab>
+    <mat-tab label="Bitacora">
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Bitácora</h4>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-11 esp-arriba">
+                <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" />
+            </div>
+            <div class="col-sm-1 esp-arriba">
+                <button type="submit" class="btn btn-danger">
+                    Añadir Bitácora
+                </button>
+            </div>
+        </div>
+        <br><br>
+        <div>
+            <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceBitacora" matSort
+                (matSortChange)="sortDataBitacora($event)">
+                <!-- Fecha Column -->
+                <ng-container matColumnDef="Fecha">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Fecha}} </td>
+                </ng-container>
+
+                <!-- Creador Column -->
+                <ng-container matColumnDef="Creador">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Creador </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Creador}} </td>
+                </ng-container>
+
+                <!-- Comentario Column -->
+                <ng-container matColumnDef="Comentario">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Comentario}} </td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsBitacora;"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-
         </div>
 
     </mat-tab>
@@ -736,7 +735,7 @@
 
         <div>
             <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceSkills" matSort
-            (matSortChange)="sortDataSkills($event)">
+                (matSortChange)="sortDataSkills($event)">
                 <!-- Position Column -->
                 <ng-container matColumnDef="Skills">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Skills </th>

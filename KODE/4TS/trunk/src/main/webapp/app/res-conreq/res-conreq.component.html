@@ -432,18 +432,18 @@
         <br>
         <div class="row">
             <div class="col-sm-6">
-                    <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div>
+                            <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-danger">
+                            Añadir Tarea
+                        </button>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <button type="submit" class="btn btn-danger">
-                        Añadir Tarea
-                    </button>
-                </div>
-            </div>
 
             </div>
             <div class="col-sm-12 esp-arriba">
@@ -463,7 +463,8 @@
         </div>
         <br>
         <div>
-            <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>
+            <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceTarea" matSort
+                (matSortChange)="sortDataTarea($event)">
                 <!-- Position Column -->
                 <ng-container matColumnDef="Id">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
@@ -497,10 +498,9 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
                     <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
                 </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsTarea;"></tr>
             </table>
-
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
     </mat-tab>
@@ -523,7 +523,8 @@
         </div>
         <br><br>
         <div>
-            <table mat-table class="mat-elevation-z8" [dataSource]="dataSource2" matSort #sorter2="matSort">
+            <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceBitacora" matSort
+                (matSortChange)="sortDataBitacora($event)">
                 <!-- Position Column -->
                 <ng-container matColumnDef="Fecha">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
@@ -539,8 +540,8 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
                     <td mat-cell *matCellDef="let element2"> {{element2.Comentario}} </td>
                 </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsBitacora;"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
