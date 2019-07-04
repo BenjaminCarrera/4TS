@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // Inicio datatable
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
   Id: number;
@@ -19,29 +19,6 @@ export interface Tarea {
   Comentario: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {Id: 1, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 2, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 4, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 5, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 6, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 7, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 8, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 9, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 10, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 11, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'},
-  {Id: 12, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE'}
-];
-
-const ELEMENT_DATA2: Tarea[] = [
-  {Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"'},
-  {Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"'},
-  {Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.'},
-  {Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00'}
-];
-
 @Component({
   selector: 'jhi-res-conreq',
   templateUrl: './res-conreq.component.html',
@@ -51,37 +28,86 @@ const ELEMENT_DATA2: Tarea[] = [
 })
 export class ResConreqComponent implements OnInit {
 
-// Inicio datatable
-@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-// Fin datatable
-// Inicio datatable
-@ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;
-// Fin datatable
-// Inicio datatable
-  displayedColumns: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario' , 'FechaAlta' , 'Estatus'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-// Fin datatable
-// Inicio datatable
-  displayedColumns2: string[] = ['Fecha', 'Creador', 'Comentario'];
-  dataSource2 = new MatTableDataSource(ELEMENT_DATA2);
-  @ViewChild(MatSort, {static: true}) sort2: MatSort;
-// Fin datatable
+  // Variables Tarea
+  DATA_TAREA: PeriodicElement[] = [
+    { Id: 1, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 2, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 4, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 5, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 6, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 7, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 8, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 9, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 10, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 11, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 12, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
+  ];
+  dataSourceTarea: PeriodicElement[];
+  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
+
+  // VAriables Bitacora
+  DATA_BITACORA: Tarea[] = [
+    { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
+    { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
+  ];
+  dataSourceBitacora: Tarea[];
+  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
 
   message: string;
   constructor() {
     this.message = 'NuevReqComponent message';
+    this.dataSourceTarea = this.DATA_TAREA.slice();
+    this.dataSourceBitacora = this.DATA_BITACORA.slice();
+  }
+
+  sortDataTarea(sort: MatSort) {
+    const data = this.DATA_TAREA.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSourceTarea = data;
+      return;
+    }
+
+    this.dataSourceTarea = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Id': return compare(a.Id, b.Id, isAsc);
+        case 'Tarea': return compare(a.Tarea, b.Tarea, isAsc);
+        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
+        case 'Destinatario': return compare(a.Destinatario, b.Destinatario, isAsc);
+        case 'FechaAlta': return compare(a.FechaAlta, b.FechaAlta, isAsc);
+        case 'Estatus': return compare(a.Estatus, b.Estatus, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+  sortDataBitacora(sort: MatSort) {
+    const data = this.DATA_BITACORA.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSourceBitacora = data;
+      return;
+    }
+
+    this.dataSourceBitacora = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Fecha': return compare(a.Fecha, b.Fecha, isAsc);
+        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
+        case 'Comentario': return compare(a.Comentario, b.Comentario, isAsc);
+        default: return 0;
+      }
+    });
   }
 
   ngOnInit() {
-    // Inicio datatable
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    // Fin datatable
-    // Inicio datatable
-    this.dataSource2.paginator = this.paginator2;
-    this.dataSource2.sort = this.sort2;
-    // Fin datatable
   }
 
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

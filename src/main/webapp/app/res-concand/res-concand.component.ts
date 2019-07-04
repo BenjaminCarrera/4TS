@@ -35,17 +35,7 @@ export interface Skills {
 export class ResConcandComponent implements OnInit {
 
   // Variables Tarea
-  ELEMENT_DATA2: Tarea[] = [
-    { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
-    { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
-    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
-    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
-  ];
-  dataSourceTarea: Tarea[];
-  displayedColumnsTarea: string[] = ['Fecha', 'Creador', 'Comentario'];
-
-  // Variables Bitacora
-  ELEMENT_DATA: PeriodicElement[] = [
+  DATA_TAREA: PeriodicElement[] = [
     { Id: 1, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 2, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
@@ -60,11 +50,21 @@ export class ResConcandComponent implements OnInit {
     { Id: 11, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 12, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
   ];
-  dataSourceBitacora: PeriodicElement[];
-  displayedColumnsBitacora: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
+  dataSourceTarea: PeriodicElement[];
+  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
+
+  // Variables Bitacora
+  DATA_BITACORA: Tarea[] = [
+    { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
+    { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
+  ];
+  dataSourceBitacora: Tarea[];
+  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
 
   // Variables Skills
-  ELEMENT_DATA3: Skills[] = [
+  DATA_SKILLS: Skills[] = [
     { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Eliminar: 'Eliminar' },
     { Skills: 'Angular', Dominio: 'Avanzado', Calificacion: '9.0', Eliminar: 'Eliminar' },
     { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
@@ -76,37 +76,19 @@ export class ResConcandComponent implements OnInit {
 
   constructor() {
     this.message = 'ConCandComponent message';
-    this.dataSourceTarea = this.ELEMENT_DATA2.slice();
-    this.dataSourceBitacora = this.ELEMENT_DATA.slice();
-    this.dataSourceSkills = this.ELEMENT_DATA3.slice();
+    this.dataSourceTarea = this.DATA_TAREA.slice();
+    this.dataSourceBitacora = this.DATA_BITACORA.slice();
+    this.dataSourceSkills = this.DATA_SKILLS.slice();
   }
 
-  sortData(sort: MatSort) {
-    const data = this.ELEMENT_DATA2.slice();
+  sortDataTarea(sort: MatSort) {
+    const data = this.DATA_TAREA.slice();
     if (!sort.active || sort.direction === '') {
       this.dataSourceTarea = data;
       return;
     }
 
     this.dataSourceTarea = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Fecha': return compare(a.Fecha, b.Fecha, isAsc);
-        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
-        case 'Comentario': return compare(a.Comentario, b.Comentario, isAsc);
-        default: return 0;
-      }
-    });
-  }
-
-  sortDataBitacora(sort: MatSort) {
-    const data = this.ELEMENT_DATA.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceBitacora = data;
-      return;
-    }
-
-    this.dataSourceBitacora = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'Id': return compare(a.Id, b.Id, isAsc);
@@ -120,8 +102,26 @@ export class ResConcandComponent implements OnInit {
     });
   }
 
+  sortDataBitacora(sort: MatSort) {
+    const data = this.DATA_BITACORA.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSourceBitacora = data;
+      return;
+    }
+
+    this.dataSourceBitacora = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Fecha': return compare(a.Fecha, b.Fecha, isAsc);
+        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
+        case 'Comentario': return compare(a.Comentario, b.Comentario, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
   sortDataSkills(sort: MatSort) {
-    const data = this.ELEMENT_DATA3.slice();
+    const data = this.DATA_SKILLS.slice();
     if (!sort.active || sort.direction === '') {
       this.dataSourceSkills = data;
       return;
