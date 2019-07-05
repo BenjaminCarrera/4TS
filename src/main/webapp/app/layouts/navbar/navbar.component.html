@@ -1,15 +1,21 @@
 <nav class="navbar navbar-dark navbar-expand-md bg-dark">
+    <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+        <span class="logo-img"></span>
+        <span jhiTranslate="global.title" class="navbar-title">4TS</span> <span class="navbar-version">{{version}}</span>
+    </a>
+    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+        <fa-icon icon="bars"></fa-icon>
+    </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="home"></fa-icon>
-                        <span jhiTranslate="global.menu.home">Inicio</span>
+                        <span jhiTranslate="global.menu.home">Home</span>
                     </span>
                 </a>
             </li>
-            
             
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
@@ -69,49 +75,6 @@
                     </li>
                 </ul>
             </li>
-            <!-- 
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="con-req" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.con-req">Con req</span>
-                </a>
-            </li>
-            
-            
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="res-conreq" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.res-conreq">Res conreq</span>
-                </a>
-            </li>
-            
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="agreg-req" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.agreg-req">Agreg req</span>
-                </a>
-            </li>
-             -->
-            <!-- <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="con-cand" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.con-cand">Con cand</span>
-                </a>
-            </li>
-            
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="res-concand" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.res-concand">Res concand</span>
-                </a>
-            </li>
-            
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="agreg-cand" (click)="collapseNavbar()">
-                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
-                    <span jhiTranslate="global.menu.agreg-cand">Agreg cand</span>
-                </a>
-            </li> -->
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -124,15 +87,15 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
                     <li>
-                        <a class="dropdown-item" routerLink="candidatos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="candidato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candidatos">Candidatos</span>
+                            <span jhiTranslate="global.menu.entities.candidato">Candidato</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="documentos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="documento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.documentos">Documentos</span>
+                            <span jhiTranslate="global.menu.entities.documento">Documento</span>
                         </a>
                     </li>
                     <li>
@@ -142,27 +105,27 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="dir-colonias" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="colonia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.dirColonias">Dir Colonias</span>
+                            <span jhiTranslate="global.menu.entities.colonia">Colonia</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="dir-municipio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="municipio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.dirMunicipio">Dir Municipio</span>
+                            <span jhiTranslate="global.menu.entities.municipio">Municipio</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="dir-estados" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="estado" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.dirEstados">Dir Estados</span>
+                            <span jhiTranslate="global.menu.entities.estado">Estado</span>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="dir-cp" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="codigo-postal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.dirCp">Dir Cp</span>
+                            <span jhiTranslate="global.menu.entities.codigoPostal">Codigo Postal</span>
                         </a>
                     </li>
                     <li>
@@ -238,9 +201,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="cuentas" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="cuenta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.cuentas">Cuentas</span>
+                            <span jhiTranslate="global.menu.entities.cuenta">Cuenta</span>
                         </a>
                     </li>
                     <li>
@@ -262,9 +225,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="skill-candidatos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="skill-candidato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.skillCandidatos">Skill Candidatos</span>
+                            <span jhiTranslate="global.menu.entities.skillCandidato">Skill Candidato</span>
                         </a>
                     </li>
                     <li>
@@ -274,9 +237,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="requerimientos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="requerimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.requerimientos">Requerimientos</span>
+                            <span jhiTranslate="global.menu.entities.requerimiento">Requerimiento</span>
                         </a>
                     </li>
                     <li>
@@ -316,9 +279,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" routerLink="skill-requerimientos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="skill-requerimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.skillRequerimientos">Skill Requerimientos</span>
+                            <span jhiTranslate="global.menu.entities.skillRequerimiento">Skill Requerimiento</span>
                         </a>
                     </li>
                     <li>
@@ -361,90 +324,6 @@
                         <a class="dropdown-item" routerLink="req-can" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.reqCan">Req Can</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="candidatos-cuentas-int" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candidatosCuentasInt">Candidatos Cuentas Int</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="candidatos-cuentas-recha" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candidatosCuentasRecha">Candidatos Cuentas Recha</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cand-usu-creador" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candUsuCreador">Cand Usu Creador</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cand-usu-asignado" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candUsuAsignado">Cand Usu Asignado</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="candidato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.candidato">Candidato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="documento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.documento">Documento</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cuenta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.cuenta">Cuenta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="skill-candidato" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.skillCandidato">Skill Candidato</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="requerimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.requerimiento">Requerimiento</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="skill-requerimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.skillRequerimiento">Skill Requerimiento</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="colonia" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.colonia">Colonia</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="municipio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.municipio">Municipio</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="estado" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.estado">Estado</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="codigo-postal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.codigoPostal">Codigo Postal</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
@@ -501,12 +380,6 @@
                         </a>
                     </li>
                     <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
-                    <li *ngIf="!inProduction">
-                        <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">
-                            <fa-icon icon="hdd" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.admin.database">Database</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages && languages.length > 1">
@@ -543,7 +416,7 @@
                     </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="clock" fixedWidth="true"></fa-icon>
+                            <fa-icon icon="lock" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.account.password">Password</span>
                         </a>
                     </li>

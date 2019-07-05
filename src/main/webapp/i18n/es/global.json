@@ -8,8 +8,8 @@
       "con-req": "Con Req",
       "res-conreq": "Res Conreq",
       "agreg-cand": "Agreg Cand",
-      "res-concand": "Res Concand",
       "con-cand": "Con Cand",
+      "res-concand": "Res Concand",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
