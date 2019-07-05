@@ -16,24 +16,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.skillCandidato.idCandidato" for="field_idCandidato">Id Candidato</label>
+                    <label class="form-control-label" for="field_idCandidato">Nombre del Candidato</label>
                     <select class="form-control" id="field_idCandidato" name="idCandidato" formControlName="idCandidatoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.nombre}} {{candidatoOption.apellidoPaterno}} {{candidatoOption.apellidoMaterno}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.skillCandidato.idSkill" for="field_idSkill">Id Skill</label>
+                    <label class="form-control-label"  for="field_idSkill">Nombre del Skill</label>
                     <select class="form-control" id="field_idSkill" name="idSkill" formControlName="idSkillId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="skillOption.id" *ngFor="let skillOption of skills; trackBy: trackSkillById">{{skillOption.id}}</option>
+                        <option [ngValue]="skillOption.id" *ngFor="let skillOption of skills; trackBy: trackSkillById">{{skillOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.skillCandidato.nivelSkill" for="field_nivelSkill">Nivel Skill</label>
                     <select class="form-control" id="field_nivelSkill" name="nivelSkill" formControlName="nivelSkillId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="dominioSkillOption.id" *ngFor="let dominioSkillOption of dominioskills; trackBy: trackDominioSkillById">{{dominioSkillOption.id}}</option>
+                        <option [ngValue]="dominioSkillOption.id" *ngFor="let dominioSkillOption of dominioskills; trackBy: trackDominioSkillById">{{dominioSkillOption.dominio}}</option>
                     </select>
                 </div>
             </div>

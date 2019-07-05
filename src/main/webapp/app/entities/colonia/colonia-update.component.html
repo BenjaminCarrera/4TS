@@ -25,14 +25,14 @@
                     <label class="form-control-label" jhiTranslate="App.colonia.municipio" for="field_municipio">Municipio</label>
                     <select class="form-control" id="field_municipio" name="municipio" formControlName="municipioId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.id}}</option>
+                        <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.municipio}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.colonia.codigoPostal" for="field_codigoPostal">Codigo Postal</label>
                     <select class="form-control" id="field_codigoPostal" name="codigoPostal" formControlName="codigoPostalId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="codigoPostalOption.id" *ngFor="let codigoPostalOption of codigopostals; trackBy: trackCodigoPostalById">{{codigoPostalOption.id}}</option>
+                        <option [ngValue]="codigoPostalOption.id" *ngFor="let codigoPostalOption of codigopostals; trackBy: trackCodigoPostalById">{{codigoPostalOption.codigoPostal}}</option>
                     </select>
                 </div>
             </div>

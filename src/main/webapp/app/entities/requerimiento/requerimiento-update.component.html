@@ -149,98 +149,98 @@
                     <label class="form-control-label" jhiTranslate="App.requerimiento.cuenta" for="field_cuenta">Cuenta</label>
                     <select class="form-control" id="field_cuenta" name="cuenta" formControlName="cuentaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.subCuenta" for="field_subCuenta">Sub Cuenta</label>
                     <select class="form-control" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.id}}</option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioCreador" for="field_usuarioCreador">Usuario Creador</label>
                     <select class="form-control" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioAsignado" for="field_usuarioAsignado">Usuario Asignado</label>
                     <select class="form-control" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.estatusRequerimiento" for="field_estatusRequerimiento">Estatus Requerimiento</label>
                     <select class="form-control" id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">{{estatusRequerimientoOption.id}}</option>
+                        <option [ngValue]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">{{estatusRequerimientoOption.estatus}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.prioridad" for="field_prioridad">Prioridad</label>
                     <select class="form-control" id="field_prioridad" name="prioridad" formControlName="prioridadId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.id}}</option>
+                        <option [ngValue]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.prioridad}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.tipoSolicitud" for="field_tipoSolicitud">Tipo Solicitud</label>
                     <select class="form-control" id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">{{tipoSolicitudOption.id}}</option>
+                        <option [ngValue]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">{{tipoSolicitudOption.solicitud}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.tipoIngreso" for="field_tipoIngreso">Tipo Ingreso</label>
                     <select class="form-control" id="field_tipoIngreso" name="tipoIngreso" formControlName="tipoIngresoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById">{{tipoIngresoOption.id}}</option>
+                        <option [ngValue]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById">{{tipoIngresoOption.tipo}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.baseTarifa" for="field_baseTarifa">Base Tarifa</label>
                     <select class="form-control" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{baseTarifaOption.id}}</option>
+                        <option [ngValue]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{baseTarifaOption.base}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.esquemaContratacion" for="field_esquemaContratacion">Esquema Contratacion</label>
                     <select class="form-control" id="field_esquemaContratacion" name="esquemaContratacion" formControlName="esquemaContratacionId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.id}}</option>
+                        <option [ngValue]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.esquema}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.perfil" for="field_perfil">Perfil</label>
                     <select class="form-control" id="field_perfil" name="perfil" formControlName="perfilId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.id}}</option>
+                        <option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.perfil}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.nivelPerfil" for="field_nivelPerfil">Nivel Perfil</label>
                     <select class="form-control" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.id}}</option>
+                        <option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.estatusReqCan" for="field_estatusReqCan">Estatus Req Can</label>
                     <select class="form-control" id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{estReqCerradoOption.id}}</option>
+                        <option [ngValue]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{estReqCerradoOption.motivo}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.tipoPeriodo" for="field_tipoPeriodo">Tipo Periodo</label>
                     <select class="form-control" id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.id}}</option>
+                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.periodo}}</option>
                     </select>
                 </div>
             </div>
