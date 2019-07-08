@@ -136,7 +136,7 @@ relationship OneToMany {
     EsquemaContratacionKode to Candidato{esquemaContratacionKode(esquema)},
     EstatusLaboral to Candidato{estatusLaboral(estatus)},
     Estado to Municipio{estado(estado)},
-    Municipio to Colonia,
+    Municipio to Colonia{municipio(municipio)},
     Municipio to CodigoPostal{municipio(municipio)}, 
     CodigoPostal to Colonia{codigoPostal(codigoPostal)},
     Colonia to Candidato{colonia(colonia)},

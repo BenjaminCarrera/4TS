@@ -18,7 +18,7 @@
             "relationshipName": "candidato"
         }
     ],
-    "changelogDate": "20190708160816",
+    "changelogDate": "20190708190637",
     "entityTableName": "fuente_reclutamiento",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -18,7 +18,7 @@
             "relationshipName": "skillRequerimiento"
         }
     ],
-    "changelogDate": "20190708160822",
+    "changelogDate": "20190708190643",
     "entityTableName": "tipo_skill",
     "dto": "mapstruct",
     "pagination": "pagination",

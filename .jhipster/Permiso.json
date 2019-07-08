@@ -43,7 +43,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190708160840",
+    "changelogDate": "20190708190701",
     "javadoc": "Entidad Permiso\n@author KODE",
     "entityTableName": "permiso",
     "dto": "mapstruct",

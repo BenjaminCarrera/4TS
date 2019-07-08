@@ -31,7 +31,7 @@
             "otherEntityField": "motivo"
         }
     ],
-    "changelogDate": "20190708160842",
+    "changelogDate": "20190708190703",
     "entityTableName": "req_can",
     "dto": "mapstruct",
     "pagination": "pagination",

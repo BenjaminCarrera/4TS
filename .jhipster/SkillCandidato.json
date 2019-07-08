@@ -29,7 +29,7 @@
             "otherEntityField": "dominio"
         }
     ],
-    "changelogDate": "20190708160824",
+    "changelogDate": "20190708190645",
     "entityTableName": "skill_candidato",
     "dto": "mapstruct",
     "pagination": "pagination",

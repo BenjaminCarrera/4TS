@@ -51,7 +51,7 @@
             "otherEntityField": "nombre"
         }
     ],
-    "changelogDate": "20190708160814",
+    "changelogDate": "20190708190635",
     "entityTableName": "referencias_laborales",
     "dto": "mapstruct",
     "pagination": "pagination",

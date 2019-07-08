@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity EstatusReqCanRec.
+    -->
+    <changeSet id="20190708190656-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="estatus_req_can_id"
+                                 baseTableName="estatus_req_can_rec"
+                                 constraintName="fk_estatus_req_can_rec_estatus_req_can_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estatus_req_can"/>
+
+    </changeSet>
+</databaseChangeLog>
