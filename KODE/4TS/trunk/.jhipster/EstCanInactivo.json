@@ -25,7 +25,7 @@
             "otherEntityField": "estatus"
         }
     ],
-    "changelogDate": "20190708160811",
+    "changelogDate": "20190708190632",
     "entityTableName": "est_can_inactivo",
     "dto": "mapstruct",
     "pagination": "pagination",

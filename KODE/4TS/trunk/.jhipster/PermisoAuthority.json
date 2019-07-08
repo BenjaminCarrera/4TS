@@ -47,7 +47,7 @@
             "otherEntityField": "nombre"
         }
     ],
-    "changelogDate": "20190708160841",
+    "changelogDate": "20190708190702",
     "javadoc": "Entidad PermisoAuthority\n@author KODE",
     "entityTableName": "permiso_authority",
     "dto": "mapstruct",

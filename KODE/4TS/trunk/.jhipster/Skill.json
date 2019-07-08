@@ -31,7 +31,7 @@
             "otherEntityField": "categoria"
         }
     ],
-    "changelogDate": "20190708160821",
+    "changelogDate": "20190708190642",
     "entityTableName": "skill",
     "dto": "mapstruct",
     "pagination": "pagination",

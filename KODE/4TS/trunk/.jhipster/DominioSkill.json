@@ -18,7 +18,7 @@
             "relationshipName": "skillCandidato"
         }
     ],
-    "changelogDate": "20190708160825",
+    "changelogDate": "20190708190646",
     "entityTableName": "dominio_skill",
     "dto": "mapstruct",
     "pagination": "pagination",

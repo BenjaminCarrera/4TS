@@ -22,7 +22,7 @@
             "otherEntityName": "municipio",
             "otherEntityRelationshipName": "colonia",
             "relationshipName": "municipio",
-            "otherEntityField": "id"
+            "otherEntityField": "municipio"
         },
         {
             "relationshipType": "many-to-one",
@@ -32,7 +32,7 @@
             "otherEntityField": "codigoPostal"
         }
     ],
-    "changelogDate": "20190708160804",
+    "changelogDate": "20190708190625",
     "entityTableName": "colonia",
     "dto": "mapstruct",
     "pagination": "pagination",

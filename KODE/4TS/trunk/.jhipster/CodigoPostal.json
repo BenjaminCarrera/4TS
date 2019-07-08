@@ -25,7 +25,7 @@
             "otherEntityField": "municipio"
         }
     ],
-    "changelogDate": "20190708160807",
+    "changelogDate": "20190708190628",
     "entityTableName": "codigo_postal",
     "dto": "mapstruct",
     "pagination": "pagination",

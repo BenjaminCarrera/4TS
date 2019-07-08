@@ -16,6 +16,8 @@ public class ColoniaDTO implements Serializable {
 
     private Long municipioId;
 
+    private String municipioMunicipio;
+
     private Long codigoPostalId;
 
     private String codigoPostalCodigoPostal;
@@ -42,6 +44,14 @@ public class ColoniaDTO implements Serializable {
 
     public void setMunicipioId(Long municipioId) {
         this.municipioId = municipioId;
+    }
+
+    public String getMunicipioMunicipio() {
+        return municipioMunicipio;
+    }
+
+    public void setMunicipioMunicipio(String municipioMunicipio) {
+        this.municipioMunicipio = municipioMunicipio;
     }
 
     public Long getCodigoPostalId() {
@@ -87,6 +97,7 @@ public class ColoniaDTO implements Serializable {
             "id=" + getId() +
             ", colonia='" + getColonia() + "'" +
             ", municipio=" + getMunicipioId() +
+            ", municipio='" + getMunicipioMunicipio() + "'" +
             ", codigoPostal=" + getCodigoPostalId() +
             ", codigoPostal='" + getCodigoPostalCodigoPostal() + "'" +
             "}";

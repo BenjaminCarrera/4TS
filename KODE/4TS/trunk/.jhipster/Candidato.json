@@ -420,7 +420,7 @@
             "otherEntityField": "motivo"
         }
     ],
-    "changelogDate": "20190708160801",
+    "changelogDate": "20190708190622",
     "entityTableName": "candidato",
     "dto": "mapstruct",
     "pagination": "pagination",
