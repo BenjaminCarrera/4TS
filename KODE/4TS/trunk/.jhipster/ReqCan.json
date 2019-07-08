@@ -7,31 +7,31 @@
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "reqCan",
             "relationshipName": "candidato",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "requerimiento",
             "otherEntityRelationshipName": "reqCan",
             "relationshipName": "requerimiento",
-            "otherEntityField": "id"
+            "otherEntityField": "proyecto"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusReqCan",
             "otherEntityRelationshipName": "reqCan",
             "relationshipName": "estatusReqCan",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusReqCanRec",
             "otherEntityRelationshipName": "reqCan",
             "relationshipName": "estatusReqCanRec",
-            "otherEntityField": "id"
+            "otherEntityField": "motivo"
         }
     ],
-    "changelogDate": "20190702185317",
+    "changelogDate": "20190708160842",
     "entityTableName": "req_can",
     "dto": "mapstruct",
     "pagination": "pagination",

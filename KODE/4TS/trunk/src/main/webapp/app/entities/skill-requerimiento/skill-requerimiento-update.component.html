@@ -14,21 +14,21 @@
                     <label class="form-control-label" jhiTranslate="App.skillRequerimiento.idRequerimiento" for="field_idRequerimiento">Id Requerimiento</label>
                     <select class="form-control" id="field_idRequerimiento" name="idRequerimiento" formControlName="idRequerimientoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.id}}</option>
+                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.proyecto}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.skillRequerimiento.idSkill" for="field_idSkill">Id Skill</label>
                     <select class="form-control" id="field_idSkill" name="idSkill" formControlName="idSkillId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="skillOption.id" *ngFor="let skillOption of skills; trackBy: trackSkillById">{{skillOption.id}}</option>
+                        <option [ngValue]="skillOption.id" *ngFor="let skillOption of skills; trackBy: trackSkillById">{{skillOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.skillRequerimiento.tipoSkill" for="field_tipoSkill">Tipo Skill</label>
                     <select class="form-control" id="field_tipoSkill" name="tipoSkill" formControlName="tipoSkillId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoSkillOption.id" *ngFor="let tipoSkillOption of tiposkills; trackBy: trackTipoSkillById">{{tipoSkillOption.id}}</option>
+                        <option [ngValue]="tipoSkillOption.id" *ngFor="let tipoSkillOption of tiposkills; trackBy: trackTipoSkillById">{{tipoSkillOption.tipo}}</option>
                     </select>
                 </div>
             </div>

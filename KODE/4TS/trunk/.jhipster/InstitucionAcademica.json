@@ -18,7 +18,7 @@
             "relationshipName": "candidato"
         }
     ],
-    "changelogDate": "20190702185246",
+    "changelogDate": "20190708160809",
     "entityTableName": "institucion_academica",
     "dto": "mapstruct",
     "pagination": "pagination",

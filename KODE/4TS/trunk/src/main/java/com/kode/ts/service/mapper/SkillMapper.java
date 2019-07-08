@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface SkillMapper extends EntityMapper<SkillDTO, Skill> {
 
     @Mapping(source = "categoriaSkill.id", target = "categoriaSkillId")
+    @Mapping(source = "categoriaSkill.categoria", target = "categoriaSkillCategoria")
     SkillDTO toDto(Skill skill);
 
     @Mapping(target = "skillCandidatoes", ignore = true)

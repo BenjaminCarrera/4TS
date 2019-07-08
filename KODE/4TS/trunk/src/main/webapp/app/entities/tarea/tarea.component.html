@@ -20,12 +20,12 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descripcion"><span jhiTranslate="App.tarea.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="titulo"><span jhiTranslate="App.tarea.titulo">Titulo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioCreadorId"><span jhiTranslate="App.tarea.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioEjecutorId"><span jhiTranslate="App.tarea.usuarioEjecutor">Usuario Ejecutor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="requerimientoId"><span jhiTranslate="App.tarea.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="candidatoId"><span jhiTranslate="App.tarea.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusTareaId"><span jhiTranslate="App.tarea.estatusTarea">Estatus Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoTareaId"><span jhiTranslate="App.tarea.tipoTarea">Tipo Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioCreadorFirstName"><span jhiTranslate="App.tarea.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioEjecutorFirstName"><span jhiTranslate="App.tarea.usuarioEjecutor">Usuario Ejecutor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="requerimientoProyecto"><span jhiTranslate="App.tarea.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="candidatoNombre"><span jhiTranslate="App.tarea.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusTareaEstatus"><span jhiTranslate="App.tarea.estatusTarea">Estatus Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoTareaTipo"><span jhiTranslate="App.tarea.tipoTarea">Tipo Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -35,29 +35,29 @@
                 <td>{{tarea.descripcion}}</td>
                 <td>{{tarea.titulo}}</td>
                 <td>
-                    {{tarea.usuarioCreadorId}}
+                    {{tarea.usuarioCreadorFirstName}}
                 </td>
                 <td>
-                    {{tarea.usuarioEjecutorId}}
+                    {{tarea.usuarioEjecutorFirstName}}
                 </td>
                 <td>
                     <div *ngIf="tarea.requerimientoId">
-                        <a [routerLink]="['../requerimiento', tarea.requerimientoId , 'view' ]" >{{tarea.requerimientoId}}</a>
+                        <a [routerLink]="['../requerimiento', tarea.requerimientoId , 'view' ]" >{{tarea.requerimientoProyecto}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="tarea.candidatoId">
-                        <a [routerLink]="['../candidato', tarea.candidatoId , 'view' ]" >{{tarea.candidatoId}}</a>
+                        <a [routerLink]="['../candidato', tarea.candidatoId , 'view' ]" >{{tarea.candidatoNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="tarea.estatusTareaId">
-                        <a [routerLink]="['../estatus-tarea', tarea.estatusTareaId , 'view' ]" >{{tarea.estatusTareaId}}</a>
+                        <a [routerLink]="['../estatus-tarea', tarea.estatusTareaId , 'view' ]" >{{tarea.estatusTareaEstatus}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="tarea.tipoTareaId">
-                        <a [routerLink]="['../tipo-tarea', tarea.tipoTareaId , 'view' ]" >{{tarea.tipoTareaId}}</a>
+                        <a [routerLink]="['../tipo-tarea', tarea.tipoTareaId , 'view' ]" >{{tarea.tipoTareaTipo}}</a>
                     </div>
                 </td>
                 <td class="text-right">

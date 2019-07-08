@@ -12,19 +12,19 @@
                 <dt><span jhiTranslate="App.skillCandidato.idCandidato">Id Candidato</span></dt>
                 <dd>
                     <div *ngIf="skillCandidato.idCandidatoId">
-                        <a [routerLink]="['/candidato', skillCandidato.idCandidatoId, 'view']">{{skillCandidato.idCandidatoId}}</a>
+                        <a [routerLink]="['/candidato', skillCandidato.idCandidatoId, 'view']">{{skillCandidato.idCandidatoNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.skillCandidato.idSkill">Id Skill</span></dt>
                 <dd>
                     <div *ngIf="skillCandidato.idSkillId">
-                        <a [routerLink]="['/skill', skillCandidato.idSkillId, 'view']">{{skillCandidato.idSkillId}}</a>
+                        <a [routerLink]="['/skill', skillCandidato.idSkillId, 'view']">{{skillCandidato.idSkillNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.skillCandidato.nivelSkill">Nivel Skill</span></dt>
                 <dd>
                     <div *ngIf="skillCandidato.nivelSkillId">
-                        <a [routerLink]="['/dominio-skill', skillCandidato.nivelSkillId, 'view']">{{skillCandidato.nivelSkillId}}</a>
+                        <a [routerLink]="['/dominio-skill', skillCandidato.nivelSkillId, 'view']">{{skillCandidato.nivelSkillDominio}}</a>
                     </div>
                 </dd>
             </dl>

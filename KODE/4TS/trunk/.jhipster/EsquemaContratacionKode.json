@@ -18,7 +18,7 @@
             "relationshipName": "candidato"
         }
     ],
-    "changelogDate": "20190702185254",
+    "changelogDate": "20190708160817",
     "entityTableName": "esquema_contratacion_kode",
     "dto": "mapstruct",
     "pagination": "pagination",

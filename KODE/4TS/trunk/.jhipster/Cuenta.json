@@ -24,7 +24,7 @@
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "cuentaInteres",
             "relationshipName": "candidatoInteres",
-            "otherEntityField": "id",
+            "otherEntityField": "nombre",
             "ownerSide": false
         },
         {
@@ -32,11 +32,11 @@
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "cuentaRechazadas",
             "relationshipName": "candidatoRechazadas",
-            "otherEntityField": "id",
+            "otherEntityField": "nombre",
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190702185257",
+    "changelogDate": "20190708160820",
     "entityTableName": "cuenta",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -16,6 +16,8 @@ public class CodigoPostalDTO implements Serializable {
 
     private Long municipioId;
 
+    private String municipioMunicipio;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class CodigoPostalDTO implements Serializable {
 
     public void setMunicipioId(Long municipioId) {
         this.municipioId = municipioId;
+    }
+
+    public String getMunicipioMunicipio() {
+        return municipioMunicipio;
+    }
+
+    public void setMunicipioMunicipio(String municipioMunicipio) {
+        this.municipioMunicipio = municipioMunicipio;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class CodigoPostalDTO implements Serializable {
             "id=" + getId() +
             ", codigoPostal='" + getCodigoPostal() + "'" +
             ", municipio=" + getMunicipioId() +
+            ", municipio='" + getMunicipioMunicipio() + "'" +
             "}";
     }
 }

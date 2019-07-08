@@ -12,9 +12,13 @@ import org.mapstruct.*;
 public interface BitacoraMapper extends EntityMapper<BitacoraDTO, Bitacora> {
 
     @Mapping(source = "usuario.id", target = "usuarioId")
+    @Mapping(source = "usuario.firstName", target = "usuarioFirstName")
     @Mapping(source = "requerimiento.id", target = "requerimientoId")
+    @Mapping(source = "requerimiento.proyecto", target = "requerimientoProyecto")
     @Mapping(source = "candidato.id", target = "candidatoId")
+    @Mapping(source = "candidato.nombre", target = "candidatoNombre")
     @Mapping(source = "tarea.id", target = "tareaId")
+    @Mapping(source = "tarea.titulo", target = "tareaTitulo")
     BitacoraDTO toDto(Bitacora bitacora);
 
     @Mapping(source = "usuarioId", target = "usuario")

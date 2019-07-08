@@ -20,31 +20,31 @@
             "otherEntityName": "user",
             "otherEntityRelationshipName": "bitacora",
             "relationshipName": "usuario",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "requerimiento",
             "otherEntityRelationshipName": "bitacora",
             "relationshipName": "requerimiento",
-            "otherEntityField": "id"
+            "otherEntityField": "proyecto"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "bitacora",
             "relationshipName": "candidato",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tarea",
             "otherEntityRelationshipName": "bitacora",
             "relationshipName": "tarea",
-            "otherEntityField": "id"
+            "otherEntityField": "titulo"
         }
     ],
-    "changelogDate": "20190702185316",
+    "changelogDate": "20190708160839",
     "entityTableName": "bitacora",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -20,7 +20,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="colonia"><span jhiTranslate="App.colonia.colonia">Colonia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="municipioId"><span jhiTranslate="App.colonia.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="codigoPostalId"><span jhiTranslate="App.colonia.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoPostalCodigoPostal"><span jhiTranslate="App.colonia.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -35,7 +35,7 @@
                 </td>
                 <td>
                     <div *ngIf="colonia.codigoPostalId">
-                        <a [routerLink]="['../codigo-postal', colonia.codigoPostalId , 'view' ]" >{{colonia.codigoPostalId}}</a>
+                        <a [routerLink]="['../codigo-postal', colonia.codigoPostalId , 'view' ]" >{{colonia.codigoPostalCodigoPostal}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -161,6 +161,14 @@ import { RouterModule } from '@angular/router';
         loadChildren: './bitacora/bitacora.module#AppBitacoraModule'
       },
       {
+        path: 'permiso',
+        loadChildren: './permiso/permiso.module#AppPermisoModule'
+      },
+      {
+        path: 'permiso-authority',
+        loadChildren: './permiso-authority/permiso-authority.module#AppPermisoAuthorityModule'
+      },
+      {
         path: 'req-can',
         loadChildren: './req-can/req-can.module#AppReqCanModule'
       }

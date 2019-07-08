@@ -12,8 +12,11 @@ import org.mapstruct.*;
 public interface SkillRequerimientoMapper extends EntityMapper<SkillRequerimientoDTO, SkillRequerimiento> {
 
     @Mapping(source = "idRequerimiento.id", target = "idRequerimientoId")
+    @Mapping(source = "idRequerimiento.proyecto", target = "idRequerimientoProyecto")
     @Mapping(source = "idSkill.id", target = "idSkillId")
+    @Mapping(source = "idSkill.nombre", target = "idSkillNombre")
     @Mapping(source = "tipoSkill.id", target = "tipoSkillId")
+    @Mapping(source = "tipoSkill.tipo", target = "tipoSkillTipo")
     SkillRequerimientoDTO toDto(SkillRequerimiento skillRequerimiento);
 
     @Mapping(source = "idRequerimientoId", target = "idRequerimiento")

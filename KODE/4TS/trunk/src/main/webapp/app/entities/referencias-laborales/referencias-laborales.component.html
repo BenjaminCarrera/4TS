@@ -23,7 +23,7 @@
             <th jhiSortBy="puestoContacto"><span jhiTranslate="App.referenciasLaborales.puestoContacto">Puesto Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="emailContaco"><span jhiTranslate="App.referenciasLaborales.emailContaco">Email Contaco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="telefonoContacto"><span jhiTranslate="App.referenciasLaborales.telefonoContacto">Telefono Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="candidatoId"><span jhiTranslate="App.referenciasLaborales.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="candidatoNombre"><span jhiTranslate="App.referenciasLaborales.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -37,7 +37,7 @@
                 <td>{{referenciasLaborales.telefonoContacto}}</td>
                 <td>
                     <div *ngIf="referenciasLaborales.candidatoId">
-                        <a [routerLink]="['../candidato', referenciasLaborales.candidatoId , 'view' ]" >{{referenciasLaborales.candidatoId}}</a>
+                        <a [routerLink]="['../candidato', referenciasLaborales.candidatoId , 'view' ]" >{{referenciasLaborales.candidatoNombre}}</a>
                     </div>
                 </td>
                 <td class="text-right">

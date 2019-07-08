@@ -22,10 +22,10 @@
             "otherEntityName": "estatusCandidato",
             "otherEntityRelationshipName": "estCanInactivo",
             "relationshipName": "estatusCandidato",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         }
     ],
-    "changelogDate": "20190702185248",
+    "changelogDate": "20190708160811",
     "entityTableName": "est_can_inactivo",
     "dto": "mapstruct",
     "pagination": "pagination",

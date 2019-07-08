@@ -5,6 +5,7 @@ export interface IColonia {
   colonia?: string;
   candidatoes?: ICandidato[];
   municipioId?: number;
+  codigoPostalCodigoPostal?: string;
   codigoPostalId?: number;
 }
 
@@ -14,6 +15,7 @@ export class Colonia implements IColonia {
     public colonia?: string,
     public candidatoes?: ICandidato[],
     public municipioId?: number,
+    public codigoPostalCodigoPostal?: string,
     public codigoPostalId?: number
   ) {}
 }

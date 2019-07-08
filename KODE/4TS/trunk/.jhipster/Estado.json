@@ -18,7 +18,7 @@
             "relationshipName": "municipio"
         }
     ],
-    "changelogDate": "20190702185243",
+    "changelogDate": "20190708160806",
     "entityTableName": "estado",
     "dto": "mapstruct",
     "pagination": "pagination",

@@ -48,10 +48,10 @@
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "referenciasLaborales",
             "relationshipName": "candidato",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         }
     ],
-    "changelogDate": "20190702185251",
+    "changelogDate": "20190708160814",
     "entityTableName": "referencias_laborales",
     "dto": "mapstruct",
     "pagination": "pagination",

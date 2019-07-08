@@ -130,6 +130,8 @@ public class CacheConfiguration {
             createCache(cm, com.kode.ts.domain.TipoTarea.class.getName());
             createCache(cm, com.kode.ts.domain.TipoTarea.class.getName() + ".tareas");
             createCache(cm, com.kode.ts.domain.Bitacora.class.getName());
+            createCache(cm, com.kode.ts.domain.Permiso.class.getName());
+            createCache(cm, com.kode.ts.domain.PermisoAuthority.class.getName());
             createCache(cm, com.kode.ts.domain.ReqCan.class.getName());
             // jhipster-needle-ehcache-add-entry
         };

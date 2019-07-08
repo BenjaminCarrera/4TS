@@ -28,10 +28,10 @@
             "otherEntityName": "estado",
             "otherEntityRelationshipName": "municipio",
             "relationshipName": "estado",
-            "otherEntityField": "id"
+            "otherEntityField": "estado"
         }
     ],
-    "changelogDate": "20190702185242",
+    "changelogDate": "20190708160805",
     "entityTableName": "municipio",
     "dto": "mapstruct",
     "pagination": "pagination",

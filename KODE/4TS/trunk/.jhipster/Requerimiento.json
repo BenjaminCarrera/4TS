@@ -121,101 +121,101 @@
             "otherEntityName": "cuenta",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "cuenta",
-            "otherEntityField": "id"
+            "otherEntityField": "clave"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "cuenta",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "subCuenta",
-            "otherEntityField": "id"
+            "otherEntityField": "clave"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "usuarioCreador",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "usuarioAsignado",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusRequerimiento",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "estatusRequerimiento",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "prioridadReq",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "prioridad",
-            "otherEntityField": "id"
+            "otherEntityField": "prioridad"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tipoSolicitud",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "tipoSolicitud",
-            "otherEntityField": "id"
+            "otherEntityField": "solicitud"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tipoIngreso",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "tipoIngreso",
-            "otherEntityField": "id"
+            "otherEntityField": "tipo"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "baseTarifa",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "baseTarifa",
-            "otherEntityField": "id"
+            "otherEntityField": "base"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "esqContRec",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "esquemaContratacion",
-            "otherEntityField": "id"
+            "otherEntityField": "esquema"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "perfil",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "perfil",
-            "otherEntityField": "id"
+            "otherEntityField": "perfil"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "nivelPerfil",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "nivelPerfil",
-            "otherEntityField": "id"
+            "otherEntityField": "nivel"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estReqCerrado",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "estatusReqCan",
-            "otherEntityField": "id"
+            "otherEntityField": "motivo"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tipoPeriodo",
             "otherEntityRelationshipName": "requerimiento",
             "relationshipName": "tipoPeriodo",
-            "otherEntityField": "id"
+            "otherEntityField": "periodo"
         }
     ],
-    "changelogDate": "20190702185303",
+    "changelogDate": "20190708160826",
     "entityTableName": "requerimiento",
     "dto": "mapstruct",
     "pagination": "pagination",

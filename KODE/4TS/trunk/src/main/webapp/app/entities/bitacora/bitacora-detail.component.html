@@ -15,24 +15,24 @@
                 </dd>
                 <dt><span jhiTranslate="App.bitacora.usuario">Usuario</span></dt>
                 <dd>
-                    {{bitacora.usuarioId}}
+                    {{bitacora.usuarioFirstName}}
                 </dd>
                 <dt><span jhiTranslate="App.bitacora.requerimiento">Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="bitacora.requerimientoId">
-                        <a [routerLink]="['/requerimiento', bitacora.requerimientoId, 'view']">{{bitacora.requerimientoId}}</a>
+                        <a [routerLink]="['/requerimiento', bitacora.requerimientoId, 'view']">{{bitacora.requerimientoProyecto}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.bitacora.candidato">Candidato</span></dt>
                 <dd>
                     <div *ngIf="bitacora.candidatoId">
-                        <a [routerLink]="['/candidato', bitacora.candidatoId, 'view']">{{bitacora.candidatoId}}</a>
+                        <a [routerLink]="['/candidato', bitacora.candidatoId, 'view']">{{bitacora.candidatoNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.bitacora.tarea">Tarea</span></dt>
                 <dd>
                     <div *ngIf="bitacora.tareaId">
-                        <a [routerLink]="['/tarea', bitacora.tareaId, 'view']">{{bitacora.tareaId}}</a>
+                        <a [routerLink]="['/tarea', bitacora.tareaId, 'view']">{{bitacora.tareaTitulo}}</a>
                     </div>
                 </dd>
             </dl>

@@ -5,6 +5,7 @@ export interface IReferenciasLaborales {
   puestoContacto?: string;
   emailContaco?: string;
   telefonoContacto?: string;
+  candidatoNombre?: string;
   candidatoId?: number;
 }
 
@@ -16,6 +17,7 @@ export class ReferenciasLaborales implements IReferenciasLaborales {
     public puestoContacto?: string,
     public emailContaco?: string,
     public telefonoContacto?: string,
+    public candidatoNombre?: string,
     public candidatoId?: number
   ) {}
 }

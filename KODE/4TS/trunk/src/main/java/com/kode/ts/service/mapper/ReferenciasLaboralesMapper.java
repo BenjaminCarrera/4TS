@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface ReferenciasLaboralesMapper extends EntityMapper<ReferenciasLaboralesDTO, ReferenciasLaborales> {
 
     @Mapping(source = "candidato.id", target = "candidatoId")
+    @Mapping(source = "candidato.nombre", target = "candidatoNombre")
     ReferenciasLaboralesDTO toDto(ReferenciasLaborales referenciasLaborales);
 
     @Mapping(source = "candidatoId", target = "candidato")

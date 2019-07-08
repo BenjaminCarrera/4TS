@@ -36,42 +36,42 @@
                     <label class="form-control-label" jhiTranslate="App.tarea.usuarioCreador" for="field_usuarioCreador">Usuario Creador</label>
                     <select class="form-control" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.tarea.usuarioEjecutor" for="field_usuarioEjecutor">Usuario Ejecutor</label>
                     <select class="form-control" id="field_usuarioEjecutor" name="usuarioEjecutor" formControlName="usuarioEjecutorId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.tarea.requerimiento" for="field_requerimiento">Requerimiento</label>
                     <select class="form-control" id="field_requerimiento" name="requerimiento" formControlName="requerimientoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.id}}</option>
+                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.proyecto}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.tarea.candidato" for="field_candidato">Candidato</label>
                     <select class="form-control" id="field_candidato" name="candidato" formControlName="candidatoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.tarea.estatusTarea" for="field_estatusTarea">Estatus Tarea</label>
                     <select class="form-control" id="field_estatusTarea" name="estatusTarea" formControlName="estatusTareaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="estatusTareaOption.id" *ngFor="let estatusTareaOption of estatustareas; trackBy: trackEstatusTareaById">{{estatusTareaOption.id}}</option>
+                        <option [ngValue]="estatusTareaOption.id" *ngFor="let estatusTareaOption of estatustareas; trackBy: trackEstatusTareaById">{{estatusTareaOption.estatus}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.tarea.tipoTarea" for="field_tipoTarea">Tipo Tarea</label>
                     <select class="form-control" id="field_tipoTarea" name="tipoTarea" formControlName="tipoTareaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoTareaOption.id" *ngFor="let tipoTareaOption of tipotareas; trackBy: trackTipoTareaById">{{tipoTareaOption.id}}</option>
+                        <option [ngValue]="tipoTareaOption.id" *ngFor="let tipoTareaOption of tipotareas; trackBy: trackTipoTareaById">{{tipoTareaOption.tipo}}</option>
                     </select>
                 </div>
             </div>

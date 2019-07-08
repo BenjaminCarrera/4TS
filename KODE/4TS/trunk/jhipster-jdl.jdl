@@ -124,51 +124,51 @@ entity DominioSkill{
     dominio String maxlength(100)
 }
 relationship OneToMany {
-    Candidato to ReferenciasLaborales{candidato},
-    FuenteReclutamiento to Candidato{fuenteReclutamiento},
-    EstatusCandidato to Candidato{estatusCandidato},
-    EstatusCandidato to EstCanInactivo{estatusCandidato},
-    Perfil to Candidato{perfil},
-    NivelPerfil to Candidato{nivelPerfil},
-    InstitucionAcademica to Candidato{institucionAcademica},
-    EstatusAcademico to Candidato{estatusAcademico},   
-    FuenteReclutamiento to Candidato{fuenteReclutamiento}, 
-    EsquemaContratacionKode to Candidato{esquemaContratacionKode},
-    EstatusLaboral to Candidato{estatusLaboral},
-    Estado to Municipio{estado},
+    Candidato to ReferenciasLaborales{candidato(nombre)},
+    FuenteReclutamiento to Candidato{fuenteReclutamiento(fuente)},
+    EstatusCandidato to Candidato{estatusCandidato(estatus)},
+    EstatusCandidato to EstCanInactivo{estatusCandidato(estatus)},
+    Perfil to Candidato{perfil(perfil)},
+    NivelPerfil to Candidato{nivelPerfil(nivel)},
+    InstitucionAcademica to Candidato{institucionAcademica(institucion)},
+    EstatusAcademico to Candidato{estatusAcademico(estatus)},   
+    FuenteReclutamiento to Candidato{fuenteReclutamiento(fuente)}, 
+    EsquemaContratacionKode to Candidato{esquemaContratacionKode(esquema)},
+    EstatusLaboral to Candidato{estatusLaboral(estatus)},
+    Estado to Municipio{estado(estado)},
     Municipio to Colonia,
-    Municipio to CodigoPostal{municipio}, 
-    CodigoPostal to Colonia{codigoPostal},
-    Colonia to Candidato{colonia},
-    EsqContRec to Candidato{antecedentesEsquemaContratacion},
-    FormacionAcademica to Candidato{estudios},
-    Candidato to SkillCandidato{idCandidato},
-    Skill to SkillCandidato{idSkill},
-    DominioSkill to SkillCandidato{nivelSkill},
-    CategoriaSkill to Skill{categoriaSkill},
-    EstCanInactivo to Candidato{estCanInactivo}
+    Municipio to CodigoPostal{municipio(municipio)}, 
+    CodigoPostal to Colonia{codigoPostal(codigoPostal)},
+    Colonia to Candidato{colonia(colonia)},
+    EsqContRec to Candidato{antecedentesEsquemaContratacion(esquema)},
+    FormacionAcademica to Candidato{estudios(formacionAcademica)},
+    Candidato to SkillCandidato{idCandidato(nombre)},
+    Skill to SkillCandidato{idSkill(nombre)},
+    DominioSkill to SkillCandidato{nivelSkill(dominio)},
+    CategoriaSkill to Skill{categoriaSkill(categoria)},
+    EstCanInactivo to Candidato{estCanInactivo(motivo)}
 }
 relationship ManyToOne {
-    Requerimiento{Cuenta} to Cuenta,
-    Requerimiento{subCuenta} to Cuenta,
-    ReqCan{Candidato} to Candidato,
-    ReqCan{Requerimiento} to Requerimiento,
-    ReqCan{estatusReqCan} to EstatusReqCan,
-    ReqCan{estatusReqCanRec} to EstatusReqCanRec,
-    Candidato{disponibilidadEntrevistaPeriodoTiempo} to TipoPeriodo,
-    Candidato{disponibilidadAsignacionPeriodoTiempo} to TipoPeriodo,
-    Candidato{usuarioCreador} to User,
-    Candidato{usuarioAsignado} to User,
-    Requerimiento{usuarioCreador} to User,
-    Requerimiento{usuarioAsignado} to User,
-    Tarea{usuarioCreador} to User,
-    Tarea{usuarioEjecutor} to User,
-    Bitacora{usuario} to User,
-    Candidato{Documento} to Documento
+    Requerimiento{Cuenta(clave)} to Cuenta,
+    Requerimiento{subCuenta(clave)} to Cuenta,
+    ReqCan{Candidato(nombre)} to Candidato,
+    ReqCan{Requerimiento(proyecto)} to Requerimiento,
+    ReqCan{estatusReqCan(estatus)} to EstatusReqCan,
+    ReqCan{estatusReqCanRec(motivo)} to EstatusReqCanRec,
+    Candidato{disponibilidadEntrevistaPeriodoTiempo(periodo)} to TipoPeriodo,
+    Candidato{disponibilidadAsignacionPeriodoTiempo(periodo)} to TipoPeriodo,
+    Candidato{usuarioCreador(firstName)} to User,
+    Candidato{usuarioAsignado(firstName)} to User,
+    Requerimiento{usuarioCreador(firstName)} to User,
+    Requerimiento{usuarioAsignado(firstName)} to User,
+    Tarea{usuarioCreador(firstName)} to User,
+    Tarea{usuarioEjecutor(firstName)} to User,
+    Bitacora{usuario(firstName)} to User,
+    Candidato{Documento(documento)} to Documento
 }
 relationship ManyToMany {
-    Candidato{cuentaInteres} to Cuenta{candidatoInteres},
-    Candidato{cuentaRechazadas} to Cuenta{candidatoRechazadas},
+    Candidato{cuentaInteres(clave)} to Cuenta{candidatoInteres(nombre)},
+    Candidato{cuentaRechazadas(clave)} to Cuenta{candidatoRechazadas(nombre)},
 }
 entity Requerimiento{
     fechaAlda Instant required,
@@ -214,21 +214,21 @@ entity EstatusReqCanRec{
     motivo String maxlength(100)
 }
 relationship OneToMany {
-    EstatusRequerimiento to Requerimiento{estatusRequerimiento},
-    EstatusRequerimiento to EstReqCerrado{estatusRequerimiento},
-    PrioridadReq to Requerimiento{prioridad},
-    TipoSolicitud to Requerimiento{tipoSolicitud},
-    TipoIngreso to Requerimiento{tipoIngreso},
-    BaseTarifa to Requerimiento{baseTarifa},
-    EsqContRec to Requerimiento{esquemaContratacion},
-    Perfil to Requerimiento{perfil},
-    NivelPerfil to Requerimiento{nivelPerfil},
-    Requerimiento to SkillRequerimiento{idRequerimiento},
-    Skill to SkillRequerimiento{idSkill},
-    TipoSkill to SkillRequerimiento{tipoSkill},
-    EstatusReqCan to EstatusReqCanRec{estatusReqCan},
-    EstReqCerrado to Requerimiento{estatusReqCan},
-    TipoPeriodo to Requerimiento{tipoPeriodo}
+    EstatusRequerimiento to Requerimiento{estatusRequerimiento(estatus)},
+    EstatusRequerimiento to EstReqCerrado{estatusRequerimiento(estatus)},
+    PrioridadReq to Requerimiento{prioridad(prioridad)},
+    TipoSolicitud to Requerimiento{tipoSolicitud(solicitud)},
+    TipoIngreso to Requerimiento{tipoIngreso(tipo)},
+    BaseTarifa to Requerimiento{baseTarifa(base)},
+    EsqContRec to Requerimiento{esquemaContratacion(esquema)},
+    Perfil to Requerimiento{perfil(perfil)},
+    NivelPerfil to Requerimiento{nivelPerfil(nivel)},
+    Requerimiento to SkillRequerimiento{idRequerimiento(proyecto)},
+    Skill to SkillRequerimiento{idSkill(nombre)},
+    TipoSkill to SkillRequerimiento{tipoSkill(tipo)},
+    EstatusReqCan to EstatusReqCanRec{estatusReqCan(estatus)},
+    EstReqCerrado to Requerimiento{estatusReqCan(motivo)},
+    TipoPeriodo to Requerimiento{tipoPeriodo(periodo)}
 }
 entity Tarea{
     descripcion String maxlength(300),
@@ -241,19 +241,51 @@ entity TipoTarea{
     tipo String maxlength(100)
 }
 relationship OneToMany {
-    Requerimiento to Tarea{Requerimiento},
-    Candidato to Tarea{Candidato},
-    EstatusTarea to Tarea{estatusTarea},
-    TipoTarea to Tarea{tipoTarea}
+    Requerimiento to Tarea{Requerimiento(proyecto)},
+    Candidato to Tarea{Candidato(nombre)},
+    EstatusTarea to Tarea{estatusTarea(estatus)},
+    TipoTarea to Tarea{tipoTarea(tipo)}
 }
 entity Bitacora{
     fecha ZonedDateTime,
     comentario String maxlength(500)
 }
 relationship OneToMany {
-    Requerimiento to Bitacora{requerimiento},
-    Candidato to Bitacora{candidato},
-    Tarea to Bitacora{tarea},
+    Requerimiento to Bitacora{requerimiento(proyecto)},
+    Candidato to Bitacora{candidato(nombre)},
+    Tarea to Bitacora{tarea(titulo)},
+}
+
+/**
+ * Entidad Permiso
+ * @author KODE
+ */
+entity Permiso {
+	nombre String
+    descripcion String
+    activated Boolean
+    deleted Boolean
+    createdBy String maxlength(50)
+    createdDate Instant
+    lastModifiedBy String maxlength(50)
+    lastModifiedDate Instant
+}
+
+/**
+ * Entidad PermisoAuthority
+ * @author KODE
+ */
+entity PermisoAuthority {
+	authority String
+    activated Boolean
+    deleted Boolean
+    createdBy String maxlength(50)
+    createdDate Instant
+    lastModifiedBy String maxlength(50)
+    lastModifiedDate Instant
+}
+relationship ManyToOne {
+    PermisoAuthority{permiso(nombre)} to Permiso   
 }
 entity ReqCan{
     

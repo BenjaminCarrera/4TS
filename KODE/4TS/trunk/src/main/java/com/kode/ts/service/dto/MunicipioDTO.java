@@ -16,6 +16,8 @@ public class MunicipioDTO implements Serializable {
 
     private Long estadoId;
 
+    private String estadoEstado;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class MunicipioDTO implements Serializable {
 
     public void setEstadoId(Long estadoId) {
         this.estadoId = estadoId;
+    }
+
+    public String getEstadoEstado() {
+        return estadoEstado;
+    }
+
+    public void setEstadoEstado(String estadoEstado) {
+        this.estadoEstado = estadoEstado;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class MunicipioDTO implements Serializable {
             "id=" + getId() +
             ", municipio='" + getMunicipio() + "'" +
             ", estado=" + getEstadoId() +
+            ", estado='" + getEstadoEstado() + "'" +
             "}";
     }
 }

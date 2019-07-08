@@ -7,24 +7,24 @@
             "otherEntityName": "requerimiento",
             "otherEntityRelationshipName": "skillRequerimiento",
             "relationshipName": "idRequerimiento",
-            "otherEntityField": "id"
+            "otherEntityField": "proyecto"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "skill",
             "otherEntityRelationshipName": "skillRequerimiento",
             "relationshipName": "idSkill",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tipoSkill",
             "otherEntityRelationshipName": "skillRequerimiento",
             "relationshipName": "tipoSkill",
-            "otherEntityField": "id"
+            "otherEntityField": "tipo"
         }
     ],
-    "changelogDate": "20190702185310",
+    "changelogDate": "20190708160833",
     "entityTableName": "skill_requerimiento",
     "dto": "mapstruct",
     "pagination": "pagination",

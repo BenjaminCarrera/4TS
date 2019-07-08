@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface EstReqCerradoMapper extends EntityMapper<EstReqCerradoDTO, EstReqCerrado> {
 
     @Mapping(source = "estatusRequerimiento.id", target = "estatusRequerimientoId")
+    @Mapping(source = "estatusRequerimiento.estatus", target = "estatusRequerimientoEstatus")
     EstReqCerradoDTO toDto(EstReqCerrado estReqCerrado);
 
     @Mapping(target = "requerimientos", ignore = true)

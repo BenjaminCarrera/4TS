@@ -12,11 +12,19 @@ public class ReqCanDTO implements Serializable {
 
     private Long candidatoId;
 
+    private String candidatoNombre;
+
     private Long requerimientoId;
+
+    private String requerimientoProyecto;
 
     private Long estatusReqCanId;
 
+    private String estatusReqCanEstatus;
+
     private Long estatusReqCanRecId;
+
+    private String estatusReqCanRecMotivo;
 
     public Long getId() {
         return id;
@@ -34,12 +42,28 @@ public class ReqCanDTO implements Serializable {
         this.candidatoId = candidatoId;
     }
 
+    public String getCandidatoNombre() {
+        return candidatoNombre;
+    }
+
+    public void setCandidatoNombre(String candidatoNombre) {
+        this.candidatoNombre = candidatoNombre;
+    }
+
     public Long getRequerimientoId() {
         return requerimientoId;
     }
 
     public void setRequerimientoId(Long requerimientoId) {
         this.requerimientoId = requerimientoId;
+    }
+
+    public String getRequerimientoProyecto() {
+        return requerimientoProyecto;
+    }
+
+    public void setRequerimientoProyecto(String requerimientoProyecto) {
+        this.requerimientoProyecto = requerimientoProyecto;
     }
 
     public Long getEstatusReqCanId() {
@@ -50,12 +74,28 @@ public class ReqCanDTO implements Serializable {
         this.estatusReqCanId = estatusReqCanId;
     }
 
+    public String getEstatusReqCanEstatus() {
+        return estatusReqCanEstatus;
+    }
+
+    public void setEstatusReqCanEstatus(String estatusReqCanEstatus) {
+        this.estatusReqCanEstatus = estatusReqCanEstatus;
+    }
+
     public Long getEstatusReqCanRecId() {
         return estatusReqCanRecId;
     }
 
     public void setEstatusReqCanRecId(Long estatusReqCanRecId) {
         this.estatusReqCanRecId = estatusReqCanRecId;
+    }
+
+    public String getEstatusReqCanRecMotivo() {
+        return estatusReqCanRecMotivo;
+    }
+
+    public void setEstatusReqCanRecMotivo(String estatusReqCanRecMotivo) {
+        this.estatusReqCanRecMotivo = estatusReqCanRecMotivo;
     }
 
     @Override
@@ -84,9 +124,13 @@ public class ReqCanDTO implements Serializable {
         return "ReqCanDTO{" +
             "id=" + getId() +
             ", candidato=" + getCandidatoId() +
+            ", candidato='" + getCandidatoNombre() + "'" +
             ", requerimiento=" + getRequerimientoId() +
+            ", requerimiento='" + getRequerimientoProyecto() + "'" +
             ", estatusReqCan=" + getEstatusReqCanId() +
+            ", estatusReqCan='" + getEstatusReqCanEstatus() + "'" +
             ", estatusReqCanRec=" + getEstatusReqCanRecId() +
+            ", estatusReqCanRec='" + getEstatusReqCanRecMotivo() + "'" +
             "}";
     }
 }

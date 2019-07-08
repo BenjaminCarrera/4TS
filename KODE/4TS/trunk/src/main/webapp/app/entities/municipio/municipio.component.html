@@ -19,7 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="municipio"><span jhiTranslate="App.municipio.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estadoId"><span jhiTranslate="App.municipio.estado">Estado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estadoEstado"><span jhiTranslate="App.municipio.estado">Estado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,7 +29,7 @@
                 <td>{{municipio.municipio}}</td>
                 <td>
                     <div *ngIf="municipio.estadoId">
-                        <a [routerLink]="['../estado', municipio.estadoId , 'view' ]" >{{municipio.estadoId}}</a>
+                        <a [routerLink]="['../estado', municipio.estadoId , 'view' ]" >{{municipio.estadoEstado}}</a>
                     </div>
                 </td>
                 <td class="text-right">

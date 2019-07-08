@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="App.estCanInactivo.estatusCandidato">Estatus Candidato</span></dt>
                 <dd>
                     <div *ngIf="estCanInactivo.estatusCandidatoId">
-                        <a [routerLink]="['/estatus-candidato', estCanInactivo.estatusCandidatoId, 'view']">{{estCanInactivo.estatusCandidatoId}}</a>
+                        <a [routerLink]="['/estatus-candidato', estCanInactivo.estatusCandidatoId, 'view']">{{estCanInactivo.estatusCandidatoEstatus}}</a>
                     </div>
                 </dd>
             </dl>

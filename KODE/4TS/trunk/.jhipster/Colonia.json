@@ -29,10 +29,10 @@
             "otherEntityName": "codigoPostal",
             "otherEntityRelationshipName": "colonia",
             "relationshipName": "codigoPostal",
-            "otherEntityField": "id"
+            "otherEntityField": "codigoPostal"
         }
     ],
-    "changelogDate": "20190702185241",
+    "changelogDate": "20190708160804",
     "entityTableName": "colonia",
     "dto": "mapstruct",
     "pagination": "pagination",

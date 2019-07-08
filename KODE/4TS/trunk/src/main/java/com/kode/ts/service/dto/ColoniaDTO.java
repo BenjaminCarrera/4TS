@@ -18,6 +18,8 @@ public class ColoniaDTO implements Serializable {
 
     private Long codigoPostalId;
 
+    private String codigoPostalCodigoPostal;
+
     public Long getId() {
         return id;
     }
@@ -50,6 +52,14 @@ public class ColoniaDTO implements Serializable {
         this.codigoPostalId = codigoPostalId;
     }
 
+    public String getCodigoPostalCodigoPostal() {
+        return codigoPostalCodigoPostal;
+    }
+
+    public void setCodigoPostalCodigoPostal(String codigoPostalCodigoPostal) {
+        this.codigoPostalCodigoPostal = codigoPostalCodigoPostal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,6 +88,7 @@ public class ColoniaDTO implements Serializable {
             ", colonia='" + getColonia() + "'" +
             ", municipio=" + getMunicipioId() +
             ", codigoPostal=" + getCodigoPostalId() +
+            ", codigoPostal='" + getCodigoPostalCodigoPostal() + "'" +
             "}";
     }
 }

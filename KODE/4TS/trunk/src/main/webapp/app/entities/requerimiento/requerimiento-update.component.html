@@ -149,14 +149,14 @@
                     <label class="form-control-label" jhiTranslate="App.requerimiento.cuenta" for="field_cuenta">Cuenta</label>
                     <select class="form-control" id="field_cuenta" name="cuenta" formControlName="cuentaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.nombre}}</option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.subCuenta" for="field_subCuenta">Sub Cuenta</label>
                     <select class="form-control" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.nombre}}</option>
+                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</option>
                     </select>
                 </div>
                 <div class="form-group">

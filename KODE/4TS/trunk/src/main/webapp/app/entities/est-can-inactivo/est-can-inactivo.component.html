@@ -19,7 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="motivo"><span jhiTranslate="App.estCanInactivo.motivo">Motivo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusCandidatoId"><span jhiTranslate="App.estCanInactivo.estatusCandidato">Estatus Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusCandidatoEstatus"><span jhiTranslate="App.estCanInactivo.estatusCandidato">Estatus Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,7 +29,7 @@
                 <td>{{estCanInactivo.motivo}}</td>
                 <td>
                     <div *ngIf="estCanInactivo.estatusCandidatoId">
-                        <a [routerLink]="['../estatus-candidato', estCanInactivo.estatusCandidatoId , 'view' ]" >{{estCanInactivo.estatusCandidatoId}}</a>
+                        <a [routerLink]="['../estatus-candidato', estCanInactivo.estatusCandidatoId , 'view' ]" >{{estCanInactivo.estatusCandidatoEstatus}}</a>
                     </div>
                 </td>
                 <td class="text-right">

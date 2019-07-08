@@ -20,10 +20,10 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="fecha"><span jhiTranslate="App.bitacora.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="comentario"><span jhiTranslate="App.bitacora.comentario">Comentario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioId"><span jhiTranslate="App.bitacora.usuario">Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="requerimientoId"><span jhiTranslate="App.bitacora.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="candidatoId"><span jhiTranslate="App.bitacora.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tareaId"><span jhiTranslate="App.bitacora.tarea">Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioFirstName"><span jhiTranslate="App.bitacora.usuario">Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="requerimientoProyecto"><span jhiTranslate="App.bitacora.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="candidatoNombre"><span jhiTranslate="App.bitacora.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tareaTitulo"><span jhiTranslate="App.bitacora.tarea">Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -33,21 +33,21 @@
                 <td>{{bitacora.fecha | date:'medium'}}</td>
                 <td>{{bitacora.comentario}}</td>
                 <td>
-                    {{bitacora.usuarioId}}
+                    {{bitacora.usuarioFirstName}}
                 </td>
                 <td>
                     <div *ngIf="bitacora.requerimientoId">
-                        <a [routerLink]="['../requerimiento', bitacora.requerimientoId , 'view' ]" >{{bitacora.requerimientoId}}</a>
+                        <a [routerLink]="['../requerimiento', bitacora.requerimientoId , 'view' ]" >{{bitacora.requerimientoProyecto}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="bitacora.candidatoId">
-                        <a [routerLink]="['../candidato', bitacora.candidatoId , 'view' ]" >{{bitacora.candidatoId}}</a>
+                        <a [routerLink]="['../candidato', bitacora.candidatoId , 'view' ]" >{{bitacora.candidatoNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="bitacora.tareaId">
-                        <a [routerLink]="['../tarea', bitacora.tareaId , 'view' ]" >{{bitacora.tareaId}}</a>
+                        <a [routerLink]="['../tarea', bitacora.tareaId , 'view' ]" >{{bitacora.tareaTitulo}}</a>
                     </div>
                 </td>
                 <td class="text-right">

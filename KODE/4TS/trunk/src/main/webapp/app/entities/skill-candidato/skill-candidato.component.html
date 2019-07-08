@@ -19,9 +19,9 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="calificacionSkill"><span jhiTranslate="App.skillCandidato.calificacionSkill">Calificacion Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="idCandidatoId"><span >Nombre del Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="idSkillId"><span >Nombre del Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nivelSkillId"><span >Nivel del Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idCandidatoNombre"><span jhiTranslate="App.skillCandidato.idCandidato">Id Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idSkillNombre"><span jhiTranslate="App.skillCandidato.idSkill">Id Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nivelSkillDominio"><span jhiTranslate="App.skillCandidato.nivelSkill">Nivel Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -31,17 +31,17 @@
                 <td>{{skillCandidato.calificacionSkill}}</td>
                 <td>
                     <div *ngIf="skillCandidato.idCandidatoId">
-                        <a [routerLink]="['../candidato', skillCandidato.idCandidatoId , 'view' ]" >{{skillCandidato.idCandidatoId}}</a>
+                        <a [routerLink]="['../candidato', skillCandidato.idCandidatoId , 'view' ]" >{{skillCandidato.idCandidatoNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="skillCandidato.idSkillId">
-                        <a [routerLink]="['../skill', skillCandidato.idSkillId , 'view' ]" >{{skillCandidato.idSkillId}}</a>
+                        <a [routerLink]="['../skill', skillCandidato.idSkillId , 'view' ]" >{{skillCandidato.idSkillNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="skillCandidato.nivelSkillId">
-                        <a [routerLink]="['../dominio-skill', skillCandidato.nivelSkillId , 'view' ]" >{{skillCandidato.nivelSkillId}}</a>
+                        <a [routerLink]="['../dominio-skill', skillCandidato.nivelSkillId , 'view' ]" >{{skillCandidato.nivelSkillDominio}}</a>
                     </div>
                 </td>
                 <td class="text-right">

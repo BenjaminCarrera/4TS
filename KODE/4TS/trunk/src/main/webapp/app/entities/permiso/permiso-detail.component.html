@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="permiso">
+            <h2><span jhiTranslate="App.permiso.detail.title">Permiso</span> {{permiso.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.permiso.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{permiso.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{permiso.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.activated">Activated</span></dt>
+                <dd>
+                    <span>{{permiso.activated}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{permiso.deleted}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{permiso.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{permiso.createdDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.lastModifiedBy">Last Modified By</span></dt>
+                <dd>
+                    <span>{{permiso.lastModifiedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permiso.lastModifiedDate">Last Modified Date</span></dt>
+                <dd>
+                    <span>{{permiso.lastModifiedDate}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/permiso', permiso.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

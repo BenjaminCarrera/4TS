@@ -24,7 +24,7 @@
             "relationshipName": "estCanInactivo"
         }
     ],
-    "changelogDate": "20190702185247",
+    "changelogDate": "20190708160810",
     "entityTableName": "estatus_candidato",
     "dto": "mapstruct",
     "pagination": "pagination",

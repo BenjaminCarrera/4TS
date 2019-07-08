@@ -19,11 +19,19 @@ public class BitacoraDTO implements Serializable {
 
     private Long usuarioId;
 
+    private String usuarioFirstName;
+
     private Long requerimientoId;
+
+    private String requerimientoProyecto;
 
     private Long candidatoId;
 
+    private String candidatoNombre;
+
     private Long tareaId;
+
+    private String tareaTitulo;
 
     public Long getId() {
         return id;
@@ -57,12 +65,28 @@ public class BitacoraDTO implements Serializable {
         this.usuarioId = userId;
     }
 
+    public String getUsuarioFirstName() {
+        return usuarioFirstName;
+    }
+
+    public void setUsuarioFirstName(String userFirstName) {
+        this.usuarioFirstName = userFirstName;
+    }
+
     public Long getRequerimientoId() {
         return requerimientoId;
     }
 
     public void setRequerimientoId(Long requerimientoId) {
         this.requerimientoId = requerimientoId;
+    }
+
+    public String getRequerimientoProyecto() {
+        return requerimientoProyecto;
+    }
+
+    public void setRequerimientoProyecto(String requerimientoProyecto) {
+        this.requerimientoProyecto = requerimientoProyecto;
     }
 
     public Long getCandidatoId() {
@@ -73,12 +97,28 @@ public class BitacoraDTO implements Serializable {
         this.candidatoId = candidatoId;
     }
 
+    public String getCandidatoNombre() {
+        return candidatoNombre;
+    }
+
+    public void setCandidatoNombre(String candidatoNombre) {
+        this.candidatoNombre = candidatoNombre;
+    }
+
     public Long getTareaId() {
         return tareaId;
     }
 
     public void setTareaId(Long tareaId) {
         this.tareaId = tareaId;
+    }
+
+    public String getTareaTitulo() {
+        return tareaTitulo;
+    }
+
+    public void setTareaTitulo(String tareaTitulo) {
+        this.tareaTitulo = tareaTitulo;
     }
 
     @Override
@@ -109,9 +149,13 @@ public class BitacoraDTO implements Serializable {
             ", fecha='" + getFecha() + "'" +
             ", comentario='" + getComentario() + "'" +
             ", usuario=" + getUsuarioId() +
+            ", usuario='" + getUsuarioFirstName() + "'" +
             ", requerimiento=" + getRequerimientoId() +
+            ", requerimiento='" + getRequerimientoProyecto() + "'" +
             ", candidato=" + getCandidatoId() +
+            ", candidato='" + getCandidatoNombre() + "'" +
             ", tarea=" + getTareaId() +
+            ", tarea='" + getTareaTitulo() + "'" +
             "}";
     }
 }

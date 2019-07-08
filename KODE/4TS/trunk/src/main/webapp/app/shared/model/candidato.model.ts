@@ -61,24 +61,41 @@ export interface ICandidato {
   skillCandidatoes?: ISkillCandidato[];
   tareas?: ITarea[];
   bitacoras?: IBitacora[];
+  disponibilidadEntrevistaPeriodoTiempoPeriodo?: string;
   disponibilidadEntrevistaPeriodoTiempoId?: number;
+  disponibilidadAsignacionPeriodoTiempoPeriodo?: string;
   disponibilidadAsignacionPeriodoTiempoId?: number;
+  usuarioCreadorFirstName?: string;
   usuarioCreadorId?: number;
+  usuarioAsignadoFirstName?: string;
   usuarioAsignadoId?: number;
+  documentoDocumento?: string;
   documentoId?: number;
   cuentaInteres?: ICuenta[];
   cuentaRechazadas?: ICuenta[];
+  fuenteReclutamientoFuente?: string;
   fuenteReclutamientoId?: number;
+  estatusCandidatoEstatus?: string;
   estatusCandidatoId?: number;
+  perfilPerfil?: string;
   perfilId?: number;
+  nivelPerfilNivel?: string;
   nivelPerfilId?: number;
+  institucionAcademicaInstitucion?: string;
   institucionAcademicaId?: number;
+  estatusAcademicoEstatus?: string;
   estatusAcademicoId?: number;
+  esquemaContratacionKodeEsquema?: string;
   esquemaContratacionKodeId?: number;
+  estatusLaboralEstatus?: string;
   estatusLaboralId?: number;
+  coloniaColonia?: string;
   coloniaId?: number;
+  antecedentesEsquemaContratacionEsquema?: string;
   antecedentesEsquemaContratacionId?: number;
+  estudiosFormacionAcademica?: string;
   estudiosId?: number;
+  estCanInactivoMotivo?: string;
   estCanInactivoId?: number;
 }
 
@@ -129,24 +146,41 @@ export class Candidato implements ICandidato {
     public skillCandidatoes?: ISkillCandidato[],
     public tareas?: ITarea[],
     public bitacoras?: IBitacora[],
+    public disponibilidadEntrevistaPeriodoTiempoPeriodo?: string,
     public disponibilidadEntrevistaPeriodoTiempoId?: number,
+    public disponibilidadAsignacionPeriodoTiempoPeriodo?: string,
     public disponibilidadAsignacionPeriodoTiempoId?: number,
+    public usuarioCreadorFirstName?: string,
     public usuarioCreadorId?: number,
+    public usuarioAsignadoFirstName?: string,
     public usuarioAsignadoId?: number,
+    public documentoDocumento?: string,
     public documentoId?: number,
     public cuentaInteres?: ICuenta[],
     public cuentaRechazadas?: ICuenta[],
+    public fuenteReclutamientoFuente?: string,
     public fuenteReclutamientoId?: number,
+    public estatusCandidatoEstatus?: string,
     public estatusCandidatoId?: number,
+    public perfilPerfil?: string,
     public perfilId?: number,
+    public nivelPerfilNivel?: string,
     public nivelPerfilId?: number,
+    public institucionAcademicaInstitucion?: string,
     public institucionAcademicaId?: number,
+    public estatusAcademicoEstatus?: string,
     public estatusAcademicoId?: number,
+    public esquemaContratacionKodeEsquema?: string,
     public esquemaContratacionKodeId?: number,
+    public estatusLaboralEstatus?: string,
     public estatusLaboralId?: number,
+    public coloniaColonia?: string,
     public coloniaId?: number,
+    public antecedentesEsquemaContratacionEsquema?: string,
     public antecedentesEsquemaContratacionId?: number,
+    public estudiosFormacionAcademica?: string,
     public estudiosId?: number,
+    public estCanInactivoMotivo?: string,
     public estCanInactivoId?: number
   ) {}
 }

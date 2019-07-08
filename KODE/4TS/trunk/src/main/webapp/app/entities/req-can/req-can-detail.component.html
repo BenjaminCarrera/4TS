@@ -8,25 +8,25 @@
                 <dt><span jhiTranslate="App.reqCan.candidato">Candidato</span></dt>
                 <dd>
                     <div *ngIf="reqCan.candidatoId">
-                        <a [routerLink]="['/candidato', reqCan.candidatoId, 'view']">{{reqCan.candidatoId}}</a>
+                        <a [routerLink]="['/candidato', reqCan.candidatoId, 'view']">{{reqCan.candidatoNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.reqCan.requerimiento">Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="reqCan.requerimientoId">
-                        <a [routerLink]="['/requerimiento', reqCan.requerimientoId, 'view']">{{reqCan.requerimientoId}}</a>
+                        <a [routerLink]="['/requerimiento', reqCan.requerimientoId, 'view']">{{reqCan.requerimientoProyecto}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.reqCan.estatusReqCan">Estatus Req Can</span></dt>
                 <dd>
                     <div *ngIf="reqCan.estatusReqCanId">
-                        <a [routerLink]="['/estatus-req-can', reqCan.estatusReqCanId, 'view']">{{reqCan.estatusReqCanId}}</a>
+                        <a [routerLink]="['/estatus-req-can', reqCan.estatusReqCanId, 'view']">{{reqCan.estatusReqCanEstatus}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.reqCan.estatusReqCanRec">Estatus Req Can Rec</span></dt>
                 <dd>
                     <div *ngIf="reqCan.estatusReqCanRecId">
-                        <a [routerLink]="['/estatus-req-can-rec', reqCan.estatusReqCanRecId, 'view']">{{reqCan.estatusReqCanRecId}}</a>
+                        <a [routerLink]="['/estatus-req-can-rec', reqCan.estatusReqCanRecId, 'view']">{{reqCan.estatusReqCanRecMotivo}}</a>
                     </div>
                 </dd>
             </dl>
