@@ -23,19 +23,33 @@ export interface IRequerimiento {
   skillRequerimientos?: ISkillRequerimiento[];
   tareas?: ITarea[];
   bitacoras?: IBitacora[];
+  cuentaClave?: string;
   cuentaId?: number;
+  subCuentaClave?: string;
   subCuentaId?: number;
+  usuarioCreadorFirstName?: string;
   usuarioCreadorId?: number;
+  usuarioAsignadoFirstName?: string;
   usuarioAsignadoId?: number;
+  estatusRequerimientoEstatus?: string;
   estatusRequerimientoId?: number;
+  prioridadPrioridad?: string;
   prioridadId?: number;
+  tipoSolicitudSolicitud?: string;
   tipoSolicitudId?: number;
+  tipoIngresoTipo?: string;
   tipoIngresoId?: number;
+  baseTarifaBase?: string;
   baseTarifaId?: number;
+  esquemaContratacionEsquema?: string;
   esquemaContratacionId?: number;
+  perfilPerfil?: string;
   perfilId?: number;
+  nivelPerfilNivel?: string;
   nivelPerfilId?: number;
+  estatusReqCanMotivo?: string;
   estatusReqCanId?: number;
+  tipoPeriodoPeriodo?: string;
   tipoPeriodoId?: number;
 }
 
@@ -60,19 +74,33 @@ export class Requerimiento implements IRequerimiento {
     public skillRequerimientos?: ISkillRequerimiento[],
     public tareas?: ITarea[],
     public bitacoras?: IBitacora[],
+    public cuentaClave?: string,
     public cuentaId?: number,
+    public subCuentaClave?: string,
     public subCuentaId?: number,
+    public usuarioCreadorFirstName?: string,
     public usuarioCreadorId?: number,
+    public usuarioAsignadoFirstName?: string,
     public usuarioAsignadoId?: number,
+    public estatusRequerimientoEstatus?: string,
     public estatusRequerimientoId?: number,
+    public prioridadPrioridad?: string,
     public prioridadId?: number,
+    public tipoSolicitudSolicitud?: string,
     public tipoSolicitudId?: number,
+    public tipoIngresoTipo?: string,
     public tipoIngresoId?: number,
+    public baseTarifaBase?: string,
     public baseTarifaId?: number,
+    public esquemaContratacionEsquema?: string,
     public esquemaContratacionId?: number,
+    public perfilPerfil?: string,
     public perfilId?: number,
+    public nivelPerfilNivel?: string,
     public nivelPerfilId?: number,
+    public estatusReqCanMotivo?: string,
     public estatusReqCanId?: number,
+    public tipoPeriodoPeriodo?: string,
     public tipoPeriodoId?: number
   ) {}
 }

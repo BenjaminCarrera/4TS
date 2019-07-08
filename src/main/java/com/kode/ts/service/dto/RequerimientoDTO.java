@@ -53,31 +53,59 @@ public class RequerimientoDTO implements Serializable {
 
     private Long cuentaId;
 
+    private String cuentaClave;
+
     private Long subCuentaId;
+
+    private String subCuentaClave;
 
     private Long usuarioCreadorId;
 
+    private String usuarioCreadorFirstName;
+
     private Long usuarioAsignadoId;
+
+    private String usuarioAsignadoFirstName;
 
     private Long estatusRequerimientoId;
 
+    private String estatusRequerimientoEstatus;
+
     private Long prioridadId;
+
+    private String prioridadPrioridad;
 
     private Long tipoSolicitudId;
 
+    private String tipoSolicitudSolicitud;
+
     private Long tipoIngresoId;
+
+    private String tipoIngresoTipo;
 
     private Long baseTarifaId;
 
+    private String baseTarifaBase;
+
     private Long esquemaContratacionId;
+
+    private String esquemaContratacionEsquema;
 
     private Long perfilId;
 
+    private String perfilPerfil;
+
     private Long nivelPerfilId;
+
+    private String nivelPerfilNivel;
 
     private Long estatusReqCanId;
 
+    private String estatusReqCanMotivo;
+
     private Long tipoPeriodoId;
+
+    private String tipoPeriodoPeriodo;
 
     public Long getId() {
         return id;
@@ -215,12 +243,28 @@ public class RequerimientoDTO implements Serializable {
         this.cuentaId = cuentaId;
     }
 
+    public String getCuentaClave() {
+        return cuentaClave;
+    }
+
+    public void setCuentaClave(String cuentaClave) {
+        this.cuentaClave = cuentaClave;
+    }
+
     public Long getSubCuentaId() {
         return subCuentaId;
     }
 
     public void setSubCuentaId(Long cuentaId) {
         this.subCuentaId = cuentaId;
+    }
+
+    public String getSubCuentaClave() {
+        return subCuentaClave;
+    }
+
+    public void setSubCuentaClave(String cuentaClave) {
+        this.subCuentaClave = cuentaClave;
     }
 
     public Long getUsuarioCreadorId() {
@@ -231,12 +275,28 @@ public class RequerimientoDTO implements Serializable {
         this.usuarioCreadorId = userId;
     }
 
+    public String getUsuarioCreadorFirstName() {
+        return usuarioCreadorFirstName;
+    }
+
+    public void setUsuarioCreadorFirstName(String userFirstName) {
+        this.usuarioCreadorFirstName = userFirstName;
+    }
+
     public Long getUsuarioAsignadoId() {
         return usuarioAsignadoId;
     }
 
     public void setUsuarioAsignadoId(Long userId) {
         this.usuarioAsignadoId = userId;
+    }
+
+    public String getUsuarioAsignadoFirstName() {
+        return usuarioAsignadoFirstName;
+    }
+
+    public void setUsuarioAsignadoFirstName(String userFirstName) {
+        this.usuarioAsignadoFirstName = userFirstName;
     }
 
     public Long getEstatusRequerimientoId() {
@@ -247,12 +307,28 @@ public class RequerimientoDTO implements Serializable {
         this.estatusRequerimientoId = estatusRequerimientoId;
     }
 
+    public String getEstatusRequerimientoEstatus() {
+        return estatusRequerimientoEstatus;
+    }
+
+    public void setEstatusRequerimientoEstatus(String estatusRequerimientoEstatus) {
+        this.estatusRequerimientoEstatus = estatusRequerimientoEstatus;
+    }
+
     public Long getPrioridadId() {
         return prioridadId;
     }
 
     public void setPrioridadId(Long prioridadReqId) {
         this.prioridadId = prioridadReqId;
+    }
+
+    public String getPrioridadPrioridad() {
+        return prioridadPrioridad;
+    }
+
+    public void setPrioridadPrioridad(String prioridadReqPrioridad) {
+        this.prioridadPrioridad = prioridadReqPrioridad;
     }
 
     public Long getTipoSolicitudId() {
@@ -263,12 +339,28 @@ public class RequerimientoDTO implements Serializable {
         this.tipoSolicitudId = tipoSolicitudId;
     }
 
+    public String getTipoSolicitudSolicitud() {
+        return tipoSolicitudSolicitud;
+    }
+
+    public void setTipoSolicitudSolicitud(String tipoSolicitudSolicitud) {
+        this.tipoSolicitudSolicitud = tipoSolicitudSolicitud;
+    }
+
     public Long getTipoIngresoId() {
         return tipoIngresoId;
     }
 
     public void setTipoIngresoId(Long tipoIngresoId) {
         this.tipoIngresoId = tipoIngresoId;
+    }
+
+    public String getTipoIngresoTipo() {
+        return tipoIngresoTipo;
+    }
+
+    public void setTipoIngresoTipo(String tipoIngresoTipo) {
+        this.tipoIngresoTipo = tipoIngresoTipo;
     }
 
     public Long getBaseTarifaId() {
@@ -279,12 +371,28 @@ public class RequerimientoDTO implements Serializable {
         this.baseTarifaId = baseTarifaId;
     }
 
+    public String getBaseTarifaBase() {
+        return baseTarifaBase;
+    }
+
+    public void setBaseTarifaBase(String baseTarifaBase) {
+        this.baseTarifaBase = baseTarifaBase;
+    }
+
     public Long getEsquemaContratacionId() {
         return esquemaContratacionId;
     }
 
     public void setEsquemaContratacionId(Long esqContRecId) {
         this.esquemaContratacionId = esqContRecId;
+    }
+
+    public String getEsquemaContratacionEsquema() {
+        return esquemaContratacionEsquema;
+    }
+
+    public void setEsquemaContratacionEsquema(String esqContRecEsquema) {
+        this.esquemaContratacionEsquema = esqContRecEsquema;
     }
 
     public Long getPerfilId() {
@@ -295,12 +403,28 @@ public class RequerimientoDTO implements Serializable {
         this.perfilId = perfilId;
     }
 
+    public String getPerfilPerfil() {
+        return perfilPerfil;
+    }
+
+    public void setPerfilPerfil(String perfilPerfil) {
+        this.perfilPerfil = perfilPerfil;
+    }
+
     public Long getNivelPerfilId() {
         return nivelPerfilId;
     }
 
     public void setNivelPerfilId(Long nivelPerfilId) {
         this.nivelPerfilId = nivelPerfilId;
+    }
+
+    public String getNivelPerfilNivel() {
+        return nivelPerfilNivel;
+    }
+
+    public void setNivelPerfilNivel(String nivelPerfilNivel) {
+        this.nivelPerfilNivel = nivelPerfilNivel;
     }
 
     public Long getEstatusReqCanId() {
@@ -311,12 +435,28 @@ public class RequerimientoDTO implements Serializable {
         this.estatusReqCanId = estReqCerradoId;
     }
 
+    public String getEstatusReqCanMotivo() {
+        return estatusReqCanMotivo;
+    }
+
+    public void setEstatusReqCanMotivo(String estReqCerradoMotivo) {
+        this.estatusReqCanMotivo = estReqCerradoMotivo;
+    }
+
     public Long getTipoPeriodoId() {
         return tipoPeriodoId;
     }
 
     public void setTipoPeriodoId(Long tipoPeriodoId) {
         this.tipoPeriodoId = tipoPeriodoId;
+    }
+
+    public String getTipoPeriodoPeriodo() {
+        return tipoPeriodoPeriodo;
+    }
+
+    public void setTipoPeriodoPeriodo(String tipoPeriodoPeriodo) {
+        this.tipoPeriodoPeriodo = tipoPeriodoPeriodo;
     }
 
     @Override
@@ -360,19 +500,33 @@ public class RequerimientoDTO implements Serializable {
             ", informacionExamen='" + getInformacionExamen() + "'" +
             ", informacionAdicional='" + getInformacionAdicional() + "'" +
             ", cuenta=" + getCuentaId() +
+            ", cuenta='" + getCuentaClave() + "'" +
             ", subCuenta=" + getSubCuentaId() +
+            ", subCuenta='" + getSubCuentaClave() + "'" +
             ", usuarioCreador=" + getUsuarioCreadorId() +
+            ", usuarioCreador='" + getUsuarioCreadorFirstName() + "'" +
             ", usuarioAsignado=" + getUsuarioAsignadoId() +
+            ", usuarioAsignado='" + getUsuarioAsignadoFirstName() + "'" +
             ", estatusRequerimiento=" + getEstatusRequerimientoId() +
+            ", estatusRequerimiento='" + getEstatusRequerimientoEstatus() + "'" +
             ", prioridad=" + getPrioridadId() +
+            ", prioridad='" + getPrioridadPrioridad() + "'" +
             ", tipoSolicitud=" + getTipoSolicitudId() +
+            ", tipoSolicitud='" + getTipoSolicitudSolicitud() + "'" +
             ", tipoIngreso=" + getTipoIngresoId() +
+            ", tipoIngreso='" + getTipoIngresoTipo() + "'" +
             ", baseTarifa=" + getBaseTarifaId() +
+            ", baseTarifa='" + getBaseTarifaBase() + "'" +
             ", esquemaContratacion=" + getEsquemaContratacionId() +
+            ", esquemaContratacion='" + getEsquemaContratacionEsquema() + "'" +
             ", perfil=" + getPerfilId() +
+            ", perfil='" + getPerfilPerfil() + "'" +
             ", nivelPerfil=" + getNivelPerfilId() +
+            ", nivelPerfil='" + getNivelPerfilNivel() + "'" +
             ", estatusReqCan=" + getEstatusReqCanId() +
+            ", estatusReqCan='" + getEstatusReqCanMotivo() + "'" +
             ", tipoPeriodo=" + getTipoPeriodoId() +
+            ", tipoPeriodo='" + getTipoPeriodoPeriodo() + "'" +
             "}";
     }
 }

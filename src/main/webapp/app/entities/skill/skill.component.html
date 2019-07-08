@@ -19,7 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="nombre"><span jhiTranslate="App.skill.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="categoriaSkillId"><span jhiTranslate="App.skill.categoriaSkill">Categoria Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoriaSkillCategoria"><span jhiTranslate="App.skill.categoriaSkill">Categoria Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,7 +29,7 @@
                 <td>{{skill.nombre}}</td>
                 <td>
                     <div *ngIf="skill.categoriaSkillId">
-                        <a [routerLink]="['../categoria-skill', skill.categoriaSkillId , 'view' ]" >{{skill.categoriaSkillId}}</a>
+                        <a [routerLink]="['../categoria-skill', skill.categoriaSkillId , 'view' ]" >{{skill.categoriaSkillCategoria}}</a>
                     </div>
                 </td>
                 <td class="text-right">

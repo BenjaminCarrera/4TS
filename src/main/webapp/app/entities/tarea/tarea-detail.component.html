@@ -15,34 +15,34 @@
                 </dd>
                 <dt><span jhiTranslate="App.tarea.usuarioCreador">Usuario Creador</span></dt>
                 <dd>
-                    {{tarea.usuarioCreadorId}}
+                    {{tarea.usuarioCreadorFirstName}}
                 </dd>
                 <dt><span jhiTranslate="App.tarea.usuarioEjecutor">Usuario Ejecutor</span></dt>
                 <dd>
-                    {{tarea.usuarioEjecutorId}}
+                    {{tarea.usuarioEjecutorFirstName}}
                 </dd>
                 <dt><span jhiTranslate="App.tarea.requerimiento">Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="tarea.requerimientoId">
-                        <a [routerLink]="['/requerimiento', tarea.requerimientoId, 'view']">{{tarea.requerimientoId}}</a>
+                        <a [routerLink]="['/requerimiento', tarea.requerimientoId, 'view']">{{tarea.requerimientoProyecto}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.tarea.candidato">Candidato</span></dt>
                 <dd>
                     <div *ngIf="tarea.candidatoId">
-                        <a [routerLink]="['/candidato', tarea.candidatoId, 'view']">{{tarea.candidatoId}}</a>
+                        <a [routerLink]="['/candidato', tarea.candidatoId, 'view']">{{tarea.candidatoNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.tarea.estatusTarea">Estatus Tarea</span></dt>
                 <dd>
                     <div *ngIf="tarea.estatusTareaId">
-                        <a [routerLink]="['/estatus-tarea', tarea.estatusTareaId, 'view']">{{tarea.estatusTareaId}}</a>
+                        <a [routerLink]="['/estatus-tarea', tarea.estatusTareaId, 'view']">{{tarea.estatusTareaEstatus}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.tarea.tipoTarea">Tipo Tarea</span></dt>
                 <dd>
                     <div *ngIf="tarea.tipoTareaId">
-                        <a [routerLink]="['/tipo-tarea', tarea.tipoTareaId, 'view']">{{tarea.tipoTareaId}}</a>
+                        <a [routerLink]="['/tipo-tarea', tarea.tipoTareaId, 'view']">{{tarea.tipoTareaTipo}}</a>
                     </div>
                 </dd>
             </dl>

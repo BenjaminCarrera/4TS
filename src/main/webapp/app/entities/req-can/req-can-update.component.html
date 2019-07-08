@@ -14,28 +14,28 @@
                     <label class="form-control-label" jhiTranslate="App.reqCan.candidato" for="field_candidato">Candidato</label>
                     <select class="form-control" id="field_candidato" name="candidato" formControlName="candidatoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.reqCan.requerimiento" for="field_requerimiento">Requerimiento</label>
                     <select class="form-control" id="field_requerimiento" name="requerimiento" formControlName="requerimientoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.id}}</option>
+                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.proyecto}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.reqCan.estatusReqCan" for="field_estatusReqCan">Estatus Req Can</label>
                     <select class="form-control" id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="estatusReqCanOption.id" *ngFor="let estatusReqCanOption of estatusreqcans; trackBy: trackEstatusReqCanById">{{estatusReqCanOption.id}}</option>
+                        <option [ngValue]="estatusReqCanOption.id" *ngFor="let estatusReqCanOption of estatusreqcans; trackBy: trackEstatusReqCanById">{{estatusReqCanOption.estatus}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.reqCan.estatusReqCanRec" for="field_estatusReqCanRec">Estatus Req Can Rec</label>
                     <select class="form-control" id="field_estatusReqCanRec" name="estatusReqCanRec" formControlName="estatusReqCanRecId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="estatusReqCanRecOption.id" *ngFor="let estatusReqCanRecOption of estatusreqcanrecs; trackBy: trackEstatusReqCanRecById">{{estatusReqCanRecOption.id}}</option>
+                        <option [ngValue]="estatusReqCanRecOption.id" *ngFor="let estatusReqCanRecOption of estatusreqcanrecs; trackBy: trackEstatusReqCanRecById">{{estatusReqCanRecOption.motivo}}</option>
                     </select>
                 </div>
             </div>

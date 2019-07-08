@@ -125,13 +125,23 @@ public class CandidatoDTO implements Serializable {
 
     private Long disponibilidadEntrevistaPeriodoTiempoId;
 
+    private String disponibilidadEntrevistaPeriodoTiempoPeriodo;
+
     private Long disponibilidadAsignacionPeriodoTiempoId;
+
+    private String disponibilidadAsignacionPeriodoTiempoPeriodo;
 
     private Long usuarioCreadorId;
 
+    private String usuarioCreadorFirstName;
+
     private Long usuarioAsignadoId;
 
+    private String usuarioAsignadoFirstName;
+
     private Long documentoId;
+
+    private String documentoDocumento;
 
     private Set<CuentaDTO> cuentaInteres = new HashSet<>();
 
@@ -139,27 +149,51 @@ public class CandidatoDTO implements Serializable {
 
     private Long fuenteReclutamientoId;
 
+    private String fuenteReclutamientoFuente;
+
     private Long estatusCandidatoId;
+
+    private String estatusCandidatoEstatus;
 
     private Long perfilId;
 
+    private String perfilPerfil;
+
     private Long nivelPerfilId;
+
+    private String nivelPerfilNivel;
 
     private Long institucionAcademicaId;
 
+    private String institucionAcademicaInstitucion;
+
     private Long estatusAcademicoId;
+
+    private String estatusAcademicoEstatus;
 
     private Long esquemaContratacionKodeId;
 
+    private String esquemaContratacionKodeEsquema;
+
     private Long estatusLaboralId;
+
+    private String estatusLaboralEstatus;
 
     private Long coloniaId;
 
+    private String coloniaColonia;
+
     private Long antecedentesEsquemaContratacionId;
+
+    private String antecedentesEsquemaContratacionEsquema;
 
     private Long estudiosId;
 
+    private String estudiosFormacionAcademica;
+
     private Long estCanInactivoId;
+
+    private String estCanInactivoMotivo;
 
     public Long getId() {
         return id;
@@ -497,12 +531,28 @@ public class CandidatoDTO implements Serializable {
         this.disponibilidadEntrevistaPeriodoTiempoId = tipoPeriodoId;
     }
 
+    public String getDisponibilidadEntrevistaPeriodoTiempoPeriodo() {
+        return disponibilidadEntrevistaPeriodoTiempoPeriodo;
+    }
+
+    public void setDisponibilidadEntrevistaPeriodoTiempoPeriodo(String tipoPeriodoPeriodo) {
+        this.disponibilidadEntrevistaPeriodoTiempoPeriodo = tipoPeriodoPeriodo;
+    }
+
     public Long getDisponibilidadAsignacionPeriodoTiempoId() {
         return disponibilidadAsignacionPeriodoTiempoId;
     }
 
     public void setDisponibilidadAsignacionPeriodoTiempoId(Long tipoPeriodoId) {
         this.disponibilidadAsignacionPeriodoTiempoId = tipoPeriodoId;
+    }
+
+    public String getDisponibilidadAsignacionPeriodoTiempoPeriodo() {
+        return disponibilidadAsignacionPeriodoTiempoPeriodo;
+    }
+
+    public void setDisponibilidadAsignacionPeriodoTiempoPeriodo(String tipoPeriodoPeriodo) {
+        this.disponibilidadAsignacionPeriodoTiempoPeriodo = tipoPeriodoPeriodo;
     }
 
     public Long getUsuarioCreadorId() {
@@ -513,6 +563,14 @@ public class CandidatoDTO implements Serializable {
         this.usuarioCreadorId = userId;
     }
 
+    public String getUsuarioCreadorFirstName() {
+        return usuarioCreadorFirstName;
+    }
+
+    public void setUsuarioCreadorFirstName(String userFirstName) {
+        this.usuarioCreadorFirstName = userFirstName;
+    }
+
     public Long getUsuarioAsignadoId() {
         return usuarioAsignadoId;
     }
@@ -521,12 +579,28 @@ public class CandidatoDTO implements Serializable {
         this.usuarioAsignadoId = userId;
     }
 
+    public String getUsuarioAsignadoFirstName() {
+        return usuarioAsignadoFirstName;
+    }
+
+    public void setUsuarioAsignadoFirstName(String userFirstName) {
+        this.usuarioAsignadoFirstName = userFirstName;
+    }
+
     public Long getDocumentoId() {
         return documentoId;
     }
 
     public void setDocumentoId(Long documentoId) {
         this.documentoId = documentoId;
+    }
+
+    public String getDocumentoDocumento() {
+        return documentoDocumento;
+    }
+
+    public void setDocumentoDocumento(String documentoDocumento) {
+        this.documentoDocumento = documentoDocumento;
     }
 
     public Set<CuentaDTO> getCuentaInteres() {
@@ -553,12 +627,28 @@ public class CandidatoDTO implements Serializable {
         this.fuenteReclutamientoId = fuenteReclutamientoId;
     }
 
+    public String getFuenteReclutamientoFuente() {
+        return fuenteReclutamientoFuente;
+    }
+
+    public void setFuenteReclutamientoFuente(String fuenteReclutamientoFuente) {
+        this.fuenteReclutamientoFuente = fuenteReclutamientoFuente;
+    }
+
     public Long getEstatusCandidatoId() {
         return estatusCandidatoId;
     }
 
     public void setEstatusCandidatoId(Long estatusCandidatoId) {
         this.estatusCandidatoId = estatusCandidatoId;
+    }
+
+    public String getEstatusCandidatoEstatus() {
+        return estatusCandidatoEstatus;
+    }
+
+    public void setEstatusCandidatoEstatus(String estatusCandidatoEstatus) {
+        this.estatusCandidatoEstatus = estatusCandidatoEstatus;
     }
 
     public Long getPerfilId() {
@@ -569,12 +659,28 @@ public class CandidatoDTO implements Serializable {
         this.perfilId = perfilId;
     }
 
+    public String getPerfilPerfil() {
+        return perfilPerfil;
+    }
+
+    public void setPerfilPerfil(String perfilPerfil) {
+        this.perfilPerfil = perfilPerfil;
+    }
+
     public Long getNivelPerfilId() {
         return nivelPerfilId;
     }
 
     public void setNivelPerfilId(Long nivelPerfilId) {
         this.nivelPerfilId = nivelPerfilId;
+    }
+
+    public String getNivelPerfilNivel() {
+        return nivelPerfilNivel;
+    }
+
+    public void setNivelPerfilNivel(String nivelPerfilNivel) {
+        this.nivelPerfilNivel = nivelPerfilNivel;
     }
 
     public Long getInstitucionAcademicaId() {
@@ -585,12 +691,28 @@ public class CandidatoDTO implements Serializable {
         this.institucionAcademicaId = institucionAcademicaId;
     }
 
+    public String getInstitucionAcademicaInstitucion() {
+        return institucionAcademicaInstitucion;
+    }
+
+    public void setInstitucionAcademicaInstitucion(String institucionAcademicaInstitucion) {
+        this.institucionAcademicaInstitucion = institucionAcademicaInstitucion;
+    }
+
     public Long getEstatusAcademicoId() {
         return estatusAcademicoId;
     }
 
     public void setEstatusAcademicoId(Long estatusAcademicoId) {
         this.estatusAcademicoId = estatusAcademicoId;
+    }
+
+    public String getEstatusAcademicoEstatus() {
+        return estatusAcademicoEstatus;
+    }
+
+    public void setEstatusAcademicoEstatus(String estatusAcademicoEstatus) {
+        this.estatusAcademicoEstatus = estatusAcademicoEstatus;
     }
 
     public Long getEsquemaContratacionKodeId() {
@@ -601,12 +723,28 @@ public class CandidatoDTO implements Serializable {
         this.esquemaContratacionKodeId = esquemaContratacionKodeId;
     }
 
+    public String getEsquemaContratacionKodeEsquema() {
+        return esquemaContratacionKodeEsquema;
+    }
+
+    public void setEsquemaContratacionKodeEsquema(String esquemaContratacionKodeEsquema) {
+        this.esquemaContratacionKodeEsquema = esquemaContratacionKodeEsquema;
+    }
+
     public Long getEstatusLaboralId() {
         return estatusLaboralId;
     }
 
     public void setEstatusLaboralId(Long estatusLaboralId) {
         this.estatusLaboralId = estatusLaboralId;
+    }
+
+    public String getEstatusLaboralEstatus() {
+        return estatusLaboralEstatus;
+    }
+
+    public void setEstatusLaboralEstatus(String estatusLaboralEstatus) {
+        this.estatusLaboralEstatus = estatusLaboralEstatus;
     }
 
     public Long getColoniaId() {
@@ -617,12 +755,28 @@ public class CandidatoDTO implements Serializable {
         this.coloniaId = coloniaId;
     }
 
+    public String getColoniaColonia() {
+        return coloniaColonia;
+    }
+
+    public void setColoniaColonia(String coloniaColonia) {
+        this.coloniaColonia = coloniaColonia;
+    }
+
     public Long getAntecedentesEsquemaContratacionId() {
         return antecedentesEsquemaContratacionId;
     }
 
     public void setAntecedentesEsquemaContratacionId(Long esqContRecId) {
         this.antecedentesEsquemaContratacionId = esqContRecId;
+    }
+
+    public String getAntecedentesEsquemaContratacionEsquema() {
+        return antecedentesEsquemaContratacionEsquema;
+    }
+
+    public void setAntecedentesEsquemaContratacionEsquema(String esqContRecEsquema) {
+        this.antecedentesEsquemaContratacionEsquema = esqContRecEsquema;
     }
 
     public Long getEstudiosId() {
@@ -633,12 +787,28 @@ public class CandidatoDTO implements Serializable {
         this.estudiosId = formacionAcademicaId;
     }
 
+    public String getEstudiosFormacionAcademica() {
+        return estudiosFormacionAcademica;
+    }
+
+    public void setEstudiosFormacionAcademica(String formacionAcademicaFormacionAcademica) {
+        this.estudiosFormacionAcademica = formacionAcademicaFormacionAcademica;
+    }
+
     public Long getEstCanInactivoId() {
         return estCanInactivoId;
     }
 
     public void setEstCanInactivoId(Long estCanInactivoId) {
         this.estCanInactivoId = estCanInactivoId;
+    }
+
+    public String getEstCanInactivoMotivo() {
+        return estCanInactivoMotivo;
+    }
+
+    public void setEstCanInactivoMotivo(String estCanInactivoMotivo) {
+        this.estCanInactivoMotivo = estCanInactivoMotivo;
     }
 
     @Override
@@ -707,22 +877,39 @@ public class CandidatoDTO implements Serializable {
             ", fechaUltimoSeguimiento='" + getFechaUltimoSeguimiento() + "'" +
             ", foto='" + getFoto() + "'" +
             ", disponibilidadEntrevistaPeriodoTiempo=" + getDisponibilidadEntrevistaPeriodoTiempoId() +
+            ", disponibilidadEntrevistaPeriodoTiempo='" + getDisponibilidadEntrevistaPeriodoTiempoPeriodo() + "'" +
             ", disponibilidadAsignacionPeriodoTiempo=" + getDisponibilidadAsignacionPeriodoTiempoId() +
+            ", disponibilidadAsignacionPeriodoTiempo='" + getDisponibilidadAsignacionPeriodoTiempoPeriodo() + "'" +
             ", usuarioCreador=" + getUsuarioCreadorId() +
+            ", usuarioCreador='" + getUsuarioCreadorFirstName() + "'" +
             ", usuarioAsignado=" + getUsuarioAsignadoId() +
+            ", usuarioAsignado='" + getUsuarioAsignadoFirstName() + "'" +
             ", documento=" + getDocumentoId() +
+            ", documento='" + getDocumentoDocumento() + "'" +
             ", fuenteReclutamiento=" + getFuenteReclutamientoId() +
+            ", fuenteReclutamiento='" + getFuenteReclutamientoFuente() + "'" +
             ", estatusCandidato=" + getEstatusCandidatoId() +
+            ", estatusCandidato='" + getEstatusCandidatoEstatus() + "'" +
             ", perfil=" + getPerfilId() +
+            ", perfil='" + getPerfilPerfil() + "'" +
             ", nivelPerfil=" + getNivelPerfilId() +
+            ", nivelPerfil='" + getNivelPerfilNivel() + "'" +
             ", institucionAcademica=" + getInstitucionAcademicaId() +
+            ", institucionAcademica='" + getInstitucionAcademicaInstitucion() + "'" +
             ", estatusAcademico=" + getEstatusAcademicoId() +
+            ", estatusAcademico='" + getEstatusAcademicoEstatus() + "'" +
             ", esquemaContratacionKode=" + getEsquemaContratacionKodeId() +
+            ", esquemaContratacionKode='" + getEsquemaContratacionKodeEsquema() + "'" +
             ", estatusLaboral=" + getEstatusLaboralId() +
+            ", estatusLaboral='" + getEstatusLaboralEstatus() + "'" +
             ", colonia=" + getColoniaId() +
+            ", colonia='" + getColoniaColonia() + "'" +
             ", antecedentesEsquemaContratacion=" + getAntecedentesEsquemaContratacionId() +
+            ", antecedentesEsquemaContratacion='" + getAntecedentesEsquemaContratacionEsquema() + "'" +
             ", estudios=" + getEstudiosId() +
+            ", estudios='" + getEstudiosFormacionAcademica() + "'" +
             ", estCanInactivo=" + getEstCanInactivoId() +
+            ", estCanInactivo='" + getEstCanInactivoMotivo() + "'" +
             "}";
     }
 }

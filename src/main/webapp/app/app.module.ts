@@ -18,23 +18,12 @@ import { AppHomeModule } from './home/home.module';
 import { AppAccountModule } from './account/account.module';
 import { AppEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import 'hammerjs';
-import { AppAgregReqModule } from './agreg-req/agreg-req.module';
-import { AppConReqModule } from './con-req/con-req.module';
-import { AppResConreqModule } from './res-conreq/res-conreq.module';
-import { AppAgregCandModule } from './agreg-cand/agreg-cand.module';
-import { AppConCandModule } from './con-cand/con-cand.module';
-import { AppResConcandModule } from './res-concand/res-concand.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 @NgModule({
   imports: [
     BrowserModule,
-        BrowserAnimationsModule,
-        FlexLayoutModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
     NgJhipsterModule.forRoot({
       // set below to true to make alerts look like toast
@@ -47,12 +36,6 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     AppCoreModule,
     AppHomeModule,
     AppAccountModule,
-    AppAgregReqModule,
-    AppConReqModule,
-    AppResConreqModule,
-    AppAgregCandModule,
-    AppConCandModule,
-    AppResConcandModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppEntityModule,
     AppAppRoutingModule

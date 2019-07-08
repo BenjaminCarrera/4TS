@@ -28,6 +28,8 @@ public class ReferenciasLaboralesDTO implements Serializable {
 
     private Long candidatoId;
 
+    private String candidatoNombre;
+
     public Long getId() {
         return id;
     }
@@ -84,6 +86,14 @@ public class ReferenciasLaboralesDTO implements Serializable {
         this.candidatoId = candidatoId;
     }
 
+    public String getCandidatoNombre() {
+        return candidatoNombre;
+    }
+
+    public void setCandidatoNombre(String candidatoNombre) {
+        this.candidatoNombre = candidatoNombre;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -115,6 +125,7 @@ public class ReferenciasLaboralesDTO implements Serializable {
             ", emailContaco='" + getEmailContaco() + "'" +
             ", telefonoContacto='" + getTelefonoContacto() + "'" +
             ", candidato=" + getCandidatoId() +
+            ", candidato='" + getCandidatoNombre() + "'" +
             "}";
     }
 }

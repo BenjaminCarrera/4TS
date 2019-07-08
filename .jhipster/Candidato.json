@@ -289,42 +289,42 @@
             "otherEntityName": "tipoPeriodo",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "disponibilidadEntrevistaPeriodoTiempo",
-            "otherEntityField": "id"
+            "otherEntityField": "periodo"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "tipoPeriodo",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "disponibilidadAsignacionPeriodoTiempo",
-            "otherEntityField": "id"
+            "otherEntityField": "periodo"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "usuarioCreador",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "usuarioAsignado",
-            "otherEntityField": "id"
+            "otherEntityField": "firstName"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "documento",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "documento",
-            "otherEntityField": "id"
+            "otherEntityField": "documento"
         },
         {
             "relationshipType": "many-to-many",
             "otherEntityName": "cuenta",
             "otherEntityRelationshipName": "candidatoInteres",
             "relationshipName": "cuentaInteres",
-            "otherEntityField": "id",
+            "otherEntityField": "clave",
             "ownerSide": true
         },
         {
@@ -332,7 +332,7 @@
             "otherEntityName": "cuenta",
             "otherEntityRelationshipName": "candidatoRechazadas",
             "relationshipName": "cuentaRechazadas",
-            "otherEntityField": "id",
+            "otherEntityField": "clave",
             "ownerSide": true
         },
         {
@@ -340,87 +340,87 @@
             "otherEntityName": "fuenteReclutamiento",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "fuenteReclutamiento",
-            "otherEntityField": "id"
+            "otherEntityField": "fuente"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusCandidato",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "estatusCandidato",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "perfil",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "perfil",
-            "otherEntityField": "id"
+            "otherEntityField": "perfil"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "nivelPerfil",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "nivelPerfil",
-            "otherEntityField": "id"
+            "otherEntityField": "nivel"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "institucionAcademica",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "institucionAcademica",
-            "otherEntityField": "id"
+            "otherEntityField": "institucion"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusAcademico",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "estatusAcademico",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "esquemaContratacionKode",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "esquemaContratacionKode",
-            "otherEntityField": "id"
+            "otherEntityField": "esquema"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estatusLaboral",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "estatusLaboral",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "colonia",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "colonia",
-            "otherEntityField": "id"
+            "otherEntityField": "colonia"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "esqContRec",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "antecedentesEsquemaContratacion",
-            "otherEntityField": "id"
+            "otherEntityField": "esquema"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "formacionAcademica",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "estudios",
-            "otherEntityField": "id"
+            "otherEntityField": "formacionAcademica"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "estCanInactivo",
             "otherEntityRelationshipName": "candidato",
             "relationshipName": "estCanInactivo",
-            "otherEntityField": "id"
+            "otherEntityField": "motivo"
         }
     ],
-    "changelogDate": "20190702185238",
+    "changelogDate": "20190708160801",
     "entityTableName": "candidato",
     "dto": "mapstruct",
     "pagination": "pagination",

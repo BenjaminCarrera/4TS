@@ -18,10 +18,10 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="candidatoId"><span jhiTranslate="App.reqCan.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="requerimientoId"><span jhiTranslate="App.reqCan.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusReqCanId"><span jhiTranslate="App.reqCan.estatusReqCan">Estatus Req Can</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusReqCanRecId"><span jhiTranslate="App.reqCan.estatusReqCanRec">Estatus Req Can Rec</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="candidatoNombre"><span jhiTranslate="App.reqCan.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="requerimientoProyecto"><span jhiTranslate="App.reqCan.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusReqCanEstatus"><span jhiTranslate="App.reqCan.estatusReqCan">Estatus Req Can</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusReqCanRecMotivo"><span jhiTranslate="App.reqCan.estatusReqCanRec">Estatus Req Can Rec</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -30,22 +30,22 @@
                 <td><a [routerLink]="['/req-can', reqCan.id, 'view' ]">{{reqCan.id}}</a></td>
                 <td>
                     <div *ngIf="reqCan.candidatoId">
-                        <a [routerLink]="['../candidato', reqCan.candidatoId , 'view' ]" >{{reqCan.candidatoId}}</a>
+                        <a [routerLink]="['../candidato', reqCan.candidatoId , 'view' ]" >{{reqCan.candidatoNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reqCan.requerimientoId">
-                        <a [routerLink]="['../requerimiento', reqCan.requerimientoId , 'view' ]" >{{reqCan.requerimientoId}}</a>
+                        <a [routerLink]="['../requerimiento', reqCan.requerimientoId , 'view' ]" >{{reqCan.requerimientoProyecto}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reqCan.estatusReqCanId">
-                        <a [routerLink]="['../estatus-req-can', reqCan.estatusReqCanId , 'view' ]" >{{reqCan.estatusReqCanId}}</a>
+                        <a [routerLink]="['../estatus-req-can', reqCan.estatusReqCanId , 'view' ]" >{{reqCan.estatusReqCanEstatus}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reqCan.estatusReqCanRecId">
-                        <a [routerLink]="['../estatus-req-can-rec', reqCan.estatusReqCanRecId , 'view' ]" >{{reqCan.estatusReqCanRecId}}</a>
+                        <a [routerLink]="['../estatus-req-can-rec', reqCan.estatusReqCanRecId , 'view' ]" >{{reqCan.estatusReqCanRecMotivo}}</a>
                     </div>
                 </td>
                 <td class="text-right">

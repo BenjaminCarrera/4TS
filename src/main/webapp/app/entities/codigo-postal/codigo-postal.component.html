@@ -19,7 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="codigoPostal"><span jhiTranslate="App.codigoPostal.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="municipioId"><span jhiTranslate="App.codigoPostal.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="municipioMunicipio"><span jhiTranslate="App.codigoPostal.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,7 +29,7 @@
                 <td>{{codigoPostal.codigoPostal}}</td>
                 <td>
                     <div *ngIf="codigoPostal.municipioId">
-                        <a [routerLink]="['../municipio', codigoPostal.municipioId , 'view' ]" >{{codigoPostal.municipioId}}</a>
+                        <a [routerLink]="['../municipio', codigoPostal.municipioId , 'view' ]" >{{codigoPostal.municipioMunicipio}}</a>
                     </div>
                 </td>
                 <td class="text-right">

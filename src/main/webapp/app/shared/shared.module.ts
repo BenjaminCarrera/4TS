@@ -1,12 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
 
-import {JhMaterialModule} from 'app/shared/jh-material.module';
 @NgModule({
-  imports: [JhMaterialModule, AppSharedCommonModule],
+  imports: [AppSharedCommonModule],
   declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [JhiLoginModalComponent],
-  exports: [JhMaterialModule, AppSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
+  exports: [AppSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppSharedModule {

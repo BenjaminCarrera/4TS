@@ -28,10 +28,10 @@
             "otherEntityName": "categoriaSkill",
             "otherEntityRelationshipName": "skill",
             "relationshipName": "categoriaSkill",
-            "otherEntityField": "id"
+            "otherEntityField": "categoria"
         }
     ],
-    "changelogDate": "20190702185258",
+    "changelogDate": "20190708160821",
     "entityTableName": "skill",
     "dto": "mapstruct",
     "pagination": "pagination",

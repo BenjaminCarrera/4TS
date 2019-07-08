@@ -18,9 +18,9 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="idRequerimientoId"><span jhiTranslate="App.skillRequerimiento.idRequerimiento">Id Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="idSkillId"><span jhiTranslate="App.skillRequerimiento.idSkill">Id Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoSkillId"><span jhiTranslate="App.skillRequerimiento.tipoSkill">Tipo Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idRequerimientoProyecto"><span jhiTranslate="App.skillRequerimiento.idRequerimiento">Id Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idSkillNombre"><span jhiTranslate="App.skillRequerimiento.idSkill">Id Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoSkillTipo"><span jhiTranslate="App.skillRequerimiento.tipoSkill">Tipo Skill</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -29,17 +29,17 @@
                 <td><a [routerLink]="['/skill-requerimiento', skillRequerimiento.id, 'view' ]">{{skillRequerimiento.id}}</a></td>
                 <td>
                     <div *ngIf="skillRequerimiento.idRequerimientoId">
-                        <a [routerLink]="['../requerimiento', skillRequerimiento.idRequerimientoId , 'view' ]" >{{skillRequerimiento.idRequerimientoId}}</a>
+                        <a [routerLink]="['../requerimiento', skillRequerimiento.idRequerimientoId , 'view' ]" >{{skillRequerimiento.idRequerimientoProyecto}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="skillRequerimiento.idSkillId">
-                        <a [routerLink]="['../skill', skillRequerimiento.idSkillId , 'view' ]" >{{skillRequerimiento.idSkillId}}</a>
+                        <a [routerLink]="['../skill', skillRequerimiento.idSkillId , 'view' ]" >{{skillRequerimiento.idSkillNombre}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="skillRequerimiento.tipoSkillId">
-                        <a [routerLink]="['../tipo-skill', skillRequerimiento.tipoSkillId , 'view' ]" >{{skillRequerimiento.tipoSkillId}}</a>
+                        <a [routerLink]="['../tipo-skill', skillRequerimiento.tipoSkillId , 'view' ]" >{{skillRequerimiento.tipoSkillTipo}}</a>
                     </div>
                 </td>
                 <td class="text-right">

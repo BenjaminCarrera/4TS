@@ -12,9 +12,15 @@ public class SkillRequerimientoDTO implements Serializable {
 
     private Long idRequerimientoId;
 
+    private String idRequerimientoProyecto;
+
     private Long idSkillId;
 
+    private String idSkillNombre;
+
     private Long tipoSkillId;
+
+    private String tipoSkillTipo;
 
     public Long getId() {
         return id;
@@ -32,6 +38,14 @@ public class SkillRequerimientoDTO implements Serializable {
         this.idRequerimientoId = requerimientoId;
     }
 
+    public String getIdRequerimientoProyecto() {
+        return idRequerimientoProyecto;
+    }
+
+    public void setIdRequerimientoProyecto(String requerimientoProyecto) {
+        this.idRequerimientoProyecto = requerimientoProyecto;
+    }
+
     public Long getIdSkillId() {
         return idSkillId;
     }
@@ -40,12 +54,28 @@ public class SkillRequerimientoDTO implements Serializable {
         this.idSkillId = skillId;
     }
 
+    public String getIdSkillNombre() {
+        return idSkillNombre;
+    }
+
+    public void setIdSkillNombre(String skillNombre) {
+        this.idSkillNombre = skillNombre;
+    }
+
     public Long getTipoSkillId() {
         return tipoSkillId;
     }
 
     public void setTipoSkillId(Long tipoSkillId) {
         this.tipoSkillId = tipoSkillId;
+    }
+
+    public String getTipoSkillTipo() {
+        return tipoSkillTipo;
+    }
+
+    public void setTipoSkillTipo(String tipoSkillTipo) {
+        this.tipoSkillTipo = tipoSkillTipo;
     }
 
     @Override
@@ -74,8 +104,11 @@ public class SkillRequerimientoDTO implements Serializable {
         return "SkillRequerimientoDTO{" +
             "id=" + getId() +
             ", idRequerimiento=" + getIdRequerimientoId() +
+            ", idRequerimiento='" + getIdRequerimientoProyecto() + "'" +
             ", idSkill=" + getIdSkillId() +
+            ", idSkill='" + getIdSkillNombre() + "'" +
             ", tipoSkill=" + getTipoSkillId() +
+            ", tipoSkill='" + getTipoSkillTipo() + "'" +
             "}";
     }
 }

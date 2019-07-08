@@ -31,28 +31,28 @@
                     <label class="form-control-label" jhiTranslate="App.bitacora.usuario" for="field_usuario">Usuario</label>
                     <select class="form-control" id="field_usuario" name="usuario" formControlName="usuarioId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.bitacora.requerimiento" for="field_requerimiento">Requerimiento</label>
                     <select class="form-control" id="field_requerimiento" name="requerimiento" formControlName="requerimientoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.id}}</option>
+                        <option [ngValue]="requerimientoOption.id" *ngFor="let requerimientoOption of requerimientos; trackBy: trackRequerimientoById">{{requerimientoOption.proyecto}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.bitacora.candidato" for="field_candidato">Candidato</label>
                     <select class="form-control" id="field_candidato" name="candidato" formControlName="candidatoId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.id}}</option>
+                        <option [ngValue]="candidatoOption.id" *ngFor="let candidatoOption of candidatoes; trackBy: trackCandidatoById">{{candidatoOption.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.bitacora.tarea" for="field_tarea">Tarea</label>
                     <select class="form-control" id="field_tarea" name="tarea" formControlName="tareaId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="tareaOption.id" *ngFor="let tareaOption of tareas; trackBy: trackTareaById">{{tareaOption.id}}</option>
+                        <option [ngValue]="tareaOption.id" *ngFor="let tareaOption of tareas; trackBy: trackTareaById">{{tareaOption.titulo}}</option>
                     </select>
                 </div>
             </div>

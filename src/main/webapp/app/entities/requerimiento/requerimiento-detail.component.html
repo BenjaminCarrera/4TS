@@ -68,81 +68,81 @@
                 <dt><span jhiTranslate="App.requerimiento.cuenta">Cuenta</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.cuentaId">
-                        <a [routerLink]="['/cuenta', requerimiento.cuentaId, 'view']">{{requerimiento.cuentaId}}</a>
+                        <a [routerLink]="['/cuenta', requerimiento.cuentaId, 'view']">{{requerimiento.cuentaClave}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.subCuenta">Sub Cuenta</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.subCuentaId">
-                        <a [routerLink]="['/cuenta', requerimiento.subCuentaId, 'view']">{{requerimiento.subCuentaId}}</a>
+                        <a [routerLink]="['/cuenta', requerimiento.subCuentaId, 'view']">{{requerimiento.subCuentaClave}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.usuarioCreador">Usuario Creador</span></dt>
                 <dd>
-                    {{requerimiento.usuarioCreadorId}}
+                    {{requerimiento.usuarioCreadorFirstName}}
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.usuarioAsignado">Usuario Asignado</span></dt>
                 <dd>
-                    {{requerimiento.usuarioAsignadoId}}
+                    {{requerimiento.usuarioAsignadoFirstName}}
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.estatusRequerimiento">Estatus Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.estatusRequerimientoId">
-                        <a [routerLink]="['/estatus-requerimiento', requerimiento.estatusRequerimientoId, 'view']">{{requerimiento.estatusRequerimientoId}}</a>
+                        <a [routerLink]="['/estatus-requerimiento', requerimiento.estatusRequerimientoId, 'view']">{{requerimiento.estatusRequerimientoEstatus}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.prioridad">Prioridad</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.prioridadId">
-                        <a [routerLink]="['/prioridad-req', requerimiento.prioridadId, 'view']">{{requerimiento.prioridadId}}</a>
+                        <a [routerLink]="['/prioridad-req', requerimiento.prioridadId, 'view']">{{requerimiento.prioridadPrioridad}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.tipoSolicitud">Tipo Solicitud</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.tipoSolicitudId">
-                        <a [routerLink]="['/tipo-solicitud', requerimiento.tipoSolicitudId, 'view']">{{requerimiento.tipoSolicitudId}}</a>
+                        <a [routerLink]="['/tipo-solicitud', requerimiento.tipoSolicitudId, 'view']">{{requerimiento.tipoSolicitudSolicitud}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.tipoIngreso">Tipo Ingreso</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.tipoIngresoId">
-                        <a [routerLink]="['/tipo-ingreso', requerimiento.tipoIngresoId, 'view']">{{requerimiento.tipoIngresoId}}</a>
+                        <a [routerLink]="['/tipo-ingreso', requerimiento.tipoIngresoId, 'view']">{{requerimiento.tipoIngresoTipo}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.baseTarifa">Base Tarifa</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.baseTarifaId">
-                        <a [routerLink]="['/base-tarifa', requerimiento.baseTarifaId, 'view']">{{requerimiento.baseTarifaId}}</a>
+                        <a [routerLink]="['/base-tarifa', requerimiento.baseTarifaId, 'view']">{{requerimiento.baseTarifaBase}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.esquemaContratacion">Esquema Contratacion</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.esquemaContratacionId">
-                        <a [routerLink]="['/esq-cont-rec', requerimiento.esquemaContratacionId, 'view']">{{requerimiento.esquemaContratacionId}}</a>
+                        <a [routerLink]="['/esq-cont-rec', requerimiento.esquemaContratacionId, 'view']">{{requerimiento.esquemaContratacionEsquema}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.perfil">Perfil</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.perfilId">
-                        <a [routerLink]="['/perfil', requerimiento.perfilId, 'view']">{{requerimiento.perfilId}}</a>
+                        <a [routerLink]="['/perfil', requerimiento.perfilId, 'view']">{{requerimiento.perfilPerfil}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.nivelPerfil">Nivel Perfil</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.nivelPerfilId">
-                        <a [routerLink]="['/nivel-perfil', requerimiento.nivelPerfilId, 'view']">{{requerimiento.nivelPerfilId}}</a>
+                        <a [routerLink]="['/nivel-perfil', requerimiento.nivelPerfilId, 'view']">{{requerimiento.nivelPerfilNivel}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.estatusReqCan">Estatus Req Can</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.estatusReqCanId">
-                        <a [routerLink]="['/est-req-cerrado', requerimiento.estatusReqCanId, 'view']">{{requerimiento.estatusReqCanId}}</a>
+                        <a [routerLink]="['/est-req-cerrado', requerimiento.estatusReqCanId, 'view']">{{requerimiento.estatusReqCanMotivo}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.requerimiento.tipoPeriodo">Tipo Periodo</span></dt>
                 <dd>
                     <div *ngIf="requerimiento.tipoPeriodoId">
-                        <a [routerLink]="['/tipo-periodo', requerimiento.tipoPeriodoId, 'view']">{{requerimiento.tipoPeriodoId}}</a>
+                        <a [routerLink]="['/tipo-periodo', requerimiento.tipoPeriodoId, 'view']">{{requerimiento.tipoPeriodoPeriodo}}</a>
                     </div>
                 </dd>
             </dl>

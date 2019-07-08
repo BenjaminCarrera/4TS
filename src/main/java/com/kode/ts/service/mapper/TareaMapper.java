@@ -12,11 +12,17 @@ import org.mapstruct.*;
 public interface TareaMapper extends EntityMapper<TareaDTO, Tarea> {
 
     @Mapping(source = "usuarioCreador.id", target = "usuarioCreadorId")
+    @Mapping(source = "usuarioCreador.firstName", target = "usuarioCreadorFirstName")
     @Mapping(source = "usuarioEjecutor.id", target = "usuarioEjecutorId")
+    @Mapping(source = "usuarioEjecutor.firstName", target = "usuarioEjecutorFirstName")
     @Mapping(source = "requerimiento.id", target = "requerimientoId")
+    @Mapping(source = "requerimiento.proyecto", target = "requerimientoProyecto")
     @Mapping(source = "candidato.id", target = "candidatoId")
+    @Mapping(source = "candidato.nombre", target = "candidatoNombre")
     @Mapping(source = "estatusTarea.id", target = "estatusTareaId")
+    @Mapping(source = "estatusTarea.estatus", target = "estatusTareaEstatus")
     @Mapping(source = "tipoTarea.id", target = "tipoTareaId")
+    @Mapping(source = "tipoTarea.tipo", target = "tipoTareaTipo")
     TareaDTO toDto(Tarea tarea);
 
     @Mapping(target = "bitacoras", ignore = true)

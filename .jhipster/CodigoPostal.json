@@ -22,10 +22,10 @@
             "otherEntityName": "municipio",
             "otherEntityRelationshipName": "codigoPostal",
             "relationshipName": "municipio",
-            "otherEntityField": "id"
+            "otherEntityField": "municipio"
         }
     ],
-    "changelogDate": "20190702185244",
+    "changelogDate": "20190708160807",
     "entityTableName": "codigo_postal",
     "dto": "mapstruct",
     "pagination": "pagination",

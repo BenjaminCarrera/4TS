@@ -12,8 +12,11 @@ import org.mapstruct.*;
 public interface SkillCandidatoMapper extends EntityMapper<SkillCandidatoDTO, SkillCandidato> {
 
     @Mapping(source = "idCandidato.id", target = "idCandidatoId")
+    @Mapping(source = "idCandidato.nombre", target = "idCandidatoNombre")
     @Mapping(source = "idSkill.id", target = "idSkillId")
+    @Mapping(source = "idSkill.nombre", target = "idSkillNombre")
     @Mapping(source = "nivelSkill.id", target = "nivelSkillId")
+    @Mapping(source = "nivelSkill.dominio", target = "nivelSkillDominio")
     SkillCandidatoDTO toDto(SkillCandidato skillCandidato);
 
     @Mapping(source = "idCandidatoId", target = "idCandidato")

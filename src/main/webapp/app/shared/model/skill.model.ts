@@ -6,6 +6,7 @@ export interface ISkill {
   nombre?: string;
   skillCandidatoes?: ISkillCandidato[];
   skillRequerimientos?: ISkillRequerimiento[];
+  categoriaSkillCategoria?: string;
   categoriaSkillId?: number;
 }
 
@@ -15,6 +16,7 @@ export class Skill implements ISkill {
     public nombre?: string,
     public skillCandidatoes?: ISkillCandidato[],
     public skillRequerimientos?: ISkillRequerimiento[],
+    public categoriaSkillCategoria?: string,
     public categoriaSkillId?: number
   ) {}
 }

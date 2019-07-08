@@ -33,20 +33,20 @@
             <th jhiSortBy="horario"><span jhiTranslate="App.requerimiento.horario">Horario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="informacionExamen"><span jhiTranslate="App.requerimiento.informacionExamen">Informacion Examen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="informacionAdicional"><span jhiTranslate="App.requerimiento.informacionAdicional">Informacion Adicional</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cuentaId"><span jhiTranslate="App.requerimiento.cuenta">Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="subCuentaId"><span jhiTranslate="App.requerimiento.subCuenta">Sub Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioCreadorId"><span jhiTranslate="App.requerimiento.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioAsignadoId"><span jhiTranslate="App.requerimiento.usuarioAsignado">Usuario Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusRequerimientoId"><span jhiTranslate="App.requerimiento.estatusRequerimiento">Estatus Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="prioridadId"><span jhiTranslate="App.requerimiento.prioridad">Prioridad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoSolicitudId"><span jhiTranslate="App.requerimiento.tipoSolicitud">Tipo Solicitud</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoIngresoId"><span jhiTranslate="App.requerimiento.tipoIngreso">Tipo Ingreso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="baseTarifaId"><span jhiTranslate="App.requerimiento.baseTarifa">Base Tarifa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="esquemaContratacionId"><span jhiTranslate="App.requerimiento.esquemaContratacion">Esquema Contratacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="perfilId"><span jhiTranslate="App.requerimiento.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nivelPerfilId"><span jhiTranslate="App.requerimiento.nivelPerfil">Nivel Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusReqCanId"><span jhiTranslate="App.requerimiento.estatusReqCan">Estatus Req Can</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoPeriodoId"><span jhiTranslate="App.requerimiento.tipoPeriodo">Tipo Periodo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cuentaClave"><span jhiTranslate="App.requerimiento.cuenta">Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="subCuentaClave"><span jhiTranslate="App.requerimiento.subCuenta">Sub Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioCreadorFirstName"><span jhiTranslate="App.requerimiento.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="usuarioAsignadoFirstName"><span jhiTranslate="App.requerimiento.usuarioAsignado">Usuario Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusRequerimientoEstatus"><span jhiTranslate="App.requerimiento.estatusRequerimiento">Estatus Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="prioridadPrioridad"><span jhiTranslate="App.requerimiento.prioridad">Prioridad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoSolicitudSolicitud"><span jhiTranslate="App.requerimiento.tipoSolicitud">Tipo Solicitud</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoIngresoTipo"><span jhiTranslate="App.requerimiento.tipoIngreso">Tipo Ingreso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="baseTarifaBase"><span jhiTranslate="App.requerimiento.baseTarifa">Base Tarifa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="esquemaContratacionEsquema"><span jhiTranslate="App.requerimiento.esquemaContratacion">Esquema Contratacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="perfilPerfil"><span jhiTranslate="App.requerimiento.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nivelPerfilNivel"><span jhiTranslate="App.requerimiento.nivelPerfil">Nivel Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estatusReqCanMotivo"><span jhiTranslate="App.requerimiento.estatusReqCan">Estatus Req Can</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoPeriodoPeriodo"><span jhiTranslate="App.requerimiento.tipoPeriodo">Tipo Periodo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -70,68 +70,68 @@
                 <td>{{requerimiento.informacionAdicional}}</td>
                 <td>
                     <div *ngIf="requerimiento.cuentaId">
-                        <a [routerLink]="['../cuenta', requerimiento.cuentaId , 'view' ]" >{{requerimiento.cuentaId}}</a>
+                        <a [routerLink]="['../cuenta', requerimiento.cuentaId , 'view' ]" >{{requerimiento.cuentaClave}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.subCuentaId">
-                        <a [routerLink]="['../cuenta', requerimiento.subCuentaId , 'view' ]" >{{requerimiento.subCuentaId}}</a>
+                        <a [routerLink]="['../cuenta', requerimiento.subCuentaId , 'view' ]" >{{requerimiento.subCuentaClave}}</a>
                     </div>
                 </td>
                 <td>
-                    {{requerimiento.usuarioCreadorId}}
+                    {{requerimiento.usuarioCreadorFirstName}}
                 </td>
                 <td>
-                    {{requerimiento.usuarioAsignadoId}}
+                    {{requerimiento.usuarioAsignadoFirstName}}
                 </td>
                 <td>
                     <div *ngIf="requerimiento.estatusRequerimientoId">
-                        <a [routerLink]="['../estatus-requerimiento', requerimiento.estatusRequerimientoId , 'view' ]" >{{requerimiento.estatusRequerimientoId}}</a>
+                        <a [routerLink]="['../estatus-requerimiento', requerimiento.estatusRequerimientoId , 'view' ]" >{{requerimiento.estatusRequerimientoEstatus}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.prioridadId">
-                        <a [routerLink]="['../prioridad-req', requerimiento.prioridadId , 'view' ]" >{{requerimiento.prioridadId}}</a>
+                        <a [routerLink]="['../prioridad-req', requerimiento.prioridadId , 'view' ]" >{{requerimiento.prioridadPrioridad}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.tipoSolicitudId">
-                        <a [routerLink]="['../tipo-solicitud', requerimiento.tipoSolicitudId , 'view' ]" >{{requerimiento.tipoSolicitudId}}</a>
+                        <a [routerLink]="['../tipo-solicitud', requerimiento.tipoSolicitudId , 'view' ]" >{{requerimiento.tipoSolicitudSolicitud}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.tipoIngresoId">
-                        <a [routerLink]="['../tipo-ingreso', requerimiento.tipoIngresoId , 'view' ]" >{{requerimiento.tipoIngresoId}}</a>
+                        <a [routerLink]="['../tipo-ingreso', requerimiento.tipoIngresoId , 'view' ]" >{{requerimiento.tipoIngresoTipo}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.baseTarifaId">
-                        <a [routerLink]="['../base-tarifa', requerimiento.baseTarifaId , 'view' ]" >{{requerimiento.baseTarifaId}}</a>
+                        <a [routerLink]="['../base-tarifa', requerimiento.baseTarifaId , 'view' ]" >{{requerimiento.baseTarifaBase}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.esquemaContratacionId">
-                        <a [routerLink]="['../esq-cont-rec', requerimiento.esquemaContratacionId , 'view' ]" >{{requerimiento.esquemaContratacionId}}</a>
+                        <a [routerLink]="['../esq-cont-rec', requerimiento.esquemaContratacionId , 'view' ]" >{{requerimiento.esquemaContratacionEsquema}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.perfilId">
-                        <a [routerLink]="['../perfil', requerimiento.perfilId , 'view' ]" >{{requerimiento.perfilId}}</a>
+                        <a [routerLink]="['../perfil', requerimiento.perfilId , 'view' ]" >{{requerimiento.perfilPerfil}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.nivelPerfilId">
-                        <a [routerLink]="['../nivel-perfil', requerimiento.nivelPerfilId , 'view' ]" >{{requerimiento.nivelPerfilId}}</a>
+                        <a [routerLink]="['../nivel-perfil', requerimiento.nivelPerfilId , 'view' ]" >{{requerimiento.nivelPerfilNivel}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.estatusReqCanId">
-                        <a [routerLink]="['../est-req-cerrado', requerimiento.estatusReqCanId , 'view' ]" >{{requerimiento.estatusReqCanId}}</a>
+                        <a [routerLink]="['../est-req-cerrado', requerimiento.estatusReqCanId , 'view' ]" >{{requerimiento.estatusReqCanMotivo}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="requerimiento.tipoPeriodoId">
-                        <a [routerLink]="['../tipo-periodo', requerimiento.tipoPeriodoId , 'view' ]" >{{requerimiento.tipoPeriodoId}}</a>
+                        <a [routerLink]="['../tipo-periodo', requerimiento.tipoPeriodoId , 'view' ]" >{{requerimiento.tipoPeriodoPeriodo}}</a>
                     </div>
                 </td>
                 <td class="text-right">

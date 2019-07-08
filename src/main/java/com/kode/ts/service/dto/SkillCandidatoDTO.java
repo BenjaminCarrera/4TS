@@ -14,9 +14,15 @@ public class SkillCandidatoDTO implements Serializable {
 
     private Long idCandidatoId;
 
+    private String idCandidatoNombre;
+
     private Long idSkillId;
 
+    private String idSkillNombre;
+
     private Long nivelSkillId;
+
+    private String nivelSkillDominio;
 
     public Long getId() {
         return id;
@@ -42,6 +48,14 @@ public class SkillCandidatoDTO implements Serializable {
         this.idCandidatoId = candidatoId;
     }
 
+    public String getIdCandidatoNombre() {
+        return idCandidatoNombre;
+    }
+
+    public void setIdCandidatoNombre(String candidatoNombre) {
+        this.idCandidatoNombre = candidatoNombre;
+    }
+
     public Long getIdSkillId() {
         return idSkillId;
     }
@@ -50,12 +64,28 @@ public class SkillCandidatoDTO implements Serializable {
         this.idSkillId = skillId;
     }
 
+    public String getIdSkillNombre() {
+        return idSkillNombre;
+    }
+
+    public void setIdSkillNombre(String skillNombre) {
+        this.idSkillNombre = skillNombre;
+    }
+
     public Long getNivelSkillId() {
         return nivelSkillId;
     }
 
     public void setNivelSkillId(Long dominioSkillId) {
         this.nivelSkillId = dominioSkillId;
+    }
+
+    public String getNivelSkillDominio() {
+        return nivelSkillDominio;
+    }
+
+    public void setNivelSkillDominio(String dominioSkillDominio) {
+        this.nivelSkillDominio = dominioSkillDominio;
     }
 
     @Override
@@ -85,8 +115,11 @@ public class SkillCandidatoDTO implements Serializable {
             "id=" + getId() +
             ", calificacionSkill=" + getCalificacionSkill() +
             ", idCandidato=" + getIdCandidatoId() +
+            ", idCandidato='" + getIdCandidatoNombre() + "'" +
             ", idSkill=" + getIdSkillId() +
+            ", idSkill='" + getIdSkillNombre() + "'" +
             ", nivelSkill=" + getNivelSkillId() +
+            ", nivelSkill='" + getNivelSkillDominio() + "'" +
             "}";
     }
 }

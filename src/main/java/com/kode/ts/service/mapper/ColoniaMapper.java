@@ -13,6 +13,7 @@ public interface ColoniaMapper extends EntityMapper<ColoniaDTO, Colonia> {
 
     @Mapping(source = "municipio.id", target = "municipioId")
     @Mapping(source = "codigoPostal.id", target = "codigoPostalId")
+    @Mapping(source = "codigoPostal.codigoPostal", target = "codigoPostalCodigoPostal")
     ColoniaDTO toDto(Colonia colonia);
 
     @Mapping(target = "candidatoes", ignore = true)

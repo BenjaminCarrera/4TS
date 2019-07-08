@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="App.permiso.home.title">Permisos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-permiso" [routerLink]="['/permiso/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="App.permiso.home.createLabel">
+            Create new Permiso
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="permisos?.length === 0">
+        <span jhiTranslate="App.permiso.home.notFound">No permisos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="permisos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="App.permiso.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="descripcion"><span jhiTranslate="App.permiso.descripcion">Descripcion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="activated"><span jhiTranslate="App.permiso.activated">Activated</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deleted"><span jhiTranslate="App.permiso.deleted">Deleted</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createdBy"><span jhiTranslate="App.permiso.createdBy">Created By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createdDate"><span jhiTranslate="App.permiso.createdDate">Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastModifiedBy"><span jhiTranslate="App.permiso.lastModifiedBy">Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastModifiedDate"><span jhiTranslate="App.permiso.lastModifiedDate">Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let permiso of permisos ;trackBy: trackId">
+                <td><a [routerLink]="['/permiso', permiso.id, 'view' ]">{{permiso.id}}</a></td>
+                <td>{{permiso.nombre}}</td>
+                <td>{{permiso.descripcion}}</td>
+                <td>{{permiso.activated}}</td>
+                <td>{{permiso.deleted}}</td>
+                <td>{{permiso.createdBy}}</td>
+                <td>{{permiso.createdDate | date:'medium'}}</td>
+                <td>{{permiso.lastModifiedBy}}</td>
+                <td>{{permiso.lastModifiedDate | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/permiso', permiso.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/permiso', permiso.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'permiso', { outlets: { popup: permiso.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="permisos?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

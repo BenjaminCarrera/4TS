@@ -12,9 +12,13 @@ import org.mapstruct.*;
 public interface ReqCanMapper extends EntityMapper<ReqCanDTO, ReqCan> {
 
     @Mapping(source = "candidato.id", target = "candidatoId")
+    @Mapping(source = "candidato.nombre", target = "candidatoNombre")
     @Mapping(source = "requerimiento.id", target = "requerimientoId")
+    @Mapping(source = "requerimiento.proyecto", target = "requerimientoProyecto")
     @Mapping(source = "estatusReqCan.id", target = "estatusReqCanId")
+    @Mapping(source = "estatusReqCan.estatus", target = "estatusReqCanEstatus")
     @Mapping(source = "estatusReqCanRec.id", target = "estatusReqCanRecId")
+    @Mapping(source = "estatusReqCanRec.motivo", target = "estatusReqCanRecMotivo")
     ReqCanDTO toDto(ReqCan reqCan);
 
     @Mapping(source = "candidatoId", target = "candidato")

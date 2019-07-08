@@ -8,19 +8,19 @@
                 <dt><span jhiTranslate="App.skillRequerimiento.idRequerimiento">Id Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="skillRequerimiento.idRequerimientoId">
-                        <a [routerLink]="['/requerimiento', skillRequerimiento.idRequerimientoId, 'view']">{{skillRequerimiento.idRequerimientoId}}</a>
+                        <a [routerLink]="['/requerimiento', skillRequerimiento.idRequerimientoId, 'view']">{{skillRequerimiento.idRequerimientoProyecto}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.skillRequerimiento.idSkill">Id Skill</span></dt>
                 <dd>
                     <div *ngIf="skillRequerimiento.idSkillId">
-                        <a [routerLink]="['/skill', skillRequerimiento.idSkillId, 'view']">{{skillRequerimiento.idSkillId}}</a>
+                        <a [routerLink]="['/skill', skillRequerimiento.idSkillId, 'view']">{{skillRequerimiento.idSkillNombre}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="App.skillRequerimiento.tipoSkill">Tipo Skill</span></dt>
                 <dd>
                     <div *ngIf="skillRequerimiento.tipoSkillId">
-                        <a [routerLink]="['/tipo-skill', skillRequerimiento.tipoSkillId, 'view']">{{skillRequerimiento.tipoSkillId}}</a>
+                        <a [routerLink]="['/tipo-skill', skillRequerimiento.tipoSkillId, 'view']">{{skillRequerimiento.tipoSkillTipo}}</a>
                     </div>
                 </dd>
             </dl>

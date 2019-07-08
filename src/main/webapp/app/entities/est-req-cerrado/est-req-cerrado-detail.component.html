@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="App.estReqCerrado.estatusRequerimiento">Estatus Requerimiento</span></dt>
                 <dd>
                     <div *ngIf="estReqCerrado.estatusRequerimientoId">
-                        <a [routerLink]="['/estatus-requerimiento', estReqCerrado.estatusRequerimientoId, 'view']">{{estReqCerrado.estatusRequerimientoId}}</a>
+                        <a [routerLink]="['/estatus-requerimiento', estReqCerrado.estatusRequerimientoId, 'view']">{{estReqCerrado.estatusRequerimientoEstatus}}</a>
                     </div>
                 </dd>
             </dl>

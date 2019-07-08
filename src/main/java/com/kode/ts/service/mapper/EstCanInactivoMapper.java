@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface EstCanInactivoMapper extends EntityMapper<EstCanInactivoDTO, EstCanInactivo> {
 
     @Mapping(source = "estatusCandidato.id", target = "estatusCandidatoId")
+    @Mapping(source = "estatusCandidato.estatus", target = "estatusCandidatoEstatus")
     EstCanInactivoDTO toDto(EstCanInactivo estCanInactivo);
 
     @Mapping(target = "candidatoes", ignore = true)

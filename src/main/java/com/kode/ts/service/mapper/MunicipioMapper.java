@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface MunicipioMapper extends EntityMapper<MunicipioDTO, Municipio> {
 
     @Mapping(source = "estado.id", target = "estadoId")
+    @Mapping(source = "estado.estado", target = "estadoEstado")
     MunicipioDTO toDto(Municipio municipio);
 
     @Mapping(target = "colonias", ignore = true)

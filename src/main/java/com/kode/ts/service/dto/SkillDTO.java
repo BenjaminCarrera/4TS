@@ -16,6 +16,8 @@ public class SkillDTO implements Serializable {
 
     private Long categoriaSkillId;
 
+    private String categoriaSkillCategoria;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class SkillDTO implements Serializable {
 
     public void setCategoriaSkillId(Long categoriaSkillId) {
         this.categoriaSkillId = categoriaSkillId;
+    }
+
+    public String getCategoriaSkillCategoria() {
+        return categoriaSkillCategoria;
+    }
+
+    public void setCategoriaSkillCategoria(String categoriaSkillCategoria) {
+        this.categoriaSkillCategoria = categoriaSkillCategoria;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class SkillDTO implements Serializable {
             "id=" + getId() +
             ", nombre='" + getNombre() + "'" +
             ", categoriaSkill=" + getCategoriaSkillId() +
+            ", categoriaSkill='" + getCategoriaSkillCategoria() + "'" +
             "}";
     }
 }

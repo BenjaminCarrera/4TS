@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="permisoAuthority">
+            <h2><span jhiTranslate="App.permisoAuthority.detail.title">Permiso Authority</span> {{permisoAuthority.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="App.permisoAuthority.authority">Authority</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.authority}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.activated">Activated</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.activated}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.deleted}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.createdDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.lastModifiedBy">Last Modified By</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.lastModifiedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.lastModifiedDate">Last Modified Date</span></dt>
+                <dd>
+                    <span>{{permisoAuthority.lastModifiedDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="App.permisoAuthority.permiso">Permiso</span></dt>
+                <dd>
+                    <div *ngIf="permisoAuthority.permisoId">
+                        <a [routerLink]="['/permiso', permisoAuthority.permisoId, 'view']">{{permisoAuthority.permisoNombre}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/permiso-authority', permisoAuthority.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -16,10 +16,10 @@
             "otherEntityName": "estatusReqCan",
             "otherEntityRelationshipName": "estatusReqCanRec",
             "relationshipName": "estatusReqCan",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         }
     ],
-    "changelogDate": "20190702185312",
+    "changelogDate": "20190708160835",
     "entityTableName": "estatus_req_can_rec",
     "dto": "mapstruct",
     "pagination": "pagination",

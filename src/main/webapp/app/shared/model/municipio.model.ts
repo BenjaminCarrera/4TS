@@ -6,6 +6,7 @@ export interface IMunicipio {
   municipio?: string;
   colonias?: IColonia[];
   codigoPostals?: ICodigoPostal[];
+  estadoEstado?: string;
   estadoId?: number;
 }
 
@@ -15,6 +16,7 @@ export class Municipio implements IMunicipio {
     public municipio?: string,
     public colonias?: IColonia[],
     public codigoPostals?: ICodigoPostal[],
+    public estadoEstado?: string,
     public estadoId?: number
   ) {}
 }

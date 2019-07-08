@@ -16,6 +16,8 @@ public class EstReqCerradoDTO implements Serializable {
 
     private Long estatusRequerimientoId;
 
+    private String estatusRequerimientoEstatus;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class EstReqCerradoDTO implements Serializable {
 
     public void setEstatusRequerimientoId(Long estatusRequerimientoId) {
         this.estatusRequerimientoId = estatusRequerimientoId;
+    }
+
+    public String getEstatusRequerimientoEstatus() {
+        return estatusRequerimientoEstatus;
+    }
+
+    public void setEstatusRequerimientoEstatus(String estatusRequerimientoEstatus) {
+        this.estatusRequerimientoEstatus = estatusRequerimientoEstatus;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class EstReqCerradoDTO implements Serializable {
             "id=" + getId() +
             ", motivo='" + getMotivo() + "'" +
             ", estatusRequerimiento=" + getEstatusRequerimientoId() +
+            ", estatusRequerimiento='" + getEstatusRequerimientoEstatus() + "'" +
             "}";
     }
 }

@@ -22,10 +22,10 @@
             "otherEntityName": "estatusRequerimiento",
             "otherEntityRelationshipName": "estReqCerrado",
             "relationshipName": "estatusRequerimiento",
-            "otherEntityField": "id"
+            "otherEntityField": "estatus"
         }
     ],
-    "changelogDate": "20190702185305",
+    "changelogDate": "20190708160828",
     "entityTableName": "est_req_cerrado",
     "dto": "mapstruct",
     "pagination": "pagination",

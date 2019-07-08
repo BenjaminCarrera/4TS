@@ -12,24 +12,24 @@
             "otherEntityName": "candidato",
             "otherEntityRelationshipName": "skillCandidato",
             "relationshipName": "idCandidato",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "skill",
             "otherEntityRelationshipName": "skillCandidato",
             "relationshipName": "idSkill",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "dominioSkill",
             "otherEntityRelationshipName": "skillCandidato",
             "relationshipName": "nivelSkill",
-            "otherEntityField": "id"
+            "otherEntityField": "dominio"
         }
     ],
-    "changelogDate": "20190702185301",
+    "changelogDate": "20190708160824",
     "entityTableName": "skill_candidato",
     "dto": "mapstruct",
     "pagination": "pagination",

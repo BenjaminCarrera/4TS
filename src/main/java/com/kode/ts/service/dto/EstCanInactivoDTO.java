@@ -16,6 +16,8 @@ public class EstCanInactivoDTO implements Serializable {
 
     private Long estatusCandidatoId;
 
+    private String estatusCandidatoEstatus;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class EstCanInactivoDTO implements Serializable {
 
     public void setEstatusCandidatoId(Long estatusCandidatoId) {
         this.estatusCandidatoId = estatusCandidatoId;
+    }
+
+    public String getEstatusCandidatoEstatus() {
+        return estatusCandidatoEstatus;
+    }
+
+    public void setEstatusCandidatoEstatus(String estatusCandidatoEstatus) {
+        this.estatusCandidatoEstatus = estatusCandidatoEstatus;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class EstCanInactivoDTO implements Serializable {
             "id=" + getId() +
             ", motivo='" + getMotivo() + "'" +
             ", estatusCandidato=" + getEstatusCandidatoId() +
+            ", estatusCandidato='" + getEstatusCandidatoEstatus() + "'" +
             "}";
     }
 }

@@ -16,6 +16,8 @@ public class EstatusReqCanRecDTO implements Serializable {
 
     private Long estatusReqCanId;
 
+    private String estatusReqCanEstatus;
+
     public Long getId() {
         return id;
     }
@@ -38,6 +40,14 @@ public class EstatusReqCanRecDTO implements Serializable {
 
     public void setEstatusReqCanId(Long estatusReqCanId) {
         this.estatusReqCanId = estatusReqCanId;
+    }
+
+    public String getEstatusReqCanEstatus() {
+        return estatusReqCanEstatus;
+    }
+
+    public void setEstatusReqCanEstatus(String estatusReqCanEstatus) {
+        this.estatusReqCanEstatus = estatusReqCanEstatus;
     }
 
     @Override
@@ -67,6 +77,7 @@ public class EstatusReqCanRecDTO implements Serializable {
             "id=" + getId() +
             ", motivo='" + getMotivo() + "'" +
             ", estatusReqCan=" + getEstatusReqCanId() +
+            ", estatusReqCan='" + getEstatusReqCanEstatus() + "'" +
             "}";
     }
 }

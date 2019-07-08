@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface CodigoPostalMapper extends EntityMapper<CodigoPostalDTO, CodigoPostal> {
 
     @Mapping(source = "municipio.id", target = "municipioId")
+    @Mapping(source = "municipio.municipio", target = "municipioMunicipio")
     CodigoPostalDTO toDto(CodigoPostal codigoPostal);
 
     @Mapping(target = "colonias", ignore = true)
