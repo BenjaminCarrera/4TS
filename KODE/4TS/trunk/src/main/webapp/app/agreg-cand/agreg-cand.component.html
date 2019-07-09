@@ -538,9 +538,9 @@
       <div class="col-sm-12">
         <mat-form-field class="example-chip-list">
           <mat-chip-list #chipList2 aria-label="Fruit selection">
-            <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable2" [removable]="removable2"
+            <mat-chip *ngFor="let fruit2 of fruits2" [selectable]="selectable2" [removable]="removable2"
               (removed)="remove2(fruit2)" color="primary" selected>
-              {{fruit}}
+              {{fruit2}}
               <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
             </mat-chip>
             <input placeholder="Cuentas rechazadas por candidato" #fruitInput2 [formControl]="fruitCtrl2"
@@ -549,8 +549,8 @@
               (matChipInputTokenEnd)="add2($event2)">
           </mat-chip-list>
           <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-            <mat-option *ngFor="let fruit of filteredFruits2 | async" [value]="fruit2">
-              {{fruit}}
+            <mat-option *ngFor="let fruit2 of filteredFruits2 | async" [value]="fruit2">
+              {{fruit2}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
