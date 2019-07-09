@@ -52,8 +52,10 @@
                             <div class="form-group" *ngIf="show">
                                 <mat-form-field class="full-width">
                                     <mat-select placeholder="Motivo de cierre de requerimiento">
-                                        <mat-option value="option">Mensual</mat-option>
-                                        <mat-option value="option">Quincenal</mat-option>
+                                        <mat-option value="option">Requerimiento Cubierto Terceros</mat-option>
+                                        <mat-option value="option">Requerimiento Cancelado KODE</mat-option>
+                                        <mat-option value="option">Requerimiento Cancelado Cliente</mat-option>
+                                        <mat-option value="option">Requerimiento cubierto por KODE</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
@@ -374,7 +376,7 @@
         <br>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-danger"> Guardar requerimiento </button>
+                <button mat-raised-button color="warn">Guardar requerimiento</button>
             </div>
         </div>
         <br>
