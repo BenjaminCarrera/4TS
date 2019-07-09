@@ -36,19 +36,19 @@ export class ResConcandComponent implements OnInit {
 
   // Variables Tarea
   DATA_TAREA: PeriodicElement[] = [
-    { Id: 1, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 2, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 4, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 5, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 6, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 7, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 8, Tarea: 'Abierto', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 9, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 10, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 11, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 12, Tarea: 'Cerrado', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
+    { Id: 1, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 2, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 4, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 5, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Atendida' },
+    { Id: 6, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Abierta' },
+    { Id: 7, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Abierta' },
+    { Id: 8, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 9, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 10, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 11, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 12, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' }
   ];
   dataSourceTarea: PeriodicElement[];
   displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
@@ -70,7 +70,7 @@ export class ResConcandComponent implements OnInit {
     { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
   ];
   dataSourceSkills: Skills[];
-  displayedColumnsSkills: string[] = ['Skills', 'Dominio', 'Calificacion', 'Eliminar'];
+  displayedColumnsSkills: string[] = ['Skills', 'Dominio', 'Calificacion'];
 
   message: string;
 
@@ -133,7 +133,6 @@ export class ResConcandComponent implements OnInit {
         case 'Skills': return compare(a.Skills, b.Skills, isAsc);
         case 'Dominio': return compare(a.Dominio, b.Dominio, isAsc);
         case 'Calificacion': return compare(a.Calificacion, b.Calificacion, isAsc);
-        case 'Eliminar': return compare(a.Eliminar, b.Eliminar, isAsc);
         default: return 0;
       }
     });
