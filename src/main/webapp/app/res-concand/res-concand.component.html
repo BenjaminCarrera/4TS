@@ -658,7 +658,7 @@
                     <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsTarea;"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea;" [ngClass]="{even: even}"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
@@ -705,7 +705,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsBitacora;"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora;" [ngClass]="{even: even}"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
@@ -756,7 +756,7 @@
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsSkills;"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills;" [ngClass]="{even: even}"></tr>
             </table>
             <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
