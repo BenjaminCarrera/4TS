@@ -1,10 +1,9 @@
 <h3>Agregar nuevo requerimiento</h3>
-<mat-tab-group [selectedIndex]="selected1.value"
-(selectedIndexChange)="selected1.setValue($event)">
+<mat-tab-group [selectedIndex]="selected1.value" (selectedIndexChange)="selected1.setValue($event)">
     <mat-tab label="Generales">
         <br>
         <div class="row">
-            <div class="col-sm-6" style="padding-right: 0px; " >
+            <div class="col-sm-6" style="padding-right: 0px; ">
                 <div class="panel panel-default"
                     style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <div class="panel-body">
@@ -37,7 +36,8 @@
                                 <p>
                                     Estatus del requerimiento:
                                     <br>
-                                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos2">
+                                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente"
+                                        class="botones-chicos2">
                                         <mat-button-toggle value="bold" (click)="show = false"> Todos
                                         </mat-button-toggle>
                                         <mat-button-toggle value="cursiva" (click)="show = false"> Abierto
@@ -63,7 +63,8 @@
                                     <p>
                                         Tipo de solicitud:
                                         <br>
-                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos3">
+                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente"
+                                            class="botones-chicos3">
                                             <mat-button-toggle value="bold"> Outsourcing </mat-button-toggle>
                                             <mat-button-toggle value="cursiva"> Reclutamiento </mat-button-toggle>
                                             <mat-button-toggle value="underline"> Interna </mat-button-toggle>
@@ -77,7 +78,8 @@
                                     <p>
                                         Tipo de ingreso:
                                         <br>
-                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente"
+                                            class="botones-chicos">
                                             <mat-button-toggle value="bold" (click)="show2 = false"> Nuevo
                                             </mat-button-toggle>
                                             <mat-button-toggle value="cursiva" (click)="show2 = true"> Reemplazo
@@ -172,7 +174,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <mat-form-field class="example-full-width">
-                                        <textarea matInput placeholder="Prestaciones"  rows="9" ></textarea>
+                                        <textarea matInput placeholder="Prestaciones" rows="9"></textarea>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -180,7 +182,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" style="padding-right: 0px; padding-left: 33px;" >
+            <div class="col-sm-6" style="padding-right: 0px; padding-left: 33px;">
                 <div class="panel panel-default"
                     style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <h4>Datos del perfil</h4>
@@ -218,7 +220,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <input matInput placeholder="Duración de asignación">
                                     </mat-form-field>
                                 </div>
@@ -237,11 +239,11 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                    <mat-form-field >
-                                        <input matInput placeholder="Lugar de trabajo">
-                                    </mat-form-field>
-                                </div>
+                                <mat-form-field>
+                                    <input matInput placeholder="Lugar de trabajo">
+                                </mat-form-field>
                             </div>
+                        </div>
                         <br>
                         <div class="row">
                             <div class="col-sm-6">
@@ -258,7 +260,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <mat-form-field >
+                                    <mat-form-field>
                                         <input matInput placeholder="Horario">
                                     </mat-form-field>
                                 </div>
@@ -268,9 +270,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                        <mat-form-field class="example-full-width">
-                                            <textarea matInput placeholder="Información del examen"   rows="9"></textarea>
-                                        </mat-form-field>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Información del examen" rows="9"></textarea>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -278,9 +280,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                        <mat-form-field class="example-full-width">
-                                            <textarea matInput placeholder="Información adicional"  rows="10" ></textarea>
-                                        </mat-form-field>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Información adicional" rows="10"></textarea>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </div>
@@ -290,10 +292,10 @@
             </div>
         </div>
         <br>
-        <input  type="hidden" [formControl]="selected1">
-      <div class="text-center">
-          <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
-      </div>
+        <input type="hidden" [formControl]="selected1">
+        <div class="text-center">
+            <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
+        </div>
         <br>
     </mat-tab>
     <mat-tab label="Skills">
@@ -308,74 +310,65 @@
                 <br>
                 <mat-form-field class="example-chip-list">
                     <mat-chip-list #chipList aria-label="Requeridos">
-                      <mat-chip
-                        *ngFor="let fruit of fruits"
-                        [selectable]="selectable"
-                        [removable]="removable"
-                        (removed)="remove(fruit)">
-                        {{fruit}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input
-                        placeholder="Requeridos"
-                        #fruitInput
-                        [formControl]="fruitCtrl"
-                        [matAutocomplete]="auto"
-                        [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="add($event)">
+                        <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove(fruit)">
+                            {{fruit}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Requeridos" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                        {{fruit}}
-                      </mat-option>
+                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                            {{fruit}}
+                        </mat-option>
                     </mat-autocomplete>
-                  </mat-form-field>
+                </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                    <mat-form-field class="example-chip-list">
-                      <mat-chip-list #chipList2 aria-label="Fruit selection">
-                        <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable2" [removable]="removable2"
-                          (removed)="remove2(fruit2)" color="primary" selected>
-                          {{fruit}}
-                          <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList2 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit2 of fruits2" [selectable]="selectable" [removable]="removable"
+                            (removed)="remove2(fruit2)" color="primary" selected>
+                            {{fruit2}}
+                            <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Opcionales" #fruitInput2 [formControl]="fruitCtrl2"
-                          [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2"
-                          (matChipInputTokenEnd)="add2($event2)">
-                      </mat-chip-list>
-                      <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                        <mat-option *ngFor="let fruit of filteredFruits2 | async" [value]="fruit2">
-                          {{fruit}}
+                            [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2"
+                            (matChipInputTokenEnd)="add2($event2)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
+                        <mat-option *ngFor="let fruit2 of filteredFruits2 | async" [value]="fruit2">
+                            {{fruit2}}
                         </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
+                    </mat-autocomplete>
+                </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                    <mat-form-field class="example-chip-list">
-                      <mat-chip-list #chipList3 aria-label="Fruit selection">
-                        <mat-chip *ngFor="let fruit of fruits3" [selectable]="selectable3" [removable]="removable3"
-                          (removed)="remove3(fruit3)" color="primary" selected>
-                          {{fruit}}
-                          <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
+                <mat-form-field class="example-chip-list">
+                    <mat-chip-list #chipList3 aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit3 of fruits3" [selectable]="selectable3" [removable]="removable3"
+                            (removed)="remove3(fruit3)" color="primary" selected>
+                            {{fruit3}}
+                            <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Escenciales" #fruitInput3 [formControl]="fruitCtrl3"
-                          [matAutocomplete]="auto3" [matChipInputFor]="chipList3"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3"
-                          (matChipInputTokenEnd)="add3($event3)">
-                      </mat-chip-list>
-                      <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
-                        <mat-option *ngFor="let fruit of filteredFruits3 | async" [value]="fruit3">
-                          {{fruit}}
+                            [matAutocomplete]="auto3" [matChipInputFor]="chipList3"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3"
+                            (matChipInputTokenEnd)="add3($event3)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
+                        <mat-option *ngFor="let fruit3 of filteredFruits3 | async" [value]="fruit3">
+                            {{fruit3}}
                         </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
+                    </mat-autocomplete>
+                </mat-form-field>
             </div>
         </div>
         <br>
