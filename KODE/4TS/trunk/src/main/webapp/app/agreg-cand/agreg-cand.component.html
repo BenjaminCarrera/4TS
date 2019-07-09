@@ -1,11 +1,566 @@
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <h6 class="text-right">{{message}}</h6>
-    <h1 class="text-capitalize text-center" jhiTranslate="agreg-cand.title">Title</h1>
-    <h5 class="text-center" jhiTranslate="agreg-cand.subtitle">Subtitle</h5>
-    <hr/>
-    <p class="text-justify" jhiTranslate="agreg-cand.content">Content</p>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+<h3>Agregar nuevo candidato</h3>
+<mat-tab-group [selectedIndex]="selecteds.value" (selectedIndexChange)="selecteds.setValue($event)">
+  <mat-tab label="Paso 1">
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="panel panel-default" style="border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; 
+                border-color: #F2F2F2;border-radius: 20px;
+                    margin: 0 auto;">
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="col-sm-8">
+                <h4>Datos generales</h4>
+              </div>
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Fecha de alta">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="fieldset-content">
+
+              <div class="row">
+                <div class="col-md-4 espaciado-componentes">
+                  <div class="form-group">
+                    <mat-form-field class="full-width">
+                      <mat-select placeholder="Ejecutivo asignado">
+                        <mat-option value="option">Andrea Jimenez Otero</mat-option>
+                        <mat-option value="option">Paola Lopez Cruz</mat-option>
+                        <mat-option value="option">Ernesto Cruz Lopez</mat-option>
+                        <mat-option value="option">David Alejandro Ruiz Jimenez</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 espaciado-componentes">
+                  <div class="form-group">
+                    <p>
+                      Estatus del candidato:
+                      <br>
+                      <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
+                        <mat-button-toggle value="bold"> Activo </mat-button-toggle>
+                        <mat-button-toggle value="cursiva"> Inactivo </mat-button-toggle>
+                      </mat-button-toggle-group>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Nombre">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Apellido paterno">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Apellido materno">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Perfil">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field class="full-width">
+                    <mat-select placeholder="Nivel de perfil">
+                      <mat-option value="option">Java trainee</mat-option>
+                      <mat-option value="option">Java Junior</mat-option>
+                      <mat-option value="option">Java Semi-senior</mat-option>
+                      <mat-option value="option">Java Senior</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Años de experiencia">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 espaciado-componentes">
+                  <div class="form-group">
+                    <label class="form-label">Sexo</label>
+                    <p>
+                      <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
+                        <mat-button-toggle value="cursiva"> Masculino </mat-button-toggle>
+                        <mat-button-toggle value="underline"> Femenino </mat-button-toggle>
+                      </mat-button-toggle-group>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Fecha de nacimiento">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Edad">
+                  </mat-form-field>
+                </div>
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="col-sm-12">
+                  <h4>Información de contacto</h4>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Email principal">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Email adicional">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Telefono celular">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 espaciado-componentes">
+                  <mat-form-field>
+                    <input matInput placeholder="Telefono adicional">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <br><Br>
+
+
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="google-maps">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12698.017302765014!2d-5.924386855443038!3d37.28317952472348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd12705c945f7355%3A0x1f6735c306757c59!2sDos+Hermanas%2C+Sevilla%2C+Espa%C3%B1a!5e0!3m2!1ses!2s!4v1387797719272"
+                      width="600" height="450" frameborder="0" style="border:0"></iframe>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <mat-form-field>
+                          <input matInput placeholder="CP">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <mat-form-field>
+                        <input matInput placeholder="Estado">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <mat-form-field>
+                          <input matInput placeholder="Municipio / alcaldía">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <mat-form-field>
+                          <input matInput placeholder="Calle">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <mat-form-field>
+                          <input matInput placeholder="Número exterior">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <mat-form-field>
+                        <input matInput placeholder="Número Interior">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel panel-default" style="border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; 
+                border-color: #F2F2F2;border-radius: 20px; 
+                
+                margin: 0 auto;">
+          <h4>Formación académica</h4>
+          <p class="desc"></p>
+          <div class="fieldset-content">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Institución">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Estudios">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <p>
+                    Estatus académico:
+                    <br>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+                      <mat-button-toggle value="cursiva"> Titulado </mat-button-toggle>
+                      <mat-button-toggle value="underline"> Trunco </mat-button-toggle>
+                      <mat-button-toggle value="underline"> Pasante </mat-button-toggle>
+                      <mat-button-toggle value="underline"> Pendiente </mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Información de reclutamiento</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <mat-form-field class="full-width">
+                    <mat-select placeholder="Fuente de reclutamiento">
+                      <mat-option value="option">Java trainee</mat-option>
+                      <mat-option value="option">Java Junior</mat-option>
+                      <mat-option value="option">Java Semi-senior</mat-option>
+                      <mat-option value="option">Java Senior</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Esquema de contratación">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Salario neto">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Costo total">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput placeholder="Duración mínima de contrato (Meses)">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-row">
+              <div class="form-flex" style="padding-left: 10px;">
+                <h4>Disponibilidad</h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <p>
+                Estatus laboral:
+                <br>
+                <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+                  <mat-button-toggle value="cursiva"> Empleado </mat-button-toggle>
+                  <mat-button-toggle value="underline"> Desempleado </mat-button-toggle>
+                  <mat-button-toggle value="underline"> Freelance </mat-button-toggle>
+                  <mat-button-toggle value="underline"> Pendiente </mat-button-toggle>
+                </mat-button-toggle-group>
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker3" placeholder="Disponibilidad de entrevista">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-1" style="text-align: center;">
+                <br>
+                Ó
+              </div>
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <input matInput placeholder="">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Fuente de reclutamiento">
+                    <mat-option value="option">Días</mat-option>
+                    <mat-option value="option">Semanas</mat-option>
+                    <mat-option value="option">Meses</mat-option>
+                    <mat-option value="option">Años</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker4" placeholder="Disponibilidad de asignación">
+                  <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                  <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-1" style="text-align: center;">
+                <br>
+                Ó
+              </div>
+              <div class="col-sm-4">
+                <mat-form-field>
+                  <input matInput placeholder="">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Fuente de reclutamiento">
+                    <mat-option value="option">Días</mat-option>
+                    <mat-option value="option">Semanas</mat-option>
+                    <mat-option value="option">Meses</mat-option>
+                    <mat-option value="option">Años</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div> 
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-row">
+                  <div class="form-flex" style="padding-left: 10px;">
+                    <h4>Notas adicionales</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <br>
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Prestaciones" rows="12"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <br><br>
+    <input type="hidden" [formControl]="selecteds">
+    <div class="text-center">
+      <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Paso 2">
+    <br>
+    <div class="row">
+      <div class="col-sm-3">
+        <mat-form-field>
+          <input matInput placeholder="Ingles %">
+        </mat-form-field>
+        <br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <mat-form-field>
+          <input matInput placeholder="Skills">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1" style="text-align: center;">
+        <br>
+        Ó
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Dominio">
+            <mat-option value="option">Básico</mat-option>
+            <mat-option value="option">Medio</mat-option>
+            <mat-option value="option">Avanzado</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1">
+        <mat-form-field>
+          <input matInput placeholder="Calificación">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1">
+        <p></p>
+        <button type="button" class="btn btn-danger" onclick="myFunction()">+</button>
+      </div>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-12">
+          <div>
+              <table mat-table class="mat-elevation-z8" [dataSource]="dataSource2" matSort #sorter2="matSort">
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="Fecha">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Fecha}} </td>
+                  </ng-container>
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="Creador">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Creador </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Creador}} </td>
+                  </ng-container>
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="Comentario">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Comentario}} </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-label">
+          <h3>Cuentas</h3>
+        </div>
+      </div>
+    </div>
+    <!-- </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <label class="form-label">
+          Cuentas de interés para el candidato
+        </label>
+      </div>
+    </div> -->
+
+    <br>
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(fruit)" color="primary" selected>
+              {{fruit}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Cuentas de interés para el candidato" #fruitInput [formControl]="fruitCtrl"
+              [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList2 aria-label="Fruit selection">
+            <mat-chip *ngFor="let fruit of fruits2" [selectable]="selectable2" [removable]="removable2"
+              (removed)="remove2(fruit2)" color="primary" selected>
+              {{fruit}}
+              <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Cuentas rechazadas por candidato" #fruitInput2 [formControl]="fruitCtrl2"
+              [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2"
+              (matChipInputTokenEnd)="add2($event2)">
+          </mat-chip-list>
+          <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
+            <mat-option *ngFor="let fruit of filteredFruits2 | async" [value]="fruit2">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="text-center">
+      <button mat-raised-button color="warn">Guardar candidato</button>
+    </div>
+    <br>
+  </mat-tab>
+</mat-tab-group>

@@ -1,11 +1,180 @@
 <div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <h6 class="text-right">{{message}}</h6>
-    <h1 class="text-capitalize text-center" jhiTranslate="con-req.title">Title</h1>
-    <h5 class="text-center" jhiTranslate="con-req.subtitle">Subtitle</h5>
-    <hr/>
-    <p class="text-justify" jhiTranslate="con-req.content">Content</p>
+        <div class="col-md-12"  style="display: inline-block;">
+          <div class="row">
+              <div class="col-md-3"  style="display: inline-block; padding-top: 4px; padding-right: 0px;">
+                    <h3 class="titulo">Consulta del requerimiento</h3>
+              </div>
+              <div class="col-md-2"  style="display: inline-block; padding-left: 0px;">
+                <a class="btn btn-danger boton-titulo-derecha" href="nuevoRequerimiento.html" role="button" >Añadir requerimiento</a>
+              </div>
+          </div>
+        </div>
+      </div>
+<!-- Inicio del formulario -->
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="row">
+    <div class="col-md-3 esp-arriba">
+      <div class="example-container">
+        <mat-form-field class="full-width">
+          <input matInput #postalCode maxlength="4" placeholder="ID de requerimiento" >
+          <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-3  esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Ejecutivo asignado">
+          <mat-option value="option">Reclutador asignado</mat-option>
+          <mat-option value="option">Andrea Jimenez Otero</mat-option>
+          <mat-option value="option">Ernesto Cruz Lopez</mat-option>
+          <mat-option value="option">Paola Lopez Cruz</mat-option>
+          <mat-option value="option">David Alejandro Ruiz Jimenez</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Estatus del requerimiento:
+        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+          <mat-button-toggle value="bold"> Todos </mat-button-toggle>
+          <mat-button-toggle value="cursiva"> Abierto </mat-button-toggle>
+          <mat-button-toggle value="underline"> Cerrado </mat-button-toggle>
+          <mat-button-toggle value="underline"> En espera </mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
+    </div>
+    <div class="col-md-3  esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Cuenta">
+          <mat-option value="option">AXA</mat-option>
+          <mat-option value="option">Aserta</mat-option>
+          <mat-option value="option">Fin comúm</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-  <div class="col-md-1"></div>
+  <div class="row">
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Perfil">
+          <mat-option value="option">Visual Basic .net</mat-option>
+          <mat-option value="option">Angular</mat-option>
+          <mat-option value="option">Php laravel</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Nivel de Perfil">
+          <mat-option value="option">Senior</mat-option>
+          <mat-option value="option">Semi Senior</mat-option>
+          <mat-option value="option">Junior</mat-option>
+          <mat-option value="option">Becario</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <p>
+        Tipo de solicitud:
+        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos2">
+          <mat-button-toggle value="Todas"> Todas </mat-button-toggle>
+          <mat-button-toggle value="Outsourcing"> Outsourcing </mat-button-toggle>
+          <mat-button-toggle value="Reclutamiento"> Reclutamiento </mat-button-toggle>
+          <mat-button-toggle value="Interna"> Interna </mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
+    </div>
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Prioridad">
+          <mat-option value="option">Baja</mat-option>
+          <mat-option value="option">Media</mat-option>
+          <mat-option value="option">Alta</mat-option>
+          <mat-option value="option">Crítica</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <button type="reset" class="btn gris"> Limpiar </button>
+      <button type="submit" class="btn btn-danger"> Buscar </button>
+      <br>
+    </div>
+  </div>
+
+</form>
+<!-- Fin del formulario -->
+<br>
+<div>
+  <table mat-table  class="mat-elevation-z8" [dataSource]="dataSource" matSort>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 49px !important;"> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Estatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 32px !important;"> Estatus </th>
+      <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Cuenta">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 28px !important; "> Cuenta </th>
+      <td mat-cell *matCellDef="let element"> {{element.Cuenta}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Perfil">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 28px !important;"> Perfil </th>
+      <td mat-cell *matCellDef="let element"> {{element.Perfil}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Nivel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 25px !important;"> Nivel </th>
+      <td mat-cell *matCellDef="let element"> {{element.Nivel}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Ejecutivo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 27px !important;"> Ejecutivo </th>
+      <td mat-cell *matCellDef="let element"> {{element.Ejecutivo}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Reclutador">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Reclutador </th>
+      <td mat-cell *matCellDef="let element"> {{element.Reclutador}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="TipoSolic">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Solicitud </th>
+      <td mat-cell *matCellDef="let element"> {{element.TipoSolic}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="VacSolic">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vacantes solicitadas </th>
+      <td mat-cell *matCellDef="let element"> {{element.VacSolic}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="VacPend">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vacantes pendientes </th>
+      <td mat-cell *matCellDef="let element"> {{element.VacPend}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="UltEnvCv">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ultimo envio de cv</th>
+      <td mat-cell *matCellDef="let element"> {{element.UltEnvCv}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="UltEnt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ultima entrevista </th>
+      <td mat-cell *matCellDef="let element"> {{element.UltEnt}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
 </div>
+
