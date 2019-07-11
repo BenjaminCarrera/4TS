@@ -489,7 +489,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
             <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills;" [ngClass]="{even: even}"></tr>
         </table>
-        <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+        <mat-paginator class="tabla-chica" [pageSizeOptions]="[2, 4, 300, 500]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
 </div>
