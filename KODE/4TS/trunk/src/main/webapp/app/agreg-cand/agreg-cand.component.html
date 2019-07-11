@@ -1,12 +1,13 @@
 <h3>Agregar nuevo candidato</h3>
 <mat-tab-group [selectedIndex]="selecteds.value" (selectedIndexChange)="selecteds.setValue($event)">
-  <mat-tab label="Datos generales">
+  <mat-tab label="Paso 1">
     <br>
     <div class="row">
-      <div class="col" style="padding-right: 0px; ">
+      <div class="col">
         <div class="panel panel-default" style="border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px;
                 border-color: #F2F2F2;border-radius: 20px;
                     margin: 0 auto;">
+          <div class="panel-body">
 
             <div class="row">
               <div class="col-sm-8">
@@ -21,6 +22,7 @@
               </div>
             </div>
 
+            <div class="fieldset-content">
 
               <div class="row">
                 <div class="col-md-4 espaciado-componentes">
@@ -39,6 +41,7 @@
 
               <div class="row">
                 <div class="col-md-4 espaciado-componentes">
+                  <div class="form-group">
                     <p>
                       Estatus del candidato:
                       <br>
@@ -47,6 +50,7 @@
                         <mat-button-toggle value="cursiva"> Inactivo </mat-button-toggle>
                       </mat-button-toggle-group>
                     </p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -212,9 +216,12 @@
                 </div>
               </div>
 
+            </div>
+
+          </div>
         </div>
       </div>
-      <div class="col" style="padding-right: 0px; padding-left: 33px;">
+      <div class="col">
         <div class="panel panel-default" style="border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px;
                 border-color: #F2F2F2;border-radius: 20px;
 
@@ -411,7 +418,8 @@
         </div>
       </div>
     </div>
-    <br>
+    </div>
+    <br><br>
     <input type="hidden" [formControl]="selecteds">
     <div class="text-center">
       <button mat-raised-button color="warn" (click)="siguiente()">Siguiente</button>
@@ -419,10 +427,10 @@
   </mat-tab>
 
 
-  <mat-tab label="Skills">
+  <mat-tab label="Paso 2">
     <br>
     <div class="row">
-      <div class="col-sm-1">
+      <div class="col-sm-3">
         <mat-form-field>
           <input matInput placeholder="Ingles %">
         </mat-form-field>
@@ -455,44 +463,41 @@
       </div>
       <div class="col-sm-1">
         <p></p>
-        <button type="button" class="btn btn-danger" onclick="myFunction()" style="background-color: #f44336">+</button>
+        <button type="button" class="btn btn-danger" onclick="myFunction()">+</button>
       </div>
     </div>
     <br><br>
     <div class="row">
-        <div class="col-sm-12">
-    <div>
-        <table mat-table class="mat-elevation-z8 tabla-chica" [dataSource]="dataSourceSkills" matSort
-            (matSortChange)="sortDataSkills($event)">
-            <!-- Position Column -->
-            <ng-container matColumnDef="Skills">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 42px !important;"> Skills </th>
-                <td mat-cell *matCellDef="let element"> {{element.Skills}} </td>
-            </ng-container>
-            <!-- Weight Column -->
-            <ng-container matColumnDef="Dominio">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 20px !important;"> Dominio </th>
-                <td mat-cell *matCellDef="let element"> {{element.Dominio}} </td>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="Calificacion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 26px !important;"> Calificación </th>
-                <td mat-cell *matCellDef="let element"> {{element.Calificacion}} </td>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="Eliminar">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 27px !important;"></th>
-                <td mat-cell *matCellDef="let element">
-                    <button mat-raised-button color="warn">Eliminar</button>
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
-            <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills;" [ngClass]="{even: even}"></tr>
-        </table>
-        <mat-paginator class="tabla-chica" [pageSizeOptions]="[2, 4, 300, 500]" showFirstLastButtons></mat-paginator>
+      <div class="col-sm-12">
+          <div>
+              <table mat-table class="mat-elevation-z8" [dataSource]="dataSource2" matSort #sorter2="matSort">
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="Skills">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 42px !important;"> Skills </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Skills}} </td>
+                  </ng-container>
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="Dominio">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header  style="padding-left: 20px !important;"> Dominio </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Dominio}} </td>
+                  </ng-container>
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="Calificacion">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 26px !important;"> Calificacion </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Calificacion}} </td>
+                  </ng-container>
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="Botones">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header  style="padding-left: 27px !important;"> Botones </th>
+                      <td mat-cell *matCellDef="let element2"> {{element2.Botones}} </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                  <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns2;" [ngClass]="{even: even}"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[10, 20, 30, 50]" showFirstLastButtons></mat-paginator>
+          </div>
+      </div>
     </div>
-</div>
-</div>
     <br>
 
     <div class="row">
