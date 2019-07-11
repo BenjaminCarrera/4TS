@@ -1,84 +1,15 @@
-/* con-req.component.scss */
-
-
-.espaciado-componentes{
-    padding-bottom: 9px !important;
-  }
-  .espaciado-componentes-grande{
-    padding-bottom: 9px !important;
-  }
-  .form-control {
-    font-size: 16px;
-  }
-  label{
-    font-size: 13px;
-    font-weight: bold;
-  }
-  h3{
-    padding-top: 10px;
-    font-size: 17px;
-  }
-  .esp-arriba{
-    padding-top: 20px !important;
-  }
-  .esp-abajo{
-    padding-bottom: 20px !important;
-  }
-  .mat-form-field-appearance-legacy .mat-form-field-wrapper{
-    padding-bottom: unset;
-  }
-  .full-width{
-    width: 100%;
-  }
-  .mat-button-toggle-checked {
-    background-color:rgba(255,0,0,0.6);
-    color:white;
-  }
-  .ng-container{
-width: 50PX;
-  }
-  table {
-    width: 100%;
-  }
-  h3{
-    padding-top: 10px;
-    font-size: 27px;
-    font-weight: bold;
-  }
-  .gris{
-    background-color:#e9e9e9;
-  }
-
-@media (max-width: 600px) {
-  .botones-chicos{
-    font-size: 16px;
-  }
-  .botones-chicos2{
-    font-size: 12.7px;
-  }
-}
+/*Estilo de tabla*/
 td.mat-cell, td.mat-footer-cell {
-  text-align: center;
+  text-align: center !important;
 }
 .mat-sort-header-container, .mat-header-cell{
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 15px !important;
+  font-weight: bold !important;
   padding-left: 37px !important;
 }
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    width: 100%;
+table.mat-table{
+  width: 100% !important;
 }
-
-
-.botones-chicos2 .mat-button-toggle button div{
-  line-height: 30px;
-}
-
-.titulo{
-  padding-top: 2px !important;
+.full-width{
+  width: 100% !important;
 }

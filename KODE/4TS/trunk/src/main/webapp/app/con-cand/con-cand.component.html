@@ -16,7 +16,9 @@
     <div class="row">
       <div class="col-md-3 ">
         <p>
-          Estatus del candidato:
+          <label class="label-material">
+                Estatus del candidato:
+          </label>
           <mat-button-toggle-group  name = "fontStyle"  aria-label = "Estilo de fuente">
             <mat-button-toggle  value = "bold"> Todos </mat-button-toggle>
             <mat-button-toggle  value = "cursiva"> Abierto </mat-button-toggle>
@@ -73,7 +75,9 @@
     <div class="row">
       <div class="col-md-3 ">
         <p>
+                <label class="label-material">
           Estatus laboral:
+        </label>
           <br>
           <mat-button-toggle-group  name = "fontStyle"  aria-label = "Estilo de fuente" class="botones-chicos">
             <mat-button-toggle  value = "bold"> Todos </mat-button-toggle>
@@ -135,19 +139,6 @@
 
     <br>
   </form>
-  <!-- Fin del formulario -->
-  <!--
-      <div class="row">
-      <div class="col-md-2 ">
-      </div>
-      <div class="col-md-2 ">
-      </div>
-      <div class="col-md-2 -grande">
-      </div>
-      <div class="col-md-2  text-center">
-      </div>
-    </div>
-   -->
 
   <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
