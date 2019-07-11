@@ -37,7 +37,7 @@ export const estatusCandidatoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['45'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estatusCandidato.home.title'
     },
@@ -50,7 +50,7 @@ export const estatusCandidatoRoute: Routes = [
       estatusCandidato: EstatusCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['45'],
       pageTitle: 'App.estatusCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estatusCandidatoRoute: Routes = [
       estatusCandidato: EstatusCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['47'],
       pageTitle: 'App.estatusCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estatusCandidatoRoute: Routes = [
       estatusCandidato: EstatusCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['46'],
       pageTitle: 'App.estatusCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estatusCandidatoPopupRoute: Routes = [
       estatusCandidato: EstatusCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['48'],
       pageTitle: 'App.estatusCandidato.home.title'
     },
     canActivate: [UserRouteAccessService],

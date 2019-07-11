@@ -37,7 +37,7 @@ export const tipoTareaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['125'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tipoTarea.home.title'
     },
@@ -50,7 +50,7 @@ export const tipoTareaRoute: Routes = [
       tipoTarea: TipoTareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['125'],
       pageTitle: 'App.tipoTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tipoTareaRoute: Routes = [
       tipoTarea: TipoTareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['127'],
       pageTitle: 'App.tipoTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tipoTareaRoute: Routes = [
       tipoTarea: TipoTareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['126'],
       pageTitle: 'App.tipoTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tipoTareaPopupRoute: Routes = [
       tipoTarea: TipoTareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['128'],
       pageTitle: 'App.tipoTarea.home.title'
     },
     canActivate: [UserRouteAccessService],

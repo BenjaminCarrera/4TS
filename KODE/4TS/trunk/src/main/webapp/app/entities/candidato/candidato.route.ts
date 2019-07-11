@@ -37,7 +37,7 @@ export const candidatoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['5'],
       defaultSort: 'id,asc',
       pageTitle: 'App.candidato.home.title'
     },
@@ -50,7 +50,7 @@ export const candidatoRoute: Routes = [
       candidato: CandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['5'],
       pageTitle: 'App.candidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const candidatoRoute: Routes = [
       candidato: CandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['7'],
       pageTitle: 'App.candidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const candidatoRoute: Routes = [
       candidato: CandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['6'],
       pageTitle: 'App.candidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const candidatoPopupRoute: Routes = [
       candidato: CandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['8'],
       pageTitle: 'App.candidato.home.title'
     },
     canActivate: [UserRouteAccessService],

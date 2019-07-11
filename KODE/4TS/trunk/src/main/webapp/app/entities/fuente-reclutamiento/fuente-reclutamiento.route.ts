@@ -37,7 +37,7 @@ export const fuenteReclutamientoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['69'],
       defaultSort: 'id,asc',
       pageTitle: 'App.fuenteReclutamiento.home.title'
     },
@@ -50,7 +50,7 @@ export const fuenteReclutamientoRoute: Routes = [
       fuenteReclutamiento: FuenteReclutamientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['69'],
       pageTitle: 'App.fuenteReclutamiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const fuenteReclutamientoRoute: Routes = [
       fuenteReclutamiento: FuenteReclutamientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['71'],
       pageTitle: 'App.fuenteReclutamiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const fuenteReclutamientoRoute: Routes = [
       fuenteReclutamiento: FuenteReclutamientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['70'],
       pageTitle: 'App.fuenteReclutamiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const fuenteReclutamientoPopupRoute: Routes = [
       fuenteReclutamiento: FuenteReclutamientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['72'],
       pageTitle: 'App.fuenteReclutamiento.home.title'
     },
     canActivate: [UserRouteAccessService],

@@ -37,7 +37,7 @@ export const nivelPerfilRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['57'],
       defaultSort: 'id,asc',
       pageTitle: 'App.nivelPerfil.home.title'
     },
@@ -50,7 +50,7 @@ export const nivelPerfilRoute: Routes = [
       nivelPerfil: NivelPerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['57'],
       pageTitle: 'App.nivelPerfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const nivelPerfilRoute: Routes = [
       nivelPerfil: NivelPerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['59'],
       pageTitle: 'App.nivelPerfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const nivelPerfilRoute: Routes = [
       nivelPerfil: NivelPerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['58'],
       pageTitle: 'App.nivelPerfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const nivelPerfilPopupRoute: Routes = [
       nivelPerfil: NivelPerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['60'],
       pageTitle: 'App.nivelPerfil.home.title'
     },
     canActivate: [UserRouteAccessService],

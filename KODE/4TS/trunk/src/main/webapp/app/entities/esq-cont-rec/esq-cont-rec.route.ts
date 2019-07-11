@@ -37,7 +37,7 @@ export const esqContRecRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['77'],
       defaultSort: 'id,asc',
       pageTitle: 'App.esqContRec.home.title'
     },
@@ -50,7 +50,7 @@ export const esqContRecRoute: Routes = [
       esqContRec: EsqContRecResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['77'],
       pageTitle: 'App.esqContRec.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const esqContRecRoute: Routes = [
       esqContRec: EsqContRecResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['79'],
       pageTitle: 'App.esqContRec.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const esqContRecRoute: Routes = [
       esqContRec: EsqContRecResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['78'],
       pageTitle: 'App.esqContRec.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const esqContRecPopupRoute: Routes = [
       esqContRec: EsqContRecResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['80'],
       pageTitle: 'App.esqContRec.home.title'
     },
     canActivate: [UserRouteAccessService],

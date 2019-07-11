@@ -2,12 +2,17 @@ package com.kode.ts.service;
 
 import com.kode.ts.config.Constants;
 import com.kode.ts.domain.Authority;
+import com.kode.ts.domain.Permiso;
+import com.kode.ts.domain.PermisoAuthority;
 import com.kode.ts.domain.User;
 import com.kode.ts.repository.AuthorityRepository;
+import com.kode.ts.repository.PermisoAuthorityRepository;
 import com.kode.ts.repository.UserRepository;
 import com.kode.ts.security.AuthoritiesConstants;
 import com.kode.ts.security.SecurityUtils;
+import com.kode.ts.service.dto.PermisoDTO;
 import com.kode.ts.service.dto.UserDTO;
+import com.kode.ts.service.mapper.PermisoMapper;
 import com.kode.ts.service.util.RandomUtil;
 import com.kode.ts.web.rest.errors.*;
 
@@ -43,11 +48,17 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final PermisoAuthorityRepository permisoAuthorityRepository;
+    
+    private final PermisoMapper permisoMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, PermisoAuthorityRepository permisoAuthorityRepository, PermisoMapper permisoMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.permisoAuthorityRepository = permisoAuthorityRepository;
+        this.permisoMapper = permisoMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -260,8 +271,20 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<User> getUserWithAuthorities() {
-        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
+    public Optional<UserDTO> getUserWithAuthorities() {
+        Optional<User>  user = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
+        UserDTO userDTO = user.map(UserDTO::new).orElse(new UserDTO());
+        Set<Long> permisos = new HashSet<Long>();
+        userDTO.getAuthorities().stream().forEach(authority -> this.permisoAuthorityRepository.findAllByActivatedIsTrueAndDeletedIsFalseAndAuthority(authority).stream().forEach(permiso -> 
+        {
+        	if(permiso.getAuthority().equals(authority) && permiso.isActivated() && !permiso.isDeleted()) {
+        		permisos.add(permiso.getPermiso().getId());
+        	}
+        }
+        ));
+        userDTO.setPermisos(permisos);
+        
+        return Optional.of(userDTO);
     }
 
     /**

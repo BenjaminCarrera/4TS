@@ -37,7 +37,7 @@ export const formacionAcademicaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['17'],
       defaultSort: 'id,asc',
       pageTitle: 'App.formacionAcademica.home.title'
     },
@@ -50,7 +50,7 @@ export const formacionAcademicaRoute: Routes = [
       formacionAcademica: FormacionAcademicaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['17'],
       pageTitle: 'App.formacionAcademica.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const formacionAcademicaRoute: Routes = [
       formacionAcademica: FormacionAcademicaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['19'],
       pageTitle: 'App.formacionAcademica.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const formacionAcademicaRoute: Routes = [
       formacionAcademica: FormacionAcademicaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['18'],
       pageTitle: 'App.formacionAcademica.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const formacionAcademicaPopupRoute: Routes = [
       formacionAcademica: FormacionAcademicaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['20'],
       pageTitle: 'App.formacionAcademica.home.title'
     },
     canActivate: [UserRouteAccessService],

@@ -37,7 +37,7 @@ export const estatusLaboralRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['81'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estatusLaboral.home.title'
     },
@@ -50,7 +50,7 @@ export const estatusLaboralRoute: Routes = [
       estatusLaboral: EstatusLaboralResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['81'],
       pageTitle: 'App.estatusLaboral.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estatusLaboralRoute: Routes = [
       estatusLaboral: EstatusLaboralResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['83'],
       pageTitle: 'App.estatusLaboral.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estatusLaboralRoute: Routes = [
       estatusLaboral: EstatusLaboralResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['82'],
       pageTitle: 'App.estatusLaboral.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estatusLaboralPopupRoute: Routes = [
       estatusLaboral: EstatusLaboralResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['84'],
       pageTitle: 'App.estatusLaboral.home.title'
     },
     canActivate: [UserRouteAccessService],

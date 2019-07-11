@@ -1,11 +1,141 @@
 id;nombre;descripcion;activated;deleted;created_by;created_date;last_modified_by;last_modified_date
-1;back-end;deliverables;false;false;Ameliorated alarm Venezuela;2019-07-08T16:02:09;XSS streamline;2019-07-07T23:14:20
-2;open-source Credit Card Account;Strategist Customizable;true;true;salmon;2019-07-08T10:59:22;utilisation Communications;2019-07-07T19:53:29
-3;Computer Games;Inverse Cloned quantifying;true;true;Executive Synergistic;2019-07-08T09:24:44;Bahrain wireless Mali;2019-07-08T04:23:53
-4;Multi-channelled;Berkshire Keyboard Branding;true;false;Practical AI Ports;2019-07-08T01:07:30;actuating haptic;2019-07-08T16:25:16
-5;bleeding-edge Associate neural;pink Synergized;false;true;input;2019-07-08T01:00:33;Electronics Fresh;2019-07-08T03:16:36
-6;Pizza Enterprise-wide Division;Producer quantify;false;true;Practical;2019-07-08T10:51:35;interactive target primary;2019-07-08T10:10:53
-7;Stravenue seize;index;true;false;sky blue;2019-07-08T16:51:03;impactful;2019-07-08T00:55:42
-8;motivating project;reinvent Human;true;true;Ridge;2019-07-08T05:43:12;Gloves Auto Loan Account customized;2019-07-07T21:34:31
-9;Chips;Rubber green;false;false;alarm hacking help-desk;2019-07-07T23:56:30;Executive SCSI;2019-07-08T16:17:03
-10;firewall toolset Administrator;Liaison Saint Helena Pound;true;false;Agent;2019-07-07T19:35:35;deposit Steel;2019-07-08T02:37:23
+1;Consultar permisos;Consultar permisos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:35
+2;Editar permisos;Editar permisos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:36
+3;Agregar permisos;Agregar permisos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:37
+4;Eliminar permisos;Eliminar permisos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:38
+5;Consultar candidatos;Consultar candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:35
+6;Editar candidatos;Editar candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:36
+7;Agregar candidatos;Agregar candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:37
+8;Eliminar candidatos;Eliminar candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:38
+9;Consultar requerimientos;Consultar requerimiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:39
+10;Editar requerimientos;Editar requerimiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:40
+11;Agregar requerimientos;Agregar requerimiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:41
+12;Eliminar requerimientos;Eliminar requerimiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+13;Consultar documento;Consultar documento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+14;Editar documento;Editar documento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+15;Agregar documento;Agregar documento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+16;Eliminar documento;Eliminar documento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+17;Consultar formación académica;Consultar formación académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+18;Editar formación académica;Editar formación académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+19;Agregar formación académica;Agregar formación académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+20;Eliminar formación académica;Eliminar formación académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+21;Consultar colonia;Consultar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+22;Editar colonia;Editar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+23;Agregar colonia;Agregar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+24;Eliminar colonia;Eliminar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+25;Consultar municipio;Eliminar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+26;Editar municipio;Eliminar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+27;Agregar municipio;Eliminar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+28;Eliminar municipio;Eliminar colonia;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+29;Consultar estado;Consultar estado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+30;Editar estado;Editar estado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+31;Agregar estado;Agregar estado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+32;Eliminar estado;Eliminar estado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+33;Consultar código postal;Consultar código postal;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+34;Editar código postal;Editar código postal;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+35;Agregar código postal;Agregar código postal;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+36;Eliminar código postal;Eliminar código postal;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+37;Consultar perfil;Consultar perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+38;Editar perfil;Editar perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+39;Agregar perfil;Agregar perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+40;Eliminar perfil;Eliminar perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+41;Consultar institución académica;Consultar institución académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+42;Editar institución académica;Editar institución académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+43;Agregar institución académica;Agregar institución académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+44;Eliminar institución académica;Eliminar institución académica;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+45;Consultar estatus del candidato;Consultar estatus del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+46;Editar estatus del candidato;Editar estatus del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+47;Agregar estatus del candidato;Agregar estatus del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+48;Eliminar estatus del candidato;Eliminar estatus del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+49;Consultar estatus del candidato inactivo;Consultar estatus del candidato inactivo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+50;Editar estatus del candidato inactivo;Editar estatus del candidato inactivo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+51;Agregar estatus del candidato inactivo;Agregar estatus del candidato inactivo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+52;Eliminar estatus del candidato inactivo;Eliminar estatus del candidato inactivo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+53;Consultar tipo de periodo;Consultar tipo de periodo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+54;Editar tipo de periodo;Editar tipo de periodo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+55;Agregar tipo de periodo;Agregar tipo de periodo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+56;Eliminar tipo de periodo;Eliminar tipo de periodo;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+57;Consultar nivel de perfil;Consultar nivel de perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+58;Editar nivel de perfil;Editar nivel de perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+59;Agregar nivel de perfil;Agregar nivel de perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+60;Eliminar nivel de perfil;Eliminar nivel de perfil;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+61;Consultar referencias laborales;Consultar referencias laborales;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+62;Editar referencias laborales;Editar referencias laborales;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+63;Agregar referencias laborales;Agregar referencias laborales;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+64;Eliminar referencias laborales;Eliminar referencias laborales;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+65;Consultar estatus academico;Consultar estatus academico;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+66;Editar estatus academico;Editar estatus academico;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+67;Agregar estatus academico;Agregar estatus academico;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+68;Eliminar estatus academico;Eliminar estatus academico;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+69;Consultar fuente de reclutamiento;Consultar fuente de reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+70;Editar fuente de reclutamiento;Editar fuente de reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+71;Agregar fuente de reclutamiento;Agregar fuente de reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+72;Eliminar fuente de reclutamiento;Eliminar fuente de reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+73;Consultar esquema de contreatación kode;Consultar esquema de contreatación kode;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+74;Editar esquema de contreatación kode;Editar esquema de contreatación kode;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+75;Agregar esquema de contreatación kode;Agregar esquema de contreatación kode;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+76;Eliminar esquema de contreatación kode;Eliminar esquema de contreatación kode;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+77;Consultar esquema de contreatación reclutamiento;Consultar esquema de contreatación reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+78;Editar esquema de contreatación reclutamiento;Editar esquema de contreatación reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+79;Agregar esquema de contreatación reclutamiento;Agregar esquema de contreatación reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+80;Eliminar esquema de contreatación reclutamiento;Eliminar esquema de contreatación reclutamiento;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+81;Consultar estatus laboral;Consultar estatus laboral;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+82;Editar estatus laboral;Editar estatus laboral;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+83;Agregar estatus laboral;Agregar estatus laboral;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+84;Eliminar estatus laboral;Eliminar estatus laboral;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+85;Consultar cuenta;Consultar cuenta;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+86;Editar cuenta;Editar cuenta;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+87;Agregar cuenta;Agregar cuenta;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+88;Eliminar cuenta;Eliminar cuenta;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+89;Consultar skill;Consultar skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+90;Editar skill;Editar skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+91;Agregar skill;Agregar skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+92;Eliminar skill;Eliminar skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+93;Consultar tipo de skill;Consultar tipo de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+94;Editar tipo de skill;Editar tipo de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+95;Agregar tipo de skill;Agregar tipo de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+96;Eliminar tipo de skill;Eliminar tipo de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+97;Consultar categpría skill;Consultar categpría skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+98;Editar categpría skill;Editar categpría skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+99;Agregar categpría skill;Agregar categpría skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+100;Eliminar categpría skill;Eliminar categpría skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+101;Consultar skill del candidato;Consultar skill del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+102;Editar skill del candidato;Editar skill del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+103;Agregar skill del candidato;Agregar skill del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+104;Eliminar skill del candidato;Eliminar skill del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+105;Consultar dominio de skill;Consultar dominio de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+106;Editar dominio de skill;Editar dominio de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+107;Agregar dominio de skill;Agregar dominio de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+108;Eliminar dominio de skill;Eliminar dominio de skill;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+109;Consultar estatus del requerimiento del candidato;Consultar estatus del requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+110;Editar estatus del requerimiento del candidato;Editar estatus del requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+111;Agregar estatus del requerimiento del candidato;Agregar estatus del requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+112;Eliminar estatus del requerimiento del candidato;Eliminar estatus del requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+113;Consultar estatus del requerimiento del candidato reclutado;Consultar estatus del requerimiento del candidato reclutado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+114;Editar estatus del requerimiento del candidato reclutado;Editar estatus del requerimiento del candidato reclutado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+115;Agregar estatus del requerimiento del candidato reclutado;Agregar estatus del requerimiento del candidato reclutado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+116;Eliminar estatus del requerimiento del candidato reclutado;Eliminar estatus del requerimiento del candidato reclutado;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+117;Consultar tarea;Consultar tarea;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+118;Editar tarea;Editar tarea;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+119;Agregar tarea;Agregar tarea;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+120;Eliminar tarea;Eliminar tarea;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+121;Consultar estatus tareas;Consultar estatus tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+122;Editar estatus tareas;Editar estatus tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+123;Agregar estatus tareas;Agregar estatus tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+124;Eliminar estatus tareas;Eliminar estatus tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+125;Consultar tipos de tareas;Consultar tipos de tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+126;Editar tipos de tareas;Editar tipos de tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+127;Agregar tipos de tareas;Agregar tipos de tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+128;Eliminar tipos de tareas;Eliminar tipos de tareas;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+129;Consultar bitácora;Consultar bitácora;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+130;Editar bitácora;Editar bitácora;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+131;Agregar bitácora;Agregar bitácora;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+132;Eliminar bitácora;Eliminar bitácora;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+133;Consultar requerimiento del candidato;Consultar requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+134;Editar requerimiento del candidato;Editar requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+135;Agregar requerimiento del candidato;Agregar requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+136;Eliminar requerimiento del candidato;Eliminar requerimiento del candidato;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+137;Consultar permisos authority;Consultar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+138;Editar permisos authority;Editar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+139;Agregar permisos authority;Agregar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+140;Eliminar permisos authority;Eliminar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42

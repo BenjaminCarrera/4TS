@@ -37,7 +37,7 @@ export const tareaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['117'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tarea.home.title'
     },
@@ -50,7 +50,7 @@ export const tareaRoute: Routes = [
       tarea: TareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['117'],
       pageTitle: 'App.tarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tareaRoute: Routes = [
       tarea: TareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['119'],
       pageTitle: 'App.tarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tareaRoute: Routes = [
       tarea: TareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['118'],
       pageTitle: 'App.tarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tareaPopupRoute: Routes = [
       tarea: TareaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['120'],
       pageTitle: 'App.tarea.home.title'
     },
     canActivate: [UserRouteAccessService],

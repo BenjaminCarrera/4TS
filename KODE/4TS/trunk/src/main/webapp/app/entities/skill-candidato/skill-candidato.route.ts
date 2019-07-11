@@ -37,7 +37,7 @@ export const skillCandidatoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['101'],
       defaultSort: 'id,asc',
       pageTitle: 'App.skillCandidato.home.title'
     },
@@ -50,7 +50,7 @@ export const skillCandidatoRoute: Routes = [
       skillCandidato: SkillCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['101'],
       pageTitle: 'App.skillCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const skillCandidatoRoute: Routes = [
       skillCandidato: SkillCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['103'],
       pageTitle: 'App.skillCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const skillCandidatoRoute: Routes = [
       skillCandidato: SkillCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['102'],
       pageTitle: 'App.skillCandidato.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const skillCandidatoPopupRoute: Routes = [
       skillCandidato: SkillCandidatoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['104'],
       pageTitle: 'App.skillCandidato.home.title'
     },
     canActivate: [UserRouteAccessService],

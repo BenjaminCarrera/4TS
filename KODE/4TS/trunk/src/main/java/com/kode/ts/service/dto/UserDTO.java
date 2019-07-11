@@ -53,6 +53,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private Set<Long> permisos;
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -196,4 +198,12 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+    public Set<Long> getPermisos() {
+		return permisos;
+	}
+
+	public void setPermisos(Set<Long> permisos) {
+		this.permisos = permisos;
+	}
 }
