@@ -10,19 +10,19 @@ import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
-export interface Skills {
+export interface Tarea {
   Skills: string;
   Dominio: string;
   Calificacion: string;
-  Eliminar: string;
+  Botones: string;
 }
 
-  // Variables Skills
-  const DATA_SKILLS: Skills[] = [
-    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Eliminar: 'Eliminar' },
-    { Skills: 'Angular', Dominio: 'Avanzado', Calificacion: '9.0', Eliminar: 'Eliminar' },
-    { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
-  ];
+const ELEMENT_DATA2: Tarea[] = [
+  {Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0',  Botones: 'Eliminar'},
+  {Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'},
+  {Skills: 'Angular', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'},
+  {Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'}
+];
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -33,10 +33,13 @@ export interface Skills {
 })
 export class AgregCandComponent implements OnInit {
 
-  displayedColumnsSkills: string[] = ['Skills', 'Dominio', 'Calificacion', 'Eliminar'];
-  dataSourceSkills = new MatTableDataSource<Skills>(DATA_SKILLS);
 // Inicio datatable
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+@ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;
+// Fin datatable
+// Inicio datatable
+  displayedColumns2: string[] = ['Skills', 'Dominio', 'Calificacion', 'Botones'];
+  dataSource2 = new MatTableDataSource(ELEMENT_DATA2);
+  @ViewChild(MatSort, {static: true}) sort2: MatSort;
 // Fin datatable
   // Inicio primer chip autocompletable
   selecteds = new FormControl(0);
@@ -169,7 +172,8 @@ export class AgregCandComponent implements OnInit {
 
     ngOnInit() {
       // Inicio datatable
-    this.dataSourceSkills.paginator = this.paginator;
+      this.dataSource2.paginator = this.paginator2;
+      this.dataSource2.sort = this.sort2;
       // Fin datatable
     }
     // Fin primer chip autocompletable

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { RestApiService } from '../servicios/requerimiento.service';
 
 export interface PeriodicElement {
   Id: number;
@@ -27,6 +28,7 @@ export interface Tarea {
   ]
 })
 export class ResConreqComponent implements OnInit {
+  Requerimiento: any = [];
 
   // Variables Tarea
   DATA_TAREA: PeriodicElement[] = [
@@ -58,7 +60,9 @@ export class ResConreqComponent implements OnInit {
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
 
   message: string;
-  constructor() {
+  constructor(
+    public restApi: RestApiService
+  ) {
     this.message = 'NuevReqComponent message';
     this.dataSourceTarea = this.DATA_TAREA.slice();
     this.dataSourceBitacora = this.DATA_BITACORA.slice();
@@ -102,10 +106,14 @@ export class ResConreqComponent implements OnInit {
       }
     });
   }
-
   ngOnInit() {
+    this.cargarRequerimiento();
   }
-
+  cargarRequerimiento() {
+    return this.restApi.getRequerimiento(1).subscribe((data: {}) => {
+      this.Requerimiento = data;
+    });
+  }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {

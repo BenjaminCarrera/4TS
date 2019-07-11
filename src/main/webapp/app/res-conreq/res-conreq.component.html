@@ -1,4 +1,19 @@
-<h3>Detalle de requerimiento - 1924</h3>
+
+
+<div class="row">
+        <div class="col-md-12"  style="display: inline-block;">
+          <div class="row">
+              <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                    <h3>Detalle de requerimiento - {{Requerimiento.id}}</h3>
+              </div>
+              <div class="col"  style="display: inline-block; padding-left: 0px;padding-top: 8px;padding-left:25px;">
+                <a routerLink="/agreg-req" routerLinkActive="active">
+                    <button mat-raised-button class="boton-secundario" >Editar</button>
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
 <mat-tab-group>
   <mat-tab label="Datos generales">
     <br />
@@ -24,7 +39,7 @@
                 <label class="form-label">Ejecutivo asignado:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Mayte Barnard Esparza</label>
+                <label class="form-label resultado" id="">{{Requerimiento.usuarioCreadorFirstName}}</label>
               </div>
             </div>
             <div class="row">
@@ -32,7 +47,7 @@
                 <label class="form-label">Reclutador asignado:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Gabriela Cruz Escobar</label>
+                <label class="form-label resultado" id="">{{Requerimiento.usuarioAsignadoFirstName}}</label>
               </div>
             </div>
             <div class="row">
@@ -40,7 +55,7 @@
                 <label class="form-label">Estatus del requerimiento:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Abierto</label>
+                <label class="form-label resultado" id="">{{Requerimiento.estatusRequerimientoEstatus}}</label>
               </div>
             </div>
             <div class="row">
@@ -48,7 +63,7 @@
                 <label class="form-label">Motivo de cierre del requerimiento:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Requerimiento cubierto por terceros</label>
+                <label class="form-label resultado" id=""></label>
               </div>
             </div>
             <div class="row">
@@ -56,7 +71,7 @@
                 <label class="form-label">Prioridad:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Alta</label>
+                <label class="form-label resultado" id="">{{Requerimiento.prioridadPrioridad}}</label>
               </div>
             </div>
             <div class="row">
@@ -64,7 +79,7 @@
                 <label class="form-label">Tipo de solicitud:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Reclutamiento</label>
+                <label class="form-label resultado" id="">{{Requerimiento.tipoSolicitudSolicitud}}</label>
               </div>
             </div>
             <div class="row">
@@ -72,7 +87,7 @@
                 <label class="form-label">Tipo de ingreso:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Reemplazo</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.tipoIngresoTipo}}</label>
               </div>
             </div>
             <div class="row">
@@ -80,7 +95,7 @@
                 <label class="form-label">Reemplazo de:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Pedro Paramo Márquez</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.remplazoDe}}</label>
               </div>
             </div>
             <div class="row">
@@ -88,7 +103,7 @@
                 <label class="form-label">Cuenta:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Capgemini</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.cuentaClave}}</label>
               </div>
             </div>
             <div class="row">
@@ -96,7 +111,7 @@
                 <label class="form-label">Subcuenta:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Bancomer</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.subCuentaClave}}</label>
               </div>
             </div>
             <div class="row">
@@ -104,7 +119,7 @@
                 <label class="form-label">Proyecto:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">SETI</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.proyecto}}</label>
               </div>
             </div>
             <div class="row">
@@ -112,7 +127,7 @@
                 <label class="form-label">Nombre de contacto:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Carlos Alberto Ramirez Archundia</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.nombreContacto}}</label>
               </div>
             </div>
             <div class="row">
@@ -120,7 +135,7 @@
                 <label class="form-label">Tarifa / Sueldo neto:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">$45,000.00</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.tarifaSueldoNet}}</label>
               </div>
             </div>
             <div class="row">
@@ -128,7 +143,7 @@
                 <label class="form-label">Base de tarifa / Base de sueldo neto:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Mensual</label>
+                <label class="form-label resultado" id=""> {{Requerimiento.baseTarifaBase}}</label>
               </div>
             </div>
             <div class="row">
@@ -136,7 +151,7 @@
                 <label class="form-label">Prestaciones:</label>
               </div>
               <div class="col-sm-9">
-                <label class="form-label resultado" id="">Comedor y vacaciones. </label>
+                <label class="form-label resultado" id=""> {{Requerimiento.prestaciones}} </label>
               </div>
             </div>
           </div>
@@ -154,7 +169,7 @@
               <label class="form-label">Perfil: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">Java</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.perfilPerfil}}</label>
             </div>
           </div>
 
@@ -163,7 +178,7 @@
               <label class="form-label">Nivel de perfil: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">Semi Sr</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.nivelPerfilNivel}}</label>
             </div>
           </div>
 
@@ -172,7 +187,7 @@
               <label class="form-label">Duración de asignación: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">6</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.duracionAsignacion}}</label>
             </div>
           </div>
 
@@ -181,7 +196,7 @@
               <label class="form-label">Tipo de período: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">Meses</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.tipoPeriodoPeriodo}}</label>
             </div>
           </div>
 
@@ -190,7 +205,7 @@
               <label class="form-label">Lugar de trabajo: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">Periférico Sur</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.lugarTrabajo}}</label>
             </div>
           </div>
 
@@ -199,7 +214,7 @@
               <label class="form-label">Horario: </label>
             </div>
             <div class="col-sm-9">
-              <label class="form-label resultado" id="">De 9 am a 6 pm</label>
+              <label class="form-label resultado" id=""> {{Requerimiento.horario}}</label>
             </div>
           </div>
 
@@ -209,8 +224,7 @@
             </div>
             <div class="col-sm-9">
               <label class="form-label resultado" id=""
-                >Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem,
-                semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel,
+                >L{{Requerimiento.informacionExamen}}
               </label>
             </div>
           </div>
@@ -221,8 +235,7 @@
             </div>
             <div class="col-sm-9">
               <label class="form-label resultado" id=""
-                >Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem,
-                semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel,
+                >{{Requerimiento.informacionAdicional}}
               </label>
             </div>
           </div>
@@ -274,7 +287,9 @@
               <label class="form-label">Vacantes solicitadas: </label>
             </div>
             <div class="col-sm-8">
-              <label class="form-label resultado" id="">3</label>
+              <label class="form-label resultado" id="">
+                    {{Requerimiento.vacantesSolicitadas}}
+              </label>
             </div>
           </div>
 
@@ -283,7 +298,7 @@
               <label class="form-label">Vacantes cubiertas:</label>
             </div>
             <div class="col-sm-8">
-              <label class="form-label resultado" id="">1</label>
+              <label class="form-label resultado" id=""></label>
             </div>
           </div>
 
@@ -448,7 +463,7 @@
     </div>
     <br />
     <div>
-      <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceTarea" matSort (matSortChange)="sortDataTarea($event)">
+      <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea" matSort (matSortChange)="sortDataTarea($event)">
         <!-- Position Column -->
         <ng-container matColumnDef="Id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
@@ -506,7 +521,7 @@
     </div>
     <br /><br />
     <div>
-      <table mat-table class="mat-elevation-z8" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
+      <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
         <!-- Position Column -->
         <ng-container matColumnDef="Fecha">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
