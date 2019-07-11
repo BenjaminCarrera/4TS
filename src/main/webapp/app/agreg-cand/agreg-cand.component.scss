@@ -1,48 +1,9 @@
 /* agreg-cand.component.scss */
 
 
-.espaciado-componentes{
-    padding-left: 9px !important;
-    padding-bottom: 9px !important;
-  }
-
-  td{
-    margin-bottom: 0px !important;
-    font-size: 13px;
-  }
-
-  label.form-label{
-    margin-bottom: 0px !important;
-    font-size: 13px;
-  }
-  h2{
-    font-size:  2.7rem;
-    font-weight: bold;
-  }
-  div.col-sm-4{
-    padding-bottom: -10px !important;
-  }
-  h4{
-    font-weight: bold;
-    font-size: 20px;
-  }
-  h5{
-    font-weight: bold;
-    font-size: 15px;
-  }
   mat-form-field{
     width: 100%;
     float:right;
-  }
-  .esp-arriba{
-    padding-top: 20px !important;
-  }
-  .esp-abajo{
-    padding-bottom: 20px !important;
-  }
-  .btn-danger{
-    font-size: 13px;
-    color:white;
   }
 .google-maps {
   position: relative;
@@ -60,8 +21,6 @@
   .example-chip-list {
     width: 100%;
   }
-
-
   h3{
     padding-top: 10px;
     font-size: 27px;
@@ -71,10 +30,6 @@
     background-color: #f44336;
     color:white;
   }
-  .mat-tab-body-content {
-    overflow: hidden !important;
-  }
-
   @media (max-width: 600px) {
     .botones-chicos{
       font-size: 16px;
@@ -87,14 +42,15 @@
     }
   }
 
-  .row{
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    width: 100%;
-   }
-
    table, .mat-paginator{
      width: 450px;
    }
+
+/*Estilo de tabla*/
+td.mat-cell, td.mat-footer-cell {
+  text-align: center !important;
+}
+.mat-sort-header-container, .mat-header-cell{
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
