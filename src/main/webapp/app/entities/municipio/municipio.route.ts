@@ -37,7 +37,7 @@ export const municipioRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['25'],
       defaultSort: 'id,asc',
       pageTitle: 'App.municipio.home.title'
     },
@@ -50,7 +50,7 @@ export const municipioRoute: Routes = [
       municipio: MunicipioResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['25'],
       pageTitle: 'App.municipio.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const municipioRoute: Routes = [
       municipio: MunicipioResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['27'],
       pageTitle: 'App.municipio.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const municipioRoute: Routes = [
       municipio: MunicipioResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['26'],
       pageTitle: 'App.municipio.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const municipioPopupRoute: Routes = [
       municipio: MunicipioResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['28'],
       pageTitle: 'App.municipio.home.title'
     },
     canActivate: [UserRouteAccessService],

@@ -37,7 +37,7 @@ export const requerimientoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['9'],
       defaultSort: 'id,asc',
       pageTitle: 'App.requerimiento.home.title'
     },
@@ -50,7 +50,7 @@ export const requerimientoRoute: Routes = [
       requerimiento: RequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['9'],
       pageTitle: 'App.requerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const requerimientoRoute: Routes = [
       requerimiento: RequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['11'],
       pageTitle: 'App.requerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const requerimientoRoute: Routes = [
       requerimiento: RequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['10'],
       pageTitle: 'App.requerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const requerimientoPopupRoute: Routes = [
       requerimiento: RequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['12'],
       pageTitle: 'App.requerimiento.home.title'
     },
     canActivate: [UserRouteAccessService],

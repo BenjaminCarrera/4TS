@@ -37,7 +37,7 @@ export const estCanInactivoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['49'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estCanInactivo.home.title'
     },
@@ -50,7 +50,7 @@ export const estCanInactivoRoute: Routes = [
       estCanInactivo: EstCanInactivoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['49'],
       pageTitle: 'App.estCanInactivo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estCanInactivoRoute: Routes = [
       estCanInactivo: EstCanInactivoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['51'],
       pageTitle: 'App.estCanInactivo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estCanInactivoRoute: Routes = [
       estCanInactivo: EstCanInactivoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['50'],
       pageTitle: 'App.estCanInactivo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estCanInactivoPopupRoute: Routes = [
       estCanInactivo: EstCanInactivoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['52'],
       pageTitle: 'App.estCanInactivo.home.title'
     },
     canActivate: [UserRouteAccessService],

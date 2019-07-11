@@ -37,7 +37,7 @@ export const esquemaContratacionKodeRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['73'],
       defaultSort: 'id,asc',
       pageTitle: 'App.esquemaContratacionKode.home.title'
     },
@@ -50,7 +50,7 @@ export const esquemaContratacionKodeRoute: Routes = [
       esquemaContratacionKode: EsquemaContratacionKodeResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['73'],
       pageTitle: 'App.esquemaContratacionKode.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const esquemaContratacionKodeRoute: Routes = [
       esquemaContratacionKode: EsquemaContratacionKodeResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['75'],
       pageTitle: 'App.esquemaContratacionKode.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const esquemaContratacionKodeRoute: Routes = [
       esquemaContratacionKode: EsquemaContratacionKodeResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['74'],
       pageTitle: 'App.esquemaContratacionKode.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const esquemaContratacionKodePopupRoute: Routes = [
       esquemaContratacionKode: EsquemaContratacionKodeResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['76'],
       pageTitle: 'App.esquemaContratacionKode.home.title'
     },
     canActivate: [UserRouteAccessService],

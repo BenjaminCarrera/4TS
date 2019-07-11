@@ -37,7 +37,7 @@ export const cuentaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['85'],
       defaultSort: 'id,asc',
       pageTitle: 'App.cuenta.home.title'
     },
@@ -50,7 +50,7 @@ export const cuentaRoute: Routes = [
       cuenta: CuentaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['85'],
       pageTitle: 'App.cuenta.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const cuentaRoute: Routes = [
       cuenta: CuentaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['87'],
       pageTitle: 'App.cuenta.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const cuentaRoute: Routes = [
       cuenta: CuentaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['86'],
       pageTitle: 'App.cuenta.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const cuentaPopupRoute: Routes = [
       cuenta: CuentaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['88'],
       pageTitle: 'App.cuenta.home.title'
     },
     canActivate: [UserRouteAccessService],

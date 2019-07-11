@@ -37,7 +37,7 @@ export const perfilRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['37'],
       defaultSort: 'id,asc',
       pageTitle: 'App.perfil.home.title'
     },
@@ -50,7 +50,7 @@ export const perfilRoute: Routes = [
       perfil: PerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['37'],
       pageTitle: 'App.perfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const perfilRoute: Routes = [
       perfil: PerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['39'],
       pageTitle: 'App.perfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const perfilRoute: Routes = [
       perfil: PerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['38'],
       pageTitle: 'App.perfil.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const perfilPopupRoute: Routes = [
       perfil: PerfilResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['40'],
       pageTitle: 'App.perfil.home.title'
     },
     canActivate: [UserRouteAccessService],
