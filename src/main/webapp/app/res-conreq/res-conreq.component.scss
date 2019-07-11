@@ -21,3 +21,16 @@ h4{
   font-weight: bold;
   font-size: 20px;
 }
+
+.google-maps {
+  position: relative !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.google-maps iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}

@@ -17,6 +17,13 @@ export interface Skills {
   Eliminar: string;
 }
 
+  // Variables Skills
+  const DATA_SKILLS: Skills[] = [
+    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Eliminar: 'Eliminar' },
+    { Skills: 'Angular', Dominio: 'Avanzado', Calificacion: '9.0', Eliminar: 'Eliminar' },
+    { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
+  ];
+
 @Component({
   selector: 'jhi-agreg-cand',
   templateUrl: './agreg-cand.component.html',
@@ -26,16 +33,10 @@ export interface Skills {
 })
 export class AgregCandComponent implements OnInit {
 
-  // Variables Skills
-  DATA_SKILLS: Skills[] = [
-    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Eliminar: 'Eliminar' },
-    { Skills: 'Angular', Dominio: 'Avanzado', Calificacion: '9.0', Eliminar: 'Eliminar' },
-    { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
-  ];
-  dataSourceSkills: Skills[];
   displayedColumnsSkills: string[] = ['Skills', 'Dominio', 'Calificacion', 'Eliminar'];
+  dataSourceSkills = new MatTableDataSource<Skills>(DATA_SKILLS);
 // Inicio datatable
-@ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 // Fin datatable
   // Inicio primer chip autocompletable
   selecteds = new FormControl(0);
@@ -79,26 +80,6 @@ export class AgregCandComponent implements OnInit {
         startWith(null),
         map((fruit2: string | null) => fruit2 ? this._filter(fruit2) : this.allFruits2.slice()));
     // Fin Segundo chip autocompletable
-    this.dataSourceSkills = this.DATA_SKILLS.slice();
-  }
-
-  sortDataSkills(sort: MatSort) {
-    const data = this.DATA_SKILLS.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceSkills = data;
-      return;
-    }
-
-    this.dataSourceSkills = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Skills': return compare(a.Skills, b.Skills, isAsc);
-        case 'Dominio': return compare(a.Dominio, b.Dominio, isAsc);
-        case 'Calificacion': return compare(a.Calificacion, b.Calificacion, isAsc);
-        case 'Eliminar': return compare(a.Eliminar, b.Eliminar, isAsc);
-        default: return 0;
-      }
-    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -188,15 +169,10 @@ export class AgregCandComponent implements OnInit {
 
     ngOnInit() {
       // Inicio datatable
-      this.dataSource2.paginator = this.paginator2;
-      this.dataSource2.sort = this.sort2;
+    this.dataSourceSkills.paginator = this.paginator;
       // Fin datatable
     }
     // Fin primer chip autocompletable
     // Inicio primer chip autocompletable
     // Fin primer chip autocompletable
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
