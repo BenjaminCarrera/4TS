@@ -139,3 +139,7 @@ id;nombre;descripcion;activated;deleted;created_by;created_date;last_modified_by
 138;Editar permisos authority;Editar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
 139;Agregar permisos authority;Agregar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
 140;Eliminar permisos authority;Eliminar permisos authority;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+141;Consultar usuario;Consultar usuario;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+142;Editar usuario;Editar usuario;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+143;Agregar usuario;Agregar usuario;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
+144;Eliminar usuario;Eliminar usuario;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:42
