@@ -1,6 +1,6 @@
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-requerimiento-heading">Create or edit a Requerimientor23</h2>
+            <h2 id="jhi-requerimiento-heading">Create or edit a Requerimientor</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -162,11 +162,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.cuenta" for="field_cuenta">Cuenta</label>
-                    <select class="form-control" id="field_cuenta" name="cuenta" formControlName="cuentaId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</option>
-                    </select>
+                    <mat-form-field class="full-width">
+                      <mat-select placeholder="Motivo de cierre de requerimiento" id="field_cuenta" name="cuenta" formControlName="cuentaId">
+                        <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.requerimiento.subCuenta" for="field_subCuenta">Sub Cuenta</label>

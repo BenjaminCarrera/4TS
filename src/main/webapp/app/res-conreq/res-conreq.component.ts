@@ -107,13 +107,13 @@ export class ResConreqComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.cargarRequerimiento();
+    // this.cargarRequerimiento();
   }
-  cargarRequerimiento() {
-    return this.restApi.getRequerimiento(1).subscribe((data: {}) => {
-      this.Requerimiento = data;
-    });
-  }
+  // cargarRequerimiento() {
+  //   return this.restApi.getRequerimiento(1).subscribe((data: {}) => {
+  //     this.Requerimiento = data;
+  //   });
+  // }
 }
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
