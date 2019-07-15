@@ -1,11 +1,200 @@
 id;clave;nombre
-1;24/365;Frozen
-2;magenta Turkish Lira;green Chicken Tasty
-3;Metal Lead;Communications Generic Granite Gloves
-4;Accountability Assurance Auto Loan Account;seamless indexing Handcrafted
-5;Malta Auto Loan Account online;deposit Central African Republic
-6;markets protocol Savings Account;Shoes HDD
-7;utilisation;out-of-the-box Pizza
-8;systems Sleek Wooden Towels Clothing;Fundamental Designer
-9;Borders Intelligent whiteboard;Practical Steel Mouse
-10;indexing;XSS
+1;ABBO;Abbott
+2;ACER;Acertia
+3;ACTI;Actinver
+4;ADIM;Adimpacto Mexico
+5;ADQU;ADQUEM S
+6;AIT;AIT
+7;ALSE;Alsea
+8;AMIB;Amiba Networks
+9;AMK;AMK Technologies
+10;ANFE;Anfexi Technologies
+11;AON;AON México
+12;ASER;Aserta
+13;AVON;Avon Cosmetics
+14;AXA;AXA Seguros
+15;AXOV;Axovia
+16;AXSI;Axsistec
+17;B1;B1 Soft
+18;BAES;Baesgo
+19;BAS;BAS Consultores
+20;BAX;Baxter
+21;BAZ;Banco Azteca
+22;BB;BlockBuster
+23;BD;Best Day
+24;BECO;Best Collect
+25;BEST;BEST Integration System
+26;BIM;Banco Inmobiliario Mexicano
+27;BMV;Bolsa Mexicana de Valores
+28;BMXT;Bancomext
+29;CAPG;Capgemini
+30;CASA;Casa Solida y Bienes Programados
+31;CDC;Grupo Salinas - Círculo de Crédito
+32;CDD;Círculo de Diseño
+33;CIIA;Consultores e Integradores de Tecnología
+34;CISNE;Cisneros y Asociados
+35;CIT;Códice iT
+36;CMI;CrossMedia Interactive
+37;CODA;Grupo CODA
+38;CODE;Code Ingeniería
+39;CONM;Concepto Móvil
+40;CONS;Constela
+41;CRSU;Credit Suisse Grupo Financiero
+42;CULTI;El Cultivo & Roberto Palomin
+43;CZ;Corporativo Zapata
+44;DABO;CompuDabo
+45;DDB;DDB México
+46;DEVE;Developware
+47;DIFU;Grupo Difusión Científica
+48;DISY;Diseño, Servicios Informáticos y Comunicaciones
+49;DXC;DXC Technology
+50;ECM;Consultoría y Aplicaciones Avanzadas de ECM
+51;ECOL;Ecolab
+52;EDEN;Edenred
+53;EFIC;Eficasia - Soluciones integrales en centros de contacto
+54;EFIM;EFIM. Financiamiento Inteligente.
+55;EGLO;E-Global (Servicios Electrónicos Globales)
+56;EKT;Grupo Salinas - Elektra
+57;ELOG;Elogia
+58;ERC;Grupo Ercus
+59;EUSA;Embajada de los Estados Unidos de Norteamérica
+60;EXA;Exágono Software
+61;EXPA;Time Expansión (Grupo Expansión)
+62;FC;Fin Común
+63;FEDEX;FEDEX de México
+64;FERR;Ferring
+65;FHL;FH Logística
+66;FIIN;Financiera Independencia
+67;FINA;El Financiero
+68;FOTEC;Infotec
+69;FRAI;Perfumes y Esencias Fraiche
+70;GDRA;Grupo Dragon
+71;GENT;Grupo Gentera
+72;GETR;Getronics
+73;GFIN;Grupo Financiero Interacciones
+74;GNP;Grupo Nacional Provincial
+75;HOCE;Hoteles City Express
+76;HP;HP
+77;HP-NEXT;HP - Nextel
+78;IBM;IBM México
+79;ICON;Iconn Travel
+80;IKE;IKE Asistencia México
+81;INBU;Inbursa
+82;INDI;Indigo Smart Software Development
+83;INDR;Indra
+84;INFO;Infosyst
+85;INOV;Mas Ofertas Web
+86;INTE;Interalia Net Soluciones Interactivas
+87;INTK;Intertek Testing Services de México
+88;INTW;Interware
+89;IPOP;2.0 Imagen Pop (POLTRONE)
+90;IPSOS;IPSOS Bimsa
+91;ISTA;International Star Partner Services
+92;ITEC;iTEC mx
+93;ITHU;IT Human Resources
+94;IUSA;Grupo Salinas - Iusacell
+95;IXPN;Ixpan
+96;JWM;JWM Solutions
+97;KALE;Kaleido Comunicación
+98;KEY;Key Technologies
+99;KINE;Kinectara Consultoría
+100;KLEV;Kleaverness
+101;KNOW;Knowtion
+102;KODO;KODO Consulting
+103;LAG;Lagash Systems
+104;LARED;La red corporativo
+105;LEO;Leo Pharma
+106;LIEL;Lincoln Electric Mexicana
+107;LIN;Linko
+108;LTW;LatinWeb
+109;LUCA;Lucasian Labs
+110;MACM;Macmillan Publishers
+111;MACR;Macrotech
+112;MACT;MACTELL de México
+113;MAEC;Mantenimiento y administración de equipo de cómputo (Capital Network)
+114;MAGN;Magna Decoplas
+115;MAKE;MakeIT Soluciones en Tecnologías de la Información
+116;MALI;Malibu Comunicaciones
+117;MAPA;Merrick México
+118;MASN;Mas Negocio
+119;MAST;Masteredi
+120;MATE;Matersys
+121;MBIT;MainBit
+122;MEDI;Medici Solutions
+123;MERZ;Merz Pharma
+124;MEGA;MegaTravel Agency
+125;MICR;Grupo Salinas - Micronegocio Azteca
+126;MILE;Grupo Salinas - Milenia
+127;MILO;Milenio Diario
+128;MOVE;Movemini
+129;MX;Mexicana de Aviación
+130;NAVI;Navistar Financial
+131;NEURO;Neuron Consulting
+132;NISS;Nissan Mexico
+133;NUBA;Nubaj Consulting
+134;NUTRI;Nutrisa
+135;OGIL;Ogilvy & Mather México
+136;ONLO;Grupo Onest S.A. de C.V. (Onest Logistics)
+137;PENGO;Pengo Store
+138;PIXE;Pixzelle Studio
+139;PMC;Project Management Consulting Mexico
+140;POMX;Porto MX
+141;POVE;Point Verde Green Technology Solutions
+142;PP;Grupo Salinas - Presta Prenda
+143;PROC;ProceSAR
+144;PROP;Procesos Pross
+145;PROPE;Prospectiva en Tecnología e Integradora de Sistemas
+146;PROS;PROSA México, Procesos Automatizados
+147;PROSIC;Project Services International Corporation
+148;PROVI;PROVIDENT México
+149;PRX;Praxis
+150;QTX;Qualitrain Express
+151;QUAK;Quarksoft
+152;QUAL;Scitum (Qualita)
+153;RAFO;Radio Fórmula
+154;ROLE;Rolex de México
+155;SABY;Smart Byte
+156;SAL;Grupo Salinas
+157;SAMS;Samsara Tecnología y Soluciones
+158;SDI;SDI Cointer
+159;SIASA;Sistemas Integrales de Automatización
+160;SIEM;Siemens
+161;SIS;Si-Soft
+162;SM;Ediciones SM
+163;SOFT;Softtek
+164;SOLU;Solusoft
+165;SOUL;Soultech
+166;SPOT;Spot Software & IT Pro
+167;STEI;Steindex
+168;STRA;Strategya
+169;SWAG;Grupo Swagger
+170;SYN;Syntegh, Consulting and Solutions
+171;SYNG;Syngenta Agro
+172;TATT;TATTVA
+173;TEAM;Teamknowlogy
+174;TELE;Telepro
+175;TIM;Tecnología de Información Móvil
+176;TN;Tiendas Neto
+177;TOTA;Total Play Telecomunicaciones
+178;TRAN;Trasparentia. Grupo Prodic.
+179;TRIM;Trimda Group
+180;TRON;Tronico Group
+181;TVA;TV Azteca
+182;TXP;Desarrollo IT EDX
+183;UAEM_IMSS;UAEMEX - IMSS
+184;UNIC;Universidad de Ciencias de la Calidad
+185;UNIK;Uniko DF
+186;UNIT;UNITIS
+187;UTEL;Universidad Tecnológica Latinoamericana en Línea
+188;VAR;VAR
+189;VIDA;Grupo Vidanta
+190;VIND;Villa Industrias
+191;VIP;VIP Networks
+192;VIRG;Virgin Mobile México
+193;VML;VML México
+194;VWD;VWD Agencia Creativa
+195;WELL;Wellcom
+196;XERT;Xertica
+197;XCOM;Xcomit
+198;XDGA;Xavier de Garay
+199;YOPO;Young People
