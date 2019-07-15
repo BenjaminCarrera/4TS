@@ -1,11 +1,90 @@
 id;perfil
-1;Florida THX Idaho
-2;Licensed Visionary pixel
-3;neural Markets Branding
-4;maroon
-5;superstructure
-6;Kids
-7;microchip
-8;Music Salad North Carolina
-9;circuit Forward
-10;frictionless solution-oriented
+1;Programador AS400 Jr
+2;Programador Angular Sr
+3;Programador Angular Jr
+4;Programador PL/SQL Semi Sr
+5;Pogramador SAP ABAP Sr
+6;Pogramador SAP ABAP Jr
+7;Consultor Siebel Sr
+8;Consultor Siebel Jr
+9;NA
+10;Diseñador Gráfico (INFOGRAFO) Sr
+11;Diseñador Gráfico (INFOGRAFO) Jr
+12;OP - Soporte Técnico Jr
+13;Programador .NET Semi Sr
+14;Programador JAVA EE Semi Sr
+15;Administrador de Aplicaciones Sr (Middleware Sr)
+16;Administrador de Aplicaciones Jr (Middleware Jr)
+17;Programador COBOL Jr
+18;Community Manager
+19;Test Manager
+20;Programador Delphi Sr
+21;Programador Delphi Jr
+22;Diseñador WEB Jr
+23;Maquetador WEB Jr
+24;Programador JavaScript Sr
+25;Programador Ruby Jr
+26;Programador Ruby Sr
+27;Becario .NET
+28;Becario JAVA EE
+29;Programador ASP .NET Jr
+30;Administrador de Base de Datos Jr (DBA Jr)
+31;Project Manager Jr (PM Jr)
+32;Programador Business Intelligence Jr
+33;FI - Analista de Administracion & Cobranza
+34;FI - Becaria de Administracion & Cobranza
+35;Gerente de Sistemas / TI
+36;Asistente de Limpieza y Mantenimiento
+37;Documentador de Sistemas & Procesos Sr
+38;Programador ETL Jr
+39;Líder de Proyecto JAVA
+40;Programador Visual Basic .NET Jr
+41;Programador Python Jr
+42;Programador Python Sr
+43;Programador ETL Sr
+44;Analista de Sistemas Sr
+45;Programador PL/SQL Sr
+46;Tester Jr
+47;Programador Visual Basic Sr
+48;Programador Android Sr
+49;Programador Android Jr
+50;Programador Visual Basic .NET Sr
+51;Programador Genexus Sr
+52;Programador Genexus Jr
+53;Arquitecto JAVA EE
+54;Programador Visual Basic Jr
+55;RH - Asistente Ejecutiva | Recepcionista
+56;Programador iOS Jr
+57;Programador PHP Sr
+58;Programador PHP Jr
+59;Maquetador WEB Sr
+60;CM - Becaria Comercial
+61;Administrador de Base de Datos Sr (DBA Sr)
+62;Programador iOS Sr
+63;Documentador de Sistemas & Procesos Jr
+64;Programador SharePoint Sr
+65;Tester Sr
+66;Programador COBOL Sr
+67;Project Manager Sr (PM Sr)
+68;Programador Java Struts Jr
+69;Programador JavaScript Jr
+70;Programador AS400 Sr
+71;Diseñador WEB Sr
+72;RH - Analista de Recursos Humanos
+73;CM - Ejecutiva Comercial
+74;Programador JackBe
+75;RH - Becario de Recursos Humanos
+76;OP - Soporte Técnico Sr
+77;Líder de Proyecto .NET
+78;Analista de Sistemas Jr
+79;Trainee .NET
+80;Trainee Java
+81;Programador PL/SQL Jr
+82;Programador Business Intelligence Sr
+83;Programador SharePoint Jr
+84;Programador Java Struts Sr
+85;Programador ASP .NET Sr
+86;Programador .NET Sr
+87;Programador .NET Jr
+88;Programador JAVA EE Sr
+89;Programador JAVA EE Jr

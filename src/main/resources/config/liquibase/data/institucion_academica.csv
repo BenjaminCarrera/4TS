@@ -1,11 +1,264 @@
 id;institucion
-1;distributed Computers
-2;Money Market Account users Guinea
-3;SQL lavender
-4;transmit Wooden COM
-5;Agent Squares
-6;supply-chains
-7;Bedfordshire
-8;Peru withdrawal Down-sized
-9;invoice
-10;Liaison Tonga
+1;Benemerita Universidad Autonoma de Puebla
+2;CCPC
+3;CECYT
+4;Centro de Computacion Profesional de Mexico (CCPM)
+5;Centro de Estudios de la Comunicacion Social
+6;Centro de Estudios en Ciencias de la Comunicacion (CEECC)
+7;Centro de Estudios Superiores Azteca
+8;Centro de Estudios Universitarios Fray Luca Paccioli
+9;Centro de Estudios Universitarios Londres
+10;Centro Educativo Latino
+11;Centro Universitario Columbia
+12;Centro Universitario de Ciencias Exactas e Ingieneria
+13;Centro Universitario de Comunicacion (CUC)
+14;Centro Universitario de Ixtlahuaca
+15;Centro Universitario Grupo Sol
+16;Centro Universitario Hipocrates
+17;Centro Universitario Oriente de Mexico
+18;Centro Universitario San Angel
+19;CETIS 7
+20;Colegio de Competitividad Academica y Profesional
+21;Colegio de Mexico
+22;Colegio Nacional de Capacitacion Intensiva (CNCI)
+23;Colegio Nacional de Educacion Profesional Tecnica Tlalpan I
+24;Colegio Nacional de Matematicas
+25;CONALEP
+26;ECOTEC
+27;ECPI University (Electronic Computer Programming Institute)
+28;ESAD
+29;Escuela Bancaria y Comercial
+30;Escuela Nacional de Artes Plasticas
+31;EXTRANJERO
+32;ICEL
+33;ICM
+34;Instituto Cumbre
+35;Instituto de Cibernetica y Computacion
+36;Instituto de Estudios Superiores de Oaxaca
+37;Instituto de Estudios Superiores del Colegio Holandes
+38;Instituto de Estudios Superiores del Estado (IESE)
+39;Instituto de Estudios Universitarios
+40;Instituto Leonardo Bravo
+41;Instituto Mexicano de Informatica y Computacion Electronica
+42;Instituto Poblano de Estudios Superiores
+43;Instituto Superior del Oriente del Edo de Hidalgo
+44;Instituto Superior Tecnologico Reyna de las Americas
+45;Instituto Tecnico y Bancario San Carlos
+46;Instituto Tecnologico de Acapulco
+47;Instituto Tecnologico de Aguascalientes
+48;Instituto Tecnologico de Apizaco
+49;Instituto Tecnologico de Celaya
+50;Instituto Tecnologico de Cerro Azul
+51;Instituto Tecnologico de Chilpancingo
+52;Instituto Tecnologico de Ciudad Jimenez Chihuahua
+53;Instituto Tecnologico de Ciudad Madero
+54;Instituto Tecnologico de Ciudad Victoria
+55;Instituto Tecnologico de Colima
+56;Instituto Tecnologico de Cuautla
+57;Instituto Tecnologico de Culiacan
+58;Instituto Tecnologico de Durango
+59;Instituto Tecnologico de Ecatepec
+60;Instituto Tecnologico de Estudios Superiores de Chalco
+61;Instituto Tecnologico de Estudios Superiores de Ecatepec
+62;Instituto Tecnologico de Estudios Superiores de Huachinango
+63;Instituto Tecnologico de Estudios Superiores de Ixtapaluca
+64;Instituto Tecnologico de Estudios Superiores de Occidente
+65;Instituto Tecnologico de Gustavo A. Madero
+66;Instituto Tecnologico de Iguala
+67;Instituto Tecnologico de Jiquilpan
+68;Instituto Tecnologico de la Laguna
+69;Instituto Tecnologico de Leon
+70;Instituto Tecnologico de Merida
+71;Instituto Tecnologico de Minatitlan
+72;Instituto Tecnologico de Morelia
+73;Instituto Tecnologico de Nogales
+74;Instituto Tecnologico de Nuevo Leon
+75;Instituto Tecnologico de Oaxaca
+76;Instituto Tecnologico de Ocotlan
+77;Instituto Tecnologico de Orizaba
+78;Instituto Tecnologico de Pachuca
+79;Instituto Tecnologico de Pinotepa
+80;Instituto Tecnologico de Poza Rica
+81;Instituto Tecnologico de Puebla
+82;Instituto Tecnologico de Queretaro
+83;Instituto Tecnologico de Roque
+84;Instituto Tecnologico de Saltillo
+85;Instituto Tecnologico de San Luis Potosi
+86;Instituto Tecnologico de Sonora
+87;Instituto Tecnologico de Tehuacan
+88;Instituto Tecnologico de Teziutlan
+89;Instituto Tecnologico de Tlahuac
+90;Instituto Tecnologico de Tlalnepantla
+91;Instituto Tecnologico de Tlaxiaco
+92;Instituto Tecnologico de Toluca
+93;Instituto Tecnologico de Tuxtepec
+94;Instituto Tecnologico de Tuxtla Gutierrez (ITTG)
+95;Instituto Tecnologico de Veracruz
+96;Instituto Tecnologico de Villahermosa
+97;Instituto Tecnologico de Zacatepec
+98;Instituto Tecnologico de Zitacuaro
+99;Instituto Tecnologico del Istmo
+100;Instituto Tecnologico La Paz
+101;Instituto Tecnologico Superior de Tierra Blanca
+102;Instituto Tecnologico Superior de Alamo Temapache
+103;Instituto Tecnologico Superior de Apatzingan
+104;Instituto Tecnologico Superior de Atlixco
+105;Instituto Tecnologico Superior de Ciudad Hidalgo
+106;Instituto Tecnologico Superior de Ciudad Serdan
+107;Instituto Tecnologico Superior de Coatzacoalcos (ITESCO)
+108;Instituto Tecnologico Superior de Cosamaloapan (ITSCO)
+109;Instituto Tecnologico Superior de Fresnillo
+110;Instituto Tecnologico Superior de Huetamo
+111;Instituto Tecnologico Superior de Irapuato (ITESI)
+112;Instituto Tecnologico Superior de la Sierra Norte de Puebla
+113;Instituto Tecnologico Superior de Libres Puebla
+114;Instituto Tecnologico Superior de Misantla
+115;Instituto Tecnologico Superior de Santiago Papasquiaro
+116;Instituto Tecnologico Superior de Sinaloa (ITESUS)
+117;Instituto Tecnologico Superior de Tacambaro
+118;Instituto Tecnologico Superior de Teziutlan
+119;Instituto Tecnologico Superior de Xalapa
+120;Instituto Tecnologico Superior de Zacapoaxtla
+121;Instituto Tecnologico Superior de Zacatecas
+122;Instituto Tecnologico Superior del Occidente
+123;Instituto Tecnologico Superior del Oriente del Estado de Hidalgo
+124;Instituto Tecnologico Superior del Sur de Guanajuato
+125;Instituto Universitario del Estado de Mexico
+126;IPN CICS
+127;IPN ESCA
+128;IPN ESCOM
+129;IPN ESIME
+130;IPN ESIQIE
+131;IPN UPIICSA
+132;IPN UPIITA
+133;ISEC
+134;ITAM
+135;ITESM
+136;ITESM CCM
+137;ITESM CEM
+138;ITESM MTY
+139;ITESM QRO
+140;IUP
+141;OTRO
+142;TEC Milenio
+143;Tecnologico de Estudios Superiores de Coacalco
+144;Tecnologico de Estudios Superiores de Cuautitlan Izcalli
+145;Tecnologico de Estudios Superiores de Ecatepec
+146;Tecnologico de Estudios Superiores de Huixquilucan
+147;Tecnologico de Estudios Superiores de Ixtapaluca
+148;Tecnologico de Estudios Superiores de Jilotepec (TESJI)
+149;Tecnologico de Estudios Superiores de Jocotitlan (TESJo)
+150;Tecnologico de Estudios Superiores de Valle de Bravo (TESVB)
+151;Tecnologico de Estudios Superiores de Villa Guerrero
+152;Tecnologico de Estudios Superiores del Oriente del Estado de Mexico
+153;Tecnologico Universitario del Valle de Chalco
+154;UABC
+155;UAEM Texcoco
+156;UAM Azcapotzalco
+157;UAM Cuajimalpa
+158;UAM Iztapalapa
+159;UAM Xochimilco
+160;UDEC
+161;UDLA
+162;UNAM
+163;UNAM FES Acatlan
+164;UNAM FES Aragon
+165;UNAM FES Cuautitlan
+166;UNAM FES Iztacala
+167;UNAM FES Zaragoza
+168;UNITEC
+169;UNIVER
+170;Universidad Abierta y a Distancia de Mexico
+171;Universidad Anahuac
+172;Universidad Autonoma de Aguascalientes
+173;Universidad Autonoma de Baja California
+174;Universidad Autonoma de Campeche
+175;Universidad Autonoma de Guerrero
+176;Universidad Autonoma de Hidalgo
+177;Universidad Autonoma de Nuevo Leon
+178;Universidad Autonoma de Queretaro
+179;Universidad Autonoma de Sinaloa
+180;Universidad Autonoma de Tabasco
+181;Universidad Autonoma de Tamaulipas
+182;Universidad Autonoma de Tlaxcala
+183;Universidad Autonoma de Zacatecas
+184;Universidad Autonoma del Estado de Mexico
+185;Universidad Autonoma Indigena de Mexico (UAIM)
+186;Universidad Bancaria de Mexico
+187;Universidad Bona Terra
+188;Universidad Chapultepec
+189;Universidad Cum Laude Ubi Gloria Semper
+190;Universidad de Celaya
+191;Universidad de Cuautitlan Izcalli
+192;Universidad de Guadalajara
+193;Universidad de Guanajuato
+194;Universidad de la Sierra Sur
+195;Universidad de los Altos de Chiapas
+196;Universidad de Occidente
+197;Universidad de Sonora
+198;Universidad del Claustro de Sor Juana
+199;Universidad del Distrito Federal
+200;Universidad del Golfo de Mexico
+201;Universidad del Istmo
+202;Universidad del Papaloapan
+203;Universidad del Pedregal
+204;Universidad del Valle de Orizaba
+205;Universidad ETAC
+206;Universidad Grupo CEDIP
+207;Universidad Hispanoamericana
+208;Universidad Iberoamericana
+209;Universidad Insurgentes
+210;Universidad Interactiva a Distancia del Estado de Guanajuato
+211;Universidad Interamericana para el Desarrollo
+212;Universidad Intercontinental
+213;Universidad Juarez de Tabasco
+214;Universidad Justo Sierra
+215;Universidad La Salle
+216;Universidad Latinoamericana
+217;Universidad Londres
+218;Universidad Lucerna
+219;Universidad Madero
+220;Universidad Mexicana
+221;Universidad Mexiquense Bicentenario
+222;Universidad Nuevo Mundo
+223;Universidad Panamericana
+224;Universidad Politecnica de Pachuca
+225;Universidad Politecnica de Queretaro
+226;Universidad Politecnica de San Luis Potosi
+227;Universidad Politecnica de Tlaxcala
+228;Universidad Politecnica de Tulancingo
+229;Universidad Politecnica de Victoria
+230;Universidad Politecnica de Zacatecas
+231;Universidad Politecnica del Estado de Morelos
+232;Universidad Politecnica del Valle de Mexico
+233;Universidad Popular Autonoma del Estado de Puebla (UPAEP)
+234;Universidad Privada del Estado de Mexico
+235;Universidad Regional del Sureste
+236;Universidad San Carlos
+237;Universidad Simon Bolivar
+238;Universidad Tec Milenio
+239;Universidad Tecnologica de Izucar de Matamoros
+240;Universidad Tecnologica de la Huasteca Hidalguense
+241;Universidad Tecnologica de la Mixteca
+242;Universidad Tecnologica de la Region Norte de Guerrero
+243;Universidad Tecnologica de la Selva
+244;Universidad Tecnologica de la Sierra Hidalguense
+245;Universidad Tecnologica de Mexico
+246;Universidad Tecnologica de Nezahualcoyotl
+247;Universidad Tecnologica de Puebla
+248;Universidad Tecnologica de Tecamac
+249;Universidad Tecnologica de Tula - Tepeji
+250;Universidad Tecnologica de Xicotepec de Juarez (UTXJ)
+251;Universidad Tecnologica del Norte de Guanajuato
+252;Universidad Tecnologica del Sur del Estado de Mexico (UTSEM)
+253;Universidad Tecnologica del Valle de Toluca
+254;Universidad Tecnologica del Valle del Mezquital
+255;Universidad Tecnologica Emiliano Zapata del Estado de Morelos
+256;Universidad Tecnologica Fidel Velazquez
+257;Universidad Tecnologica Latinoamericana (UTEL)
+258;Universidad Tecnologica Metropolitana Merida Yucatan
+259;Universidad Veracruzana
+260;Univesidad Autonoma de Ciudad Juarez
+261;Univesidad Nacional de Mar del Plata
+262;UVM
+263;Young Men's Christian Association (YMCA)

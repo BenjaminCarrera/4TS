@@ -13,7 +13,10 @@ import { RequerimientoService } from './requerimiento.service';
 
 @Component({
   selector: 'jhi-requerimiento',
-  templateUrl: './requerimiento.component.html'
+  templateUrl: './requerimiento.component.html',
+  styleUrls: [
+    '../../con-req/con-req.component.scss'
+  ]
 })
 export class RequerimientoComponent implements OnInit, OnDestroy {
   currentAccount: any;
@@ -39,7 +42,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager
   ) {
-    this.itemsPerPage = ITEMS_PER_PAGE;
+    this.itemsPerPage = 5;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
       this.previousPage = data.pagingParams.page;
