@@ -1,7 +1,6 @@
-<div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-requerimiento-heading" jhiTranslate="App.requerimiento.home.createOrEditLabel">Create or edit a Requerimiento</h2>
+            <h2 id="jhi-requerimiento-heading">Create or edit a Requerimientor23</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -31,10 +30,12 @@
                         <input id="field_fechaResolucion" type="datetime-local" class="form-control" name="fechaResolucion" formControlName="fechaResolucion" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.remplazoDe" for="field_remplazoDe">Remplazo De</label>
-                    <input type="text" class="form-control" name="remplazoDe" id="field_remplazoDe"
-                           formControlName="remplazoDe"/>
+                <mat-form-field class="">
+                    <input matInput placeholder="Reemplazo de" name="remplazoDe" id="field_remplazoDe"
+                    formControlName="remplazoDe" />
+                  </mat-form-field>
                     <div *ngIf="editForm.get('remplazoDe').invalid && (editForm.get('remplazoDe').dirty || editForm.get('remplazoDe').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('remplazoDe').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
@@ -42,15 +43,19 @@
                         </small>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.vacantesSolicitadas" for="field_vacantesSolicitadas">Vacantes Solicitadas</label>
-                    <input type="number" class="form-control" name="vacantesSolicitadas" id="field_vacantesSolicitadas"
-                           formControlName="vacantesSolicitadas"/>
+                           <mat-form-field class="">
+                             <input matInput placeholder="Vacantes solicitadas" name="vacantesSolicitadas" id="field_vacantesSolicitadas"
+                             formControlName="vacantesSolicitadas" />
+                           </mat-form-field>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.proyecto" for="field_proyecto">Proyecto</label>
-                    <input type="text" class="form-control" name="proyecto" id="field_proyecto"
-                           formControlName="proyecto"/>
+                           <mat-form-field>
+                             <input matInput placeholder="Proyecto" name="proyecto" id="field_proyecto"
+                             formControlName="proyecto" />
+                           </mat-form-field>
                     <div *ngIf="editForm.get('proyecto').invalid && (editForm.get('proyecto').dirty || editForm.get('proyecto').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('proyecto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
@@ -58,10 +63,12 @@
                         </small>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.nombreContacto" for="field_nombreContacto">Nombre Contacto</label>
-                    <input type="text" class="form-control" name="nombreContacto" id="field_nombreContacto"
-                           formControlName="nombreContacto"/>
+                  <mat-form-field class="">
+                        <input matInput placeholder="Nombre de contacto" name="nombreContacto" id="field_nombreContacto"
+                        formControlName="nombreContacto"/>
+                      </mat-form-field>
                     <div *ngIf="editForm.get('nombreContacto').invalid && (editForm.get('nombreContacto').dirty || editForm.get('nombreContacto').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('nombreContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
@@ -70,14 +77,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.tarifaSueldoNet" for="field_tarifaSueldoNet">Tarifa Sueldo Net</label>
-                    <input type="number" class="form-control" name="tarifaSueldoNet" id="field_tarifaSueldoNet"
-                           formControlName="tarifaSueldoNet"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Tarifa Sueldo Net"name="tarifaSueldoNet" id="field_tarifaSueldoNet"
+                                 formControlName="tarifaSueldoNet"/>
+                               </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.prestaciones" for="field_prestaciones">Prestaciones</label>
-                    <input type="text" class="form-control" name="prestaciones" id="field_prestaciones"
-                           formControlName="prestaciones"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Prestaciones" name="prestaciones" id="field_prestaciones"
+                                 formControlName="prestaciones"/>
+                               </mat-form-field>
                     <div *ngIf="editForm.get('prestaciones').invalid && (editForm.get('prestaciones').dirty || editForm.get('prestaciones').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('prestaciones').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
@@ -86,14 +95,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.duracionAsignacion" for="field_duracionAsignacion">Duracion Asignacion</label>
-                    <input type="number" class="form-control" name="duracionAsignacion" id="field_duracionAsignacion"
-                           formControlName="duracionAsignacion"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Duracion Asignacion"  name="duracionAsignacion" id="field_duracionAsignacion"
+                                 formControlName="duracionAsignacion"/>
+                               </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.lugarTrabajo" for="field_lugarTrabajo">Lugar Trabajo</label>
-                    <input type="text" class="form-control" name="lugarTrabajo" id="field_lugarTrabajo"
-                           formControlName="lugarTrabajo"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Lugar Trabajo"  name="lugarTrabajo" id="field_lugarTrabajo"
+                                 formControlName="lugarTrabajo"/>
+                               </mat-form-field>
                     <div *ngIf="editForm.get('lugarTrabajo').invalid && (editForm.get('lugarTrabajo').dirty || editForm.get('lugarTrabajo').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('lugarTrabajo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
@@ -102,19 +113,22 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.coorLat" for="field_coorLat">Coor Lat</label>
-                    <input type="number" class="form-control" name="coorLat" id="field_coorLat"
-                           formControlName="coorLat"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Coor Lat" name="coorLat" id="field_coorLat"
+                                 formControlName="coorLat"/>
+                               </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.coorLong" for="field_coorLong">Coor Long</label>
-                    <input type="number" class="form-control" name="coorLong" id="field_coorLong"
-                           formControlName="coorLong"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Coor Long" name="coorLong" id="field_coorLong"
+                                 formControlName="coorLong"/>
+                               </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.horario" for="field_horario">Horario</label>
-                    <input type="text" class="form-control" name="horario" id="field_horario"
-                           formControlName="horario"/>
+                           <mat-form-field class="">
+                                 <input matInput placeholder="Horario" name="horario" id="field_horario"
+                                 formControlName="horario"/>
+                               </mat-form-field>
                     <div *ngIf="editForm.get('horario').invalid && (editForm.get('horario').dirty || editForm.get('horario').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('horario').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 300 }">
@@ -123,9 +137,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.informacionExamen" for="field_informacionExamen">Informacion Examen</label>
-                    <input type="text" class="form-control" name="informacionExamen" id="field_informacionExamen"
-                           formControlName="informacionExamen"/>
+                           <mat-form-field class="example-full-width">
+                             <textarea matInput placeholder="Información del examen" rows="9" name="informacionExamen" id="field_informacionExamen"
+                             formControlName="informacionExamen"></textarea>
+                           </mat-form-field>
                     <div *ngIf="editForm.get('informacionExamen').invalid && (editForm.get('informacionExamen').dirty || editForm.get('informacionExamen').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('informacionExamen').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
@@ -134,9 +149,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.informacionAdicional" for="field_informacionAdicional">Informacion Adicional</label>
-                    <input type="text" class="form-control" name="informacionAdicional" id="field_informacionAdicional"
-                           formControlName="informacionAdicional"/>
+                           <mat-form-field class="example-full-width">
+                             <textarea matInput placeholder="Informacion Adicional" rows="9"name="informacionAdicional" id="field_informacionAdicional"
+                             formControlName="informacionAdicional"></textarea>
+                           </mat-form-field>
                     <div *ngIf="editForm.get('informacionAdicional').invalid && (editForm.get('informacionAdicional').dirty || editForm.get('informacionAdicional').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('informacionAdicional').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">

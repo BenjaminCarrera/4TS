@@ -1,13 +1,115 @@
+<div class="row">
+    <div class="col-md-12"  style="display: inline-block;">
+        <div class="row">
+            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
+                    <h3 class="titulo">Consulta del requerimiento</h3>
+            </div>
+            <div class="col"  style="display: inline-block; padding-left: 0px;padding-top: 0px;padding-left:25px;">
+            <a  [routerLink]="['/requerimiento/new']">
+                <button mat-raised-button color="warn" >Añadir requerimiento</button>
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Inicio del formulario -->
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="row">
+    <div class="col-md-3 esp-arriba">
+      <div class="example-container">
+        <mat-form-field class="full-width">
+          <input matInput #postalCode maxlength="4" placeholder="ID de requerimiento" >
+          <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-3  esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Ejecutivo asignado">
+          <mat-option value="option">Reclutador asignado</mat-option>
+          <mat-option value="option">Andrea Jimenez Otero</mat-option>
+          <mat-option value="option">Ernesto Cruz Lopez</mat-option>
+          <mat-option value="option">Paola Lopez Cruz</mat-option>
+          <mat-option value="option">David Alejandro Ruiz Jimenez</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <p>
+        <label class="label-material">Estatus del requerimiento:</label>
+        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+          <mat-button-toggle value="bold"> Todos </mat-button-toggle>
+          <mat-button-toggle value="cursiva"> Abierto </mat-button-toggle>
+          <mat-button-toggle value="underline"> Cerrado </mat-button-toggle>
+          <mat-button-toggle value="underline"> En espera </mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
+    </div>
+    <div class="col-md-3  esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Cuenta">
+          <mat-option value="option">AXA</mat-option>
+          <mat-option value="option">Aserta</mat-option>
+          <mat-option value="option">Fin comúm</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Perfil">
+          <mat-option value="option">Visual Basic .net</mat-option>
+          <mat-option value="option">Angular</mat-option>
+          <mat-option value="option">Php laravel</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Nivel de Perfil">
+          <mat-option value="option">Senior</mat-option>
+          <mat-option value="option">Semi Senior</mat-option>
+          <mat-option value="option">Junior</mat-option>
+          <mat-option value="option">Becario</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <p>
+        <label class="label-material">Tipo de solicitud:</label>
+        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos2">
+          <mat-button-toggle value="Todas"> Todas </mat-button-toggle>
+          <mat-button-toggle value="Outsourcing"> Outsourcing </mat-button-toggle>
+          <mat-button-toggle value="Reclutamiento"> Reclutamiento </mat-button-toggle>
+          <mat-button-toggle value="Interna"> Interna </mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
+    </div>
+    <div class="col-md-3 esp-arriba">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Prioridad">
+          <mat-option value="option">Baja</mat-option>
+          <mat-option value="option">Media</mat-option>
+          <mat-option value="option">Alta</mat-option>
+          <mat-option value="option">Crítica</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <button type="reset" class="btn gris"> Limpiar </button>
+      <button mat-raised-button color="warn">Buscar</button>
+      <br>
+    </div>
+  </div>
+
+</form>
+<!-- Fin del formulario -->
+
+<br>
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="App.requerimiento.home.title">Requerimientos</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-requerimiento" [routerLink]="['/requerimiento/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="App.requerimiento.home.createLabel">
-            Create new Requerimiento
-            </span>
-        </button>
-    </h2>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
