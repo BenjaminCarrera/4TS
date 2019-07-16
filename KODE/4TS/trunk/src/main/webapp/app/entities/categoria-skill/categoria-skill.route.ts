@@ -37,7 +37,7 @@ export const categoriaSkillRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['97'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.categoriaSkill.home.title'
     },
@@ -50,7 +50,7 @@ export const categoriaSkillRoute: Routes = [
       categoriaSkill: CategoriaSkillResolve
     },
     data: {
-      authorities: ['97'],
+      authorities: ['4'],
       pageTitle: 'App.categoriaSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const categoriaSkillRoute: Routes = [
       categoriaSkill: CategoriaSkillResolve
     },
     data: {
-      authorities: ['99'],
+      authorities: ['4'],
       pageTitle: 'App.categoriaSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const categoriaSkillRoute: Routes = [
       categoriaSkill: CategoriaSkillResolve
     },
     data: {
-      authorities: ['98'],
+      authorities: ['4'],
       pageTitle: 'App.categoriaSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const categoriaSkillPopupRoute: Routes = [
       categoriaSkill: CategoriaSkillResolve
     },
     data: {
-      authorities: ['100'],
+      authorities: ['4'],
       pageTitle: 'App.categoriaSkill.home.title'
     },
     canActivate: [UserRouteAccessService],

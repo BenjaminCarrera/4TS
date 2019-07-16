@@ -37,7 +37,7 @@ export const estadoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['29'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estado.home.title'
     },
@@ -50,7 +50,7 @@ export const estadoRoute: Routes = [
       estado: EstadoResolve
     },
     data: {
-      authorities: ['29'],
+      authorities: ['4'],
       pageTitle: 'App.estado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estadoRoute: Routes = [
       estado: EstadoResolve
     },
     data: {
-      authorities: ['31'],
+      authorities: ['4'],
       pageTitle: 'App.estado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estadoRoute: Routes = [
       estado: EstadoResolve
     },
     data: {
-      authorities: ['30'],
+      authorities: ['4'],
       pageTitle: 'App.estado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estadoPopupRoute: Routes = [
       estado: EstadoResolve
     },
     data: {
-      authorities: ['32'],
+      authorities: ['4'],
       pageTitle: 'App.estado.home.title'
     },
     canActivate: [UserRouteAccessService],

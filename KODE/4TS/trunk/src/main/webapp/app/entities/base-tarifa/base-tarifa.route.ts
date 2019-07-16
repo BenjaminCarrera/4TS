@@ -37,7 +37,7 @@ export const baseTarifaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.baseTarifa.home.title'
     },
@@ -50,7 +50,7 @@ export const baseTarifaRoute: Routes = [
       baseTarifa: BaseTarifaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.baseTarifa.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const baseTarifaRoute: Routes = [
       baseTarifa: BaseTarifaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.baseTarifa.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const baseTarifaRoute: Routes = [
       baseTarifa: BaseTarifaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.baseTarifa.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const baseTarifaPopupRoute: Routes = [
       baseTarifa: BaseTarifaResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.baseTarifa.home.title'
     },
     canActivate: [UserRouteAccessService],

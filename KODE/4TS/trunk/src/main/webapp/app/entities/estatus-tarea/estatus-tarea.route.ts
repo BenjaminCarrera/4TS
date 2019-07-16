@@ -37,7 +37,7 @@ export const estatusTareaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['121'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estatusTarea.home.title'
     },
@@ -50,7 +50,7 @@ export const estatusTareaRoute: Routes = [
       estatusTarea: EstatusTareaResolve
     },
     data: {
-      authorities: ['121'],
+      authorities: ['4'],
       pageTitle: 'App.estatusTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estatusTareaRoute: Routes = [
       estatusTarea: EstatusTareaResolve
     },
     data: {
-      authorities: ['123'],
+      authorities: ['4'],
       pageTitle: 'App.estatusTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estatusTareaRoute: Routes = [
       estatusTarea: EstatusTareaResolve
     },
     data: {
-      authorities: ['122'],
+      authorities: ['4'],
       pageTitle: 'App.estatusTarea.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estatusTareaPopupRoute: Routes = [
       estatusTarea: EstatusTareaResolve
     },
     data: {
-      authorities: ['124'],
+      authorities: ['4'],
       pageTitle: 'App.estatusTarea.home.title'
     },
     canActivate: [UserRouteAccessService],

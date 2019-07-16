@@ -37,7 +37,7 @@ export const referenciasLaboralesRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['61'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.referenciasLaborales.home.title'
     },
@@ -50,7 +50,7 @@ export const referenciasLaboralesRoute: Routes = [
       referenciasLaborales: ReferenciasLaboralesResolve
     },
     data: {
-      authorities: ['61'],
+      authorities: ['4'],
       pageTitle: 'App.referenciasLaborales.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const referenciasLaboralesRoute: Routes = [
       referenciasLaborales: ReferenciasLaboralesResolve
     },
     data: {
-      authorities: ['63'],
+      authorities: ['4'],
       pageTitle: 'App.referenciasLaborales.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const referenciasLaboralesRoute: Routes = [
       referenciasLaborales: ReferenciasLaboralesResolve
     },
     data: {
-      authorities: ['62'],
+      authorities: ['4'],
       pageTitle: 'App.referenciasLaborales.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const referenciasLaboralesPopupRoute: Routes = [
       referenciasLaborales: ReferenciasLaboralesResolve
     },
     data: {
-      authorities: ['64'],
+      authorities: ['4'],
       pageTitle: 'App.referenciasLaborales.home.title'
     },
     canActivate: [UserRouteAccessService],

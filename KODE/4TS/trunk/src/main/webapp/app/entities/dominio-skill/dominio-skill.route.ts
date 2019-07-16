@@ -37,7 +37,7 @@ export const dominioSkillRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['105'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.dominioSkill.home.title'
     },
@@ -50,7 +50,7 @@ export const dominioSkillRoute: Routes = [
       dominioSkill: DominioSkillResolve
     },
     data: {
-      authorities: ['105'],
+      authorities: ['4'],
       pageTitle: 'App.dominioSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const dominioSkillRoute: Routes = [
       dominioSkill: DominioSkillResolve
     },
     data: {
-      authorities: ['107'],
+      authorities: ['4'],
       pageTitle: 'App.dominioSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const dominioSkillRoute: Routes = [
       dominioSkill: DominioSkillResolve
     },
     data: {
-      authorities: ['106'],
+      authorities: ['4'],
       pageTitle: 'App.dominioSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const dominioSkillPopupRoute: Routes = [
       dominioSkill: DominioSkillResolve
     },
     data: {
-      authorities: ['108'],
+      authorities: ['4'],
       pageTitle: 'App.dominioSkill.home.title'
     },
     canActivate: [UserRouteAccessService],

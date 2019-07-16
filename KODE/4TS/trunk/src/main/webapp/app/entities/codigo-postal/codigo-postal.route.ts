@@ -37,7 +37,7 @@ export const codigoPostalRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['33'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.codigoPostal.home.title'
     },
@@ -50,7 +50,7 @@ export const codigoPostalRoute: Routes = [
       codigoPostal: CodigoPostalResolve
     },
     data: {
-      authorities: ['33'],
+      authorities: ['4'],
       pageTitle: 'App.codigoPostal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const codigoPostalRoute: Routes = [
       codigoPostal: CodigoPostalResolve
     },
     data: {
-      authorities: ['35'],
+      authorities: ['4'],
       pageTitle: 'App.codigoPostal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const codigoPostalRoute: Routes = [
       codigoPostal: CodigoPostalResolve
     },
     data: {
-      authorities: ['34'],
+      authorities: ['4'],
       pageTitle: 'App.codigoPostal.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const codigoPostalPopupRoute: Routes = [
       codigoPostal: CodigoPostalResolve
     },
     data: {
-      authorities: ['36'],
+      authorities: ['4'],
       pageTitle: 'App.codigoPostal.home.title'
     },
     canActivate: [UserRouteAccessService],

@@ -37,7 +37,7 @@ export const skillRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['89'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.skill.home.title'
     },
@@ -50,7 +50,7 @@ export const skillRoute: Routes = [
       skill: SkillResolve
     },
     data: {
-      authorities: ['89'],
+      authorities: ['4'],
       pageTitle: 'App.skill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const skillRoute: Routes = [
       skill: SkillResolve
     },
     data: {
-      authorities: ['91'],
+      authorities: ['4'],
       pageTitle: 'App.skill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const skillRoute: Routes = [
       skill: SkillResolve
     },
     data: {
-      authorities: ['90'],
+      authorities: ['4'],
       pageTitle: 'App.skill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const skillPopupRoute: Routes = [
       skill: SkillResolve
     },
     data: {
-      authorities: ['92'],
+      authorities: ['4'],
       pageTitle: 'App.skill.home.title'
     },
     canActivate: [UserRouteAccessService],

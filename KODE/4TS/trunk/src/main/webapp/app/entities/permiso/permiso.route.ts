@@ -62,7 +62,7 @@ export const permisoRoute: Routes = [
       permiso: PermisoResolve
     },
     data: {
-      authorities: ['3'],
+      authorities: ['1'],
       pageTitle: 'App.permiso.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const permisoRoute: Routes = [
       permiso: PermisoResolve
     },
     data: {
-      authorities: ['2'],
+      authorities: ['1'],
       pageTitle: 'App.permiso.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const permisoPopupRoute: Routes = [
       permiso: PermisoResolve
     },
     data: {
-      authorities: ['4'],
+      authorities: ['1'],
       pageTitle: 'App.permiso.home.title'
     },
     canActivate: [UserRouteAccessService],

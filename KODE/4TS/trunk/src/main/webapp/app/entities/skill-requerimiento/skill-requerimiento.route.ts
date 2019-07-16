@@ -37,7 +37,7 @@ export const skillRequerimientoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.skillRequerimiento.home.title'
     },
@@ -50,7 +50,7 @@ export const skillRequerimientoRoute: Routes = [
       skillRequerimiento: SkillRequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.skillRequerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const skillRequerimientoRoute: Routes = [
       skillRequerimiento: SkillRequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.skillRequerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const skillRequerimientoRoute: Routes = [
       skillRequerimiento: SkillRequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.skillRequerimiento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const skillRequerimientoPopupRoute: Routes = [
       skillRequerimiento: SkillRequerimientoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.skillRequerimiento.home.title'
     },
     canActivate: [UserRouteAccessService],

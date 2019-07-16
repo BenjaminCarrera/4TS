@@ -37,7 +37,7 @@ export const bitacoraRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['129'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.bitacora.home.title'
     },
@@ -50,7 +50,7 @@ export const bitacoraRoute: Routes = [
       bitacora: BitacoraResolve
     },
     data: {
-      authorities: ['129'],
+      authorities: ['4'],
       pageTitle: 'App.bitacora.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const bitacoraRoute: Routes = [
       bitacora: BitacoraResolve
     },
     data: {
-      authorities: ['131'],
+      authorities: ['4'],
       pageTitle: 'App.bitacora.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const bitacoraRoute: Routes = [
       bitacora: BitacoraResolve
     },
     data: {
-      authorities: ['130'],
+      authorities: ['4'],
       pageTitle: 'App.bitacora.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const bitacoraPopupRoute: Routes = [
       bitacora: BitacoraResolve
     },
     data: {
-      authorities: ['132'],
+      authorities: ['4'],
       pageTitle: 'App.bitacora.home.title'
     },
     canActivate: [UserRouteAccessService],

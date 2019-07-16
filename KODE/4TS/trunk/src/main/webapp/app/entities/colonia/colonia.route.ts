@@ -37,7 +37,7 @@ export const coloniaRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['21'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.colonia.home.title'
     },
@@ -50,7 +50,7 @@ export const coloniaRoute: Routes = [
       colonia: ColoniaResolve
     },
     data: {
-      authorities: ['21'],
+      authorities: ['4'],
       pageTitle: 'App.colonia.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const coloniaRoute: Routes = [
       colonia: ColoniaResolve
     },
     data: {
-      authorities: ['23'],
+      authorities: ['4'],
       pageTitle: 'App.colonia.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const coloniaRoute: Routes = [
       colonia: ColoniaResolve
     },
     data: {
-      authorities: ['22'],
+      authorities: ['4'],
       pageTitle: 'App.colonia.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const coloniaPopupRoute: Routes = [
       colonia: ColoniaResolve
     },
     data: {
-      authorities: ['24'],
+      authorities: ['4'],
       pageTitle: 'App.colonia.home.title'
     },
     canActivate: [UserRouteAccessService],
