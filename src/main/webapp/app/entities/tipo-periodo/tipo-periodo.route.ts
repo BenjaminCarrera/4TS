@@ -37,7 +37,7 @@ export const tipoPeriodoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['53'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tipoPeriodo.home.title'
     },
@@ -50,7 +50,7 @@ export const tipoPeriodoRoute: Routes = [
       tipoPeriodo: TipoPeriodoResolve
     },
     data: {
-      authorities: ['53'],
+      authorities: ['4'],
       pageTitle: 'App.tipoPeriodo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tipoPeriodoRoute: Routes = [
       tipoPeriodo: TipoPeriodoResolve
     },
     data: {
-      authorities: ['55'],
+      authorities: ['4'],
       pageTitle: 'App.tipoPeriodo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tipoPeriodoRoute: Routes = [
       tipoPeriodo: TipoPeriodoResolve
     },
     data: {
-      authorities: ['54'],
+      authorities: ['4'],
       pageTitle: 'App.tipoPeriodo.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tipoPeriodoPopupRoute: Routes = [
       tipoPeriodo: TipoPeriodoResolve
     },
     data: {
-      authorities: ['56'],
+      authorities: ['4'],
       pageTitle: 'App.tipoPeriodo.home.title'
     },
     canActivate: [UserRouteAccessService],

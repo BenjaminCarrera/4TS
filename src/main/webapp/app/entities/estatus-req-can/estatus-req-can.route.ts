@@ -37,7 +37,7 @@ export const estatusReqCanRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['109'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estatusReqCan.home.title'
     },
@@ -50,7 +50,7 @@ export const estatusReqCanRoute: Routes = [
       estatusReqCan: EstatusReqCanResolve
     },
     data: {
-      authorities: ['109'],
+      authorities: ['4'],
       pageTitle: 'App.estatusReqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estatusReqCanRoute: Routes = [
       estatusReqCan: EstatusReqCanResolve
     },
     data: {
-      authorities: ['111'],
+      authorities: ['4'],
       pageTitle: 'App.estatusReqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estatusReqCanRoute: Routes = [
       estatusReqCan: EstatusReqCanResolve
     },
     data: {
-      authorities: ['110'],
+      authorities: ['4'],
       pageTitle: 'App.estatusReqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estatusReqCanPopupRoute: Routes = [
       estatusReqCan: EstatusReqCanResolve
     },
     data: {
-      authorities: ['112'],
+      authorities: ['4'],
       pageTitle: 'App.estatusReqCan.home.title'
     },
     canActivate: [UserRouteAccessService],

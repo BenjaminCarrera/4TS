@@ -37,7 +37,7 @@ export const estReqCerradoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estReqCerrado.home.title'
     },
@@ -50,7 +50,7 @@ export const estReqCerradoRoute: Routes = [
       estReqCerrado: EstReqCerradoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.estReqCerrado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estReqCerradoRoute: Routes = [
       estReqCerrado: EstReqCerradoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.estReqCerrado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estReqCerradoRoute: Routes = [
       estReqCerrado: EstReqCerradoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.estReqCerrado.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estReqCerradoPopupRoute: Routes = [
       estReqCerrado: EstReqCerradoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.estReqCerrado.home.title'
     },
     canActivate: [UserRouteAccessService],

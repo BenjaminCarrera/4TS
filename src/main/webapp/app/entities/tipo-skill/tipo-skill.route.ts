@@ -37,7 +37,7 @@ export const tipoSkillRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['93'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tipoSkill.home.title'
     },
@@ -50,7 +50,7 @@ export const tipoSkillRoute: Routes = [
       tipoSkill: TipoSkillResolve
     },
     data: {
-      authorities: ['93'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tipoSkillRoute: Routes = [
       tipoSkill: TipoSkillResolve
     },
     data: {
-      authorities: ['95'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tipoSkillRoute: Routes = [
       tipoSkill: TipoSkillResolve
     },
     data: {
-      authorities: ['94'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSkill.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tipoSkillPopupRoute: Routes = [
       tipoSkill: TipoSkillResolve
     },
     data: {
-      authorities: ['96'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSkill.home.title'
     },
     canActivate: [UserRouteAccessService],

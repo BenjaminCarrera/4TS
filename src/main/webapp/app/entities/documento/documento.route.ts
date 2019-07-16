@@ -37,7 +37,7 @@ export const documentoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['13'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.documento.home.title'
     },
@@ -50,7 +50,7 @@ export const documentoRoute: Routes = [
       documento: DocumentoResolve
     },
     data: {
-      authorities: ['13'],
+      authorities: ['4'],
       pageTitle: 'App.documento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const documentoRoute: Routes = [
       documento: DocumentoResolve
     },
     data: {
-      authorities: ['15'],
+      authorities: ['4'],
       pageTitle: 'App.documento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const documentoRoute: Routes = [
       documento: DocumentoResolve
     },
     data: {
-      authorities: ['14'],
+      authorities: ['4'],
       pageTitle: 'App.documento.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const documentoPopupRoute: Routes = [
       documento: DocumentoResolve
     },
     data: {
-      authorities: ['16'],
+      authorities: ['4'],
       pageTitle: 'App.documento.home.title'
     },
     canActivate: [UserRouteAccessService],

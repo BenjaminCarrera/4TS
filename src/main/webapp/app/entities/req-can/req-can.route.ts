@@ -37,7 +37,7 @@ export const reqCanRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['133'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.reqCan.home.title'
     },
@@ -50,7 +50,7 @@ export const reqCanRoute: Routes = [
       reqCan: ReqCanResolve
     },
     data: {
-      authorities: ['133'],
+      authorities: ['4'],
       pageTitle: 'App.reqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const reqCanRoute: Routes = [
       reqCan: ReqCanResolve
     },
     data: {
-      authorities: ['135'],
+      authorities: ['4'],
       pageTitle: 'App.reqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const reqCanRoute: Routes = [
       reqCan: ReqCanResolve
     },
     data: {
-      authorities: ['134'],
+      authorities: ['4'],
       pageTitle: 'App.reqCan.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const reqCanPopupRoute: Routes = [
       reqCan: ReqCanResolve
     },
     data: {
-      authorities: ['136'],
+      authorities: ['4'],
       pageTitle: 'App.reqCan.home.title'
     },
     canActivate: [UserRouteAccessService],

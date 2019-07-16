@@ -37,7 +37,7 @@ export const estatusAcademicoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['65'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.estatusAcademico.home.title'
     },
@@ -50,7 +50,7 @@ export const estatusAcademicoRoute: Routes = [
       estatusAcademico: EstatusAcademicoResolve
     },
     data: {
-      authorities: ['65'],
+      authorities: ['4'],
       pageTitle: 'App.estatusAcademico.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const estatusAcademicoRoute: Routes = [
       estatusAcademico: EstatusAcademicoResolve
     },
     data: {
-      authorities: ['67'],
+      authorities: ['4'],
       pageTitle: 'App.estatusAcademico.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const estatusAcademicoRoute: Routes = [
       estatusAcademico: EstatusAcademicoResolve
     },
     data: {
-      authorities: ['66'],
+      authorities: ['4'],
       pageTitle: 'App.estatusAcademico.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const estatusAcademicoPopupRoute: Routes = [
       estatusAcademico: EstatusAcademicoResolve
     },
     data: {
-      authorities: ['68'],
+      authorities: ['4'],
       pageTitle: 'App.estatusAcademico.home.title'
     },
     canActivate: [UserRouteAccessService],

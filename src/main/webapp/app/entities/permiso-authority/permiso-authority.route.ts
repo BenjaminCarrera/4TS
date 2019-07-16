@@ -37,7 +37,7 @@ export const permisoAuthorityRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['137'],
+      authorities: ['1'],
       defaultSort: 'id,asc',
       pageTitle: 'App.permisoAuthority.home.title'
     },
@@ -50,7 +50,7 @@ export const permisoAuthorityRoute: Routes = [
       permisoAuthority: PermisoAuthorityResolve
     },
     data: {
-      authorities: ['137'],
+      authorities: ['1'],
       pageTitle: 'App.permisoAuthority.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const permisoAuthorityRoute: Routes = [
       permisoAuthority: PermisoAuthorityResolve
     },
     data: {
-      authorities: ['139'],
+      authorities: ['1'],
       pageTitle: 'App.permisoAuthority.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const permisoAuthorityRoute: Routes = [
       permisoAuthority: PermisoAuthorityResolve
     },
     data: {
-      authorities: ['138'],
+      authorities: ['1'],
       pageTitle: 'App.permisoAuthority.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const permisoAuthorityPopupRoute: Routes = [
       permisoAuthority: PermisoAuthorityResolve
     },
     data: {
-      authorities: ['140'],
+      authorities: ['1'],
       pageTitle: 'App.permisoAuthority.home.title'
     },
     canActivate: [UserRouteAccessService],

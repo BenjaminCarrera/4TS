@@ -37,7 +37,7 @@ export const tipoSolicitudRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tipoSolicitud.home.title'
     },
@@ -50,7 +50,7 @@ export const tipoSolicitudRoute: Routes = [
       tipoSolicitud: TipoSolicitudResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSolicitud.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tipoSolicitudRoute: Routes = [
       tipoSolicitud: TipoSolicitudResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSolicitud.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tipoSolicitudRoute: Routes = [
       tipoSolicitud: TipoSolicitudResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSolicitud.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tipoSolicitudPopupRoute: Routes = [
       tipoSolicitud: TipoSolicitudResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoSolicitud.home.title'
     },
     canActivate: [UserRouteAccessService],

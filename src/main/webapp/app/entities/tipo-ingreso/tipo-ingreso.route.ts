@@ -37,7 +37,7 @@ export const tipoIngresoRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       defaultSort: 'id,asc',
       pageTitle: 'App.tipoIngreso.home.title'
     },
@@ -50,7 +50,7 @@ export const tipoIngresoRoute: Routes = [
       tipoIngreso: TipoIngresoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoIngreso.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const tipoIngresoRoute: Routes = [
       tipoIngreso: TipoIngresoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoIngreso.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +74,7 @@ export const tipoIngresoRoute: Routes = [
       tipoIngreso: TipoIngresoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoIngreso.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -89,7 +89,7 @@ export const tipoIngresoPopupRoute: Routes = [
       tipoIngreso: TipoIngresoResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['4'],
       pageTitle: 'App.tipoIngreso.home.title'
     },
     canActivate: [UserRouteAccessService],
