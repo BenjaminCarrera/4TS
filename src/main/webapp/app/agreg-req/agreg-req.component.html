@@ -296,7 +296,9 @@
                         <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
                             {{ fruit }}
                             <!-- <i class="material-icon" src='../assets/cancelar.png' matChipRemove *ngIf="removable"></i> -->
-                            <mat-icon matChipRemove *ngIf="removable">delete</mat-icon>
+                            <mat-icon svgIcon="delete" matChipRemove *ngIf="removable">
+                                <img src="../assets/cancelar.png">
+                            </mat-icon>
                         </mat-chip>
                         <input placeholder="Requeridos" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
                     </mat-chip-list>
