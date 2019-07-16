@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, startWith } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
@@ -41,11 +41,24 @@ import { FormacionAcademicaService } from 'app/entities/formacion-academica';
 import { IEstCanInactivo } from 'app/shared/model/est-can-inactivo.model';
 import { EstCanInactivoService } from 'app/entities/est-can-inactivo';
 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {FormControl} from '@angular/forms';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatSort} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+
 @Component({
-  selector: 'jhi-candidato-update',
+  selector: 'jhi-agreg-cand',
   templateUrl: './candidato-update.component.html'
 })
 export class CandidatoUpdateComponent implements OnInit {
+  selecteds = new FormControl(0);
+  matAutocomplete: MatAutocomplete;
+  cuentaIntCtrl = new FormControl();
+  cuentasInt: any[];
+
   isSaving: boolean;
 
   tipoperiodos: ITipoPeriodo[];
@@ -532,5 +545,33 @@ export class CandidatoUpdateComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  siguiente() {
+    this.selecteds.setValue(1);
+  }
+
+  addCuentaInt(event: MatChipInputEvent): void {
+    // Inicio primer chip autocompletable
+
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.cuentasInt.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.cuentaIntCtrl.setValue(null);
+    }
+    // Fin primer chip autocompletable
   }
 }
