@@ -296,7 +296,7 @@
                         <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
                             {{ fruit }}
                             <!-- <i class="material-icon" src='../assets/cancelar.png' matChipRemove *ngIf="removable"></i> -->
-                            <mat-icon svgIcon="delete" matChipRemove *ngIf="removable">
+                            <mat-icon matChipRemove *ngIf="removable">
                                 <img src="../assets/cancelar.png">
                             </mat-icon>
                         </mat-chip>
