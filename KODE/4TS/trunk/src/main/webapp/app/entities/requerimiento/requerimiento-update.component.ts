@@ -112,7 +112,7 @@ export class RequerimientoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    fechaAlda: [null, [Validators.required]],
+    fechaAlda: [null, []],
     fechaResolucion: [],
     remplazoDe: [null, [Validators.maxLength(500)]],
     vacantesSolicitadas: [],

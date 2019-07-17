@@ -1,273 +1,218 @@
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-requerimiento-heading">Create or edit a Requerimientor</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!editForm.get('id').value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.fechaAlda" for="field_fechaAlda">Fecha Alda</label>
-                    <div class="d-flex">
-                        <input id="field_fechaAlda" type="datetime-local" class="form-control" name="fechaAlda" formControlName="fechaAlda" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                    <div *ngIf="editForm.get('fechaAlda').invalid && (editForm.get('fechaAlda').dirty || editForm.get('fechaAlda').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('fechaAlda').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('fechaAlda').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
-                            This field should be a date and time.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.fechaResolucion" for="field_fechaResolucion">Fecha Resolucion</label>
-                    <div class="d-flex">
-                        <input id="field_fechaResolucion" type="datetime-local" class="form-control" name="fechaResolucion" formControlName="fechaResolucion" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                <mat-form-field class="">
-                    <input matInput placeholder="Reemplazo de" name="remplazoDe" id="field_remplazoDe"
-                    formControlName="remplazoDe" />
+
+<div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <h2 id="jhi-requerimiento-heading">Create or edit a Requerimientor</h2>
+        <div>
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group" [hidden]="!editForm.get('id').value">
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                    readonly />
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de alta"  id="field_fechaAlda" name="fechaAlda" formControlName="fechaAlda">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
-                    <div *ngIf="editForm.get('remplazoDe').invalid && (editForm.get('remplazoDe').dirty || editForm.get('remplazoDe').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('remplazoDe').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
-                        This field cannot be longer than 500 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                           <mat-form-field class="">
-                             <input matInput placeholder="Vacantes solicitadas" name="vacantesSolicitadas" id="field_vacantesSolicitadas"
-                             formControlName="vacantesSolicitadas" />
-                           </mat-form-field>
-                </div>
-
-                <div class="form-group">
-                           <mat-form-field>
-                             <input matInput placeholder="Proyecto" name="proyecto" id="field_proyecto"
-                             formControlName="proyecto" />
-                           </mat-form-field>
-                    <div *ngIf="editForm.get('proyecto').invalid && (editForm.get('proyecto').dirty || editForm.get('proyecto').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('proyecto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
-                        This field cannot be longer than 200 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                  <mat-form-field class="">
-                        <input matInput placeholder="Nombre de contacto" name="nombreContacto" id="field_nombreContacto"
-                        formControlName="nombreContacto"/>
-                      </mat-form-field>
-                    <div *ngIf="editForm.get('nombreContacto').invalid && (editForm.get('nombreContacto').dirty || editForm.get('nombreContacto').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('nombreContacto').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
-                        This field cannot be longer than 100 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Tarifa Sueldo Net"name="tarifaSueldoNet" id="field_tarifaSueldoNet"
-                                 formControlName="tarifaSueldoNet"/>
-                               </mat-form-field>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Prestaciones" name="prestaciones" id="field_prestaciones"
-                                 formControlName="prestaciones"/>
-                               </mat-form-field>
-                    <div *ngIf="editForm.get('prestaciones').invalid && (editForm.get('prestaciones').dirty || editForm.get('prestaciones').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('prestaciones').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
-                        This field cannot be longer than 500 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Duracion Asignacion"  name="duracionAsignacion" id="field_duracionAsignacion"
-                                 formControlName="duracionAsignacion"/>
-                               </mat-form-field>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Lugar Trabajo"  name="lugarTrabajo" id="field_lugarTrabajo"
-                                 formControlName="lugarTrabajo"/>
-                               </mat-form-field>
-                    <div *ngIf="editForm.get('lugarTrabajo').invalid && (editForm.get('lugarTrabajo').dirty || editForm.get('lugarTrabajo').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('lugarTrabajo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
-                        This field cannot be longer than 500 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Coor Lat" name="coorLat" id="field_coorLat"
-                                 formControlName="coorLat"/>
-                               </mat-form-field>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Coor Long" name="coorLong" id="field_coorLong"
-                                 formControlName="coorLong"/>
-                               </mat-form-field>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="">
-                                 <input matInput placeholder="Horario" name="horario" id="field_horario"
-                                 formControlName="horario"/>
-                               </mat-form-field>
-                    <div *ngIf="editForm.get('horario').invalid && (editForm.get('horario').dirty || editForm.get('horario').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('horario').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 300 }">
-                        This field cannot be longer than 300 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="example-full-width">
-                             <textarea matInput placeholder="Información del examen" rows="9" name="informacionExamen" id="field_informacionExamen"
-                             formControlName="informacionExamen"></textarea>
-                           </mat-form-field>
-                    <div *ngIf="editForm.get('informacionExamen').invalid && (editForm.get('informacionExamen').dirty || editForm.get('informacionExamen').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('informacionExamen').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
-                        This field cannot be longer than 500 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                           <mat-form-field class="example-full-width">
-                             <textarea matInput placeholder="Informacion Adicional" rows="9"name="informacionAdicional" id="field_informacionAdicional"
-                             formControlName="informacionAdicional"></textarea>
-                           </mat-form-field>
-                    <div *ngIf="editForm.get('informacionAdicional').invalid && (editForm.get('informacionAdicional').dirty || editForm.get('informacionAdicional').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('informacionAdicional').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
-                        This field cannot be longer than 1000 characters.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Motivo de cierre de requerimiento" id="field_cuenta" name="cuenta" formControlName="cuentaId">
-                        <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Motivo de cierre de requerimiento" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
-                        <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioCreador" for="field_usuarioCreador">Usuario Creador</label>
-                    <select class="form-control" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.usuarioAsignado" for="field_usuarioAsignado">Usuario Asignado</label>
-                    <select class="form-control" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.estatusRequerimiento" for="field_estatusRequerimiento">Estatus Requerimiento</label>
-                    <select class="form-control" id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">{{estatusRequerimientoOption.estatus}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.prioridad" for="field_prioridad">Prioridad</label>
-                    <select class="form-control" id="field_prioridad" name="prioridad" formControlName="prioridadId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.prioridad}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoSolicitud" for="field_tipoSolicitud">Tipo Solicitud</label>
-                    <select class="form-control" id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">{{tipoSolicitudOption.solicitud}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoIngreso" for="field_tipoIngreso">Tipo Ingreso</label>
-                    <select class="form-control" id="field_tipoIngreso" name="tipoIngreso" formControlName="tipoIngresoId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById">{{tipoIngresoOption.tipo}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.baseTarifa" for="field_baseTarifa">Base Tarifa</label>
-                    <select class="form-control" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{baseTarifaOption.base}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.esquemaContratacion" for="field_esquemaContratacion">Esquema Contratacion</label>
-                    <select class="form-control" id="field_esquemaContratacion" name="esquemaContratacion" formControlName="esquemaContratacionId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.esquema}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.perfil" for="field_perfil">Perfil</label>
-                    <select class="form-control" id="field_perfil" name="perfil" formControlName="perfilId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.perfil}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.nivelPerfil" for="field_nivelPerfil">Nivel Perfil</label>
-                    <select class="form-control" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.estatusReqCan" for="field_estatusReqCan">Estatus Req Can</label>
-                    <select class="form-control" id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{estReqCerradoOption.motivo}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="App.requerimiento.tipoPeriodo" for="field_tipoPeriodo">Tipo Periodo</label>
-                    <select class="form-control" id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.periodo}}</option>
-                    </select>
-                </div>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
+            <div class="form-group">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Fecha de resolucion"   id="field_fechaResolucion" name="fechaResolucion" formControlName="fechaResolucion" >
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
             </div>
-        </form>
-    </div>
+
+            <div class="form-group">
+            <mat-form-field class="">
+                <input matInput placeholder="Reemplazo de" name="remplazoDe" id="field_remplazoDe"
+                formControlName="remplazoDe" />
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                       <mat-form-field class="">
+                         <input matInput placeholder="Vacantes solicitadas" name="vacantesSolicitadas" id="field_vacantesSolicitadas"
+                         formControlName="vacantesSolicitadas" />
+                       </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                       <mat-form-field>
+                         <input matInput placeholder="Proyecto" name="proyecto" id="field_proyecto"
+                         formControlName="proyecto" />
+                       </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="">
+                    <input matInput placeholder="Nombre de contacto" name="nombreContacto" id="field_nombreContacto"
+                    formControlName="nombreContacto"/>
+                  </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Tarifa Sueldo Net"name="tarifaSueldoNet" id="field_tarifaSueldoNet"
+                             formControlName="tarifaSueldoNet"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Prestaciones" name="prestaciones" id="field_prestaciones"
+                             formControlName="prestaciones"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Duracion Asignacion"  name="duracionAsignacion" id="field_duracionAsignacion"
+                             formControlName="duracionAsignacion"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Lugar Trabajo"  name="lugarTrabajo" id="field_lugarTrabajo"
+                             formControlName="lugarTrabajo"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Coor Lat" name="coorLat" id="field_coorLat"
+                             formControlName="coorLat"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Coor Long" name="coorLong" id="field_coorLong"
+                             formControlName="coorLong"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="">
+                             <input matInput placeholder="Horario" name="horario" id="field_horario"
+                             formControlName="horario"/>
+                           </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="example-full-width">
+                         <textarea matInput placeholder="Información del examen" rows="9" name="informacionExamen" id="field_informacionExamen"
+                         formControlName="informacionExamen"></textarea>
+                       </mat-form-field>
+            </div>
+            <div class="form-group">
+                       <mat-form-field class="example-full-width">
+                         <textarea matInput placeholder="Informacion Adicional" rows="9"name="informacionAdicional" id="field_informacionAdicional"
+                         formControlName="informacionAdicional"></textarea>
+                       </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Motivo de cierre de requerimiento" id="field_cuenta" name="cuenta" formControlName="cuentaId">
+                    <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Motivo de cierre de requerimiento" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
+                    <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Usuario Creador" id="field_usuarioCreador" name="usuarioCreador" formControlName="usuarioCreadorId">
+                    <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Usuario Asignado" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
+                    <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Estatus del requerimiento" id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId">
+                    <mat-option [value]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">{{estatusRequerimientoOption.estatus}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Prioridad del requerimiento"  id="field_prioridad" name="prioridad" formControlName="prioridadId">
+                    <mat-option [value]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.prioridad}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Tipo de Solicitud" id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId">
+                    <mat-option [value]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">{{tipoSolicitudOption.solicitud}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Tipo de ingreso" id="field_tipoIngreso" name="tipoIngreso" formControlName="tipoIngresoId">
+                    <mat-option [value]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById">{{tipoIngresoOption.tipo}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Base de Tarifa" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
+                    <mat-option [value]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{baseTarifaOption.base}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Esquema de contratacion" id="field_esquemaContratacion" name="esquemaContratacion" formControlName="esquemaContratacionId">
+                    <mat-option [value]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{esqContRecOption.esquema}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Perfil" id="field_perfil" name="perfil" formControlName="perfilId">
+                    <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{perfilOption.perfil}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Nivel del Perfil" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
+                    <mat-option [value]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Estatus del Requerimiento Cancelado"  id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
+                    <mat-option [value]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{estReqCerradoOption.motivo}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Tipo de periodo"  id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
+                    <mat-option [value]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{tipoPeriodoOption.periodo}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </form>
 </div>
