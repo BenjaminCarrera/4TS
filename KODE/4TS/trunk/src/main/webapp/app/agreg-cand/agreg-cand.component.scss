@@ -1,56 +1,77 @@
 /* agreg-cand.component.scss */
 
+mat-form-field {
+    width: 100%;
+    float: right;
+}
 
-  mat-form-field{
-    width: 100%;
-    float:right;
-  }
 .google-maps {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0;
-  overflow: hidden;
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
 }
+
 .google-maps iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
 }
-  .example-chip-list {
+
+.example-chip-list {
     width: 100%;
-  }
-  h3{
+}
+
+h3 {
     padding-top: 10px;
     font-size: 27px;
     font-weight: bold;
-  }
-  .mat-button-toggle-checked {
-    background-color: #f44336;
-    color:white;
-  }
-  @media (max-width: 600px) {
-    .botones-chicos{
-      font-size: 16px;
-    }
-    .botones-chicos2{
-      font-size: 14px;
-    }
-    .botones-chicos3{
-      font-size: 15px;
-    }
-  }
+}
 
-   table, .mat-paginator{
-     width: 450px;
-   }
+.mat-button-toggle-checked {
+    background-color: #f44336;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .botones-chicos {
+        font-size: 16px;
+    }
+    .botones-chicos2 {
+        font-size: 14px;
+    }
+    .botones-chicos3 {
+        font-size: 15px;
+    }
+}
+
+table,
+.mat-paginator {
+    width: 450px;
+}
+
+agm-map {
+    width: 350px;
+    height: 450px;
+}
+
+#mapa {
+    width: 400px;
+    height: 500px;
+}
+
 
 /*Estilo de tabla*/
-td.mat-cell, td.mat-footer-cell {
-  text-align: center !important;
+
+td.mat-cell,
+td.mat-footer-cell {
+    text-align: center !important;
 }
-.mat-sort-header-container, .mat-header-cell{
-  font-size: 15px !important;
-  font-weight: bold !important;
+
+.mat-sort-header-container,
+.mat-header-cell {
+    font-size: 15px !important;
+    font-weight: bold !important;
 }
