@@ -1,23 +1,37 @@
 /* agreg-req.component.scss */
+
 .mat-button-toggle-checked {
-  background-color:rgba(255,0,0,0.6);
-  color:white;
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
 }
+
 @media (max-width: 600px) {
-  .botones-chicos{
-    font-size: 16px;
-  }
-  .botones-chicos2{
-    font-size: 14px;
-  }
-  .botones-chicos3{
-    font-size: 15px;
-  }
+    .botones-chicos {
+        font-size: 16px;
+    }
+    .botones-chicos2 {
+        font-size: 14px;
+    }
+    .botones-chicos3 {
+        font-size: 15px;
+    }
 }
-h4{
-  font-weight: bold;
-  font-size: 20px;
+
+h4 {
+    font-weight: bold;
+    font-size: 20px;
 }
-mat-form-field{
-  width: 100% !important;
+
+mat-form-field {
+    width: 100% !important;
+}
+
+agm-map {
+    width: 350px;
+    height: 450px;
+}
+
+#mapa {
+    width: 400px;
+    height: 500px;
 }

@@ -36,7 +36,7 @@ export class AgregCandComponent implements OnInit {
   // Enfoque del mapa
   lat = 19.4284700;
   lng = -99.1276600;
-  zoom = 12;
+  zoom = 14;
 
 // Inicio datatable
 @ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;

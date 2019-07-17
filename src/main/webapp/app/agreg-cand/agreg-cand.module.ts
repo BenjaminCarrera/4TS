@@ -12,7 +12,7 @@ import { AgmCoreModule } from '@agm/core';
       RouterModule.forRoot([ AGREG_CAND_ROUTE ], { useHash: true }),
       AgmCoreModule.forRoot({
         apiKey: 'AIzaSyCrRv-Zq8fqhVFf02Kfg2TPrjcJsJQE0e0'
-      }),
+      })
     ],
     declarations: [
       AgregCandComponent,

@@ -34,6 +34,11 @@ export interface Skills {
 })
 export class ResConcandComponent implements OnInit {
 
+  // Enfoque del mapa
+  lat = 19.4284700;
+  lng = -99.1276600;
+  zoom = 14;
+
   // Variables Tarea
   DATA_TAREA: PeriodicElement[] = [
     { Id: 1, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
