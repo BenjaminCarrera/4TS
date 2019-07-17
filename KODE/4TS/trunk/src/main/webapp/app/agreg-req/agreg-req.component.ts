@@ -15,6 +15,11 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class AgregReqComponent implements OnInit {
 
+   // Enfoque del mapa
+   lat = 19.4284700;
+   lng = -99.1276600;
+   zoom = 14;
+
   selected1 = new FormControl(0);
   visible = true;
   selectable = true;

@@ -1,29 +1,51 @@
 /* res-concand.component.scss */
+
 .mat-button-toggle-checked {
-  background-color:rgba(255,0,0,0.6);
-  color:white;
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
 }
+
+
 /*Estilo de tabla*/
-td.mat-cell, td.mat-footer-cell {
-text-align: center !important;
+
+td.mat-cell,
+td.mat-footer-cell {
+    text-align: center !important;
 }
-.mat-sort-header-container, .mat-header-cell{
-font-size: 15px !important;
-font-weight: bold !important;
+
+.mat-sort-header-container,
+.mat-header-cell {
+    font-size: 15px !important;
+    font-weight: bold !important;
 }
-table.mat-table{
-width: 100% ;
+
+table.mat-table {
+    width: 100%;
 }
-.full-width{
-width: 100% !important;
+
+.full-width {
+    width: 100% !important;
 }
+
 .tabla-chica {
-  width: 600px !important;
- }
- h4{
-  font-weight: bold;
-  font-size: 20px;
+    width: 600px !important;
 }
-.btn-danger{
-  font-size: 13px;
+
+h4 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.btn-danger {
+    font-size: 13px;
+}
+
+agm-map {
+    width: 350px;
+    height: 450px;
+}
+
+#mapa {
+    width: 400px;
+    height: 500px;
 }

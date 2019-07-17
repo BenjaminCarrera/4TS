@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-md-12"  style="display: inline-block;">
+    <div class="col-md-12" style="display: inline-block;">
         <div class="row">
             <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
                 <h3>Detalle del candidato - Jesús Daniel Cabrera Díaz</h3>
             </div>
-            <div class="col"  style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
-            <a routerLink="/agreg-req" routerLinkActive="active">
-                <button mat-raised-button class="boton-secundario" >Editar</button>
-            </a>
+            <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
+                <a routerLink="/agreg-req" routerLinkActive="active">
+                    <button mat-raised-button class="btn btn-danger">Editar</button>
+                </a>
             </div>
         </div>
     </div>
@@ -17,8 +17,7 @@
         <br>
         <div class="row">
             <div class="col-sm-4">
-                <div class="panel panel-default"
-                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -27,8 +26,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="http://barcarena.pa.gov.br/portal/img/perfil/padrao.jpg"
-                                    class="img-thumbnail">
+                                <img src="http://barcarena.pa.gov.br/portal/img/perfil/padrao.jpg" class="img-thumbnail">
                             </div>
                             <div class="col-sm-6">
                                 <div class="col-sm-12" style="padding: 0px;">
@@ -254,8 +252,7 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="panel panel-default"
-                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="row">
@@ -267,10 +264,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="google-maps">
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12698.017302765014!2d-5.924386855443038!3d37.28317952472348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd12705c945f7355%3A0x1f6735c306757c59!2sDos+Hermanas%2C+Sevilla%2C+Espa%C3%B1a!5e0!3m2!1ses!2s!4v1387797719272"
-                                            width="600" height="450" frameborder="0" style="border:0"></iframe>
+                                    <div class="google-maps" id="mapa">
+                                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"> </agm-map>
                                     </div>
                                 </div>
                             </div>
@@ -331,8 +326,7 @@
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="panel panel-default"
-                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
 
                     <div class="row">
                         <div class="col-sm-12">
@@ -625,7 +619,7 @@
             <div class="col-sm-12">
                 <p>
                     <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
-                        <mat-button-toggle value="bold"> Todos </mat-button-toggle>
+                        <mat-button-toggle value="bold"> Todas </mat-button-toggle>
                         <mat-button-toggle value="cursiva"> Abiertas </mat-button-toggle>
                         <mat-button-toggle value="underline"> Cerradas </mat-button-toggle>
                     </mat-button-toggle-group>
@@ -634,48 +628,47 @@
         </div>
         <br>
         <div class="col-sm-12">
-        <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea" matSort
-                (matSortChange)="sortDataTarea($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 124px !important;"> Id </th>
-                    <td mat-cell *matCellDef="let element" style="margin: auto;"> {{element.Id}} </td>
-                </ng-container>
+            <div>
+                <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea" matSort (matSortChange)="sortDataTarea($event)">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="Id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 124px !important;"> Id </th>
+                        <td mat-cell *matCellDef="let element" style="margin: auto;"> {{element.Id}} </td>
+                    </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="Tarea">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 92px !important;"> Tarea </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Tarea}} </td>
-                </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="Tarea">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 92px !important;"> Tarea </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Tarea}} </td>
+                    </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 120px !important;"> Creador </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Creador}} </td>
-                </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="Creador">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 120px !important;"> Creador </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Creador}} </td>
+                    </ng-container>
 
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Destinatario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 135px !important;"> Destinatario </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Destinatario}} </td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="FechaAlta">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 125px !important;"> FechaAlta </th>
-                    <td mat-cell *matCellDef="let element"> {{element.FechaAlta}} </td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Estatus">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 133px !important;"> Estatus </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea;" [ngClass]="{even: even}"></tr>
-            </table>
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Destinatario">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 135px !important;"> Destinatario </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Destinatario}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="FechaAlta">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 125px !important;"> FechaAlta </th>
+                        <td mat-cell *matCellDef="let element"> {{element.FechaAlta}} </td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Estatus">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 133px !important;"> Estatus </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Estatus}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
+                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea;" [ngClass]="{even: even}"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+            </div>
         </div>
-    </div>
     </mat-tab>
     <mat-tab label="Bitácora">
         <br>
@@ -697,33 +690,32 @@
         </div>
         <br><br>
         <div class="col-sm-12">
-        <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort
-                (matSortChange)="sortDataBitacora($event)">
-                <!-- Fecha Column -->
-                <ng-container matColumnDef="Fecha">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-                    <td mat-cell *matCellDef="let element"style="text-align: UNSET !important;"> {{element.Fecha}} </td>
-                </ng-container>
+            <div>
+                <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
+                    <!-- Fecha Column -->
+                    <ng-container matColumnDef="Fecha">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;"> {{element.Fecha}} </td>
+                    </ng-container>
 
-                <!-- Creador Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Creador </th>
-                    <td mat-cell *matCellDef="let element"style="text-align: UNSET !important;"> {{element.Creador}} </td>
-                </ng-container>
+                    <!-- Creador Column -->
+                    <ng-container matColumnDef="Creador">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Creador </th>
+                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;"> {{element.Creador}} </td>
+                    </ng-container>
 
-                <!-- Comentario Column -->
-                <ng-container matColumnDef="Comentario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
-                    <td mat-cell *matCellDef="let element"style="text-align: UNSET !important;"> {{element.Comentario}} </td>
-                </ng-container>
+                    <!-- Comentario Column -->
+                    <ng-container matColumnDef="Comentario">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;"> {{element.Comentario}} </td>
+                    </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora;" [ngClass]="{even: even}"></tr>
-            </table>
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
+                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora;" [ngClass]="{even: even}"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+            </div>
         </div>
-    </div>
     </mat-tab>
     <mat-tab label="Conocimientos">
         <br>
@@ -745,31 +737,30 @@
 
         <div class="row">
             <div class="col-sm-12">
-        <div>
-            <table mat-table class="mat-elevation-z8 tabla-chica table-hover" [dataSource]="dataSourceSkills" matSort
-                (matSortChange)="sortDataSkills($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Skills">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 73px !important;"> Skills </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Skills}} </td>
-                </ng-container>
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Dominio">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 53px !important;"> Dominio </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Dominio}} </td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Calificacion">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 78px !important;"> Calificación </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Calificacion}} </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills;" [ngClass]="{even: even}"></tr>
-            </table>
-            <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+                <div>
+                    <table mat-table class="mat-elevation-z8 tabla-chica table-hover" [dataSource]="dataSourceSkills" matSort (matSortChange)="sortDataSkills($event)">
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="Skills">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 73px !important;"> Skills </th>
+                            <td mat-cell *matCellDef="let element"> {{element.Skills}} </td>
+                        </ng-container>
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="Dominio">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 53px !important;"> Dominio </th>
+                            <td mat-cell *matCellDef="let element"> {{element.Dominio}} </td>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="Calificacion">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 78px !important;"> Calificación </th>
+                            <td mat-cell *matCellDef="let element"> {{element.Calificacion}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
+                        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills;" [ngClass]="{even: even}"></tr>
+                    </table>
+                    <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
 
         <div class="row">
             <div class="col-sm-12">
