@@ -37,6 +37,10 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { startWith } from 'rxjs/operators';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
+import { NgZone } from '@angular/core';
+import { SkillApi } from '../../servicios/skill-api';
+
 @Component({
   selector: 'jhi-requerimiento-update',
   templateUrl: './requerimiento-update.component.html',
@@ -44,10 +48,20 @@ import { startWith } from 'rxjs/operators';
     '../../agreg-req/agreg-req.component.scss'
   ]
 })
-
 export class RequerimientoUpdateComponent implements OnInit {
+  // Mapa
+  title = 'AGM project';
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  address: string;
+  private geoCoder;
+  @ViewChild('search')
+  // Mapa
+  public searchElementRef: ElementRef;
   // Codigo de la pantalla
-
+  public reqCancelado = false;
+  public reemplazo = false;
   selected1 = new FormControl(0);
   visible = true;
   selectable = true;
@@ -56,8 +70,9 @@ export class RequerimientoUpdateComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
+  Skill: any = [];
   fruits: string[] = ['PHP'];
-  allFruits: string[] = ['PHP', 'Java', 'Angular', 'Python'];
+  allFruits: any = [];
   visible2 = true;
   selectable2 = true;
   removable2 = true;
@@ -122,8 +137,8 @@ export class RequerimientoUpdateComponent implements OnInit {
     prestaciones: [null, [Validators.maxLength(500)]],
     duracionAsignacion: [],
     lugarTrabajo: [null, [Validators.maxLength(500)]],
-    coorLat: [],
-    coorLong: [],
+    coorLat: [null],
+    coorLong: [null],
     horario: [null, [Validators.maxLength(300)]],
     informacionExamen: [null, [Validators.maxLength(500)]],
     informacionAdicional: [null, [Validators.maxLength(1000)]],
@@ -144,6 +159,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   });
 
   constructor(
+    public restApi: SkillApi,
     protected jhiAlertService: JhiAlertService,
     protected requerimientoService: RequerimientoService,
     protected cuentaService: CuentaService,
@@ -159,7 +175,9 @@ export class RequerimientoUpdateComponent implements OnInit {
     protected estReqCerradoService: EstReqCerradoService,
     protected tipoPeriodoService: TipoPeriodoService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
     // Codigo de la pantalla
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
@@ -213,6 +231,7 @@ export class RequerimientoUpdateComponent implements OnInit {
 
       this.fruitCtrl.setValue(null);
     }
+    console.log(this.fruits);
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
@@ -297,6 +316,29 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Fin Codigo de la pantalla
 
   ngOnInit() {
+   // load Places Autocomplete
+   this.mapsAPILoader.load().then(() => {
+    this.setCurrentLocation();
+    this.geoCoder = new google.maps.Geocoder;
+    const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+      types: ['address']
+    });
+    autocomplete.addListener('place_changed', () => {
+      this.ngZone.run(() => {
+        // get the place result
+        const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        // verify result
+        if (place.geometry === undefined || place.geometry === null) {
+          return;
+        }
+        // set latitude, longitude and zoom
+        this.latitude = place.geometry.location.lat();
+        this.longitude = place.geometry.location.lng();
+        this.zoom = 50;
+      });
+    });
+  });
+  this.getSkills();
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.updateForm(requerimiento);
@@ -457,8 +499,8 @@ export class RequerimientoUpdateComponent implements OnInit {
       prestaciones: this.editForm.get(['prestaciones']).value,
       duracionAsignacion: this.editForm.get(['duracionAsignacion']).value,
       lugarTrabajo: this.editForm.get(['lugarTrabajo']).value,
-      coorLat: this.editForm.get(['coorLat']).value,
-      coorLong: this.editForm.get(['coorLong']).value,
+      coorLat: this.latitude,
+      coorLong: this.longitude,
       horario: this.editForm.get(['horario']).value,
       informacionExamen: this.editForm.get(['informacionExamen']).value,
       informacionAdicional: this.editForm.get(['informacionAdicional']).value,
@@ -542,8 +584,65 @@ export class RequerimientoUpdateComponent implements OnInit {
   trackTipoPeriodoById(index: number, item: ITipoPeriodo) {
     return item.id;
   }
+
+  trackSkillById(index: number, item: ICuenta) {
+    return item.id;
+  }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  }
+  verificarReqEstatus( status: string) {
+    if ( status === 'Cerrado' ) {
+      this.reqCancelado = true;
+    } else {
+      this.reqCancelado = false;
+    }
+  }
+  verificarReemplazo( status: string) {
+    if ( status === 'Reemplazo' ) {
+       this.reemplazo = true;
+    } else {
+      this.reemplazo = false;
+    }
+  }
+  // Get Current Location Coordinates
+  private setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition( position => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 50;
+        this.getAddress(this.latitude, this.longitude);
+      });
+    }
+  }
+  markerDragEnd($event: MouseEvent) {
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+    const clickBot = document.querySelector('#coorLat');
+    alert(clickBot);
+  }
+  getAddress( latitude: any, longitude: any) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 50;
+          this.address = results[0].formatted_address;
+        } else {
+          window.alert('No hay resultados disponibles');
+        }
+      } else {
+        window.alert('La geolocalizacion fallo: ' + status);
+      }
+
+    });
+  }
+   // Get employees list
+   getSkills() {
+    return this.restApi.getskills().subscribe((data: {}) => {
+      this.Skill = data;
+    });
   }
 }

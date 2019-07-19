@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Requerimiento } from '../clases/requerimiento';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-
+import { Skill } from '../clases/skill';
 @Injectable({
   providedIn: 'root'
 })
-
-export class RestApiService {
+export class SkillApi {
   // Define API
   apiURL = 'http://localhost:9000/api';
   // Http Options
@@ -22,8 +20,8 @@ export class RestApiService {
   constructor(private http: HttpClient) { }
 
   // HttpClient API get() method => Fetch employees list
-  getRequerimientos(): Observable<Requerimiento> {
-    return this.http.get<Requerimiento>(this.apiURL + '/requerimientos')
+  getskills(): Observable<Skill> {
+    return this.http.get<Skill>(this.apiURL + '/skills', this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -31,8 +29,8 @@ export class RestApiService {
   }
 
   // HttpClient API get() method => Fetch employee
-  getRequerimiento(id: number): Observable<Requerimiento> {
-    return this.http.get<Requerimiento>(this.apiURL + '/requerimientos/' + id, this.httpOptions)
+  getSkill(id: number): Observable<Skill> {
+    return this.http.get<Skill>(this.apiURL + '/skills/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -40,8 +38,8 @@ export class RestApiService {
   }
 
   // HttpClient API post() method => Create employee
-  crearRequerimiento(Requerimiento): Observable<Requerimiento> {
-    return this.http.post<Requerimiento>(this.apiURL + '/requerimientos', JSON.stringify(Requerimiento), this.httpOptions)
+  crearRequerimiento(Skill): Observable<Skill> {
+    return this.http.post<Skill>(this.apiURL + '/skills', JSON.stringify(Skill), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -49,8 +47,8 @@ export class RestApiService {
   }
 
   // HttpClient API put() method => Update employee
-  actualizarRequerimiento(id: string, employee: any): Observable<Requerimiento> {
-    return this.http.put<Requerimiento>(this.apiURL + '/requerimientos/' + id, JSON.stringify(Requerimiento), this.httpOptions)
+  actualizarSkill(id: string, employee: any): Observable<Skill> {
+    return this.http.put<Skill>(this.apiURL + '/skills/' + id, JSON.stringify(Skill), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -58,8 +56,8 @@ export class RestApiService {
   }
 
   // HttpClient API delete() method => Delete employee
-  eliminarRequerimiento(id: string) {
-    return this.http.delete<Requerimiento>(this.apiURL + '/requerimientos/' + id, this.httpOptions)
+  eliminarSkill(id: string) {
+    return this.http.delete<Skill>(this.apiURL + '/skills/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -69,7 +67,7 @@ export class RestApiService {
   // Error handling
   handleError(error: { error: { message: string; }; status: any; message: any; }) {
      let errorMessage = '';
-     if(error.error instanceof ErrorEvent) {
+     if (error.error instanceof ErrorEvent) {
        // Get client-side error
        errorMessage = error.error.message;
      } else {
