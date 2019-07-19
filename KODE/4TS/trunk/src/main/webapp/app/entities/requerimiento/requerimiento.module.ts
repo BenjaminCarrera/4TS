@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
-
+import { AgmCoreModule } from '@agm/core';
 import { AppSharedModule } from 'app/shared';
 import {
   RequerimientoComponent,
@@ -17,7 +17,11 @@ import {
 const ENTITY_STATES = [...requerimientoRoute, ...requerimientoPopupRoute];
 
 @NgModule({
-  imports: [AppSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [AppSharedModule, RouterModule.forChild(ENTITY_STATES),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCrRv-Zq8fqhVFf02Kfg2TPrjcJsJQE0e0',
+      libraries: ['places']
+    })],
   declarations: [
     RequerimientoComponent,
     RequerimientoDetailComponent,

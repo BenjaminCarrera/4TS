@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { RestApiService } from '../servicios/requerimiento.service';
+// import { RestApiService } from '../servicios/requerimiento.service';
 
 export interface PeriodicElement {
   Id: number;
@@ -66,7 +66,7 @@ export class ResConreqComponent implements OnInit {
 
   message: string;
   constructor(
-    public restApi: RestApiService
+    // public restApi: RestApiService
   ) {
     this.message = 'NuevReqComponent message';
     this.dataSourceTarea = this.DATA_TAREA.slice();
