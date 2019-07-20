@@ -114,6 +114,7 @@ export class PermisoAuthorityUpdateComponent implements OnInit {
   protected onSaveError() {
     this.isSaving = false;
   }
+
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
