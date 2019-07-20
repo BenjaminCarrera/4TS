@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
@@ -10,12 +10,18 @@ import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { PermisoAuthorityService } from './permiso-authority.service';
+import { PermisoAuthority } from '../../shared/model/permiso-authority.model';
+import { IPermiso } from '../../shared/model/permiso.model';
+import { IArrePermisoAuthority, ArrePermisoAuthority } from '../../shared/model/permiso-authority-array.model';
 
 @Component({
   selector: 'jhi-permiso-authority',
   templateUrl: './permiso-authority.component.html'
 })
 export class PermisoAuthorityComponent implements OnInit, OnDestroy {
+
+  isSaving: boolean;
+
   currentAccount: any;
   permisoAuthorities: IPermisoAuthority[];
   error: any;
@@ -29,6 +35,9 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+
+  temp: IArrePermisoAuthority;
+  newArre: any[] = [];
 
   constructor(
     protected permisoAuthorityService: PermisoAuthorityService,
@@ -52,7 +61,7 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
     this.permisoAuthorityService
       .query({
         page: this.page - 1,
-        size: this.itemsPerPage,
+        size: 40,
         sort: this.sort()
       })
       .subscribe(
@@ -121,11 +130,58 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
 
   protected paginatePermisoAuthorities(data: IPermisoAuthority[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.permisoAuthorities = data;
+
+    this.temp = new ArrePermisoAuthority();
+    let contadorPermisos: number;
+    contadorPermisos = 0;
+      this.permisoAuthorities.forEach(e => {
+        if (e.permisoId === 1) {
+          this.temp.admin = e.id;
+          this.temp.actAdmin = e.activated;
+        } else if (e.permisoId === 2) {
+          this.temp.requirements = e.id;
+          this.temp.actRequirements = e.activated;
+        } else if (e.permisoId === 3) {
+          this.temp.candidates = e.id;
+          this.temp.actCandidates = e.activated;
+        } else if (e.permisoId === 4) {
+          this.temp.entity = e.id;
+          this.temp.actEntity = e.activated;
+          this.temp.authority = e.authority;
+          this.newArre.push(this.temp);
+          contadorPermisos = contadorPermisos + 1;
+          this.temp = new ArrePermisoAuthority();
+        }
+        });
+        this.totalItems = contadorPermisos;
+
   }
 
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
+
+  save() {
+
+  }
+
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IPermisoAuthority>>) {
+    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+  }
+
+  protected onSaveSuccess() {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  previousState() {
+    window.history.back();
+  }
+
+  protected onSaveError() {
+    this.isSaving = false;
+  }
+
 }

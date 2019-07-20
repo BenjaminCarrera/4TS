@@ -20,38 +20,51 @@
                     <th jhiSortBy="authority"><span>Authority</span>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
-                    <th jhiSortBy="activated"><span>Entidad</span>
+                    <th jhiSortBy="activated"><span>Admin</span>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
-                    <th jhiSortBy="deleted"><span>Candidato</span>
+                    <th jhiSortBy="deleted"><span>Requerimientos</span>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
-                    <th jhiSortBy="createdBy"><span>Requerimientos</span>
+                    <th jhiSortBy="createdBy"><span>Candidatos</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="createdBy"><span>Entidades</span>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let permisoAuthority of permisoAuthorities; trackBy: trackId">
-                    <td *ngIf="permisoAuthority.permisoId === 1">{{permisoAuthority.authority}}</td>
-                    <td *ngIf="permisoAuthority.permisoId === 1">{{permisoAuthority.activated}}</td>
-                    <td *ngIf="permisoAuthority.permisoId === 1">{{permisoAuthority.deleted}}</td>
-                    <td *ngIf="permisoAuthority.permisoId === 1">{{permisoAuthority.createdBy}}</td>
-                    <td class="text-right" *ngIf="permisoAuthority.permisoId === 1">
+                <tr *ngFor="let permisos of newArre; trackBy: trackId">
+                    <!-- nake -->
+                    <td>{{permisos.authority}}</td>
+
+                    <!-- admin -->
+                    <td>
+                        <mat-checkbox name="admin_chk" [value]="permisos.admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
+                    </td>
+
+                    <!-- req -->
+                    <td>
+                        <mat-checkbox name="requirement_chk" [value]="permisos.requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
+                    </td>
+
+                    <!-- cand -->
+                    <td>
+                        <mat-checkbox name="candidate_chk" [value]="permisos.candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
+                    </td>
+
+                    <!-- entity -->
+                    <td>
+                        <mat-checkbox name="entity_chk" [value]="permisos.entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
+                    </td>
+                    <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit" [routerLink]="['/permiso-authority', permisoAuthority.id, 'view' ]" class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                            <button type="submit" [routerLink]="['/permiso-authority', permisoAuthority.id, 'edit']" class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                            <button type="submit" [routerLink]="['/', 'permiso-authority', { outlets: { popup: permisoAuthority.id + '/delete'} }]" replaceUrl="true" queryParamsHandling="merge" class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'save'"></fa-icon>
+                            <span class="d-none d-md-inline" (click)="save()" jhiTranslate="entity.action.save">Save</span>
+                            </button>
                         </div>
                     </td>
                 </tr>
