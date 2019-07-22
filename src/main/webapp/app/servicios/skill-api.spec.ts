@@ -1,7 +1,7 @@
-import { SkillApi } from './skill-api';
+// import { SkillApi } from './skill-api';
 
-describe('SkillApi', () => {
-  it('should create an instance', () => {
-    expect(new SkillApi()).toBeTruthy();
-  });
-});
+// // describe('SkillApi', () => {
+// //   it('should create an instance', () => {
+// //     expect(new SkillApi()).toBeTruthy();
+// //   });
+// // });

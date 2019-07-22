@@ -161,9 +161,6 @@ export class AgregCandComponent implements OnInit {
     this.fruits2.push(event.option.viewValue);
     this.fruitInput2.nativeElement.value = '';
     this.fruitCtrl2.setValue(null);
-    private _filter(value: string): string[] {
-      const filterValue2 = value.toLowerCase();
-      return this.allFruits2.filter(fruit2 => fruit2.toLowerCase().indexOf(filterValue2) === 0);
     }
   selected(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
