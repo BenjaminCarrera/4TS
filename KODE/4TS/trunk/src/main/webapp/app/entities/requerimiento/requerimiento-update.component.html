@@ -189,7 +189,6 @@
                       name="remplazoDe"
                       id="field_remplazoDe"
                       formControlName="remplazoDe"
-                      value="hola"
                     />
                   </mat-form-field>
                 </div>
@@ -517,7 +516,7 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById | async" [value]="fruit">
+              <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById" [value]="fruit">
                 {{ fruit.nombre }}
               </mat-option>
             </mat-autocomplete>
@@ -551,7 +550,7 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById | async" [value]="fruit">
+                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById " [value]="fruit">
                     {{ fruit.nombre }}
               </mat-option>
             </mat-autocomplete>
@@ -585,7 +584,7 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
-                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById | async" [value]="fruit">
+                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById" [value]="fruit">
                     {{ fruit.nombre }}
               </mat-option>
             </mat-autocomplete>
