@@ -16,7 +16,16 @@
                     </span>
                 </a>
             </li>
-            <li  ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/requerimiento" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="tasks"></fa-icon>
+                        <span >Requerimiento</span>
+                    </span>
+                </a>
+            </li>
+            <!-- <li  ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon icon="tasks"></fa-icon>
@@ -42,7 +51,7 @@
                             Resultado de la consulta de un requerimiento
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </li>
 
 
