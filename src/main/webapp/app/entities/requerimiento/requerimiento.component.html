@@ -1,56 +1,57 @@
 <div class="row">
-    <div class="col-md-12"  style="display: inline-block;">
-        <div class="row">
-            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
-                    <h3 class="titulo">Consulta del requerimiento</h3>
-            </div>
-            <div class="col"  style="display: inline-block; padding-left: 0px;padding-top: 0px;padding-left:25px;">
-            <a  [routerLink]="['/requerimiento/new']">
-                <button mat-raised-button color="warn" >Añadir requerimiento</button>
-            </a>
-            </div>
-        </div>
+  <div class="col-md-12" style="display: inline-block;">
+    <div class="row">
+      <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
+        <h3 class="titulo">Consulta del requerimiento</h3>
+      </div>
+      <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 0px;padding-left:25px;">
+        <a [routerLink]="['/requerimiento/new']">
+          <button mat-raised-button color="warn">Añadir requerimiento</button>
+        </a>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Inicio del formulario -->
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form #f="ngForm" role="form" (ngSubmit)="updateFilters()" [formGroup]="editForm">
   <div class="row">
     <div class="col-md-3 esp-arriba">
       <div class="example-container">
         <mat-form-field class="full-width">
-          <input matInput #postalCode maxlength="4" placeholder="ID de requerimiento" >
+          <input id="field_idReq" name="req" formControlName="idReq" matInput #postalCode maxlength="4"
+            placeholder="ID de requerimiento">
           <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
         </mat-form-field>
       </div>
     </div>
     <div class="col-md-3  esp-arriba">
       <mat-form-field class="full-width">
-        <mat-select placeholder="Ejecutivo asignado">
-          <mat-option value="option">Reclutador asignado</mat-option>
-          <mat-option value="option">Andrea Jimenez Otero</mat-option>
-          <mat-option value="option">Ernesto Cruz Lopez</mat-option>
-          <mat-option value="option">Paola Lopez Cruz</mat-option>
-          <mat-option value="option">David Alejandro Ruiz Jimenez</mat-option>
+        <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId"
+          placeholder="Ejecutivo asignado">
+          <mat-option>Ejecutivo asignado</mat-option>
+          <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">
+            {{userOption.firstName}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-3">
       <p>
         <label class="label-material">Estatus del requerimiento:</label>
-        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
-          <mat-button-toggle value="bold"> Todos </mat-button-toggle>
-          <mat-button-toggle value="cursiva"> Abierto </mat-button-toggle>
-          <mat-button-toggle value="underline"> Cerrado </mat-button-toggle>
-          <mat-button-toggle value="underline"> En espera </mat-button-toggle>
+        <br>
+        <mat-button-toggle-group id="field_estatusRequerimiento" name="estatusRequerimiento"
+          formControlName="estatusRequerimientoId" aria-label="Estilo de fuente" class="botones-chicos">
+          <mat-button-toggle [value]="estatusRequerimientoOption.id"
+            *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">
+            {{estatusRequerimientoOption.estatus}}</mat-button-toggle>
         </mat-button-toggle-group>
       </p>
     </div>
     <div class="col-md-3  esp-arriba">
       <mat-form-field class="full-width">
-        <mat-select placeholder="Cuenta">
-          <mat-option value="option">AXA</mat-option>
-          <mat-option value="option">Aserta</mat-option>
-          <mat-option value="option">Fin comúm</mat-option>
+        <mat-select id="field_cuenta" name="cuenta" formControlName="cuentaId" placeholder="Cuenta">
+          <mat-option>Cuenta</mat-option>
+          <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">
+            {{cuentaOption.clave}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -58,48 +59,50 @@
   <div class="row">
     <div class="col-md-3 esp-arriba">
       <mat-form-field class="full-width">
-        <mat-select placeholder="Perfil">
-          <mat-option value="option">Visual Basic .net</mat-option>
-          <mat-option value="option">Angular</mat-option>
-          <mat-option value="option">Php laravel</mat-option>
+        <mat-select id="field_perfil" name="perfil" formControlName="perfilId" placeholder="Perfil">
+          <mat-option>Perfil</mat-option>
+          <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">
+            {{perfilOption.perfil}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-3 esp-arriba">
       <mat-form-field class="full-width">
-        <mat-select placeholder="Nivel de Perfil">
-          <mat-option value="option">Senior</mat-option>
-          <mat-option value="option">Semi Senior</mat-option>
-          <mat-option value="option">Junior</mat-option>
-          <mat-option value="option">Becario</mat-option>
+        <mat-select id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId"
+          placeholder="Nivel de Perfil">
+          <mat-option>Nivel de Perfil</mat-option>
+          <mat-option [value]="nivelPerfilOption.id"
+            *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-md-3">
       <p>
         <label class="label-material">Tipo de solicitud:</label>
-        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos2">
-          <mat-button-toggle value="Todas"> Todas </mat-button-toggle>
-          <mat-button-toggle value="Outsourcing"> Outsourcing </mat-button-toggle>
-          <mat-button-toggle value="Reclutamiento"> Reclutamiento </mat-button-toggle>
-          <mat-button-toggle value="Interna"> Interna </mat-button-toggle>
+        <mat-button-toggle-group id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId"
+          aria-label="Estilo de fuente" class="botones-chicos2">
+          <mat-button-toggle> Todas </mat-button-toggle>
+          <mat-button-toggle [value]="tipoSolicitudOption.id"
+            *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">
+            {{tipoSolicitudOption.solicitud}}</mat-button-toggle>
         </mat-button-toggle-group>
       </p>
     </div>
     <div class="col-md-3 esp-arriba">
       <mat-form-field class="full-width">
-        <mat-select placeholder="Prioridad">
-          <mat-option value="option">Baja</mat-option>
-          <mat-option value="option">Media</mat-option>
-          <mat-option value="option">Alta</mat-option>
-          <mat-option value="option">Crítica</mat-option>
+        <mat-select id="field_prioridad" name="prioridad" formControlName="prioridadId" placeholder="Prioridad">
+          <mat-option>Prioridad</mat-option>
+          <mat-option [value]="prioridadReqOption.id"
+            *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">
+            {{prioridadReqOption.prioridad}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
-      <button type="reset" class="btn gris"> Limpiar </button>
+      <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
       <button mat-raised-button color="warn">Buscar</button>
       <br>
     </div>
@@ -110,166 +113,103 @@
 
 <br>
 <div>
-    <jhi-alert></jhi-alert>
-    <br/>
-    <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
-        <span jhiTranslate="App.requerimiento.home.notFound">No requerimientos found</span>
+  <jhi-alert></jhi-alert>
+  <br />
+  <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
+    <span jhiTranslate="App.requerimiento.home.notFound">No se encontraron requerimientos</span>
+  </div>
+  <div *ngIf="requerimientos?.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+          <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="estatusRequerimientoEstatus"><span
+              jhiTranslate="App.requerimiento.estatusRequerimiento">Estatus</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="cuentaClave"><span jhiTranslate="App.requerimiento.cuenta">Cuenta</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="perfilPerfil"><span jhiTranslate="App.requerimiento.perfil">Perfil</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="nivelPerfilNivel"><span jhiTranslate="App.requerimiento.nivelPerfil">Nivel Perfil</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="usuarioCreadorFirstName"><span jhiTranslate="App.requerimiento.usuarioCreador">Usuario
+              Creador</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="usuarioAsignadoFirstName"><span jhiTranslate="App.requerimiento.usuarioAsignado">Usuario
+              Asignado</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="tipoSolicitudSolicitud"><span jhiTranslate="App.requerimiento.tipoSolicitud">Tipo
+              de Solicitud</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="vacantesSolicitadas"><span jhiTranslate="App.requerimiento.vacantesSolicitadas">Vacantes
+            Solicitadas</span>
+          <fa-icon [icon]="'sort'"></fa-icon>
+        </th>
+          <th jhiSortBy="fechaResolucion"><span jhiTranslate="App.requerimiento.fechaResolucion">Vacantes pendientes</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="prioridadPrioridad"><span jhiTranslate="App.requerimiento.prioridad">Prioridad</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="remplazoDe"><span jhiTranslate="App.requerimiento.remplazoDe">Último cv enviado</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+          <th jhiSortBy="proyecto"><span jhiTranslate="App.requerimiento.proyecto">Última entrevista</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let requerimiento of requerimientos ;trackBy: trackId">
+          <td><a [routerLink]="['/requerimiento', requerimiento.id, 'view' ]">{{requerimiento.id}}</a></td>
+          <td>
+            <div *ngIf="requerimiento.estatusRequerimientoId">{{requerimiento.estatusRequerimientoEstatus}}</div>
+          </td>
+          <td>
+            <div *ngIf="requerimiento.cuentaId">{{requerimiento.cuentaClave}}</div>
+          </td>
+          <td>
+            <div *ngIf="requerimiento.perfilId">{{requerimiento.perfilPerfil}}</div>
+          </td>
+          <td>
+            <div *ngIf="requerimiento.nivelPerfilId">{{requerimiento.nivelPerfilNivel}}</div>
+          </td>
+          <td>
+            {{requerimiento.usuarioCreadorFirstName}}
+          </td>
+          <td>
+            {{requerimiento.usuarioAsignadoFirstName}}
+          </td>
+          <td>
+            <div *ngIf="requerimiento.tipoSolicitudId">{{requerimiento.tipoSolicitudSolicitud}}</div>
+          </td>
+          <td>{{requerimiento.vacantesSolicitadas}}</td>
+          <td></td>
+          <td>
+            <div *ngIf="requerimiento.prioridadId">{{requerimiento.prioridadPrioridad}}</div>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div [hidden]="requerimientos?.length === 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
     </div>
-    <div class="table-responsive" *ngIf="requerimientos?.length > 0">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fechaAlda"><span jhiTranslate="App.requerimiento.fechaAlda">Fecha Alda</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fechaResolucion"><span jhiTranslate="App.requerimiento.fechaResolucion">Fecha Resolucion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="remplazoDe"><span jhiTranslate="App.requerimiento.remplazoDe">Remplazo De</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="vacantesSolicitadas"><span jhiTranslate="App.requerimiento.vacantesSolicitadas">Vacantes Solicitadas</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="proyecto"><span jhiTranslate="App.requerimiento.proyecto">Proyecto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombreContacto"><span jhiTranslate="App.requerimiento.nombreContacto">Nombre Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tarifaSueldoNet"><span jhiTranslate="App.requerimiento.tarifaSueldoNet">Tarifa Sueldo Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="prestaciones"><span jhiTranslate="App.requerimiento.prestaciones">Prestaciones</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="duracionAsignacion"><span jhiTranslate="App.requerimiento.duracionAsignacion">Duracion Asignacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="lugarTrabajo"><span jhiTranslate="App.requerimiento.lugarTrabajo">Lugar Trabajo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="coorLat"><span jhiTranslate="App.requerimiento.coorLat">Coor Lat</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="coorLong"><span jhiTranslate="App.requerimiento.coorLong">Coor Long</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="horario"><span jhiTranslate="App.requerimiento.horario">Horario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="informacionExamen"><span jhiTranslate="App.requerimiento.informacionExamen">Informacion Examen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="informacionAdicional"><span jhiTranslate="App.requerimiento.informacionAdicional">Informacion Adicional</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cuentaClave"><span jhiTranslate="App.requerimiento.cuenta">Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="subCuentaClave"><span jhiTranslate="App.requerimiento.subCuenta">Sub Cuenta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioCreadorFirstName"><span jhiTranslate="App.requerimiento.usuarioCreador">Usuario Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioAsignadoFirstName"><span jhiTranslate="App.requerimiento.usuarioAsignado">Usuario Asignado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusRequerimientoEstatus"><span jhiTranslate="App.requerimiento.estatusRequerimiento">Estatus Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="prioridadPrioridad"><span jhiTranslate="App.requerimiento.prioridad">Prioridad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoSolicitudSolicitud"><span jhiTranslate="App.requerimiento.tipoSolicitud">Tipo Solicitud</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoIngresoTipo"><span jhiTranslate="App.requerimiento.tipoIngreso">Tipo Ingreso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="baseTarifaBase"><span jhiTranslate="App.requerimiento.baseTarifa">Base Tarifa</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="esquemaContratacionEsquema"><span jhiTranslate="App.requerimiento.esquemaContratacion">Esquema Contratacion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="perfilPerfil"><span jhiTranslate="App.requerimiento.perfil">Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nivelPerfilNivel"><span jhiTranslate="App.requerimiento.nivelPerfil">Nivel Perfil</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusReqCanMotivo"><span jhiTranslate="App.requerimiento.estatusReqCan">Estatus Req Can</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoPeriodoPeriodo"><span jhiTranslate="App.requerimiento.tipoPeriodo">Tipo Periodo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let requerimiento of requerimientos ;trackBy: trackId">
-                <td><a [routerLink]="['/requerimiento', requerimiento.id, 'view' ]">{{requerimiento.id}}</a></td>
-                <td>{{requerimiento.fechaAlda | date:'medium'}}</td>
-                <td>{{requerimiento.fechaResolucion | date:'medium'}}</td>
-                <td>{{requerimiento.remplazoDe}}</td>
-                <td>{{requerimiento.vacantesSolicitadas}}</td>
-                <td>{{requerimiento.proyecto}}</td>
-                <td>{{requerimiento.nombreContacto}}</td>
-                <td>{{requerimiento.tarifaSueldoNet}}</td>
-                <td>{{requerimiento.prestaciones}}</td>
-                <td>{{requerimiento.duracionAsignacion}}</td>
-                <td>{{requerimiento.lugarTrabajo}}</td>
-                <td>{{requerimiento.coorLat}}</td>
-                <td>{{requerimiento.coorLong}}</td>
-                <td>{{requerimiento.horario}}</td>
-                <td>{{requerimiento.informacionExamen}}</td>
-                <td>{{requerimiento.informacionAdicional}}</td>
-                <td>
-                    <div *ngIf="requerimiento.cuentaId">
-                        <a [routerLink]="['../cuenta', requerimiento.cuentaId , 'view' ]" >{{requerimiento.cuentaClave}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.subCuentaId">
-                        <a [routerLink]="['../cuenta', requerimiento.subCuentaId , 'view' ]" >{{requerimiento.subCuentaClave}}</a>
-                    </div>
-                </td>
-                <td>
-                    {{requerimiento.usuarioCreadorFirstName}}
-                </td>
-                <td>
-                    {{requerimiento.usuarioAsignadoFirstName}}
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.estatusRequerimientoId">
-                        <a [routerLink]="['../estatus-requerimiento', requerimiento.estatusRequerimientoId , 'view' ]" >{{requerimiento.estatusRequerimientoEstatus}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.prioridadId">
-                        <a [routerLink]="['../prioridad-req', requerimiento.prioridadId , 'view' ]" >{{requerimiento.prioridadPrioridad}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.tipoSolicitudId">
-                        <a [routerLink]="['../tipo-solicitud', requerimiento.tipoSolicitudId , 'view' ]" >{{requerimiento.tipoSolicitudSolicitud}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.tipoIngresoId">
-                        <a [routerLink]="['../tipo-ingreso', requerimiento.tipoIngresoId , 'view' ]" >{{requerimiento.tipoIngresoTipo}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.baseTarifaId">
-                        <a [routerLink]="['../base-tarifa', requerimiento.baseTarifaId , 'view' ]" >{{requerimiento.baseTarifaBase}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.esquemaContratacionId">
-                        <a [routerLink]="['../esq-cont-rec', requerimiento.esquemaContratacionId , 'view' ]" >{{requerimiento.esquemaContratacionEsquema}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.perfilId">
-                        <a [routerLink]="['../perfil', requerimiento.perfilId , 'view' ]" >{{requerimiento.perfilPerfil}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.nivelPerfilId">
-                        <a [routerLink]="['../nivel-perfil', requerimiento.nivelPerfilId , 'view' ]" >{{requerimiento.nivelPerfilNivel}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.estatusReqCanId">
-                        <a [routerLink]="['../est-req-cerrado', requerimiento.estatusReqCanId , 'view' ]" >{{requerimiento.estatusReqCanMotivo}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="requerimiento.tipoPeriodoId">
-                        <a [routerLink]="['../tipo-periodo', requerimiento.tipoPeriodoId , 'view' ]" >{{requerimiento.tipoPeriodoPeriodo}}</a>
-                    </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/requerimiento', requerimiento.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/requerimiento', requerimiento.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', 'requerimiento', { outlets: { popup: requerimiento.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="row justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+        [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
     </div>
-    <div [hidden]="requerimientos?.length === 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
-    </div>
+  </div>
 </div>

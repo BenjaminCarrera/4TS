@@ -16,7 +16,7 @@ type EntityArrayResponseType = HttpResponse<IRequerimiento[]>;
 export class RequerimientoService {
   public resourceUrl = SERVER_API_URL + 'api/requerimientos';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(requerimiento: IRequerimiento): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(requerimiento);
