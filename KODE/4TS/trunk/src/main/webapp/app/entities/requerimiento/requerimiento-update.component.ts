@@ -56,7 +56,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   zoom: number;
   address: string;
   private geoCoder;
-  @ViewChild('search')
+  @ViewChild('search', {static: false})
   // Mapa
   public searchElementRef: ElementRef;
   // Codigo de la pantalla
