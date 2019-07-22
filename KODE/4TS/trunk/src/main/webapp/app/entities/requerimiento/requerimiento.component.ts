@@ -1,15 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
-import { AccountService } from 'app/core';
+import { AccountService, IUser, UserService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { RequerimientoService } from './requerimiento.service';
+import { IEstatusRequerimiento } from 'app/shared/model/estatus-requerimiento.model';
+import { EstatusRequerimientoService } from '../estatus-requerimiento';
+import { ICuenta } from 'app/shared/model/cuenta.model';
+import { CuentaService } from '../cuenta';
+import { IPerfil } from 'app/shared/model/perfil.model';
+import { PerfilService } from '../perfil';
+import { INivelPerfil } from 'app/shared/model/nivel-perfil.model';
+import { NivelPerfilService } from '../nivel-perfil';
+import { ITipoSolicitud } from 'app/shared/model/tipo-solicitud.model';
+import { TipoSolicitudService } from '../tipo-solicitud';
+import { IPrioridadReq } from 'app/shared/model/prioridad-req.model';
+import { PrioridadReqService } from '../prioridad-req';
+import { FormBuilder } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'jhi-requerimiento',
@@ -33,14 +49,43 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
 
+  users: IUser[];
+  estatusrequerimientos: IEstatusRequerimiento[];
+  cuentas: ICuenta[];
+  perfils: IPerfil[];
+  nivelperfils: INivelPerfil[];
+  tiposolicituds: ITipoSolicitud[];
+  prioridadreqs: IPrioridadReq[];
+  criteria: any[];
+  criteriaTemp: any;
+
+  editForm = this.fb.group({
+    idReq: [],
+    usuarioAsignadoId: [],
+    estatusRequerimientoId: [],
+    cuentaId: [],
+    perfilId: [],
+    nivelPerfilId: [],
+    tipoSolicitudId: [],
+    prioridadId: []
+  });
+
   constructor(
+    protected userService: UserService,
+    protected estatusRequerimientoService: EstatusRequerimientoService,
+    protected cuentaService: CuentaService,
+    protected perfilService: PerfilService,
+    protected nivelPerfilService: NivelPerfilService,
+    protected tipoSolicitudService: TipoSolicitudService,
+    protected prioridadReqService: PrioridadReqService,
     protected requerimientoService: RequerimientoService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected eventManager: JhiEventManager
+    protected eventManager: JhiEventManager,
+    private fb: FormBuilder
   ) {
     this.itemsPerPage = 5;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -54,6 +99,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   loadAll() {
     this.requerimientoService
       .query({
+        criteria: this.criteria,
         page: this.page - 1,
         size: this.itemsPerPage,
         sort: this.sort()
@@ -82,8 +128,10 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
-  clear() {
+  public clear() {
     this.page = 0;
+    this.criteria = [];
+    this.criteriaTemp = {};
     this.router.navigate([
       '/requerimiento',
       {
@@ -94,12 +142,119 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
+  updateFilters() {
+    this.page = 0;
+    this.criteria = [];
+    this.criteriaTemp = {};
+    if (this.editForm.get(['idReq']).value != null) {
+      this.criteriaTemp = { key: 'id.equals', value: this.editForm.get(['idReq']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['usuarioAsignadoId']).value != null) {
+      this.criteriaTemp = { key: 'usuarioAsignadoId.equals', value: this.editForm.get(['usuarioAsignadoId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['estatusRequerimientoId']).value != null) {
+      this.criteriaTemp = { key: 'estatusRequerimientoId.equals', value: this.editForm.get(['estatusRequerimientoId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['cuentaId']).value != null) {
+      this.criteriaTemp = { key: 'cuentaId.equals', value: this.editForm.get(['cuentaId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['perfilId']).value != null) {
+      this.criteriaTemp = { key: 'perfilId.equals', value: this.editForm.get(['perfilId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['nivelPerfilId']).value != null) {
+      this.criteriaTemp = { key: 'nivelPerfilId.equals', value: this.editForm.get(['nivelPerfilId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['tipoSolicitudId']).value != null) {
+      this.criteriaTemp = { key: 'tipoSolicitudId.equals', value: this.editForm.get(['tipoSolicitudId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['prioridadId']).value != null) {
+      this.criteriaTemp = { key: 'prioridadId.equals', value: this.editForm.get(['prioridadId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    this.router.navigate([
+      '/requerimiento',
+      {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    ]);
+    this.loadAll();
+  }
+
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
   ngOnInit() {
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
     this.registerChangeInRequerimientos();
+
+    this.userService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.estatusRequerimientoService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEstatusRequerimiento[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IEstatusRequerimiento[]>) => response.body)
+      )
+      .subscribe(
+        (res: IEstatusRequerimiento[]) => (this.estatusrequerimientos = res),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+    this.cuentaService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<ICuenta[]>) => mayBeOk.ok),
+        map((response: HttpResponse<ICuenta[]>) => response.body)
+      )
+      .subscribe((res: ICuenta[]) => (this.cuentas = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.perfilService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IPerfil[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IPerfil[]>) => response.body)
+      )
+      .subscribe((res: IPerfil[]) => (this.perfils = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.nivelPerfilService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<INivelPerfil[]>) => mayBeOk.ok),
+        map((response: HttpResponse<INivelPerfil[]>) => response.body)
+      )
+      .subscribe((res: INivelPerfil[]) => (this.nivelperfils = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.tipoSolicitudService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<ITipoSolicitud[]>) => mayBeOk.ok),
+        map((response: HttpResponse<ITipoSolicitud[]>) => response.body)
+      )
+      .subscribe((res: ITipoSolicitud[]) => (this.tiposolicituds = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.prioridadReqService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IPrioridadReq[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IPrioridadReq[]>) => response.body)
+      )
+      .subscribe((res: IPrioridadReq[]) => (this.prioridadreqs = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   ngOnDestroy() {
@@ -112,14 +267,6 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
 
   registerChangeInRequerimientos() {
     this.eventSubscriber = this.eventManager.subscribe('requerimientoListModification', response => this.loadAll());
-  }
-
-  sort() {
-    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
   }
 
   protected paginateRequerimientos(data: IRequerimiento[], headers: HttpHeaders) {
