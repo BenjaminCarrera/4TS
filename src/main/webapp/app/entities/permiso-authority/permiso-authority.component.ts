@@ -36,7 +36,7 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
 
-  // temp: IArrePermisoAuthority;
+ temp: IArrePermisoAuthority;
   newArre: any[] = [];
 
   constructor(
