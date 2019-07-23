@@ -320,7 +320,6 @@ export class RequerimientoUpdateComponent implements OnInit {
   ngOnInit() {
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -437,8 +436,8 @@ export class RequerimientoUpdateComponent implements OnInit {
   updateForm(requerimiento: IRequerimiento) {
     this.editForm.patchValue({
       id: requerimiento.id,
-      // fechaAlda: requerimiento.fechaAlda,
-      // fechaResolucion: requerimiento.fechaResolucion,
+      fechaAlda: requerimiento.fechaAlda.toISOString(),
+      fechaResolucion: requerimiento.fechaResolucion.toISOString(),
       remplazoDe: requerimiento.remplazoDe,
       vacantesSolicitadas: requerimiento.vacantesSolicitadas,
       proyecto: requerimiento.proyecto,
@@ -604,23 +603,11 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.reemplazo = false;
     }
   }
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 50;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
-  }
   markerDragEnd($event: MouseEvent) {
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
     const clickBot = document.querySelector('#coorLat');
-    alert(clickBot);
   }
   getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
