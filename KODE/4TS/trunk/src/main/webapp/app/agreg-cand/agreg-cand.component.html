@@ -541,7 +541,7 @@
                             {{fruit2}}
                             <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Cuentas rechazadas por candidato" #fruitInput2 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event2)">
+                        <input placeholder="Cuentas rechazadas por candidato" #fruitInput2 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)">
                     </mat-chip-list>
                     <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
                         <mat-option *ngFor="let fruit2 of filteredFruits2 | async" [value]="fruit2">

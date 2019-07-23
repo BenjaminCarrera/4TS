@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatSort } from '@angular/material/sort';
+
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
+import { MatSort } from '@angular/material';
 
 export interface PeriodicElement {
   Id: number;
@@ -26,42 +27,51 @@ export interface Tarea {
   ]
 })
 export class RequerimientoDetailComponent implements OnInit {
-  // Variables Tarea
-  DATA_TAREA: PeriodicElement[] = [
-    { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
-  ];
+  // Enfoque del mapa
+  lat: any;
+  lng: any;
+  zoom = 10;
+  requerimiento: IRequerimiento;
   dataSourceTarea: PeriodicElement[];
   displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
-
-  // VAriables Bitacora
+  dataSourceBitacora: Tarea[];
+  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
+  DATA_TAREA: PeriodicElement[] = [
+    { Id: 1, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 2, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 4, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 5, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Abierta' },
+    { Id: 3, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '09/07/2019', Estatus: 'Atendida' },
+    { Id: 6, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Abierta' },
+    { Id: 7, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Abierta' },
+    { Id: 8, Tarea: 'Abierto', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 9, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 10, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 11, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' },
+    { Id: 12, Tarea: 'Cerrado', Creador: 'Yasser', Destinatario: 'Juan', FechaAlta: '01/07/2019', Estatus: 'Cerrada' }
+  ];
   DATA_BITACORA: Tarea[] = [
     { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
     { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
   ];
-  dataSourceBitacora: Tarea[];
-  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
-  // Enfoque del mapa
-  lat: any;
-  lng: any;
-  zoom = 10;
-  requerimiento: IRequerimiento;
-  constructor(protected activatedRoute: ActivatedRoute) {
-    this.dataSourceTarea = this.DATA_TAREA.slice();
-    this.dataSourceBitacora = this.DATA_BITACORA.slice();
+
+  constructor(protected activatedRoute: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ requerimiento }) => {
+      this.requerimiento = requerimiento;
+    });
+    // Enfoque del mapa
+    this.lat = this.requerimiento.coorLat;
+    this.lng = this.requerimiento.coorLong;
+    this.zoom = 10;
+  }
+
+  previousState() {
+    window.history.back();
   }
 
   sortDataTarea(sort: MatSort) {
@@ -101,20 +111,8 @@ export class RequerimientoDetailComponent implements OnInit {
       }
     });
   }
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(({ requerimiento }) => {
-      this.requerimiento = requerimiento;
-    });
-    // Enfoque del mapa
-    this.lat = this.requerimiento.coorLat;
-    this.lng = this.requerimiento.coorLong;
-    this.zoom = 10;
-  }
-
-  previousState() {
-    window.history.back();
-  }
 }
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

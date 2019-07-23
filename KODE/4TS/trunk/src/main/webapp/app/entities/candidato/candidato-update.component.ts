@@ -41,13 +41,14 @@ import { FormacionAcademicaService } from 'app/entities/formacion-academica';
 import { IEstCanInactivo } from 'app/shared/model/est-can-inactivo.model';
 import { EstCanInactivoService } from 'app/entities/est-can-inactivo';
 
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Tarea } from 'app/agreg-cand';
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -159,6 +160,34 @@ export class CandidatoUpdateComponent implements OnInit {
     estCanInactivoId: []
   });
 
+  selectable = true;
+  selectable2 = true;
+  removable = true;
+  removable2 = true;
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = ['EUSA'];
+  allFruits: string[] = ['AXA', 'AXOV', 'AXSI', 'BAZ'];
+  filteredFruits2: Observable<string[]>;
+  fruits2: string[] = ['Listo!'];
+  allFruits2: string[] = ['Listo!', 'AXOV', 'AXSI', 'BAZ'];
+  ELEMENT_DATA2: Tarea[] = [
+    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+    { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+    { Skills: 'Angular', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+    { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' }
+  ];
+  dataSource2 = new MatTableDataSource(this.ELEMENT_DATA2);
+  displayedColumns2: string[] = ['Skills', 'Dominio', 'Calificacion', 'Botones'];
+  addOnBlur = true;
+  addOnBlur2 = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes2: number[] = [ENTER, COMMA];
+  fruitCtrl2 = new FormControl();
+  @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  fruitCtrl = new FormControl();
+  @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
+
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected candidatoService: CandidatoService,
@@ -180,7 +209,7 @@ export class CandidatoUpdateComponent implements OnInit {
     protected estCanInactivoService: EstCanInactivoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.isSaving = false;
@@ -571,6 +600,81 @@ export class CandidatoUpdateComponent implements OnInit {
       }
 
       this.cuentaIntCtrl.setValue(null);
+    }
+    // Fin primer chip autocompletable
+  }
+
+  remove(fruit: string): void {
+    // Inicio primer chip autocompletable
+    const index = this.fruits.indexOf(fruit);
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  remove2(fruit2: string): void {
+    // Inicio primer chip autocompletable
+    const index2 = this.fruits2.indexOf(fruit2);
+    if (index2 >= 0) {
+      this.fruits2.splice(index2, 1);
+    }
+    // Fin primer chip autocompletable
+  }
+  selected2(event: MatAutocompleteSelectedEvent): void {
+    // Inicio primer chip autocompletable
+    this.fruits2.push(event.option.viewValue);
+    this.fruitInput2.nativeElement.value = '';
+    this.fruitCtrl2.setValue(null);
+  }
+  selected(event: MatAutocompleteSelectedEvent): void {
+    // Inicio primer chip autocompletable
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+  add(event: MatChipInputEvent): void {
+    // Inicio primer chip autocompletable
+
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.fruits.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.fruitCtrl.setValue(null);
+    }
+    // Fin primer chip autocompletable
+  }
+  add2(event: MatChipInputEvent): void {
+    // Inicio primer chip autocompletable
+
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete2.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.fruits2.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.fruitCtrl2.setValue(null);
     }
     // Fin primer chip autocompletable
   }

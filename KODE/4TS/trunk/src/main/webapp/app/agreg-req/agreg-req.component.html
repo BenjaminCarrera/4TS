@@ -314,7 +314,7 @@
                             {{ fruit2 }}
                             <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Opcionales" #fruitInput2 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event2)"
+                        <input placeholder="Opcionales" #fruitInput2 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)"
                         />
                     </mat-chip-list>
                     <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
@@ -333,7 +333,7 @@
                             {{ fruit3 }}
                             <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Escenciales" #fruitInput3 [formControl]="fruitCtrl3" [matAutocomplete]="auto3" [matChipInputFor]="chipList3" [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3" (matChipInputTokenEnd)="add3($event3)"
+                        <input placeholder="Escenciales" #fruitInput3 [formControl]="fruitCtrl3" [matAutocomplete]="auto3" [matChipInputFor]="chipList3" [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3" (matChipInputTokenEnd)="add3($event)"
                         />
                     </mat-chip-list>
                     <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">

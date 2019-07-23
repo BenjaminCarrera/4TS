@@ -15,10 +15,10 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class AgregReqComponent implements OnInit {
 
-   // Enfoque del mapa
-   lat = 19.4284700;
-   lng = -99.1276600;
-   zoom = 14;
+  // Enfoque del mapa
+  lat = 19.4284700;
+  lng = -99.1276600;
+  zoom = 14;
 
   selected1 = new FormControl(0);
   visible = true;
@@ -48,27 +48,29 @@ export class AgregReqComponent implements OnInit {
   filteredFruits3: Observable<string[]>;
   fruits3: string[] = ['Python!'];
   allFruits3: string[] = ['PHP', 'Java', 'Angular', 'Python'];
-  @ViewChild('fruitInput3', {static: false}) fruitInput3: ElementRef<HTMLInputElement>;
-  @ViewChild('auto3', {static: false}) matAutocomplete3: MatAutocomplete;
-  @ViewChild('fruitInput2', {static: false}) fruitInput2: ElementRef<HTMLInputElement>;
-  @ViewChild('auto2', {static: false}) matAutocomplete2: MatAutocomplete;
+  @ViewChild('fruitInput3', { static: false }) fruitInput3: ElementRef<HTMLInputElement>;
+  @ViewChild('auto3', { static: false }) matAutocomplete3: MatAutocomplete;
+  @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
+  show: boolean;
+  show2: boolean;
 
   constructor() {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-      // Inicio Segundo chip autocompletable
-      this.filteredFruits2 = this.fruitCtrl2.valueChanges.pipe(
-          startWith(null),
-          map((fruit2: string | null) => fruit2 ? this._filter2(fruit2) : this.allFruits2.slice()));
-      // Fin Segundo chip autocompletable
-      // Inicio Segundo chip autocompletable
-      this.filteredFruits3 = this.fruitCtrl3.valueChanges.pipe(
-          startWith(null),
-          map((fruit3: string | null) => fruit3 ? this._filter3(fruit3) : this.allFruits3.slice()));
-      // Fin Segundo chip autocompletable
+    // Inicio Segundo chip autocompletable
+    this.filteredFruits2 = this.fruitCtrl2.valueChanges.pipe(
+      startWith(null),
+      map((fruit2: string | null) => fruit2 ? this._filter2(fruit2) : this.allFruits2.slice()));
+    // Fin Segundo chip autocompletable
+    // Inicio Segundo chip autocompletable
+    this.filteredFruits3 = this.fruitCtrl3.valueChanges.pipe(
+      startWith(null),
+      map((fruit3: string | null) => fruit3 ? this._filter3(fruit3) : this.allFruits3.slice()));
+    // Fin Segundo chip autocompletable
   }
   siguiente() {
     this.selected1.setValue(1);
@@ -110,10 +112,11 @@ export class AgregReqComponent implements OnInit {
     this.fruits2.push(event.option.viewValue);
     this.fruitInput2.nativeElement.value = '';
     this.fruitCtrl2.setValue(null);
-    private _filter2(value: string): string[] {
-      const filterValue2 = value.toLowerCase();
-      return this.allFruits2.filter(fruit2 => fruit2.toLowerCase().indexOf(filterValue2) === 0);
-    }
+  }
+  _filter2(value: string): string[] {
+    const filterValue2 = value.toLowerCase();
+    return this.allFruits2.filter(fruit2 => fruit2.toLowerCase().indexOf(filterValue2) === 0);
+  }
   remove2(fruit2: string): void {
     // Inicio primer chip autocompletable
     const index2 = this.fruits2.indexOf(fruit2);
@@ -150,10 +153,11 @@ export class AgregReqComponent implements OnInit {
     this.fruits3.push(event.option.viewValue);
     this.fruitInput3.nativeElement.value = '';
     this.fruitCtrl3.setValue(null);
-    private _filter3(value: string): string[] {
-      const filterValue3 = value.toLowerCase();
-      return this.allFruits3.filter(fruit3 => fruit3.toLowerCase().indexOf(filterValue3) === 0);
-    }
+  }
+  _filter3(value: string): string[] {
+    const filterValue3 = value.toLowerCase();
+    return this.allFruits3.filter(fruit3 => fruit3.toLowerCase().indexOf(filterValue3) === 0);
+  }
   remove3(fruit3: string): void {
     // Inicio primer chip autocompletable
     const index3 = this.fruits3.indexOf(fruit3);
