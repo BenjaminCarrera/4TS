@@ -12,7 +12,7 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 import { PermisoAuthorityService } from './permiso-authority.service';
 import { PermisoAuthority } from '../../shared/model/permiso-authority.model';
 import { IPermiso } from '../../shared/model/permiso.model';
-// import { IArrePermisoAuthority, ArrePermisoAuthority } from '../../shared/model/permiso-authority-array.model';
+import { IArrePermisoAuthority, ArrePermisoAuthority } from '../../shared/model/permiso-authority-array.model';
 
 @Component({
   selector: 'jhi-permiso-authority',
@@ -130,32 +130,32 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
 
   protected paginatePermisoAuthorities(data: IPermisoAuthority[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
-    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.permisoAuthorities = data;
 
-    // this.temp = new ArrePermisoAuthority();
-    // let contadorPermisos: number;
-    // contadorPermisos = 0;
-    //   this.permisoAuthorities.forEach(e => {
-    //     if (e.permisoId === 1) {
-    //       this.temp.admin = e.id;
-    //       this.temp.actAdmin = e.activated;
-    //     } else if (e.permisoId === 2) {
-    //       this.temp.requirements = e.id;
-    //       this.temp.actRequirements = e.activated;
-    //     } else if (e.permisoId === 3) {
-    //       this.temp.candidates = e.id;
-    //       this.temp.actCandidates = e.activated;
-    //     } else if (e.permisoId === 4) {
-    //       this.temp.entity = e.id;
-    //       this.temp.actEntity = e.activated;
-    //       this.temp.authority = e.authority;
-    //       this.newArre.push(this.temp);
-    //       contadorPermisos = contadorPermisos + 1;
-    //       this.temp = new ArrePermisoAuthority();
-    //     }
-    //     });
-    //     this.totalItems = contadorPermisos;
+    this.temp = new ArrePermisoAuthority();
+    let contadorPermisos: number;
+    contadorPermisos = 0;
+      this.permisoAuthorities.forEach(e => {
+        if (e.permisoId === 1) {
+          this.temp.admin = e.id;
+          this.temp.actAdmin = e.activated;
+        } else if (e.permisoId === 2) {
+          this.temp.requirements = e.id;
+          this.temp.actRequirements = e.activated;
+        } else if (e.permisoId === 3) {
+          this.temp.candidates = e.id;
+          this.temp.actCandidates = e.activated;
+        } else if (e.permisoId === 4) {
+          this.temp.entity = e.id;
+          this.temp.actEntity = e.activated;
+          this.temp.authority = e.authority;
+          this.newArre.push(this.temp);
+          contadorPermisos = contadorPermisos + 1;
+          this.temp = new ArrePermisoAuthority();
+        }
+        });
+        this.totalItems = contadorPermisos;
 
   }
 
