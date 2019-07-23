@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Skill } from '../clases/skill';
+import { SERVER_API_URL } from 'app/app.constants';
 @Injectable({
   providedIn: 'root'
 })
 export class SkillApi {
   // Define API
-  apiURL = 'http://localhost:9000/api';
+  apiURL = SERVER_API_URL + '/api';
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
