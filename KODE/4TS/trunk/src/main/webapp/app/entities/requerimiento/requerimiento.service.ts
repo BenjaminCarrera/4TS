@@ -51,9 +51,9 @@ export class RequerimientoService {
 
   protected convertDateFromClient(requerimiento: IRequerimiento): IRequerimiento {
     const copy: IRequerimiento = Object.assign({}, requerimiento, {
-      fechaAlda: requerimiento.fechaAlda != null && requerimiento.fechaAlda.isValid() ? requerimiento.fechaAlda.toJSON() : null,
-      fechaResolucion:
-        requerimiento.fechaResolucion != null && requerimiento.fechaResolucion.isValid() ? requerimiento.fechaResolucion.toJSON() : null
+      // fechaAlda: requerimiento.fechaAlda != null && requerimiento.fechaAlda.isValid() ? requerimiento.fechaAlda.toJSON() : null,
+      // fechaResolucion:
+      //   requerimiento.fechaResolucion != null && requerimiento.fechaResolucion.isValid() ? requerimiento.fechaResolucion.toJSON() : null
     });
     return copy;
   }

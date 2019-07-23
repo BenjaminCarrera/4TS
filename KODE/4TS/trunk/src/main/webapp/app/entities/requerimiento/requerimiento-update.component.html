@@ -3,10 +3,22 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
   <jhi-alert-error></jhi-alert-error>
   <div class="form-group" [hidden]="!editForm.get('id').value">
-        <h3>Actualizar el requerimiento - {{editForm.get('id').value}}</h3>
+        <div class="col-md-12" style="display: inline-block;">
+            <div class="row">
+                <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                        <h3>Actualizar el requerimiento - {{editForm.get('id').value}}</h3>
+                </div>
+            </div>
+        </div>
   </div>
   <div class="form-group" [hidden]="editForm.get('id').value">
-        <h3>Registrar un nuevo requerimiento</h3>
+        <div class="col-md-12" style="display: inline-block;">
+            <div class="row">
+                <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                        <h3>Registrar un nuevo requerimiento</h3>
+                </div>
+            </div>
+        </div>
   </div>
 
   <mat-tab-group [selectedIndex]="selected1.value" (selectedIndexChange)="selected1.setValue($event)">
@@ -419,15 +431,31 @@
                       #search
                     />
                   </mat-form-field>
-                  <div class="container">
-                    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
-                      <agm-marker
-                        [latitude]="latitude"
-                        [longitude]="longitude"
-                        [markerDraggable]="true"
-                        (dragEnd)="markerDragEnd($event)"
-                      ></agm-marker>
-                    </agm-map>
+
+
+                  <div class="form-group" [hidden]="!editForm.get('id').value">
+                        <div class="container">
+                        <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
+                            <agm-marker
+                            [latitude]="editForm.get('coorLat').value"
+                            [longitude]="editForm.get('coorLong').value"
+                            [markerDraggable]="true"
+                            (dragEnd)="markerDragEnd($event)"
+                            ></agm-marker>
+                        </agm-map>
+                        </div>
+                  </div>
+                  <div class="form-group" [hidden]="editForm.get('id').value">
+                        <div class="container">
+                        <agm-map [latitude]="19.390917" [longitude]="-99.165732" [zoom]="16">
+                                <agm-marker
+                                [latitude]="19.390917"
+                                [longitude]="-99.165732"
+                                [markerDraggable]="true"
+                                (dragEnd)="markerDragEnd($event)"
+                                ></agm-marker>
+                        </agm-map>
+                        </div>
                   </div>
                 </div>
               </div>
@@ -484,8 +512,11 @@
       <br />
       <input type="hidden" [formControl]="selected1" />
       <div class="text-center">
-        <button type="button" id="cancel-save" class="btn btn-danger" (click)="siguiente()" style="background-color: #ff000099;">
-          siguiente
+        <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+          <span style="color:black">Cancelar</span>
+        </button>
+        <button type="button" id="cancel-save" class="btn btn-danger" (click)="siguiente()" style="background-color: #f44336;">
+          Siguiente
         </button>
       </div>
       <br />
@@ -597,11 +628,11 @@
       <div class="row">
         <div class="col-sm-12 text-center">
           <div>
-            <button type="button" id="cancel-save" class="btn btn-secondary gris" (click)="previousState()">
-              <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel" style="color: black">Cancel</span>
+            <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+              <span style="color:black">Cancelar</span>
             </button>
-            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-danger" style="background-color: #ff000099;">
-              <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-danger"  style="background-color: #f44336;">
+              <span >Guardar</span>
             </button>
           </div>
         </div>
