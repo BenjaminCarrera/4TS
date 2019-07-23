@@ -38,8 +38,8 @@ export class SkillApi {
   }
 
   // HttpClient API post() method => Create employee
-  crearRequerimiento(Skill): Observable<Skill> {
-    return this.http.post<Skill>(this.apiURL + '/skills', JSON.stringify(Skill), this.httpOptions)
+  crearRequerimiento(SkillValue: any): Observable<Skill> {
+    return this.http.post<Skill>(this.apiURL + '/skills', JSON.stringify(SkillValue), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
