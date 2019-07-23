@@ -36,47 +36,42 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <form #f="ngForm" role="form" (ngSubmit)="save()" [formGroup]="editForm"> -->
                 <tr *ngFor="let permisos of newArre; trackBy: trackId">
                     <!-- name -->
                     <td>
                         {{permisos.authority}}
                     </td>
+                    <!-- <form #f="ngForm" role="form" (ngSubmit)="save()" [formGroup]="editForm"> -->
 
                     <!-- admin -->
                     <td>
-                        <label value="permisos.admin">
-                        </label>
-                        <mat-checkbox formControlName="admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
+                        <mat-checkbox name="admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
                     </td>
 
                     <!-- req -->
                     <td>
-                        <label value="permisos.requirements"></label>
-                        <mat-checkbox formControlName="requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
+                        <mat-checkbox name="requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
                     </td>
 
                     <!-- cand -->
                     <td>
-                        <label value="permisos.candidates"></label>
-                        <mat-checkbox formControlName="candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
+                        <mat-checkbox name="candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
                     </td>
 
                     <!-- entity -->
                     <td>
-                        <label value="permisos.entity"></label>
-                        <mat-checkbox formControlName="entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
+                        <mat-checkbox name="entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-primary btn-sm">
+                            <button type="submit" class="btn btn-primary btn-sm" (click)="save(permisos)">
                                 <fa-icon [icon]="'save'"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.save">Save</span>
                                 </button>
                         </div>
                     </td>
+                    <!-- </form> -->
                 </tr>
-                <!-- </form> -->
             </tbody>
         </table>
     </div>
