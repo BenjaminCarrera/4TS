@@ -127,7 +127,7 @@ export class RequerimientoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    fechaAlda: [null, []],
+    fechaAlda: [],
     fechaResolucion: [],
     remplazoDe: [null, [Validators.maxLength(500)]],
     vacantesSolicitadas: [],
@@ -435,8 +435,8 @@ export class RequerimientoUpdateComponent implements OnInit {
   updateForm(requerimiento: IRequerimiento) {
     this.editForm.patchValue({
       id: requerimiento.id,
-      fechaAlda: requerimiento.fechaAlda != null ? requerimiento.fechaAlda.format(DATE_TIME_FORMAT) : null,
-      fechaResolucion: requerimiento.fechaResolucion != null ? requerimiento.fechaResolucion.format(DATE_TIME_FORMAT) : null,
+      // fechaAlda: requerimiento.fechaAlda,
+      // fechaResolucion: requerimiento.fechaResolucion,
       remplazoDe: requerimiento.remplazoDe,
       vacantesSolicitadas: requerimiento.vacantesSolicitadas,
       proyecto: requerimiento.proyecto,
@@ -485,12 +485,8 @@ export class RequerimientoUpdateComponent implements OnInit {
     return {
       ...new Requerimiento(),
       id: this.editForm.get(['id']).value,
-      fechaAlda:
-        this.editForm.get(['fechaAlda']).value != null ? moment(this.editForm.get(['fechaAlda']).value, DATE_TIME_FORMAT) : undefined,
-      fechaResolucion:
-        this.editForm.get(['fechaResolucion']).value != null
-          ? moment(this.editForm.get(['fechaResolucion']).value, DATE_TIME_FORMAT)
-          : undefined,
+      fechaAlda: this.editForm.get(['fechaAlda']).value,
+      fechaResolucion: this.editForm.get(['fechaResolucion']).value,
       remplazoDe: this.editForm.get(['remplazoDe']).value,
       vacantesSolicitadas: this.editForm.get(['vacantesSolicitadas']).value,
       proyecto: this.editForm.get(['proyecto']).value,
