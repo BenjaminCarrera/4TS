@@ -9,6 +9,7 @@ import { IPermisoAuthority } from 'app/shared/model/permiso-authority.model';
 import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
+import { FormBuilder } from '@angular/forms';
 import { PermisoAuthorityService } from './permiso-authority.service';
 import { PermisoAuthority } from '../../shared/model/permiso-authority.model';
 import { IPermiso } from '../../shared/model/permiso.model';
@@ -36,8 +37,17 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
 
- temp: IArrePermisoAuthority;
-  newArre: any[] = [];
+  temp: IArrePermisoAuthority;  newArre: any[] = [];
+  editForm = this.fb.group({
+    idAdmin: [],
+    estatusAdmin: [],
+    idReq: [],
+    estatusReq: [],
+    idCand: [],
+    estatusCand: [],
+    idEntity: [],
+    estatusEntity: []
+  });
 
   constructor(
     protected permisoAuthorityService: PermisoAuthorityService,
@@ -46,7 +56,8 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
     protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected eventManager: JhiEventManager
+    protected eventManager: JhiEventManager,
+    private fb: FormBuilder
   ) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -130,7 +141,7 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
 
   protected paginatePermisoAuthorities(data: IPermisoAuthority[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.permisoAuthorities = data;
 
     this.temp = new ArrePermisoAuthority();
@@ -164,7 +175,7 @@ export class PermisoAuthorityComponent implements OnInit, OnDestroy {
   }
 
   save() {
-
+    this.editForm.get('');
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPermisoAuthority>>) {

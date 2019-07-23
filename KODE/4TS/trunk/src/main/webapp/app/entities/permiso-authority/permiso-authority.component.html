@@ -36,38 +36,47 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- <form #f="ngForm" role="form" (ngSubmit)="save()" [formGroup]="editForm"> -->
                 <tr *ngFor="let permisos of newArre; trackBy: trackId">
-                    <!-- nake -->
-                    <td>{{permisos.authority}}</td>
+                    <!-- name -->
+                    <td>
+                        {{permisos.authority}}
+                    </td>
 
                     <!-- admin -->
                     <td>
-                        <mat-checkbox name="admin_chk" [value]="permisos.admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
+                        <label value="permisos.admin">
+                        </label>
+                        <mat-checkbox formControlName="admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
                     </td>
 
                     <!-- req -->
                     <td>
-                        <mat-checkbox name="requirement_chk" [value]="permisos.requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
+                        <label value="permisos.requirements"></label>
+                        <mat-checkbox formControlName="requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
                     </td>
 
                     <!-- cand -->
                     <td>
-                        <mat-checkbox name="candidate_chk" [value]="permisos.candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
+                        <label value="permisos.candidates"></label>
+                        <mat-checkbox formControlName="candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
                     </td>
 
                     <!-- entity -->
                     <td>
-                        <mat-checkbox name="entity_chk" [value]="permisos.entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
+                        <label value="permisos.entity"></label>
+                        <mat-checkbox formControlName="entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit" class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'save'"></fa-icon>
-                            <span class="d-none d-md-inline" (click)="save()" jhiTranslate="entity.action.save">Save</span>
-                            </button>
+                                <fa-icon [icon]="'save'"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.save">Save</span>
+                                </button>
                         </div>
                     </td>
                 </tr>
+                <!-- </form> -->
             </tbody>
         </table>
     </div>
