@@ -1,14 +1,14 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 // Inicio datatable
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface Tarea {
   Skills: string;
@@ -18,10 +18,10 @@ export interface Tarea {
 }
 
 const ELEMENT_DATA2: Tarea[] = [
-  {Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0',  Botones: 'Eliminar'},
-  {Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'},
-  {Skills: 'Angular', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'},
-  {Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar'}
+  { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+  { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+  { Skills: 'Angular', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
+  { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' }
 ];
 
 @Component({
@@ -38,14 +38,14 @@ export class AgregCandComponent implements OnInit {
   lng = -99.1276600;
   zoom = 14;
 
-// Inicio datatable
-@ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;
-// Fin datatable
-// Inicio datatable
+  // Inicio datatable
+  @ViewChild(MatPaginator, { static: true }) paginator2: MatPaginator;
+  // Fin datatable
+  // Inicio datatable
   displayedColumns2: string[] = ['Skills', 'Dominio', 'Calificacion', 'Botones'];
   dataSource2 = new MatTableDataSource(ELEMENT_DATA2);
-  @ViewChild(MatSort, {static: true}) sort2: MatSort;
-// Fin datatable
+  @ViewChild(MatSort, { static: true }) sort2: MatSort;
+  // Fin datatable
   // Inicio primer chip autocompletable
   selecteds = new FormControl(0);
   visible = true;
@@ -57,8 +57,8 @@ export class AgregCandComponent implements OnInit {
   filteredFruits: Observable<string[]>;
   fruits: string[] = ['EUSA'];
   allFruits: string[] = ['AXA', 'AXOV', 'AXSI', 'BAZ'];
-  @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
   // Fin primer chip autocompletable
   // Inicio Segundo chip autocompletable
   visible2 = true;
@@ -70,8 +70,8 @@ export class AgregCandComponent implements OnInit {
   filteredFruits2: Observable<string[]>;
   fruits2: string[] = ['Listo!'];
   allFruits2: string[] = ['Listo!', 'AXOV', 'AXSI', 'BAZ'];
-  @ViewChild('fruitInput2', {static: false}) fruitInput2: ElementRef<HTMLInputElement>;
-  @ViewChild('auto2', {static: false}) matAutocomplete2: MatAutocomplete;
+  @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   // Fin Segundo chip autocompletable
 
   message: string;
@@ -80,13 +80,13 @@ export class AgregCandComponent implements OnInit {
     this.message = 'NuevCandComponent message';
     // Inicio primer chip autocompletable
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
     // Fin primer chip autocompletable
     // Inicio Segundo chip autocompletable
     this.filteredFruits2 = this.fruitCtrl2.valueChanges.pipe(
-        startWith(null),
-        map((fruit2: string | null) => fruit2 ? this._filter(fruit2) : this.allFruits2.slice()));
+      startWith(null),
+      map((fruit2: string | null) => fruit2 ? this._filter(fruit2) : this.allFruits2.slice()));
     // Fin Segundo chip autocompletable
   }
 
@@ -161,24 +161,26 @@ export class AgregCandComponent implements OnInit {
     this.fruits2.push(event.option.viewValue);
     this.fruitInput2.nativeElement.value = '';
     this.fruitCtrl2.setValue(null);
-    }
+  }
   selected(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
-    public _filter(value: string): string[] {
-      const filterValue = value.toLowerCase();
-      return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-    }
+  }
 
-    ngOnInit() {
-      // Inicio datatable
-      this.dataSource2.paginator = this.paginator2;
-      this.dataSource2.sort = this.sort2;
-      // Fin datatable
-    }
-    // Fin primer chip autocompletable
-    // Inicio primer chip autocompletable
-    // Fin primer chip autocompletable
+  _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  ngOnInit() {
+    // Inicio datatable
+    this.dataSource2.paginator = this.paginator2;
+    this.dataSource2.sort = this.sort2;
+    // Fin datatable
+  }
+  // Fin primer chip autocompletable
+  // Inicio primer chip autocompletable
+  // Fin primer chip autocompletable
 }

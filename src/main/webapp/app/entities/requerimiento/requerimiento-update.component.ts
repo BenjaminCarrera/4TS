@@ -56,7 +56,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   zoom: number;
   address: string;
   private geoCoder;
-  @ViewChild('search', {static: false})
+  @ViewChild('search', { static: false })
   // Mapa
   public searchElementRef: ElementRef;
   // Codigo de la pantalla
@@ -91,10 +91,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   filteredFruits3: Observable<string[]>;
   fruits3: string[] = ['Python!'];
   allFruits3: string[] = ['PHP', 'Java', 'Angular', 'Python'];
-  @ViewChild('fruitInput3', {static: false}) fruitInput3: ElementRef<HTMLInputElement>;
-  @ViewChild('auto3', {static: false}) matAutocomplete3: MatAutocomplete;
-  @ViewChild('fruitInput2', {static: false}) fruitInput2: ElementRef<HTMLInputElement>;
-  @ViewChild('auto2', {static: false}) matAutocomplete2: MatAutocomplete;
+  @ViewChild('fruitInput3', { static: false }) fruitInput3: ElementRef<HTMLInputElement>;
+  @ViewChild('auto3', { static: false }) matAutocomplete3: MatAutocomplete;
+  @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
@@ -183,23 +183,23 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-      // Inicio Segundo chip autocompletable
-      this.filteredFruits2 = this.fruitCtrl2.valueChanges.pipe(
-          startWith(null),
-          map((fruit2: string | null) => fruit2 ? this._filter2(fruit2) : this.allFruits2.slice()));
-      // Fin Segundo chip autocompletable
-      // Inicio Segundo chip autocompletable
-      this.filteredFruits3 = this.fruitCtrl3.valueChanges.pipe(
-          startWith(null),
-          map((fruit3: string | null) => fruit3 ? this._filter3(fruit3) : this.allFruits3.slice()));
-      // Fin Segundo chip autocompletable
-  // Fin de la pantalla
-    }
+    // Inicio Segundo chip autocompletable
+    this.filteredFruits2 = this.fruitCtrl2.valueChanges.pipe(
+      startWith(null),
+      map((fruit2: string | null) => fruit2 ? this._filter2(fruit2) : this.allFruits2.slice()));
+    // Fin Segundo chip autocompletable
+    // Inicio Segundo chip autocompletable
+    this.filteredFruits3 = this.fruitCtrl3.valueChanges.pipe(
+      startWith(null),
+      map((fruit3: string | null) => fruit3 ? this._filter3(fruit3) : this.allFruits3.slice()));
+    // Fin Segundo chip autocompletable
+    // Fin de la pantalla
+  }
 
-    // Codigo de la pantalla
-    siguiente() {
-      this.selected1.setValue(1);
-    }
+  // Codigo de la pantalla
+  siguiente() {
+    this.selected1.setValue(1);
+  }
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
@@ -238,10 +238,11 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.fruits2.push(event.option.viewValue);
     this.fruitInput2.nativeElement.value = '';
     this.fruitCtrl2.setValue(null);
-    private _filter2(value: string): string[] {
-      const filterValue2 = value.toLowerCase();
-      return this.allFruits2.filter(fruit2 => fruit2.toLowerCase().indexOf(filterValue2) === 0);
-    }
+  }
+  _filter2(value: string): string[] {
+    const filterValue2 = value.toLowerCase();
+    return this.allFruits2.filter(fruit2 => fruit2.toLowerCase().indexOf(filterValue2) === 0);
+  }
   remove2(fruit2: string): void {
     // Inicio primer chip autocompletable
     const index2 = this.fruits2.indexOf(fruit2);
@@ -278,10 +279,11 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.fruits3.push(event.option.viewValue);
     this.fruitInput3.nativeElement.value = '';
     this.fruitCtrl3.setValue(null);
-    private _filter3(value: string): string[] {
-      const filterValue3 = value.toLowerCase();
-      return this.allFruits3.filter(fruit3 => fruit3.toLowerCase().indexOf(filterValue3) === 0);
-    }
+  }
+  _filter3(value: string): string[] {
+    const filterValue3 = value.toLowerCase();
+    return this.allFruits3.filter(fruit3 => fruit3.toLowerCase().indexOf(filterValue3) === 0);
+  }
   remove3(fruit3: string): void {
     // Inicio primer chip autocompletable
     const index3 = this.fruits3.indexOf(fruit3);
@@ -316,29 +318,29 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Fin Codigo de la pantalla
 
   ngOnInit() {
-   // load Places Autocomplete
-   this.mapsAPILoader.load().then(() => {
-    this.setCurrentLocation();
-    this.geoCoder = new google.maps.Geocoder;
-    const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-      types: ['address']
-    });
-    autocomplete.addListener('place_changed', () => {
-      this.ngZone.run(() => {
-        // get the place result
-        const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-        // verify result
-        if (place.geometry === undefined || place.geometry === null) {
-          return;
-        }
-        // set latitude, longitude and zoom
-        this.latitude = place.geometry.location.lat();
-        this.longitude = place.geometry.location.lng();
-        this.zoom = 50;
+    // load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 50;
+        });
       });
     });
-  });
-  this.getSkills();
+    this.getSkills();
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.updateForm(requerimiento);
@@ -588,16 +590,16 @@ export class RequerimientoUpdateComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
-  verificarReqEstatus( status: string) {
-    if ( status === 'Cerrado' ) {
+  verificarReqEstatus(status: string) {
+    if (status === 'Cerrado') {
       this.reqCancelado = true;
     } else {
       this.reqCancelado = false;
     }
   }
-  verificarReemplazo( status: string) {
-    if ( status === 'Reemplazo' ) {
-       this.reemplazo = true;
+  verificarReemplazo(status: string) {
+    if (status === 'Reemplazo') {
+      this.reemplazo = true;
     } else {
       this.reemplazo = false;
     }
@@ -605,7 +607,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Get Current Location Coordinates
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition( position => {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 50;
@@ -620,7 +622,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     const clickBot = document.querySelector('#coorLat');
     alert(clickBot);
   }
-  getAddress( latitude: any, longitude: any) {
+  getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
@@ -635,8 +637,8 @@ export class RequerimientoUpdateComponent implements OnInit {
 
     });
   }
-   // Get employees list
-   getSkills() {
+  // Get employees list
+  getSkills() {
     return this.restApi.getskills().subscribe((data: {}) => {
       this.Skill = data;
     });

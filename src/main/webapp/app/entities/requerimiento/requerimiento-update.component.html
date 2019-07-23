@@ -548,7 +548,7 @@
                 [matChipInputFor]="chipList2"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
                 [matChipInputAddOnBlur]="addOnBlur2"
-                (matChipInputTokenEnd)="add2($event2)"
+                (matChipInputTokenEnd)="add2($event)"
               />
             </mat-chip-list>
             <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
@@ -582,7 +582,7 @@
                 [matChipInputFor]="chipList3"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes3"
                 [matChipInputAddOnBlur]="addOnBlur3"
-                (matChipInputTokenEnd)="add3($event3)"
+                (matChipInputTokenEnd)="add3($event)"
               />
             </mat-chip-list>
             <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">

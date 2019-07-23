@@ -265,6 +265,34 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     return item.id;
   }
 
+  trackUserById(index: number, item: IUser) {
+    return item.id;
+  }
+
+  trackEstatusRequerimientoById(index: number, item: IEstatusRequerimiento) {
+    return item.id;
+  }
+
+  trackCuentaById(index: number, item: ICuenta) {
+    return item.id;
+  }
+
+  trackPerfilById(index: number, item: IPerfil) {
+    return item.id;
+  }
+
+  trackNivelPerfilById(index: number, item: INivelPerfil) {
+    return item.id;
+  }
+
+  trackTipoSolicitudById(index: number, item: ITipoSolicitud) {
+    return item.id;
+  }
+
+  trackPrioridadReqById(index: number, item: IPrioridadReq) {
+    return item.id;
+  }
+
   registerChangeInRequerimientos() {
     this.eventSubscriber = this.eventManager.subscribe('requerimientoListModification', response => this.loadAll());
   }
