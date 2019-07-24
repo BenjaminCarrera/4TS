@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { MatTableDataSource } from '@angular/material';
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
 import { MatSort } from '@angular/material';
 
-export interface PeriodicElement {
+export interface Tarea {
   Id: number;
   Tarea: string;
   Creador: string;
@@ -13,7 +14,7 @@ export interface PeriodicElement {
   Estatus: string;
 }
 
-export interface Tarea {
+export interface Bitacora {
   Fecha: string;
   Creador: string;
   Comentario: string;
@@ -26,7 +27,9 @@ export interface Tarea {
     '../../res-conreq/res-conreq.component.scss'
   ]
 })
+
 export class RequerimientoDetailComponent implements OnInit {
+  public dataSourceTarea2 = new MatTableDataSource<Tarea>();
   // Enfoque del mapa
   lat: any;
   lng: any;
@@ -34,7 +37,7 @@ export class RequerimientoDetailComponent implements OnInit {
   requerimiento: IRequerimiento;
 
   // Variables Tarea
-  DATA_TAREA: PeriodicElement[] = [
+  DATA_TAREA: Tarea[] = [
     { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
@@ -49,17 +52,16 @@ export class RequerimientoDetailComponent implements OnInit {
     { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
     { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
   ];
-  dataSourceTarea: PeriodicElement[];
-  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
-
+  dataSourceTarea: Tarea[];
+  displayedColumnsTarea: string[] = [ 'Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
   // VAriables Bitacora
-  DATA_BITACORA: Tarea[] = [
+  DATA_BITACORA: Bitacora[] = [
     { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
     { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
   ];
-  dataSourceBitacora: Tarea[];
+  dataSourceBitacora: Bitacora[];
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
   constructor(protected activatedRoute: ActivatedRoute) {
     this.dataSourceTarea = this.DATA_TAREA.slice();
@@ -102,6 +104,15 @@ export class RequerimientoDetailComponent implements OnInit {
       }
     });
   }
+  public filtrarTareasAbiertas = () => {
+    this.dataSourceTarea2.filter = 'Abiertas'.trim().toLocaleLowerCase();
+  }
+  public filtrarTareasCerradas = () => {
+    this.dataSourceTarea2.filter = 'Cerradas'.trim().toLocaleLowerCase();
+  }
+  public filtrarTareasTodas = () => {
+    this.dataSourceTarea2.filter = ''.trim().toLocaleLowerCase();
+  }
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.requerimiento = requerimiento;
@@ -110,6 +121,7 @@ export class RequerimientoDetailComponent implements OnInit {
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
+    this.dataSourceTarea2.data = this.DATA_TAREA;
   }
   previousState() {
     window.history.back();
