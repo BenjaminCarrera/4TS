@@ -480,17 +480,18 @@
             </div>
             <div class="col-sm-12">
                 <p>
-                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
-                        <mat-button-toggle value="bold"> Todas </mat-button-toggle>
-                        <mat-button-toggle value="cursiva"> Abiertas </mat-button-toggle>
-                        <mat-button-toggle value="underline"> Cerradas </mat-button-toggle>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" #group="matButtonToggleGroup">
+                        <mat-button-toggle value="Todas"(click)="filtrarTareasTodas()"> Todas </mat-button-toggle>
+                        <mat-button-toggle value="Abiertas" (click)="filtrarTareasAbiertas()"> Abiertas </mat-button-toggle>
+                        <mat-button-toggle value="Cerradas"(click)="filtrarTareasCerradas()"> Cerradas </mat-button-toggle>
                     </mat-button-toggle-group>
                 </p>
             </div>
         </div>
         <br />
-        <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea" matSort (matSortChange)="sortDataTarea($event)">
+        <div class="row">
+            <div class="col-sm-12">
+            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea2" matSort (matSortChange)="sortDataTarea($event)">
                 <!-- Position Column -->
                 <ng-container matColumnDef="Id">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
@@ -530,6 +531,7 @@
 
             <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
         </div>
+    </div>
     </mat-tab>
     <mat-tab label="Bitácora">
         <br />
