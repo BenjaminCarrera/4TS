@@ -316,8 +316,6 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Fin Codigo de la pantalla
 
   ngOnInit() {
-    this.latitude = 19.390917;
-    this.longitude = -99.165732;
    // load Places Autocomplete
    this.mapsAPILoader.load().then(() => {
     this.setCurrentLocation();
