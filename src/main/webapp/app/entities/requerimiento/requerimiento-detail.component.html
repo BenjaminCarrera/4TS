@@ -489,49 +489,52 @@
             </div>
         </div>
         <br />
-        <div class="row">
-            <div class="col-sm-12">
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea2" matSort (matSortChange)="sortDataTarea($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Id }}</td>
-                </ng-container>
+    <div class="row">
+        <div class="col-sm-12">
+        <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea2" matSort (matSortChange)="sortDataTarea($event)">
+            Position Column
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+            </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="Tarea">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 82px !important;">Tarea</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Tarea }}</td>
-                </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="titulo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 104px !important;">Tarea</th>
+                <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+            </ng-container>
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 104px !important;">Creador</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Creador }}</td>
-                </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="usuario_creador_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 141px !important;">Creador</th>
+                <td mat-cell *matCellDef="let element">{{ element.usuarioCreadorFirstName }}</td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="usuario_ejecutor_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 143px !important;">Destinatario</th>
+                <td mat-cell *matCellDef="let element">{{ element.usuarioEjecutorFirstName }}</td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="requerimiento_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Fecha de alta</th>
+                <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="estatus_tarea_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Estatus</th>
+                <td mat-cell *matCellDef="let element">{{ element.estatusTareaEstatus }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
+            <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea" [ngClass]="{ even: even }"></tr>
+        </table>
 
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Destinatario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 141px !important;">Destinatario</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Destinatario }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="FechaAlta">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 143px !important;">Fecha de Alta</th>
-                    <td mat-cell *matCellDef="let element">{{ element.FechaAlta }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Estatus">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Estatus</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Estatus }}</td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea" [ngClass]="{ even: even }"></tr>
-            </table>
-
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-        </div>
+        <mat-paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 50]"
+        [showFirstLastButtons]="true"></mat-paginator>
     </div>
+</div>
+
     </mat-tab>
     <mat-tab label="Bitácora">
         <br />
