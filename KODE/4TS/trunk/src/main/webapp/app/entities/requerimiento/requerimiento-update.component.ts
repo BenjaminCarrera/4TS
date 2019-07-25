@@ -213,8 +213,8 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.selected1.setValue(1);
   }
   selected(event: MatAutocompleteSelectedEvent): void {
-    let SkillsSelectedRequerido: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
-    let SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
+    const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
     this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
     this.fruitInput.nativeElement.value = '';
     this.requeridosCtrl.setValue(null);
@@ -230,14 +230,14 @@ export class RequerimientoUpdateComponent implements OnInit {
     // No se permite agregar elementos que no esten en la base de datos
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    let SkillsSelectedOpcional: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
-    let SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
+    const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
     this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
     this.fruitInput2.nativeElement.value = '';
     this.opcionalesCtrl.setValue(null);
   }
   private _filter2(value: string): ISkill[] {
-    let tempOpcionales: ISkill[] = this.Skill.slice(0);
+    const tempOpcionales: ISkill[] = this.Skill.slice(0);
     this.SkillOpcionalesSelected.forEach(opcional => {
       const index = tempOpcionales.indexOf(opcional);
 
@@ -245,7 +245,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         tempOpcionales.splice(index, 1);
       }
     });
-    return tempOpcionales.filter((s) => new RegExp(value, 'gi').test(s.nombre));
+    return tempOpcionales.filter( s => new RegExp(value, 'gi').test(s.nombre));
   }
   remove2(opcionales: ISkill): void {
     const index = this.SkillOpcionalesSelected.indexOf(opcionales);
@@ -259,14 +259,14 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   selected3(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
-    let SkillsSelectedEsencial: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
-    let SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
+    const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
     this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
     this.fruitInput3.nativeElement.value = '';
     this.esencialesCtrl.setValue(null);
   }
   _filter3(value: string): ISkill[] {
-    let tempEscenciales: ISkill[] = this.Skill.slice(0);
+    const tempEscenciales: ISkill[] = this.Skill.slice(0);
     this.SkillEsencialesSelected.forEach(esencial => {
       const index = tempEscenciales.indexOf(esencial);
 
@@ -274,7 +274,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         tempEscenciales.splice(index, 1);
       }
     });
-    return tempEscenciales.filter((s) => new RegExp(value, 'gi').test(s.nombre));
+    return tempEscenciales.filter( s => new RegExp(value, 'gi').test(s.nombre));
   }
   remove3(escencial: ISkill): void {
     const index = this.SkillEsencialesSelected.indexOf(escencial);
@@ -506,11 +506,11 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IRequerimiento>>) {
-    result.subscribe((r) => this.onSaveSuccess(r), () => this.onSaveError());
+    result.subscribe(r => this.onSaveSuccess(r), () => this.onSaveError());
   }
 
   protected subscribeToSaveResponseSkills(result: Observable<HttpResponse<any>>) {
-    result.subscribe((r) => this.onSaveSuccessFinal(r), () => this.onSaveError());
+    result.subscribe(r => this.onSaveSuccessFinal(r), () => this.onSaveError());
   }
 
   protected onSaveSuccessFinal(r: HttpResponse<any>) {
@@ -519,8 +519,8 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
-    let idRequerimiento = r.body.id;
-    let addTempReqSkill: any[] = [];
+    const idRequerimiento = r.body.id;
+    const addTempReqSkill: any[] = [];
     this.SkillRequeridosSelected.forEach(requerido => {
       let tempAddRequerido = new SkillRequerimiento();
       tempAddRequerido.idRequerimientoId = idRequerimiento;
@@ -529,20 +529,20 @@ export class RequerimientoUpdateComponent implements OnInit {
       addTempReqSkill.push(tempAddRequerido);
     });
     this.SkillOpcionalesSelected.forEach(opcional => {
-      let tempAddOpcional = new SkillRequerimiento();
+      const tempAddOpcional = new SkillRequerimiento();
       tempAddOpcional.idRequerimientoId = idRequerimiento;
       tempAddOpcional.idSkillId = opcional.id;
       tempAddOpcional.tipoSkillId = 3;
       addTempReqSkill.push(tempAddOpcional);
     });
     this.SkillEsencialesSelected.forEach(esencial => {
-      let tempAddEsencial = new SkillRequerimiento();
+      const tempAddEsencial = new SkillRequerimiento();
       tempAddEsencial.idRequerimientoId = idRequerimiento;
       tempAddEsencial.idSkillId = esencial.id;
       tempAddEsencial.tipoSkillId = 3;
       addTempReqSkill.push(tempAddEsencial);
     });
-    let updateKillReq = { lista: addTempReqSkill };
+    const updateKillReq = { lista: addTempReqSkill };
     this.subscribeToSaveResponseSkills(this.skillRequerimientoService.patch(updateKillReq));
   }
 
@@ -605,7 +605,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     return item.id;
   }
   private _filter(value: string): ISkill[] {
-    let temp: ISkill[] = this.Skill.slice(0);
+    const temp: ISkill[] = this.Skill.slice(0);
     this.SkillRequeridosSelected.forEach(requerido => {
       const index = temp.indexOf(requerido);
 
@@ -613,7 +613,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         temp.splice(index, 1);
       }
     });
-    return temp.filter((s) => new RegExp(value, 'gi').test(s.nombre));
+    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
   }
   verificarReqEstatus(status: string) {
     if (status === 'Cerrado') {
