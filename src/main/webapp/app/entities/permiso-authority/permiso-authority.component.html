@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="App.permisoAuthority.home.title">Permiso Authorities</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-permiso-authority" [routerLink]="['/permiso-authority/new']">
+        <button id="jh-create-entity" class="btn btn-danger float-right jh-create-entity create-permiso-authority" [routerLink]="['/permiso-authority/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="App.permisoAuthority.home.createLabel">
             Create new Permiso Authority
@@ -41,30 +41,29 @@
                     <td>
                         {{permisos.authority}}
                     </td>
-                    <!-- <form #f="ngForm" role="form" (ngSubmit)="save()" [formGroup]="editForm"> -->
 
                     <!-- admin -->
                     <td>
-                        <mat-checkbox name="admin" [(ngModel)]="permisos.actAdmin"></mat-checkbox>
+                        <mat-checkbox class="check" name="admin" [(ngModel)]="permisos.actAdmin" color="warn"></mat-checkbox>
                     </td>
 
                     <!-- req -->
                     <td>
-                        <mat-checkbox name="requirements" [(ngModel)]="permisos.actRequirements"></mat-checkbox>
+                        <mat-checkbox class="check" name="requirements" [(ngModel)]="permisos.actRequirements" color="warn"></mat-checkbox>
                     </td>
 
                     <!-- cand -->
                     <td>
-                        <mat-checkbox name="candidates" [(ngModel)]="permisos.actCandidates"></mat-checkbox>
+                        <mat-checkbox class="check" name="candidates" [(ngModel)]="permisos.actCandidates" color="warn"></mat-checkbox>
                     </td>
 
                     <!-- entity -->
                     <td>
-                        <mat-checkbox name="entity" [(ngModel)]="permisos.actEntity"></mat-checkbox>
+                        <mat-checkbox class="check" name="entity" [(ngModel)]="permisos.actEntity" color="warn"></mat-checkbox>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-primary btn-sm" (click)="save(permisos)">
+                            <button type="submit" class="btn btn-danger btn-sm" (click)="save(permisos)">
                                 <fa-icon [icon]="'save'"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.save">Save</span>
                                 </button>

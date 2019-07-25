@@ -19,7 +19,10 @@ import { permisoAuthorityRoute } from './permiso-authority.route';
 
 @Component({
   selector: 'jhi-permiso-authority',
-  templateUrl: './permiso-authority.component.html'
+  templateUrl: './permiso-authority.component.html',
+  styleUrls: [
+    'permiso-authority.component.scss'
+  ]
 })
 export class PermisoAuthorityComponent implements OnInit, OnDestroy {
   isSaving: boolean;
