@@ -24,7 +24,27 @@
             </div>
         </div>
   </div>
-
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">User Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sk of SkillReq">
+          <td>{{sk.id}}</td>
+          <td>{{sk.id_requerimiento_id}}</td>
+          <td>{{sk.email}}</td>
+          <td>{{sk.phone}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <mat-tab-group [selectedIndex]="selected1.value" (selectedIndexChange)="selected1.setValue($event)">
     <mat-tab label="Generales">
       <br />
