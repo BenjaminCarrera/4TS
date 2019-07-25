@@ -6,31 +6,25 @@
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.authority" for="field_authority">Authority</label>
-                    <input type="text" class="form-control" name="authority" id="field_authority"
-                           formControlName="authority"/>
+                    <input type="text" class="form-control" name="authority" id="field_authority" formControlName="authority" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.activated" for="field_activated">Activated</label>
-                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
-                           formControlName="activated"/>
+                    <input type="checkbox" class="form-control" name="activated" id="field_activated" formControlName="activated" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.deleted" for="field_deleted">Deleted</label>
-                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
-                           formControlName="deleted"/>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted" formControlName="deleted" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.createdBy" for="field_createdBy">Created By</label>
-                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
-                           formControlName="createdBy"/>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy" formControlName="createdBy" />
                     <div *ngIf="editForm.get('createdBy').invalid && (editForm.get('createdBy').dirty || editForm.get('createdBy').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('createdBy').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        <small class="form-text text-danger" *ngIf="editForm.get('createdBy').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
                         This field cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -38,24 +32,22 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.createdDate" for="field_createdDate">Created Date</label>
                     <div class="d-flex">
-                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
-                    <input type="text" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"
-                           formControlName="lastModifiedBy"/>
+                    <input type="text" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy" formControlName="lastModifiedBy" />
                     <div *ngIf="editForm.get('lastModifiedBy').invalid && (editForm.get('lastModifiedBy').dirty || editForm.get('lastModifiedBy').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('lastModifiedBy').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
-                        This field cannot be longer than 50 characters.
+                        <small class="form-text text-danger" *ngIf="editForm.get('lastModifiedBy').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                            This field cannot be longer than 50 characters.
                         </small>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="App.permisoAuthority.lastModifiedDate" for="field_lastModifiedDate">Last Modified Date</label>
                     <div class="d-flex">
-                        <input id="field_lastModifiedDate" type="datetime-local" class="form-control" name="lastModifiedDate" formControlName="lastModifiedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                        <input id="field_lastModifiedDate" type="datetime-local" class="form-control" name="lastModifiedDate" formControlName="lastModifiedDate" placeholder="YYYY-MM-DD HH:mm" />
                     </div>
                 </div>
 
@@ -68,10 +60,10 @@
                 </div>
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-danger">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

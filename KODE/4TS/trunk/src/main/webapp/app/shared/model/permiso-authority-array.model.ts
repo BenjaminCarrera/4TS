@@ -16,8 +16,12 @@ export class ArrePermisoAuthority implements IArrePermisoAuthority {
   constructor(
   public authority?: string,
   public admin?: number,
+  actAdmin?: boolean,
   public requirements?: number,
+  actRequirements?: boolean,
   public candidates?: number,
-  public entity?: number
+  actCandidates?: boolean,
+  public entity?: number,
+  actEntity?: boolean
   ) {}
 }
