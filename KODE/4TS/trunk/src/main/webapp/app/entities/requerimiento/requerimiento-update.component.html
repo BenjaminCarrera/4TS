@@ -40,36 +40,8 @@
                   <h4>Datos generales</h4>
                 </div>
                 <div class="col-sm-4">
-                  <div class="form-group">
-                    <mat-form-field>
-                      <input
-                        matInput
-                        [matDatepicker]="picker"
-                        placeholder="Fecha de alta"
-                        id="field_fechaAlda"
-                        name="fechaAlda"
-                        formControlName="fechaAlda"
-                      />
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                  </div>
                 </div>
                 <div class="col-sm-4">
-                  <div class="form-group">
-                    <mat-form-field>
-                      <input
-                        matInput
-                        [matDatepicker]="picker2"
-                        placeholder="Fecha de resolucion"
-                        id="field_fechaResolucion"
-                        name="fechaResolucion"
-                        formControlName="fechaResolucion"
-                      />
-                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                      <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                  </div>
                 </div>
                 <!--  -->
               </div>
@@ -537,14 +509,14 @@
           <br />
           <mat-form-field class="example-chip-list">
             <mat-chip-list #chipList aria-label="Requeridos">
-              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
-                {{ fruit }}
+              <mat-chip *ngFor="let selectedRequeridos of SkillRequeridosSelected; trackBy: trackSkillById" [selectable]="selectable" [removable]="removable" (removed)="remove(selectedRequeridos)">
+                {{ selectedRequeridos.nombre }}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
               <input
                 placeholder="Requeridos"
                 #fruitInput
-                [formControl]="fruitCtrl"
+                [formControl]="requeridosCtrl"
                 [matAutocomplete]="auto"
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -553,8 +525,8 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById" [value]="fruit">
-                {{ fruit.nombre }}
+              <mat-option *ngFor="let requeridos of FilterSkillsRequeridos; trackBy: trackSkillById" [value]="requeridos.id">
+                {{ requeridos.nombre }}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
@@ -565,20 +537,20 @@
           <mat-form-field class="example-chip-list">
             <mat-chip-list #chipList2 aria-label="Fruit selection">
               <mat-chip
-                *ngFor="let fruit2 of fruits2"
+                *ngFor="let selectedOpcionales of SkillOpcionalesSelected"
                 [selectable]="selectable"
                 [removable]="removable"
-                (removed)="remove2(fruit2)"
+                (removed)="remove2(selectedOpcionales)"
                 color="primary"
                 selected
               >
-                {{ fruit2 }}
+                {{ selectedOpcionales.nombre }}
                 <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
               </mat-chip>
               <input
                 placeholder="Opcionales"
                 #fruitInput2
-                [formControl]="fruitCtrl2"
+                [formControl]="opcionalesCtrl"
                 [matAutocomplete]="auto2"
                 [matChipInputFor]="chipList2"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
@@ -587,8 +559,8 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById " [value]="fruit">
-                    {{ fruit.nombre }}
+                <mat-option *ngFor="let opcionales of FilterSkillsOpcionales; trackBy: trackSkillById " [value]="opcionales.id">
+                    {{ opcionales.nombre }}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
@@ -599,20 +571,20 @@
           <mat-form-field class="example-chip-list">
             <mat-chip-list #chipList3 aria-label="Fruit selection">
               <mat-chip
-                *ngFor="let fruit3 of fruits3"
+                *ngFor="let selectedEsencial of SkillEsencialesSelected"
                 [selectable]="selectable3"
                 [removable]="removable3"
-                (removed)="remove3(fruit3)"
+                (removed)="remove3(selectedEsencial)"
                 color="primary"
                 selected
               >
-                {{ fruit3 }}
+                {{ selectedEsencial.nombre }}
                 <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
               </mat-chip>
               <input
                 placeholder="Escenciales"
                 #fruitInput3
-                [formControl]="fruitCtrl3"
+                [formControl]="esencialesCtrl"
                 [matAutocomplete]="auto3"
                 [matChipInputFor]="chipList3"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes3"
@@ -621,8 +593,8 @@
               />
             </mat-chip-list>
             <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
-                <mat-option *ngFor="let fruit of Skill; trackBy: trackSkillById" [value]="fruit">
-                    {{ fruit.nombre }}
+                <mat-option *ngFor="let esencial of FilterSkillsEsenciales; trackBy: trackSkillById" [value]="esencial.id">
+                    {{ esencial.nombre }}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>

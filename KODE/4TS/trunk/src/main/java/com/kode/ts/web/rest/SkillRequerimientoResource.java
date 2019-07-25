@@ -3,6 +3,7 @@ package com.kode.ts.web.rest;
 import com.kode.ts.service.SkillRequerimientoService;
 import com.kode.ts.web.rest.errors.BadRequestAlertException;
 import com.kode.ts.service.dto.SkillRequerimientoDTO;
+import com.kode.ts.service.dto.ListaSkillRequerimientoDTO;
 import com.kode.ts.service.dto.SkillRequerimientoCriteria;
 import com.kode.ts.service.SkillRequerimientoQueryService;
 
@@ -130,6 +131,25 @@ public class SkillRequerimientoResource {
         log.debug("REST request to get SkillRequerimiento : {}", id);
         Optional<SkillRequerimientoDTO> skillRequerimientoDTO = skillRequerimientoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(skillRequerimientoDTO);
+    }
+    
+    /**
+     * {@code PATCH  /skill-requerimientos} : Updates an existing skillRequerimientos.
+     *
+     * @param Array of skillRequerimientoDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated skillRequerimientoDTO,
+     * or with status {@code 400 (Bad Request)} if the skillRequerimientoDTO is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the skillRequerimientoDTO couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping("/skill-requerimientos")
+    public ResponseEntity<ListaSkillRequerimientoDTO> patchSkillRequerimiento(@RequestBody ListaSkillRequerimientoDTO listaSkillRequerimientoDTO) throws URISyntaxException {
+        log.debug("REST request to update SkillRequerimiento : {}", listaSkillRequerimientoDTO);
+        
+        ListaSkillRequerimientoDTO result = skillRequerimientoService.saveLista(listaSkillRequerimientoDTO);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, listaSkillRequerimientoDTO.getLista().toString()))
+            .body(result);
     }
 
     /**

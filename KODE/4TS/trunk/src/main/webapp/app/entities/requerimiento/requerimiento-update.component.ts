@@ -39,7 +39,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { startWith } from 'rxjs/operators';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { NgZone } from '@angular/core';
-import { SkillApi } from '../../servicios/skill-api';
+import { SkillService } from '../skill';
+import { ISkill } from 'app/shared/model/skill.model';
+import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -56,7 +58,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   zoom: number;
   address: string;
   private geoCoder;
-  @ViewChild('search', {static: false})
+  @ViewChild('search', { static: false })
   // Mapa
   public searchElementRef: ElementRef;
   // Codigo de la pantalla
@@ -68,11 +70,21 @@ export class RequerimientoUpdateComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  Skill: any = [];
-  fruits: string[] = ['PHP'];
-  allFruits: any = [];
+
+  Skill: ISkill[];
+  requeridosCtrl = new FormControl();
+  FilterSkillsRequeridos: ISkill[];
+  SkillRequeridosSelected: ISkill[];
+
+  opcionalesCtrl = new FormControl();
+  FilterSkillsOpcionales: ISkill[];
+  SkillOpcionalesSelected: ISkill[];
+
+  esencialesCtrl = new FormControl();
+  FilterSkillsEsenciales: ISkill[];
+  SkillEsencialesSelected: ISkill[];
+
   visible2 = true;
   selectable2 = true;
   removable2 = true;
@@ -80,8 +92,6 @@ export class RequerimientoUpdateComponent implements OnInit {
   separatorKeysCodes2: number[] = [ENTER, COMMA];
   fruitCtrl2 = new FormControl();
   filteredFruits2: Observable<string[]>;
-  fruits2: string[] = ['Java!'];
-  allFruits2: string[] = ['PHP', 'Java', 'Angular', 'Python'];
   visible3 = true;
   selectable3 = true;
   removable3 = true;
@@ -89,12 +99,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   separatorKeysCodes3: number[] = [ENTER, COMMA];
   fruitCtrl3 = new FormControl();
   filteredFruits3: Observable<string[]>;
-  fruits3: string[] = ['Python!'];
-  allFruits3: string[] = ['PHP', 'Java', 'Angular', 'Python'];
-  @ViewChild('fruitInput3', {static: false}) fruitInput3: ElementRef<HTMLInputElement>;
-  @ViewChild('auto3', {static: false}) matAutocomplete3: MatAutocomplete;
-  @ViewChild('fruitInput2', {static: false}) fruitInput2: ElementRef<HTMLInputElement>;
-  @ViewChild('auto2', {static: false}) matAutocomplete2: MatAutocomplete;
+  @ViewChild('fruitInput3', { static: false }) fruitInput3: ElementRef<HTMLInputElement>;
+  @ViewChild('auto3', { static: false }) matAutocomplete3: MatAutocomplete;
+  @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', { static: false }) matAutocomplete: MatAutocomplete;
 
@@ -125,9 +133,11 @@ export class RequerimientoUpdateComponent implements OnInit {
 
   tipoperiodos: ITipoPeriodo[];
 
+  currentDate: moment.Moment;
+
   editForm = this.fb.group({
     id: [],
-    fechaAlda: [null, []],
+    fechaAlda: [],
     fechaResolucion: [],
     remplazoDe: [null, [Validators.maxLength(500)]],
     vacantesSolicitadas: [],
@@ -159,7 +169,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   });
 
   constructor(
-    public restApi: SkillApi,
+    protected skillService: SkillService,
     protected jhiAlertService: JhiAlertService,
     protected requerimientoService: RequerimientoService,
     protected cuentaService: CuentaService,
@@ -179,145 +189,143 @@ export class RequerimientoUpdateComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) {
-    }
-
     // Codigo de la pantalla
-    siguiente() {
-      this.selected1.setValue(1);
-    }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.requeridosCtrl.valueChanges.subscribe(newValue => {
+      this.FilterSkillsRequeridos = this._filter(newValue);
+    });
+    // Inicio Segundo chip autocompletable
+    this.opcionalesCtrl.valueChanges.subscribe(newValue => {
+      this.FilterSkillsOpcionales = this._filter2(newValue);
+    });
+    // Fin Segundo chip autocompletable
+    // Inicio Segundo chip autocompletable
+    this.esencialesCtrl.valueChanges.subscribe(newValue => {
+      this.FilterSkillsEsenciales = this._filter3(newValue);
+    });
+    // Fin Segundo chip autocompletable
+    // Fin de la pantalla
   }
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+
+  // Codigo de la pantalla
+  siguiente() {
+    this.selected1.setValue(1);
+  }
+  selected(event: MatAutocompleteSelectedEvent): void {
+    let SkillsSelectedRequerido: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
+    let SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
+    this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
+    this.fruitInput.nativeElement.value = '';
+    this.requeridosCtrl.setValue(null);
+  }
+  remove(requerido: ISkill): void {
+    const index = this.SkillRequeridosSelected.indexOf(requerido);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.SkillRequeridosSelected.splice(index, 1);
     }
   }
   add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl.setValue(null);
-    }
-    console.log(this.fruits);
+    // No se permite agregar elementos que no esten en la base de datos
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    // Inicio primer chip autocompletable
-    this.fruits2.push(event.option.viewValue);
+    let SkillsSelectedOpcional: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
+    let SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
+    this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
     this.fruitInput2.nativeElement.value = '';
-    this.fruitCtrl2.setValue(null);
+    this.opcionalesCtrl.setValue(null);
+  }
+  private _filter2(value: string): ISkill[] {
+    let tempOpcionales: ISkill[] = this.Skill.slice(0);
+    this.SkillOpcionalesSelected.forEach(opcional => {
+      const index = tempOpcionales.indexOf(opcional);
+
+      if (index >= 0) {
+        tempOpcionales.splice(index, 1);
+      }
+    });
+    return tempOpcionales.filter((s) => new RegExp(value, 'gi').test(s.nombre));
+  }
+  remove2(opcionales: ISkill): void {
+    const index = this.SkillOpcionalesSelected.indexOf(opcionales);
+
+    if (index >= 0) {
+      this.SkillOpcionalesSelected.splice(index, 1);
     }
-  remove2(fruit2: string): void {
-    // Inicio primer chip autocompletable
-    const index2 = this.fruits2.indexOf(fruit2);
-    if (index2 >= 0) {
-      this.fruits2.splice(index2, 1);
-    }
-    // Fin primer chip autocompletable
   }
   add2(event: MatChipInputEvent): void {
-    // Inicio primer chip autocompletable
-
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete2.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits2.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl2.setValue(null);
-    }
-    // Fin primer chip autocompletable
+    // No se permite agregar elementos que no esten en la base de datos
   }
   selected3(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
-    this.fruits3.push(event.option.viewValue);
+    let SkillsSelectedEsencial: ISkill[] = this.Skill.filter((s) => (s.id === event.option.value));
+    let SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
+    this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
     this.fruitInput3.nativeElement.value = '';
-    this.fruitCtrl3.setValue(null);
-    }
-  remove3(fruit3: string): void {
-    // Inicio primer chip autocompletable
-    const index3 = this.fruits3.indexOf(fruit3);
-    if (index3 >= 0) {
-      this.fruits3.splice(index3, 1);
+    this.esencialesCtrl.setValue(null);
+  }
+  _filter3(value: string): ISkill[] {
+    let tempEscenciales: ISkill[] = this.Skill.slice(0);
+    this.SkillEsencialesSelected.forEach(esencial => {
+      const index = tempEscenciales.indexOf(esencial);
+
+      if (index >= 0) {
+        tempEscenciales.splice(index, 1);
+      }
+    });
+    return tempEscenciales.filter((s) => new RegExp(value, 'gi').test(s.nombre));
+  }
+  remove3(escencial: ISkill): void {
+    const index = this.SkillEsencialesSelected.indexOf(escencial);
+
+    if (index >= 0) {
+      this.SkillEsencialesSelected.splice(index, 1);
     }
     // Fin primer chip autocompletable
   }
   add3(event: MatChipInputEvent): void {
-    // Inicio primer chip autocompletable
-
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete3.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits3.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl3.setValue(null);
-    }
-    // Fin primer chip autocompletable
+    // No se permite agregar elementos que no esten en la base de datos
   }
   // Fin Codigo de la pantalla
 
   ngOnInit() {
-   // load Places Autocomplete
-   this.mapsAPILoader.load().then(() => {
-    this.setCurrentLocation();
-    this.geoCoder = new google.maps.Geocoder;
-    const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-      types: ['address']
-    });
-    autocomplete.addListener('place_changed', () => {
-      this.ngZone.run(() => {
-        // get the place result
-        const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-        // verify result
-        if (place.geometry === undefined || place.geometry === null) {
-          return;
-        }
-        // set latitude, longitude and zoom
-        this.latitude = place.geometry.location.lat();
-        this.longitude = place.geometry.location.lng();
-        this.zoom = 50;
+    // load Places Autocomplete
+    this.currentDate = moment();
+    this.SkillRequeridosSelected = [];
+    this.SkillOpcionalesSelected = [];
+    this.SkillEsencialesSelected = [];
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 50;
+        });
       });
     });
-  });
-  this.getSkills();
+    this.skillService
+      .query({
+        size: 99999
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe(
+        (res: ISkill[]) => this.setSkills(res),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.updateForm(requerimiento);
@@ -414,8 +422,8 @@ export class RequerimientoUpdateComponent implements OnInit {
   updateForm(requerimiento: IRequerimiento) {
     this.editForm.patchValue({
       id: requerimiento.id,
-      fechaAlda: requerimiento.fechaAlda != null ? requerimiento.fechaAlda.format(DATE_TIME_FORMAT) : null,
-      fechaResolucion: requerimiento.fechaResolucion != null ? requerimiento.fechaResolucion.format(DATE_TIME_FORMAT) : null,
+      // fechaAlda: requerimiento.fechaAlda,
+      // fechaResolucion: requerimiento.fechaResolucion,
       remplazoDe: requerimiento.remplazoDe,
       vacantesSolicitadas: requerimiento.vacantesSolicitadas,
       proyecto: requerimiento.proyecto,
@@ -464,12 +472,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     return {
       ...new Requerimiento(),
       id: this.editForm.get(['id']).value,
-      fechaAlda:
-        this.editForm.get(['fechaAlda']).value != null ? moment(this.editForm.get(['fechaAlda']).value, DATE_TIME_FORMAT) : undefined,
-      fechaResolucion:
-        this.editForm.get(['fechaResolucion']).value != null
-          ? moment(this.editForm.get(['fechaResolucion']).value, DATE_TIME_FORMAT)
-          : undefined,
+      fechaAlda: this.currentDate,
       remplazoDe: this.editForm.get(['remplazoDe']).value,
       vacantesSolicitadas: this.editForm.get(['vacantesSolicitadas']).value,
       proyecto: this.editForm.get(['proyecto']).value,
@@ -501,11 +504,12 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IRequerimiento>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+    result.subscribe((r) => this.onSaveSuccess(r), () => this.onSaveError());
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
     this.isSaving = false;
+    //console.log(r);
     this.previousState();
   }
 
@@ -567,20 +571,27 @@ export class RequerimientoUpdateComponent implements OnInit {
   trackSkillById(index: number, item: ICuenta) {
     return item.id;
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  private _filter(value: string): ISkill[] {
+    let temp: ISkill[] = this.Skill.slice(0);
+    this.SkillRequeridosSelected.forEach(requerido => {
+      const index = temp.indexOf(requerido);
+
+      if (index >= 0) {
+        temp.splice(index, 1);
+      }
+    });
+    return temp.filter((s) => new RegExp(value, 'gi').test(s.nombre));
   }
-  verificarReqEstatus( status: string) {
-    if ( status === 'Cerrado' ) {
+  verificarReqEstatus(status: string) {
+    if (status === 'Cerrado') {
       this.reqCancelado = true;
     } else {
       this.reqCancelado = false;
     }
   }
-  verificarReemplazo( status: string) {
-    if ( status === 'Reemplazo' ) {
-       this.reemplazo = true;
+  verificarReemplazo(status: string) {
+    if (status === 'Reemplazo') {
+      this.reemplazo = true;
     } else {
       this.reemplazo = false;
     }
@@ -588,7 +599,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Get Current Location Coordinates
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition( position => {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 50;
@@ -603,7 +614,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     const clickBot = document.querySelector('#coorLat');
     alert(clickBot);
   }
-  getAddress( latitude: any, longitude: any) {
+  getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
@@ -618,10 +629,11 @@ export class RequerimientoUpdateComponent implements OnInit {
 
     });
   }
-   // Get employees list
-   getSkills() {
-    return this.restApi.getskills().subscribe((data: {}) => {
-      this.Skill = data;
-    });
+  setSkills(res: ISkill[]) {
+    this.Skill = res;
+    this.FilterSkillsRequeridos = res;
+    this.FilterSkillsOpcionales = res;
+    this.FilterSkillsEsenciales = res;
   }
+
 }

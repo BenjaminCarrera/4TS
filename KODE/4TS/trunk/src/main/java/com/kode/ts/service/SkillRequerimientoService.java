@@ -1,10 +1,12 @@
 package com.kode.ts.service;
 
+import com.kode.ts.service.dto.ListaSkillRequerimientoDTO;
 import com.kode.ts.service.dto.SkillRequerimientoDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,6 +21,14 @@ public interface SkillRequerimientoService {
      * @return the persisted entity.
      */
     SkillRequerimientoDTO save(SkillRequerimientoDTO skillRequerimientoDTO);
+    
+    /**
+     * Save a list of skillRequerimiento.
+     *
+     * @param listaSkillRequerimientoDTO the entity to save.
+     * @return the persisted entity.
+     */
+    ListaSkillRequerimientoDTO saveLista(ListaSkillRequerimientoDTO listaSkillRequerimientoDTO);
 
     /**
      * Get all the skillRequerimientos.
