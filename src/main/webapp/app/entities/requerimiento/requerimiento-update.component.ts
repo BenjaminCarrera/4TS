@@ -43,6 +43,7 @@ import { SkillService } from '../skill';
 import { ISkill } from 'app/shared/model/skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
+import { SkillReqService } from '../../servicios/skill-req.service';
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -52,6 +53,9 @@ import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerim
   ]
 })
 export class RequerimientoUpdateComponent implements OnInit {
+  // Cargar skills
+  reqId: number;
+  SkillReq: any = [];
   // Mapa
   title = 'AGM project';
   latitude: number;
@@ -170,6 +174,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   });
 
   constructor(
+    public restApi: SkillReqService,
     protected skillRequerimientoService: SkillRequerimientoService,
     protected skillService: SkillService,
     protected jhiAlertService: JhiAlertService,
@@ -419,6 +424,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         map((response: HttpResponse<ITipoPeriodo[]>) => response.body)
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
+      this.cargarSkillsReq();
   }
 
   updateForm(requerimiento: IRequerimiento) {
@@ -668,5 +674,10 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.FilterSkillsOpcionales = res;
     this.FilterSkillsEsenciales = res;
   }
-
+   // Get employees list
+   cargarSkillsReq() {
+    return this.restApi.getSkillReq(2).subscribe((data: {}) => {
+      this.SkillReq = data;
+    });
+  }
 }
