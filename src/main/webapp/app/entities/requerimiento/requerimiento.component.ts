@@ -1,14 +1,13 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map} from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
 import { AccountService, IUser, UserService } from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
 import { RequerimientoService } from './requerimiento.service';
 import { IEstatusRequerimiento } from 'app/shared/model/estatus-requerimiento.model';
 import { EstatusRequerimientoService } from '../estatus-requerimiento';
@@ -23,9 +22,6 @@ import { TipoSolicitudService } from '../tipo-solicitud';
 import { IPrioridadReq } from 'app/shared/model/prioridad-req.model';
 import { PrioridadReqService } from '../prioridad-req';
 import { FormBuilder } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'jhi-requerimiento',

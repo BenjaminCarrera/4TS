@@ -538,42 +538,95 @@
     </mat-tab>
     <mat-tab label="Bitácora">
         <br />
-        <div class="row">
-            <div class="col-sm-6">
-                <h4>Bitácora</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-11 esp-arriba">
-                <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" style="width:100%" />
-            </div>
-            <div class="col-sm-1  esp-arriba">
-                <button mat-raised-button color="warn">Añadir Bitácora</button>
-            </div>
-        </div>
-        <br /><br />
         <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Fecha">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Fecha }}</td>
-                </ng-container>
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Creador }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Comentario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentario</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Comentario }}</td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora" [ngClass]="{ even: even }"></tr>
-            </table>
-
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+            <h2 id="page-heading">
+                <h4>Bitácora</h4>
+                <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bitacora" [routerLink]="['/bitacora/new']">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                    <span  jhiTranslate="App.bitacora.home.createLabel">
+                    Create new Bitacora
+                    </span>
+                </button>
+            </h2>
+            <jhi-alert></jhi-alert>
+            <br/>
+            <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
+                <span jhiTranslate="App.bitacora.home.notFound">No bitacoras found</span>
+            </div>
+            <div class="table-responsive" *ngIf="bitacoras?.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="fecha"><span jhiTranslate="App.bitacora.fecha">Fecha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="comentario"><span jhiTranslate="App.bitacora.comentario">Comentario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="usuarioFirstName"><span jhiTranslate="App.bitacora.usuario">Usuario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="requerimientoProyecto"><span jhiTranslate="App.bitacora.requerimiento">Requerimiento</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="candidatoNombre"><span jhiTranslate="App.bitacora.candidato">Candidato</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th jhiSortBy="tareaTitulo"><span jhiTranslate="App.bitacora.tarea">Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                    <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let bitacora of bitacoras ;trackBy: trackId">
+                        <td><a [routerLink]="['/bitacora', bitacora.id, 'view' ]">{{bitacora.id}}</a></td>
+                        <td>{{bitacora.fecha | date:'medium'}}</td>
+                        <td>{{bitacora.comentario}}</td>
+                        <td>
+                            {{bitacora.usuarioFirstName}}
+                        </td>
+                        <td>
+                            <div *ngIf="bitacora.requerimientoId">
+                                <a [routerLink]="['../requerimiento', bitacora.requerimientoId , 'view' ]" >{{bitacora.requerimientoProyecto}}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="bitacora.candidatoId">
+                                <a [routerLink]="['../candidato', bitacora.candidatoId , 'view' ]" >{{bitacora.candidatoNombre}}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="bitacora.tareaId">
+                                <a [routerLink]="['../tarea', bitacora.tareaId , 'view' ]" >{{bitacora.tareaTitulo}}</a>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="btn-group">
+                                <button type="submit"
+                                        [routerLink]="['/bitacora', bitacora.id, 'view' ]"
+                                        class="btn btn-info btn-sm">
+                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/bitacora', bitacora.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                </button>
+                                <button type="submit"
+                                        [routerLink]="['/', 'bitacora', { outlets: { popup: bitacora.id + '/delete'} }]"
+                                        replaceUrl="true"
+                                        queryParamsHandling="merge"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon [icon]="'times'"></fa-icon>
+                                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div [hidden]="bitacoras?.length === 0">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                </div>
+                <div class="row justify-content-center">
+                    <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>
+            </div>
         </div>
+
     </mat-tab>
 </mat-tab-group>
