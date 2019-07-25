@@ -1,4 +1,4 @@
-import { Tarea } from './tarea';
+import { Tarea } from 'app/shared/model/tarea.model';
 
 describe('Tarea', () => {
   it('should create an instance', () => {

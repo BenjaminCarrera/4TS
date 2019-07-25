@@ -102,7 +102,6 @@ export class RequerimientoDetailComponent implements OnInit {
     this.zoom = 10;
     // this.dataSourceTarea2.data = this.DATA_TAREA;
     this.dataSourceTarea2.paginator = this.paginator;
-    this.getAllOwners2();
   }
   // Get employees list
   // cargarTareas() {
@@ -111,19 +110,6 @@ export class RequerimientoDetailComponent implements OnInit {
   //     this.dataSourceTarea2 = data;
   //   });
   // }
-  getAllOwners = () => {
-    this.restApi.getTareas()
-    .subscribe(res => {
-      this.dataSourceTarea2.data = res as unknown as Tarea[];
-    });
-  }
-  public getAllOwners2 = () => {
-    this.restApi.getTareas()
-    .subscribe(res => {
-      this.dataSourceTarea2.data = res as Tarea;
-    });
-    console.log(this.dataSourceTarea2);
-  }
   previousState() {
     window.history.back();
   }
