@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { SkillReq } from '../clases/skill-req';
 import { SERVER_API_URL } from 'app/app.constants';
-import { Tarea } from 'app/shared/model/tarea.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TareaApi {
+export class SkillReqService {
   // Define API
   apiURL = SERVER_API_URL + '/api';
   // Http Options
@@ -21,8 +21,8 @@ export class TareaApi {
   constructor(private http: HttpClient) { }
 
   // HttpClient API get() method => Fetch employees list
-  getTareas(): Observable<Tarea> {
-    return this.http.get<Tarea>(this.apiURL + '/tareas', this.httpOptions)
+  getSkillReqs(): Observable<SkillReq> {
+    return this.http.get<SkillReq>(this.apiURL + '/skill-requerimientos', this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -30,8 +30,8 @@ export class TareaApi {
   }
 
   // HttpClient API get() method => Fetch employee
-  getTarea(id: number): Observable<Tarea> {
-    return this.http.get<Tarea>(this.apiURL + '/tareas/' + id, this.httpOptions)
+  getSkillReq(id: number): Observable<SkillReq> {
+    return this.http.get<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -39,8 +39,8 @@ export class TareaApi {
   }
 
   // HttpClient API post() method => Create employee
-  crearTarea(TareaValue: any): Observable<Tarea> {
-    return this.http.post<Tarea>(this.apiURL + '/tareas', JSON.stringify(TareaValue), this.httpOptions)
+  crearSkillReq(SkillReqValue: any): Observable<SkillReq> {
+    return this.http.post<SkillReq>(this.apiURL + '/skill-requerimientos', JSON.stringify(SkillReqValue), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -48,8 +48,8 @@ export class TareaApi {
   }
 
   // HttpClient API put() method => Update employee
-  actualizarTarea(id: string, employee: any): Observable<Tarea> {
-    return this.http.put<Tarea>(this.apiURL + '/tareas/' + id, JSON.stringify(Tarea), this.httpOptions)
+  actualizarSkillReq(id: string, employee: any): Observable<SkillReq> {
+    return this.http.put<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, JSON.stringify(SkillReq), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -57,8 +57,8 @@ export class TareaApi {
   }
 
   // HttpClient API delete() method => Delete employee
-  eliminarTarea(id: string) {
-    return this.http.delete<Tarea>(this.apiURL + '/tareas/' + id, this.httpOptions)
+  eliminarSkillReq(id: string) {
+    return this.http.delete<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

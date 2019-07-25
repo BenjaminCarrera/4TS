@@ -522,7 +522,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     const idRequerimiento = r.body.id;
     const addTempReqSkill: any[] = [];
     this.SkillRequeridosSelected.forEach(requerido => {
-      let tempAddRequerido = new SkillRequerimiento();
+      const tempAddRequerido = new SkillRequerimiento();
       tempAddRequerido.idRequerimientoId = idRequerimiento;
       tempAddRequerido.idSkillId = requerido.id;
       tempAddRequerido.tipoSkillId = 2;
