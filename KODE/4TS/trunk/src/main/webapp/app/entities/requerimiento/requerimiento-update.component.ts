@@ -42,6 +42,7 @@ import { NgZone } from '@angular/core';
 import { SkillService } from '../skill';
 import { ISkill } from 'app/shared/model/skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
+import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -169,6 +170,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   });
 
   constructor(
+    protected skillRequerimientoService: SkillRequerimientoService,
     protected skillService: SkillService,
     protected jhiAlertService: JhiAlertService,
     protected requerimientoService: RequerimientoService,
@@ -507,10 +509,41 @@ export class RequerimientoUpdateComponent implements OnInit {
     result.subscribe((r) => this.onSaveSuccess(r), () => this.onSaveError());
   }
 
-  protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
+  protected subscribeToSaveResponseSkills(result: Observable<HttpResponse<any>>) {
+    result.subscribe((r) => this.onSaveSuccessFinal(r), () => this.onSaveError());
+  }
+
+  protected onSaveSuccessFinal(r: HttpResponse<any>) {
     this.isSaving = false;
-    //console.log(r);
     this.previousState();
+  }
+
+  protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
+    let idRequerimiento = r.body.id;
+    let addTempReqSkill: any[] = [];
+    this.SkillRequeridosSelected.forEach(requerido => {
+      let tempAddRequerido = new SkillRequerimiento();
+      tempAddRequerido.idRequerimientoId = idRequerimiento;
+      tempAddRequerido.idSkillId = requerido.id;
+      tempAddRequerido.tipoSkillId = 2;
+      addTempReqSkill.push(tempAddRequerido);
+    });
+    this.SkillOpcionalesSelected.forEach(opcional => {
+      let tempAddOpcional = new SkillRequerimiento();
+      tempAddOpcional.idRequerimientoId = idRequerimiento;
+      tempAddOpcional.idSkillId = opcional.id;
+      tempAddOpcional.tipoSkillId = 3;
+      addTempReqSkill.push(tempAddOpcional);
+    });
+    this.SkillEsencialesSelected.forEach(esencial => {
+      let tempAddEsencial = new SkillRequerimiento();
+      tempAddEsencial.idRequerimientoId = idRequerimiento;
+      tempAddEsencial.idSkillId = esencial.id;
+      tempAddEsencial.tipoSkillId = 3;
+      addTempReqSkill.push(tempAddEsencial);
+    });
+    let updateKillReq = { lista: addTempReqSkill };
+    this.subscribeToSaveResponseSkills(this.skillRequerimientoService.patch(updateKillReq));
   }
 
   protected onSaveError() {
