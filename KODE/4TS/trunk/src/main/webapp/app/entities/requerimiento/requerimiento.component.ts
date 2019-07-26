@@ -22,6 +22,7 @@ import { TipoSolicitudService } from '../tipo-solicitud';
 import { IPrioridadReq } from 'app/shared/model/prioridad-req.model';
 import { PrioridadReqService } from '../prioridad-req';
 import { FormBuilder } from '@angular/forms';
+import { ITEMS_PER_PAGE } from 'app/shared';
 
 @Component({
   selector: 'jhi-requerimiento',
@@ -83,7 +84,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     protected eventManager: JhiEventManager,
     private fb: FormBuilder
   ) {
-    this.itemsPerPage = 5;
+    this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
       this.previousPage = data.pagingParams.page;

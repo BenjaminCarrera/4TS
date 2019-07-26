@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <meta http-equiv="Content-Security-Policy" content="default-src *;
-   img-src * data: https:; script-src 'unsafe-inline' 'unsafe-eval' *;
-   style-src  'unsafe-inline' *">
+    img-src * 'self' data: http://* 'unsafe-inline'; script-src * 'self' http://* 'unsafe-inline' 'unsafe-eval' *;
+    style-src *  'self' http://* 'unsafe-inline' *">
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="content/css/loading.css">
