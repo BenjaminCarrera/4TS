@@ -21,7 +21,7 @@ export class SkillReqService {
   constructor(private http: HttpClient) { }
 
   // HttpClient API get() method => Fetch employees list
-  getSkillReqs(): Observable<SkillReq> {
+  getSkillReq(): Observable<SkillReq> {
     return this.http.get<SkillReq>(this.apiURL + '/skill-requerimientos', this.httpOptions)
     .pipe(
       retry(1),
@@ -30,7 +30,7 @@ export class SkillReqService {
   }
 
   // HttpClient API get() method => Fetch employee
-  getSkillReq(id: number): Observable<SkillReq> {
+  getSkillReqs(id: number): Observable<SkillReq> {
     return this.http.get<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, this.httpOptions)
     .pipe(
       retry(1),
@@ -48,8 +48,8 @@ export class SkillReqService {
   }
 
   // HttpClient API put() method => Update employee
-  actualizarSkillReq(id: string, employee: any): Observable<SkillReq> {
-    return this.http.put<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, JSON.stringify(SkillReq), this.httpOptions)
+  actualizarSkillReq(id: string, Skillreq: any): Observable<SkillReq> {
+    return this.http.put<SkillReq>(this.apiURL + '/skill-requerimientos/' + id, JSON.stringify(Skillreq), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

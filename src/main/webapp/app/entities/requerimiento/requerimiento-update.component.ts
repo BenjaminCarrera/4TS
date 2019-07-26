@@ -56,6 +56,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Cargar skills
   reqId: number;
   SkillReq: any = [];
+  idre: number;
   // Mapa
   title = 'AGM project';
   latitude: number;
@@ -223,6 +224,9 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
     this.fruitInput.nativeElement.value = '';
     this.requeridosCtrl.setValue(null);
+    console.log(SkillRequeridosSelectedRequerido);
+    console.log(this.SkillRequeridosSelected);
+    console.log('este' + this.Skill.filter( s => (s.id === event.option.value)));
   }
   remove(requerido: ISkill): void {
     const index = this.SkillRequeridosSelected.indexOf(requerido);
@@ -425,6 +429,8 @@ export class RequerimientoUpdateComponent implements OnInit {
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
       this.cargarSkillsReq();
+      console.log('Hola');
+      console.log(this.SkillRequeridosSelected);
   }
 
   updateForm(requerimiento: IRequerimiento) {
@@ -676,8 +682,37 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
    // Get employees list
    cargarSkillsReq() {
-    return this.restApi.getSkillReq(2).subscribe((data: {}) => {
+    return this.restApi.getSkillReq().subscribe((data: {}) => {
       this.SkillReq = data;
+      console.log(data);
+      for (const clave of this.SkillReq) {
+        if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
+          if ( clave.tipoSkillId === 1) {
+            console.log('Es escencial' + clave.id);
+            const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
+            this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
+            this.fruitInput.nativeElement.value = '';
+            this.requeridosCtrl.setValue(null);
+          } else if ( clave.tipoSkillId === 2) {
+            console.log('Es escencial' + clave.id);
+            const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
+            this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
+            this.fruitInput2.nativeElement.value = '';
+            this.opcionalesCtrl.setValue(null);
+          } else if ( clave.tipoSkillId === 3) {
+            console.log('Es escencial' + clave.id);
+            const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
+            this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
+            this.fruitInput3.nativeElement.value = '';
+            this.esencialesCtrl.setValue(null);
+          } else {
+            console.log('Error');
+          }
+        }
+      }
     });
   }
 }
