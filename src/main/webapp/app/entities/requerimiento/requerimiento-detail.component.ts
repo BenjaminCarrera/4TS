@@ -5,14 +5,22 @@ import { MatTableDataSource } from '@angular/material';
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
 import { MatSort } from '@angular/material';
 import { TareaApi } from '../../servicios/tareas.service';
-import { Tarea } from '../../clases/tarea';
 import { ITipoSkill } from 'app/shared/model/tipo-skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
 import { skillRequerimientoPopupRoute } from '../skill-requerimiento/skill-requerimiento.route';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-export interface Bitacora {
+export interface PeriodicElement {
+  Id: number;
+  Tarea: string;
+  Creador: string;
+  Destinatario: string;
+  FechaAlta: string;
+  Estatus: string;
+}
+
+export interface Tarea {
   Fecha: string;
   Creador: string;
   Comentario: string;
@@ -39,53 +47,66 @@ export class RequerimientoDetailComponent implements OnInit {
   tipoReq2: any [];
   skillReq3: ISkillRequerimiento;
   tipoReq3: any [];
-
-  // Tareas: any = [];
-  displayedColumnsTarea: string[] = [ 'id', 'titulo', 'usuario_creador_id', 'usuario_ejecutor_id', 'requerimiento_id' , 'estatus_tarea_id' ];
-  public dataSourceTarea2 = new MatTableDataSource<Tarea>();
   // Enfoque del mapa
   lat: any;
   lng: any;
   zoom = 10;
   requerimiento: IRequerimiento;
   skillRequerimientos: ISkillRequerimiento [];
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  // Variables Tarea
+  DATA_TAREA: PeriodicElement[] = [
+    { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
+  ];
+  dataSourceTarea: PeriodicElement[];
+  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
+
   // VAriables Bitacora
-  DATA_BITACORA: Bitacora[] = [
+  DATA_BITACORA: Tarea[] = [
     { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
     { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
     { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
   ];
-  dataSourceBitacora: Bitacora[];
+  dataSourceBitacora: Tarea[];
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
-  constructor(
-    protected skillRequerimientoService: SkillRequerimientoService,
-    protected activatedRoute: ActivatedRoute,
-    public restApi: TareaApi) {
-    // this.dataSourceTarea = this.DATA_TAREA.slice();
-    // this.dataSourceBitacora = this.DATA_BITACORA.slice();
+  constructor(protected activatedRoute: ActivatedRoute,
+    protected skillRequerimientoService: SkillRequerimientoService) {
+    this.dataSourceTarea = this.DATA_TAREA.slice();
+    this.dataSourceBitacora = this.DATA_BITACORA.slice();
   }
-  // sortDataTarea(sort: MatSort) {
-  //   const data = this.DATA_TAREA.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.dataSourceTarea = data;
-  //     return;
-  //   }
 
-  //   this.dataSourceTarea = data.sort((a, b) => {
-  //     const isAsc = sort.direction === 'asc';
-  //     switch (sort.active) {
-  //       case 'Id': return compare(a.Id, b.Id, isAsc);
-  //       case 'Tarea': return compare(a.Tarea, b.Tarea, isAsc);
-  //       case 'Creador': return compare(a.Creador, b.Creador, isAsc);
-  //       case 'Destinatario': return compare(a.Destinatario, b.Destinatario, isAsc);
-  //       case 'FechaAlta': return compare(a.FechaAlta, b.FechaAlta, isAsc);
-  //       case 'Estatus': return compare(a.Estatus, b.Estatus, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  // }
+  sortDataTarea(sort: MatSort) {
+    const data = this.DATA_TAREA.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSourceTarea = data;
+      return;
+    }
+
+    this.dataSourceTarea = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Id': return compare(a.Id, b.Id, isAsc);
+        case 'Tarea': return compare(a.Tarea, b.Tarea, isAsc);
+        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
+        case 'Destinatario': return compare(a.Destinatario, b.Destinatario, isAsc);
+        case 'FechaAlta': return compare(a.FechaAlta, b.FechaAlta, isAsc);
+        case 'Estatus': return compare(a.Estatus, b.Estatus, isAsc);
+        default: return 0;
+      }
+    });
+  }
   sortDataBitacora(sort: MatSort) {
     const data = this.DATA_BITACORA.slice();
     if (!sort.active || sort.direction === '') {
@@ -103,15 +124,7 @@ export class RequerimientoDetailComponent implements OnInit {
       }
     });
   }
-  public filtrarTareasAbiertas = () => {
-    this.dataSourceTarea2.filter = 'Abiertas'.trim().toLocaleLowerCase();
-  }
-  public filtrarTareasCerradas = () => {
-    this.dataSourceTarea2.filter = 'Cerradas'.trim().toLocaleLowerCase();
-  }
-  public filtrarTareasTodas = () => {
-    this.dataSourceTarea2.filter = ''.trim().toLocaleLowerCase();
-  }
+
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.requerimiento = requerimiento;
@@ -121,8 +134,6 @@ export class RequerimientoDetailComponent implements OnInit {
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
-    // this.dataSourceTarea2.data = this.DATA_TAREA;
-    this.dataSourceTarea2.paginator = this.paginator;
   }
 
   loadSkillReq() {
@@ -153,16 +164,13 @@ export class RequerimientoDetailComponent implements OnInit {
     this.skillReq1 = new SkillRequerimiento();
     this.skillReq2 = new SkillRequerimiento();
     this.skillReq3 = new SkillRequerimiento();
-
       this.skillRequerimientos.forEach( req => {
         if (this.requerimiento.id === req.idRequerimientoId) {
          this.skillsToShow = req;
           this.skillTS.push(this.skillsToShow);
         }
       });
-
       console.log(this.skillTS);
-
     this.skillTS.forEach( skill => {
       if (skill.tipoSkillId === 1) {
         this.skillReq1 = skill;
