@@ -1,5 +1,21 @@
 
-
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">User Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{SkillReq.id}}</td>
+        <td>{{SkillReq.idSkillId}}</td>
+      </tr>
+    </tbody>
+  </table>
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
   <jhi-alert-error></jhi-alert-error>
   <div class="form-group" [hidden]="!editForm.get('id').value">
