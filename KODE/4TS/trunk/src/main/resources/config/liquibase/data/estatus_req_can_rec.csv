@@ -1,11 +1,22 @@
 id;motivo
-1;Universal Egypt invoice
-2;Wall
-3;input Rhode Island Tuna
-4;Gloves
-5;parse user-facing
-6;Handmade Wooden Computer Metal
-7;Licensed Manager Borders
-8;copying
-9;relationships quantify generate
-10;array Delaware
+1;Candidato inactivo
+2;Candidato rechazado para requerimiento: No interesado en cuenta
+3;Candidato rechazado para requerimiento: Por observaciones RH
+4;Candidato rechazado para requerimiento: No cuenta con disponibilidad de asignación
+5;Candidato rechazado para requerimiento: Costo de candidato fuera de rango
+6;Candidato rechazado para requerimiento: Conocimientos tecnicos insuficientes
+7;Candidato rechazado para requerimiento: Otro motivo
+8;Candidato rechazado por validacion: No se pudo contactar al candidato
+9;Candidato rechazado por validacion: Candidato sin disponibilidad
+10;Candidato rechazado por validacion: Expectativa salarial fuera de rango
+11;Candidato rechazado por validacion: Por ubicación
+12;Candidato rechazado por validacion: Por temporalidad de asignación
+13;Candidato rechazado por validacion: Otros motivos
+14;Requerimiento cerrado
+15;Candidato descartado de requerimiento
+16;Candidato rechazado por CV
+17;Candidato no asistio a entrevista
+18;Candidato rechazado en entrevista
+19;Incumplimiento candidato
+20;Ingreso de candidato confirmado
+21;Ingreso de reclutamiento confirmado
