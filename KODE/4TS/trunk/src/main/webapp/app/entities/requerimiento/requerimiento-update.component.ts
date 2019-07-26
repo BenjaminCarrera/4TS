@@ -551,7 +551,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       const tempAddEsencial = new SkillRequerimiento();
       tempAddEsencial.idRequerimientoId = idRequerimiento;
       tempAddEsencial.idSkillId = esencial.id;
-      tempAddEsencial.tipoSkillId = 3;
+      tempAddEsencial.tipoSkillId = 1;
       addTempReqSkill.push(tempAddEsencial);
     });
     const updateKillReq = { lista: addTempReqSkill };
