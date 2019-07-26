@@ -1,5 +1,3 @@
-
-
 <div class="row">
     <div class="col-md-12" style="display: inline-block;">
         <div class="row">
@@ -7,12 +5,10 @@
                 <h3>Detalle de requerimiento - {{requerimiento.id}}</h3>
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 13px;padding-left:25px;">
-        <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
             <span style="color:black">Cancelar</span>
           </button>
-                <button type="submit"
-                        [routerLink]="['/requerimiento', requerimiento.id, 'edit']"
-                        mat-raised-button color="warn">
+                <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button color="warn">
                     <span class="d-none d-md-inline" >Editar</span>
                 </button>
             </div>
@@ -69,7 +65,7 @@
                                 <label class="form-label">Estatus del requerimiento:</label>
                             </div>
                             <div class="col-sm-9">
-                                    <label class="form-label resultado" id="">{{requerimiento.estatusRequerimientoEstatus}}
+                                <label class="form-label resultado" id="">{{requerimiento.estatusRequerimientoEstatus}}
                                         </label>
                             </div>
                         </div>
@@ -122,7 +118,7 @@
                                 <label class="form-label">Cuenta:</label>
                             </div>
                             <div class="col-sm-9">
-                                    <label class="form-label resultado" id="">{{requerimiento.cuentaClave}}</label>
+                                <label class="form-label resultado" id="">{{requerimiento.cuentaClave}}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -130,7 +126,7 @@
                                 <label class="form-label">Subcuenta:</label>
                             </div>
                             <div class="col-sm-9">
-                                    <label class="form-label resultado" id="">{{requerimiento.subCuentaClave}}</label>
+                                <label class="form-label resultado" id="">{{requerimiento.subCuentaClave}}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -189,8 +185,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="panel panel-default"
-                style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <h4>Datos del perfil</h4>
                     <br>
                     <div class="row">
@@ -282,10 +277,7 @@
                         <div class="col-sm-12" style="padding-right: 0px;">
                             <div class="google-maps" id="mapa">
                                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
-                                    <agm-marker
-                                    [latitude]="lat"
-                                    [longitude]="lng"
-                                    [label]="'KODE'">
+                                    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'">
                                     </agm-marker>
                                 </agm-map>
 
@@ -304,9 +296,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <ul>
-                                <li class="resultado-lista">Java</li>
-                                <li class="resultado-lista">Spring MVC</li>
-                                <li class="resultado-lista">Angular</li>
+                                <li *ngFor="let req1 of tipoReq1" class="resultado-lista">{{req1.idSkillNombre}}</li>
+
                             </ul>
                         </div>
                     </div>
@@ -315,9 +306,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <ul>
-                                <li class="resultado-lista">Hibernate</li>
-                                <li class="resultado-lista">Oracle</li>
-                                <li class="resultado-lista">JQuery</li>
+                                <li *ngFor="let req2 of tipoReq2" class="resultado-lista">{{req2.idSkillNombre}}</li>
                             </ul>
                         </div>
                     </div>
@@ -326,8 +315,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <ul>
-                                <li class="resultado-lista">Maven</li>
-                                <li class="resultado-lista">Git</li>
+                                <li *ngFor="let req3 of tipoReq3" class="resultado-lista">{{req3.idSkillNombre}}</li>
                             </ul>
                         </div>
                     </div>
@@ -481,59 +469,56 @@
             <div class="col-sm-12">
                 <p>
                     <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" #group="matButtonToggleGroup">
-                        <mat-button-toggle value="Todas"(click)="filtrarTareasTodas()"> Todas </mat-button-toggle>
+                        <mat-button-toggle value="Todas" (click)="filtrarTareasTodas()"> Todas </mat-button-toggle>
                         <mat-button-toggle value="Abiertas" (click)="filtrarTareasAbiertas()"> Abiertas </mat-button-toggle>
-                        <mat-button-toggle value="Cerradas"(click)="filtrarTareasCerradas()"> Cerradas </mat-button-toggle>
+                        <mat-button-toggle value="Cerradas" (click)="filtrarTareasCerradas()"> Cerradas </mat-button-toggle>
                     </mat-button-toggle-group>
                 </p>
             </div>
         </div>
         <br />
-    <div class="row">
-        <div class="col-sm-12">
-        <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea2" matSort>
-            Position Column
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
-                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-            </ng-container>
+        <div class="row">
+            <div class="col-sm-12">
+                <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea2" matSort>
+                    Position Column
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
+                        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                    </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="titulo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 104px !important;">Tarea</th>
-                <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
-            </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="titulo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 104px !important;">Tarea</th>
+                        <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+                    </ng-container>
 
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="usuario_creador_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 141px !important;">Creador</th>
-                <td mat-cell *matCellDef="let element">{{ element.usuarioCreadorFirstName }}</td>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="usuario_ejecutor_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 143px !important;">Destinatario</th>
-                <td mat-cell *matCellDef="let element">{{ element.usuarioEjecutorFirstName }}</td>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="requerimiento_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Fecha de alta</th>
-                <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="estatus_tarea_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Estatus</th>
-                <td mat-cell *matCellDef="let element">{{ element.estatusTareaEstatus }}</td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-            <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea" [ngClass]="{ even: even }"></tr>
-        </table>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="usuario_creador_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 141px !important;">Creador</th>
+                        <td mat-cell *matCellDef="let element">{{ element.usuarioCreadorFirstName }}</td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="usuario_ejecutor_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 143px !important;">Destinatario</th>
+                        <td mat-cell *matCellDef="let element">{{ element.usuarioEjecutorFirstName }}</td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="requerimiento_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Fecha de alta</th>
+                        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="estatus_tarea_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Estatus</th>
+                        <td mat-cell *matCellDef="let element">{{ element.estatusTareaEstatus }}</td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
+                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea" [ngClass]="{ even: even }"></tr>
+                </table>
 
-        <mat-paginator
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 50]"
-        [showFirstLastButtons]="true"></mat-paginator>
-    </div>
-</div>
+                <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 50]" [showFirstLastButtons]="true"></mat-paginator>
+            </div>
+        </div>
 
     </mat-tab>
     <mat-tab label="Bitácora">

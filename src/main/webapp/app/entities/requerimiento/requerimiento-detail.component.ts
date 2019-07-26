@@ -6,6 +6,11 @@ import { IRequerimiento } from 'app/shared/model/requerimiento.model';
 import { MatSort } from '@angular/material';
 import { TareaApi } from '../../servicios/tareas.service';
 import { Tarea } from '../../clases/tarea';
+import { ITipoSkill } from 'app/shared/model/tipo-skill.model';
+import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
+import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
+import { skillRequerimientoPopupRoute } from '../skill-requerimiento/skill-requerimiento.route';
+import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 export interface Bitacora {
   Fecha: string;
@@ -22,6 +27,19 @@ export interface Bitacora {
 })
 
 export class RequerimientoDetailComponent implements OnInit {
+
+  page: any;
+
+  // skills
+  skillsToShow: ISkillRequerimiento;
+  skillTS: any [];
+  skillReq1: ISkillRequerimiento;
+  tipoReq1: any [];
+  skillReq2: ISkillRequerimiento;
+  tipoReq2: any [];
+  skillReq3: ISkillRequerimiento;
+  tipoReq3: any [];
+
   // Tareas: any = [];
   displayedColumnsTarea: string[] = [ 'id', 'titulo', 'usuario_creador_id', 'usuario_ejecutor_id', 'requerimiento_id' , 'estatus_tarea_id' ];
   public dataSourceTarea2 = new MatTableDataSource<Tarea>();
@@ -30,6 +48,7 @@ export class RequerimientoDetailComponent implements OnInit {
   lng: any;
   zoom = 10;
   requerimiento: IRequerimiento;
+  skillRequerimientos: ISkillRequerimiento [];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   // VAriables Bitacora
   DATA_BITACORA: Bitacora[] = [
@@ -41,6 +60,7 @@ export class RequerimientoDetailComponent implements OnInit {
   dataSourceBitacora: Bitacora[];
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
   constructor(
+    protected skillRequerimientoService: SkillRequerimientoService,
     protected activatedRoute: ActivatedRoute,
     public restApi: TareaApi) {
     // this.dataSourceTarea = this.DATA_TAREA.slice();
@@ -96,12 +116,69 @@ export class RequerimientoDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.requerimiento = requerimiento;
     });
+    this.loadSkillReq();
     // Enfoque del mapa
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
     // this.dataSourceTarea2.data = this.DATA_TAREA;
     this.dataSourceTarea2.paginator = this.paginator;
+  }
+
+  loadSkillReq() {
+    this.skillRequerimientoService
+      .query({
+        page: this.page - 1
+      })
+      .subscribe(
+        (res: HttpResponse<ISkillRequerimiento[]>) => this.paginateSkillRequerimientos(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  onError(message: string): void {
+    throw new Error('');
+  }
+
+  protected paginateSkillRequerimientos(data: ISkillRequerimiento[], headers: HttpHeaders) {
+    // this.links = this.parseLinks.parse(headers.get('link'));
+    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.skillRequerimientos = data;
+    this.skillsToShow = {};
+    this.skillTS = [];
+    this.tipoReq1 = [];
+    this.tipoReq2 = [];
+    this.tipoReq3 = [];
+
+    this.skillReq1 = new SkillRequerimiento();
+    this.skillReq2 = new SkillRequerimiento();
+    this.skillReq3 = new SkillRequerimiento();
+
+      this.skillRequerimientos.forEach( req => {
+        if (this.requerimiento.id === req.idRequerimientoId) {
+         this.skillsToShow = req;
+          this.skillTS.push(this.skillsToShow);
+        }
+      });
+
+      console.log(this.skillTS);
+
+    this.skillTS.forEach( skill => {
+      if (skill.tipoSkillId === 1) {
+        this.skillReq1 = skill;
+        this.tipoReq1.push(this.skillReq1);
+      } else if (skill.tipoSkillId === 2) {
+        this.skillReq2 = skill;
+        this.tipoReq2.push(this.skillReq2);
+      } else if (skill.tipoSkillId === 3) {
+        this.skillReq3 = skill;
+        this.tipoReq3.push(this.skillReq3);
+      }
+    });
+
+    console.log(this.tipoReq1);
+    console.log(this.tipoReq2);
+    console.log(this.tipoReq3);
   }
   // Get employees list
   // cargarTareas() {
