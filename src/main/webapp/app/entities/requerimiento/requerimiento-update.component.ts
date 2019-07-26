@@ -428,9 +428,6 @@ export class RequerimientoUpdateComponent implements OnInit {
         map((response: HttpResponse<ITipoPeriodo[]>) => response.body)
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
-      this.cargarSkillsReq();
-      console.log('Hola');
-      console.log(this.SkillRequeridosSelected);
   }
 
   updateForm(requerimiento: IRequerimiento) {
@@ -466,6 +463,9 @@ export class RequerimientoUpdateComponent implements OnInit {
       estatusReqCanId: requerimiento.estatusReqCanId,
       tipoPeriodoId: requerimiento.tipoPeriodoId
     });
+    this.cargarSkillsReq();
+    console.log('Hola');
+    console.log(this.SkillRequeridosSelected);
   }
 
   previousState() {
@@ -680,7 +680,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.FilterSkillsOpcionales = res;
     this.FilterSkillsEsenciales = res;
   }
-   // Get employees list
+   // Obtener todos los requerimientos
    cargarSkillsReq() {
     return this.restApi.getSkillReq().subscribe((data: {}) => {
       this.SkillReq = data;
@@ -689,25 +689,25 @@ export class RequerimientoUpdateComponent implements OnInit {
         if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
           if ( clave.tipoSkillId === 1) {
             console.log('Es escencial' + clave.id);
-            const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
-            const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
-            this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
-            this.fruitInput.nativeElement.value = '';
-            this.requeridosCtrl.setValue(null);
-          } else if ( clave.tipoSkillId === 2) {
-            console.log('Es escencial' + clave.id);
-            const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
-            const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
-            this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
-            this.fruitInput2.nativeElement.value = '';
-            this.opcionalesCtrl.setValue(null);
-          } else if ( clave.tipoSkillId === 3) {
-            console.log('Es escencial' + clave.id);
             const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
             const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
             this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
             this.fruitInput3.nativeElement.value = '';
             this.esencialesCtrl.setValue(null);
+          } else if ( clave.tipoSkillId === 2) {
+            console.log('Es requerido' + clave.id);
+            const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
+            this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
+            this.fruitInput.nativeElement.value = '';
+            this.requeridosCtrl.setValue(null);
+          } else if ( clave.tipoSkillId === 3) {
+            console.log('Es opcional' + clave.id);
+            const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
+            this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
+            this.fruitInput2.nativeElement.value = '';
+            this.opcionalesCtrl.setValue(null);
           } else {
             console.log('Error');
           }
