@@ -1,210 +1,200 @@
 <div class="row">
-  <div class="col-md-12" style="display: inline-block;">
-    <div class="row">
-      <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
-        <h3 class="titulo">Consulta del requerimiento</h3>
-      </div>
-      <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 0px;padding-left:25px;">
-        <a [routerLink]="['/requerimiento/new']">
-          <button mat-raised-button color="warn">Añadir requerimiento</button>
-        </a>
-      </div>
+    <div class="col-md-12" style="display: inline-block;">
+        <div class="row">
+            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
+                <h3 class="titulo">Consulta del requerimiento</h3>
+            </div>
+            <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 0px;padding-left:25px;">
+                <a [routerLink]="['/requerimiento/new']">
+                    <button mat-raised-button color="warn">Añadir requerimiento</button>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Inicio del formulario -->
 <form #f="ngForm" role="form" (ngSubmit)="updateFilters()" [formGroup]="editForm">
-  <div class="row">
-    <div class="col-md-3 esp-arriba">
-      <div class="example-container">
-        <mat-form-field class="full-width">
-          <input id="field_idReq" name="req" formControlName="idReq" matInput #postalCode maxlength="4"
-            placeholder="ID de requerimiento">
-          <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
-        </mat-form-field>
-      </div>
+    <div class="row">
+        <div class="col-md-3 esp-arriba">
+            <div class="example-container">
+                <mat-form-field class="full-width">
+                    <input id="field_idReq" name="req" formControlName="idReq" matInput #postalCode maxlength="4" placeholder="ID de requerimiento">
+                    <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-3  esp-arriba">
+            <mat-form-field class="full-width">
+                <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId" placeholder="Ejecutivo asignado">
+                    <mat-option>Ejecutivo asignado</mat-option>
+                    <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">
+                        {{userOption.firstName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <p>
+                <label class="label-material">Estatus del requerimiento:</label>
+                <br>
+                <mat-button-toggle-group id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId" aria-label="Estilo de fuente" class="botones-chicos">
+                    <mat-button-toggle [value]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">
+                        {{estatusRequerimientoOption.estatus}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </p>
+        </div>
+        <div class="col-md-3  esp-arriba">
+            <mat-form-field class="full-width">
+                <mat-select id="field_cuenta" name="cuenta" formControlName="cuentaId" placeholder="Cuenta">
+                    <mat-option>Cuenta</mat-option>
+                    <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">
+                        {{cuentaOption.clave}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-    <div class="col-md-3  esp-arriba">
-      <mat-form-field class="full-width">
-        <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId"
-          placeholder="Ejecutivo asignado">
-          <mat-option>Ejecutivo asignado</mat-option>
-          <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">
-            {{userOption.firstName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="row">
+        <div class="col-md-3 esp-arriba">
+            <mat-form-field class="full-width">
+                <mat-select id="field_perfil" name="perfil" formControlName="perfilId" placeholder="Perfil">
+                    <mat-option>Perfil</mat-option>
+                    <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">
+                        {{perfilOption.perfil}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 esp-arriba">
+            <mat-form-field class="full-width">
+                <mat-select id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId" placeholder="Nivel de Perfil">
+                    <mat-option>Nivel de Perfil</mat-option>
+                    <mat-option [value]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <p>
+                <label class="label-material">Tipo de solicitud:</label><br>
+                <mat-button-toggle-group id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId" aria-label="Estilo de fuente" class="botones-chicos2">
+                    <mat-button-toggle> Todas </mat-button-toggle>
+                    <mat-button-toggle [value]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">
+                        {{tipoSolicitudOption.solicitud}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </p>
+        </div>
+        <div class="col-md-3 esp-arriba">
+            <mat-form-field class="full-width">
+                <mat-select id="field_prioridad" name="prioridad" formControlName="prioridadId" placeholder="Prioridad">
+                    <mat-option>Prioridad</mat-option>
+                    <mat-option [value]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">
+                        {{prioridadReqOption.prioridad}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-    <div class="col-md-3">
-      <p>
-        <label class="label-material">Estatus del requerimiento:</label>
-        <br>
-        <mat-button-toggle-group id="field_estatusRequerimiento" name="estatusRequerimiento"
-          formControlName="estatusRequerimientoId" aria-label="Estilo de fuente" class="botones-chicos">
-          <mat-button-toggle [value]="estatusRequerimientoOption.id"
-            *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById">
-            {{estatusRequerimientoOption.estatus}}</mat-button-toggle>
-        </mat-button-toggle-group>
-      </p>
+    <div class="row">
+        <div class="col-md-3">
+            <button mat-raised-button type="reset" (click)="clear()" class="btn gris">Limpiar</button>
+            <button mat-raised-button color="warn">Buscar</button>
+            <br>
+        </div>
     </div>
-    <div class="col-md-3  esp-arriba">
-      <mat-form-field class="full-width">
-        <mat-select id="field_cuenta" name="cuenta" formControlName="cuentaId" placeholder="Cuenta">
-          <mat-option>Cuenta</mat-option>
-          <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">
-            {{cuentaOption.clave}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 esp-arriba">
-      <mat-form-field class="full-width">
-        <mat-select id="field_perfil" name="perfil" formControlName="perfilId" placeholder="Perfil">
-          <mat-option>Perfil</mat-option>
-          <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">
-            {{perfilOption.perfil}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-md-3 esp-arriba">
-      <mat-form-field class="full-width">
-        <mat-select id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId"
-          placeholder="Nivel de Perfil">
-          <mat-option>Nivel de Perfil</mat-option>
-          <mat-option [value]="nivelPerfilOption.id"
-            *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{nivelPerfilOption.nivel}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-md-3">
-      <p>
-        <label class="label-material">Tipo de solicitud:</label>
-        <mat-button-toggle-group id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId"
-          aria-label="Estilo de fuente" class="botones-chicos2">
-          <mat-button-toggle> Todas </mat-button-toggle>
-          <mat-button-toggle [value]="tipoSolicitudOption.id"
-            *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById">
-            {{tipoSolicitudOption.solicitud}}</mat-button-toggle>
-        </mat-button-toggle-group>
-      </p>
-    </div>
-    <div class="col-md-3 esp-arriba">
-      <mat-form-field class="full-width">
-        <mat-select id="field_prioridad" name="prioridad" formControlName="prioridadId" placeholder="Prioridad">
-          <mat-option>Prioridad</mat-option>
-          <mat-option [value]="prioridadReqOption.id"
-            *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">
-            {{prioridadReqOption.prioridad}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-        <button mat-raised-button type="reset" (click)="clear()" class="btn gris">Limpiar</button>
-      <button mat-raised-button color="warn">Buscar</button>
-      <br>
-    </div>
-  </div>
 
 </form>
 <!-- Fin del formulario -->
 
 <br>
 <div>
-  <jhi-alert></jhi-alert>
-  <br />
-  <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
-    <span>No se encontraron requerimientos</span>
-  </div>
-  <div *ngIf="requerimientos?.length > 0">
-    <table class="table table-striped">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-          <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="estatusRequerimientoEstatus"><span>Estatus</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="cuentaClave"><span>Cuenta</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="perfilPerfil"><span>Perfil</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="nivelPerfilNivel"><span>Nivel</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="usuarioCreadorFirstName"><span>Ejecutivo</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="usuarioAsignadoFirstName"><span>Reclutador</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="tipoSolicitudSolicitud"><span>Tipo de Solicitud</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="vacantesSolicitadas"><span>Vacantes Solicitadas</span>
-          <fa-icon [icon]="'sort'"></fa-icon>
-        </th>
-          <th jhiSortBy="fechaResolucion"><span>Vacantes pendientes</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="prioridadPrioridad"><span>Prioridad</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="remplazoDe"><span>Último cv enviado</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-          <th jhiSortBy="proyecto"><span>Última entrevista</span>
-            <fa-icon [icon]="'sort'"></fa-icon>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let requerimiento of requerimientos ;trackBy: trackId">
-          <td><a [routerLink]="['/requerimiento', requerimiento.id, 'view' ]">{{requerimiento.id}}</a></td>
-          <td>
-            <div *ngIf="requerimiento.estatusRequerimientoId">{{requerimiento.estatusRequerimientoEstatus}}</div>
-          </td>
-          <td>
-            <div *ngIf="requerimiento.cuentaId">{{requerimiento.cuentaClave}}</div>
-          </td>
-          <td>
-            <div *ngIf="requerimiento.perfilId">{{requerimiento.perfilPerfil}}</div>
-          </td>
-          <td>
-            <div *ngIf="requerimiento.nivelPerfilId">{{requerimiento.nivelPerfilNivel}}</div>
-          </td>
-          <td>
-            {{requerimiento.usuarioCreadorFirstName}}
-          </td>
-          <td>
-            {{requerimiento.usuarioAsignadoFirstName}}
-          </td>
-          <td>
-            <div *ngIf="requerimiento.tipoSolicitudId">{{requerimiento.tipoSolicitudSolicitud}}</div>
-          </td>
-          <td>{{requerimiento.vacantesSolicitadas}}</td>
-          <td></td>
-          <td>
-            <div *ngIf="requerimiento.prioridadId">{{requerimiento.prioridadPrioridad}}</div>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div [hidden]="requerimientos?.length === 0">
-    <div class="row justify-content-center">
-      <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+    <jhi-alert></jhi-alert>
+    <br />
+    <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
+        <span>No se encontraron requerimientos</span>
     </div>
-    <div class="row justify-content-center">
-      <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
-        [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+    <div *ngIf="requerimientos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                    <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="estatusRequerimientoEstatus"><span>Estatus</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="cuentaClave"><span>Cuenta</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="perfilPerfil"><span>Perfil</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="nivelPerfilNivel"><span>Nivel</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="usuarioCreadorFirstName"><span>Ejecutivo</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="usuarioAsignadoFirstName"><span>Reclutador</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="tipoSolicitudSolicitud"><span>Tipo de Solicitud</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="vacantesSolicitadas"><span>Vacantes Solicitadas</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="fechaResolucion"><span>Vacantes pendientes</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="prioridadPrioridad"><span>Prioridad</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="remplazoDe"><span>Último cv enviado</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="proyecto"><span>Última entrevista</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let requerimiento of requerimientos ;trackBy: trackId">
+                    <td><a [routerLink]="['/requerimiento', requerimiento.id, 'view' ]">{{requerimiento.id}}</a></td>
+                    <td>
+                        <div *ngIf="requerimiento.estatusRequerimientoId">{{requerimiento.estatusRequerimientoEstatus}}</div>
+                    </td>
+                    <td>
+                        <div *ngIf="requerimiento.cuentaId">{{requerimiento.cuentaClave}}</div>
+                    </td>
+                    <td>
+                        <div *ngIf="requerimiento.perfilId">{{requerimiento.perfilPerfil}}</div>
+                    </td>
+                    <td>
+                        <div *ngIf="requerimiento.nivelPerfilId">{{requerimiento.nivelPerfilNivel}}</div>
+                    </td>
+                    <td>
+                        {{requerimiento.usuarioCreadorFirstName}}
+                    </td>
+                    <td>
+                        {{requerimiento.usuarioAsignadoFirstName}}
+                    </td>
+                    <td>
+                        <div *ngIf="requerimiento.tipoSolicitudId">{{requerimiento.tipoSolicitudSolicitud}}</div>
+                    </td>
+                    <td>{{requerimiento.vacantesSolicitadas}}</td>
+                    <td></td>
+                    <td>
+                        <div *ngIf="requerimiento.prioridadId">{{requerimiento.prioridadPrioridad}}</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+    <div [hidden]="requerimientos?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
 </div>

@@ -31,7 +31,7 @@ export class SkillApi {
 
   // HttpClient API get() method => Fetch employee
   getSkill(id: number): Observable<Skill> {
-    return this.http.get<Skill>(this.apiURL + '/skills/' + id, this.httpOptions)
+    return this.http.get<Skill>(this.apiURL + '/skill/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
