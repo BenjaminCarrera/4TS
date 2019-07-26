@@ -57,6 +57,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   reqId: number;
   SkillReq: any = [];
   idre: number;
+  // Verificar si selecciono algun skill
+  selSkillOpc: number;
+  selSkillReq: number;
+  selSkillEsc: number;
   // Mapa
   title = 'AGM project';
   latitude: number;
@@ -224,9 +228,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
     this.fruitInput.nativeElement.value = '';
     this.requeridosCtrl.setValue(null);
-    console.log(SkillRequeridosSelectedRequerido);
-    console.log(this.SkillRequeridosSelected);
-    console.log('este' + this.Skill.filter( s => (s.id === event.option.value)));
+    this.selSkillReq ++ ;
   }
   remove(requerido: ISkill): void {
     const index = this.SkillRequeridosSelected.indexOf(requerido);
@@ -234,6 +236,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     if (index >= 0) {
       this.SkillRequeridosSelected.splice(index, 1);
     }
+    this.selSkillReq ++ ;
   }
   add(event: MatChipInputEvent): void {
     // No se permite agregar elementos que no esten en la base de datos
@@ -244,6 +247,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
     this.fruitInput2.nativeElement.value = '';
     this.opcionalesCtrl.setValue(null);
+    this.selSkillOpc ++ ;
   }
   private _filter2(value: string): ISkill[] {
     const tempOpcionales: ISkill[] = this.Skill.slice(0);
@@ -262,6 +266,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     if (index >= 0) {
       this.SkillOpcionalesSelected.splice(index, 1);
     }
+    this.selSkillOpc ++ ;
   }
   add2(event: MatChipInputEvent): void {
     // No se permite agregar elementos que no esten en la base de datos
@@ -273,6 +278,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
     this.fruitInput3.nativeElement.value = '';
     this.esencialesCtrl.setValue(null);
+    this.selSkillEsc ++ ;
   }
   _filter3(value: string): ISkill[] {
     const tempEscenciales: ISkill[] = this.Skill.slice(0);
@@ -292,6 +298,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.SkillEsencialesSelected.splice(index, 1);
     }
     // Fin primer chip autocompletable
+    this.selSkillEsc ++ ;
   }
   add3(event: MatChipInputEvent): void {
     // No se permite agregar elementos que no esten en la base de datos
@@ -327,7 +334,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     });
     this.skillService
       .query({
-        size: 99999
+        size: 999999
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
@@ -464,8 +471,6 @@ export class RequerimientoUpdateComponent implements OnInit {
       tipoPeriodoId: requerimiento.tipoPeriodoId
     });
     this.cargarSkillsReq();
-    console.log('Hola');
-    console.log(this.SkillRequeridosSelected);
   }
 
   previousState() {
@@ -689,21 +694,21 @@ export class RequerimientoUpdateComponent implements OnInit {
         if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
           if ( clave.tipoSkillId === 1) {
             console.log('Es escencial' + clave.id);
-            const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
             const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
             this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
             this.fruitInput3.nativeElement.value = '';
             this.esencialesCtrl.setValue(null);
           } else if ( clave.tipoSkillId === 2) {
             console.log('Es requerido' + clave.id);
-            const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
             const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
             this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
             this.fruitInput.nativeElement.value = '';
             this.requeridosCtrl.setValue(null);
           } else if ( clave.tipoSkillId === 3) {
             console.log('Es opcional' + clave.id);
-            const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.tipoSkillId));
+            const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
             const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
             this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
             this.fruitInput2.nativeElement.value = '';
