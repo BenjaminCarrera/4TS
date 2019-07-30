@@ -96,7 +96,7 @@ export class SkillComponent implements OnInit, OnDestroy {
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
-    this.registerChangeInSkills();
+    // this.registerChangeInSkills();
   }
 
   ngOnDestroy() {
