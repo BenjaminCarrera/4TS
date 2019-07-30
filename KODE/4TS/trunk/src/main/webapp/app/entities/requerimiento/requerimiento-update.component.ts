@@ -567,20 +567,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
     const idRequerimiento = r.body.id;
     const addTempReqSkill: any[] = [];
-    // console.log('input con los skills modificados');
-    // console.log(this.fruitInput22);
-    // console.log('input con los skills que trajo de la bd');
-    // console.log(this.fruitInput222);
-    // console.log('diferencia de skills opcionales');
+    // ---------------------------------------------------
     const opcional = this.fruitInput22.filter(item =>  this.fruitInput222.indexOf(item) < 0);
-    // console.log('input que no registra datos');
-    // console.log('-------------');
-    // console.log(opcional);
-    // console.log('-------------');
     if (opcional.length > 0) {
-      // console.log('Si hubo diferencias');
       if (this.fruitInput222.length < this.fruitInput22.length) {
-        // console.log('Se añadieron skills');
           opcional.forEach(opcionall => {
           const tempAddOpcional = new SkillRequerimiento();
           tempAddOpcional.idRequerimientoId = idRequerimiento;
@@ -588,23 +578,13 @@ export class RequerimientoUpdateComponent implements OnInit {
           tempAddOpcional.tipoSkillId = 3;
           addTempReqSkill.push(tempAddOpcional);
         });
-
-      } else if (this.fruitInput222.length > this.fruitInput22.length) {
-        // console.log('Se quitaron skills');
       }
     } else {
-      // console.log('No hubo diferencias');
     }
     // ---------------------------------------------------
     const requerido = this.fruitInputt.filter(item =>  this.fruitInputtt.indexOf(item) < 0);
-    // console.log('input que no registra datos');
-    // console.log('-------------');
-    // console.log(requerido);
-    // console.log('-------------');
     if (requerido.length > 0) {
-      // console.log('Si hubo diferencias');
       if (this.fruitInputtt.length < this.fruitInputt.length) {
-          // console.log('Se añadieron skills');
         requerido.forEach(requeridoo => {
           const tempAddRequerido = new SkillRequerimiento();
           tempAddRequerido.idRequerimientoId = idRequerimiento;
@@ -613,37 +593,23 @@ export class RequerimientoUpdateComponent implements OnInit {
           addTempReqSkill.push(tempAddRequerido);
         });
       } else if (this.fruitInput222.length > this.fruitInput22.length) {
-        console.log('Se quitaron skills');
       }
     } else {
-      console.log('No hubo diferencias');
     }
     // ------------------------------------------------------
     const escencial = this.fruitInput33.filter(item =>  this.fruitInput333.indexOf(item) < 0);
-    // console.log('input que no registra datos');
-    // console.log('-------------');
-    // console.log(escencial);
-    // console.log('-------------');
     if (escencial.length > 0) {
-      console.log('Si hubo diferencias');
       if (this.fruitInput333.length < this.fruitInput33.length) {
-        console.log('Se añadieron skills');
           escencial.forEach(esencial => {
           const tempAddEsencial = new SkillRequerimiento();
           tempAddEsencial.idRequerimientoId = idRequerimiento;
           tempAddEsencial.idSkillId = esencial.id;
           tempAddEsencial.tipoSkillId = 1;
           addTempReqSkill.push(tempAddEsencial);
-          console.log('input que si registra datos');
-          console.log('-------------');
-          console.log(addTempReqSkill);
-          console.log('-------------');
         });
       } else if (this.fruitInput222.length > this.fruitInput22.length) {
-        console.log('Se quitaron skills');
       }
     } else {
-      console.log('No hubo diferencias');
     }
     const updateKillReq = { lista: addTempReqSkill };
     this.subscribeToSaveResponseSkills(this.skillRequerimientoService.patch(updateKillReq));
@@ -730,6 +696,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     } else {
       this.reemplazo = false;
     }
+    return this.reemplazo;
   }
   // Get Current Location Coordinates
   private setCurrentLocation() {
