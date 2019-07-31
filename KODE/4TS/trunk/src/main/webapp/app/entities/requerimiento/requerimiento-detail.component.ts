@@ -139,7 +139,8 @@ export class RequerimientoDetailComponent implements OnInit {
   loadSkillReq() {
     this.skillRequerimientoService
       .query({
-        page: this.page - 1
+        page: this.page - 1,
+        size: 9999
       })
       .subscribe(
         (res: HttpResponse<ISkillRequerimiento[]>) => this.paginateSkillRequerimientos(res.body, res.headers),
