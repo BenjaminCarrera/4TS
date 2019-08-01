@@ -40,6 +40,7 @@ export class CandidatoService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
+    console.log(options);
     return this.http
       .get<ICandidato[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));

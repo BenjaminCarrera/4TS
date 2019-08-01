@@ -1,7 +1,7 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="App.candidato.home.title">Candidatoes</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-candidato" [routerLink]="['/candidato/new']">
+        <span jhiTranslate="App.candidato.home.title">Candidatos</span>
+        <button id="jh-create-entity" class="btn btn-danger float-right jh-create-entity create-candidato" [routerLink]="['/candidato/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="App.candidato.home.createLabel">
             Create new Candidato
@@ -10,6 +10,108 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+</div>
+<form role="form" (ngSubmit)="updateFilters()" [formGroup]="editForm">
+    <div class="row">
+        <div class="col-md-3 ">
+            <p>
+                <label class="label-material">
+                    Estatus del candidato:
+              </label>
+                <br>
+                <mat-button-toggle-group id="field_estatusCandId" formControlName="estatusCandId" name="estatusCand" aria-label="Estilo de fuente">
+                    <mat-button-toggle *ngFor="let estatus of estatusCandidatos; trackBy: trackEstatusCandById" [value]="estatus.id"> {{estatus.estatus}} </mat-button-toggle>
+                </mat-button-toggle-group>
+            </p>
+        </div>
+
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <input id="field_nombre" formControlName="nombre" name="nombre" matInput placeholder="Nombre">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <input formControlName="apellidoPaterno" matInput placeholder="Apellido paterno">
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <input formControlName="apellidoMaterno" matInput placeholder="Apellido materno">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <mat-select formControlName="reclutadorId" placeholder="Reclutador asignado">
+                        <mat-option> Reclutador asignado </mat-option>
+                        <mat-option *ngFor="let usuarios of usuariosAsignado" [value]="usuarios.id"> {{usuarios.login}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                <label class="label-material">
+              Estatus laboral:
+            </label>
+                <br>
+                <mat-button-toggle-group formControlName="estatusLabId" name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos">
+                    <mat-button-toggle *ngFor="let estatusLaboral of estatusLaborales" [value]="estatusLaboral.id"> {{estatusLaboral.estatus}} </mat-button-toggle>
+                </mat-button-toggle-group>
+            </p>
+        </div>
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <mat-select formControlName="esquemaContratacionId" placeholder="Esquema de contratación">
+                        <mat-option> esquema de contratación </mat-option>
+                        <mat-option *ngFor="let esquemaContratacion of esquemaContratacionKodes" [value]="esquemaContratacion.id"> {{esquemaContratacion.esquema}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <mat-select formControlName="perfilId" placeholder="Perfil">
+                        <mat-option>Perfil</mat-option>
+                        <mat-option *ngFor="let perfiles of perfiles" [value]="perfiles.id"> {{perfiles.perfil}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-2 ">
+            <div class="example-container">
+                <mat-form-field class=" esp-arriba">
+                    <mat-select formControlName="nivelPerfilId" placeholder="Nivel perfil">
+                        <mat-option>Nivel perfil</mat-option>
+                        <mat-option *ngFor="let nivelPerfil of nivelPerfiles" [value]="nivelPerfil.id"> {{nivelPerfil.nivel}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <br>
+            <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
+            <button mat-raised-button color="warn">Buscar</button>
+            <br>
+        </div>
+    </div>
+
+    <br>
+</form>
+<div>
     <div class="alert alert-warning" *ngIf="candidatoes?.length === 0">
         <span jhiTranslate="App.candidato.home.notFound">No candidatoes found</span>
     </div>

@@ -10,6 +10,21 @@ import { AccountService } from 'app/core';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { CandidatoService } from './candidato.service';
+import { EstatusCandidato, IEstatusCandidato } from '../../shared/model/estatus-candidato.model';
+import { EstatusCandidatoService } from '../estatus-candidato/estatus-candidato.service';
+// import { EsquemaContratacionKode } from '../../shared/model/esquema-contratacion-kode.model';
+import { IEsquemaContratacionKode } from 'app/shared/model/esquema-contratacion-kode.model';
+import { EsquemaContratacionKodeService } from '../esquema-contratacion-kode/esquema-contratacion-kode.service';
+import { IUser } from '../../core/user/user.model';
+import { UserService } from '../../core/user/user.service';
+import { IEstatusLaboral } from 'app/shared/model/estatus-laboral.model';
+import { EstatusLaboralService } from '../estatus-laboral';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { esquemaContratacionKodePopupRoute } from '../esquema-contratacion-kode/esquema-contratacion-kode.route';
+import { IPerfil } from '../../shared/model/perfil.model';
+import { PerfilService } from '../perfil/perfil.service';
+import { INivelPerfil } from '../../shared/model/nivel-perfil.model';
+import { NivelPerfilService } from '../nivel-perfil/nivel-perfil.service';
 
 @Component({
   selector: 'jhi-candidato',
@@ -29,15 +44,42 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+  criteriaTemp: any;
+  criteria: any [];
+  estatusCandidatos: IEstatusCandidato [];
+  estatusLaborales: IEstatusLaboral [];
+  esquemaContratacionKodes: IEsquemaContratacionKode [];
+  usuariosAsignado: IUser [];
+  perfiles: IPerfil [];
+  nivelPerfiles: INivelPerfil [];
+
+  editForm = this.fb.group ({
+    estatusCandId: [],
+    nombre: [],
+    apellidoPaterno: [],
+    apellidoMaterno: [],
+    reclutadorId: [],
+    estatusLabId: [],
+    esquemaContratacionId: [],
+    perfilId: [],
+    nivelPerfilId: []
+  });
 
   constructor(
+    protected estatusCandidatoService: EstatusCandidatoService,
+    protected perfilService: PerfilService,
+    protected nivelPerfilService: NivelPerfilService,
+    protected userService: UserService,
+    protected esquemaContratacionKodeService: EsquemaContratacionKodeService,
+    protected estatusLaboralService: EstatusLaboralService,
     protected candidatoService: CandidatoService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
-    protected eventManager: JhiEventManager
+    protected eventManager: JhiEventManager,
+    private fb: FormBuilder
   ) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -49,8 +91,10 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
+    console.log(this.criteria);
     this.candidatoService
       .query({
+        criteria: this.criteria,
         page: this.page - 1,
         size: this.itemsPerPage,
         sort: this.sort()
@@ -59,6 +103,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpResponse<ICandidato[]>) => this.paginateCandidatoes(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+
   }
 
   loadPage(page: number) {
@@ -81,6 +126,8 @@ export class CandidatoComponent implements OnInit, OnDestroy {
 
   clear() {
     this.page = 0;
+    this.criteria = [];
+    this.criteriaTemp = {};
     this.router.navigate([
       '/candidato',
       {
@@ -93,6 +140,71 @@ export class CandidatoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadAll();
+    this.estatusCandidatoService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IEstatusCandidato[]>) => this.paginateEstatusCandidatoes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+
+      this.estatusLaboralService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IEstatusLaboral[]>) => this.paginateEstatusLaborales(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+
+      this.esquemaContratacionKodeService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IEsquemaContratacionKode[]>) => this.paginateEsquemaContratacionKodes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+
+      this.userService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IUser[]>) => this.paginateUser(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+
+      this.perfilService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<IPerfil[]>) => this.paginatePerfils(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+
+      this.nivelPerfilService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe(
+        (res: HttpResponse<INivelPerfil[]>) => this.paginateNivelPerfils(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
@@ -101,6 +213,10 @@ export class CandidatoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.eventManager.destroy(this.eventSubscriber);
+  }
+
+  trackEstatusCandById(index: number, item: IEstatusCandidato) {
+    return item.id;
   }
 
   trackId(index: number, item: ICandidato) {
@@ -119,13 +235,102 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     return result;
   }
 
+  updateFilters() {
+    this.page = 0;
+    this.criteria = [];
+    this.criteriaTemp = {};
+  console.log(this.editForm.get(['estatusCandId']).value);
+    if (this.editForm.get(['estatusCandId']).value !== null) {
+      this.criteriaTemp = { key: 'estatusCandidatoId.equals', value: this.editForm.get(['estatusCandId']).value };
+      console.log(this.criteriaTemp);
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['estatusLabId']).value !== null) {
+      this.criteriaTemp = { key: 'estatusLaboralId.equals', value: this.editForm.get(['estatusLabId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['esquemaContratacionId']).value !== null) {
+      this.criteriaTemp = { key: 'esquemaContratacionKodeId.equals', value: this.editForm.get(['esquemaContratacionId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['perfilId']).value !== null) {
+      this.criteriaTemp = { key: 'perfilId.equals', value: this.editForm.get(['perfilId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['nivelPerfilId']).value !== null) {
+      this.criteriaTemp = { key: 'nivelPerfilId.equals', value: this.editForm.get(['nivelPerfilId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['reclutadorId']).value !== null) {
+      this.criteriaTemp = { key: 'usuarioAsignadoId.equals', value: this.editForm.get(['reclutadorId']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['nombre']).value !== null) {
+      this.criteriaTemp = {key: 'nombre.equals', value: this.editForm.get(['nombre']).value };
+      console.log(this.criteriaTemp);
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['apellidoPaterno']).value !== null) {
+      this.criteriaTemp = { key: 'apellidoPaterno.equals', value: this.editForm.get(['apellidoPaterno']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    if (this.editForm.get(['apellidoMaterno']).value !== null) {
+      this.criteriaTemp = { key: 'apellidoMaterno.equals', value: this.editForm.get(['apellidoMaterno']).value };
+      this.criteria.push(this.criteriaTemp);
+    }
+    this.router.navigate([
+      '/candidato',
+      {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    ]);
+    this.loadAll();
+  }
+
+  protected paginateUser(data: IUser[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.usuariosAsignado = data;
+  }
+
   protected paginateCandidatoes(data: ICandidato[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.candidatoes = data;
   }
 
+  protected paginateEstatusCandidatoes(data: IEstatusCandidato[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.estatusCandidatos = data;
+  }
+
+  protected paginateEstatusLaborales(data: IEstatusLaboral[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.estatusLaborales = data;
+  }
+
+  protected paginateEsquemaContratacionKodes(data: IEsquemaContratacionKode[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.esquemaContratacionKodes = data;
+  }
+
+  protected paginatePerfils(data: IPerfil[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.perfiles = data;
+  }
+
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  protected paginateNivelPerfils(data: INivelPerfil[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.nivelPerfiles = data;
   }
 }
