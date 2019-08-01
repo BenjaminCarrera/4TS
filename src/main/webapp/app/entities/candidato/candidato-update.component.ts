@@ -49,16 +49,41 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tarea } from 'app/agreg-cand';
+import { EstadoService } from '../estado';
+import { IEstado } from 'app/shared/model/estado.model';
+import { ALL_ITEMS } from 'app/shared';
+import { IMunicipio } from 'app/shared/model/municipio.model';
+import { MunicipioService } from '../municipio/municipio.service';
+import { ICodigoPostal } from 'app/shared/model/codigo-postal.model';
+import { CodigoPostalService } from '../codigo-postal';
+import { exportDefaultSpecifier } from '@babel/types';
+import { ISkill } from 'app/shared/model/skill.model';
+import { SkillService } from '../skill';
+import { IDominioSkill } from 'app/shared/model/dominio-skill.model';
+import { DominioSkillService } from '../dominio-skill';
+import { ISkillCandidato, SkillCandidato } from 'app/shared/model/skill-candidato.model';
 
 @Component({
   selector: 'jhi-agreg-cand',
-  templateUrl: './candidato-update.component.html'
+  templateUrl: './candidato-update.component.html',
+  styleUrls: [
+    'agreg-cand.component.scss'
+  ]
 })
 export class CandidatoUpdateComponent implements OnInit {
   selecteds = new FormControl(0);
   matAutocomplete: MatAutocomplete;
   cuentaIntCtrl = new FormControl();
   cuentasInt: any[];
+  estados: IEstado[];
+  allItems: any;
+  municipios: IMunicipio[];
+  skills: ISkill[];
+  skillsFilter: ISkill[];
+  dominioSkill: IDominioSkill[];
+  skillCandidatoes: ISkillCandidato[];
+  skillsSelected: ISkill[];
+  errorMessageSkill: any;
 
   isSaving: boolean;
 
@@ -116,7 +141,10 @@ export class CandidatoUpdateComponent implements OnInit {
     telefonoAdicional: [null, [Validators.maxLength(20)]],
     coorLat: [],
     coorLong: [],
-    dirCodigoPostal: [null, [Validators.maxLength(5)]],
+    dirCodigoPostal: [null, [Validators.maxLength(5), Validators.minLength(5)]],
+    dirEstado: [],
+    dirMunicipio: [],
+    dirColonia: [],
     dirCalle: [null, [Validators.maxLength(100)]],
     noExt: [null, [Validators.maxLength(100)]],
     noInt: [null, [Validators.maxLength(100)]],
@@ -157,7 +185,10 @@ export class CandidatoUpdateComponent implements OnInit {
     coloniaId: [],
     antecedentesEsquemaContratacionId: [],
     estudiosId: [],
-    estCanInactivoId: []
+    estCanInactivoId: [],
+    skill: [],
+    skillDominio: [],
+    skillCalificacion: []
   });
 
   selectable = true;
@@ -189,6 +220,11 @@ export class CandidatoUpdateComponent implements OnInit {
   @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
 
   constructor(
+    protected codigoPostalService: CodigoPostalService,
+    protected skillService: SkillService,
+    protected dominioSkillService: DominioSkillService,
+    protected estadoService: EstadoService,
+    protected municipioService: MunicipioService,
     protected jhiAlertService: JhiAlertService,
     protected candidatoService: CandidatoService,
     protected tipoPeriodoService: TipoPeriodoService,
@@ -209,13 +245,60 @@ export class CandidatoUpdateComponent implements OnInit {
     protected estCanInactivoService: EstCanInactivoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) { }
+  ) {
+    this.allItems = ALL_ITEMS;
+  }
+
+  clearDir() {
+    this.municipios = [];
+    this.colonias = [];
+    this.editForm.get(['dirEstado']).setValue(null);
+    this.estadoService
+      .query({
+        size: this.allItems
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEstado[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IEstado[]>) => response.body)
+      )
+      .subscribe(
+        (res: IEstado[]) => (this.estados = res), (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
 
   ngOnInit() {
+    this.errorMessageSkill = null;
+    this.skillCandidatoes = [];
+    this.skillsSelected = [];
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ candidato }) => {
       this.updateForm(candidato);
     });
+    this.clearDir();
+    this.skillService
+      .query({
+        size: ALL_ITEMS
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe(
+        (res: ISkill[]) => (this.setSkills(res)),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+    this.dominioSkillService
+      .query({
+        size: ALL_ITEMS,
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IDominioSkill[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IDominioSkill[]>) => response.body)
+      )
+      .subscribe(
+        (res: IDominioSkill[]) => this.dominioSkill = res,
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.tipoPeriodoService
       .query()
       .pipe(
@@ -306,13 +389,6 @@ export class CandidatoUpdateComponent implements OnInit {
         map((response: HttpResponse<IEstatusLaboral[]>) => response.body)
       )
       .subscribe((res: IEstatusLaboral[]) => (this.estatuslaborals = res), (res: HttpErrorResponse) => this.onError(res.message));
-    this.coloniaService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IColonia[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IColonia[]>) => response.body)
-      )
-      .subscribe((res: IColonia[]) => (this.colonias = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.esqContRecService
       .query()
       .pipe(
@@ -509,6 +585,14 @@ export class CandidatoUpdateComponent implements OnInit {
     return item.id;
   }
 
+  trackEstadoById(index: number, item: IEstado) {
+    return item.id;
+  }
+
+  trackMunicipioById(index: number, item: IMunicipio) {
+    return item.id;
+  }
+
   trackDocumentoById(index: number, item: IDocumento) {
     return item.id;
   }
@@ -562,6 +646,18 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   trackEstCanInactivoById(index: number, item: IEstCanInactivo) {
+    return item.id;
+  }
+
+  trackSkillById(index: number, item: ISkill) {
+    return item.id;
+  }
+
+  trackDominioById(index: number, item: IDominioSkill) {
+    return item.id;
+  }
+
+  trackSkillCandidatoById(index: number, item: ISkillCandidato) {
     return item.id;
   }
 
@@ -678,4 +774,156 @@ export class CandidatoUpdateComponent implements OnInit {
     }
     // Fin primer chip autocompletable
   }
+
+  changeCodigoPostal(event: any) {
+    const cp = event.srcElement.value;
+    if (cp.length === 5) {
+      this.codigoPostalService
+        .query({
+          criteria: [{ key: 'codigoPostal.equals', value: cp }]
+        })
+        .pipe(
+          filter((mayBeOk: HttpResponse<ICodigoPostal[]>) => mayBeOk.ok),
+          map((response: HttpResponse<ICodigoPostal[]>) => response.body)
+        )
+        .subscribe(
+          (res: ICodigoPostal[]) => (this.updateMunicipio(res)), (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    } else if (cp.length === 0) {
+      this.clearDir();
+    }
+  }
+
+  onChangeEstado(event: any) {
+    this.colonias = [];
+    this.municipioService
+      .query({
+        criteria: [{ key: 'estadoId.in', value: event.value }],
+        size: ALL_ITEMS
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IMunicipio[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IMunicipio[]>) => response.body)
+      )
+      .subscribe(
+        (res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  onChangeMunicipio(event: any) {
+    this.coloniaService
+      .query({
+        criteria: [{ key: 'municipioId.equals', value: event.value }],
+        size: ALL_ITEMS
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IColonia[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IColonia[]>) => response.body)
+      )
+      .subscribe(
+        (res: IColonia[]) => (this.colonias = res), (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  updateMunicipio(codigosPostales: ICodigoPostal[]) {
+    const cp = codigosPostales.shift();
+    this.municipioService
+      .find(cp.municipioId)
+      .pipe(
+        filter((mayBeOk: HttpResponse<IMunicipio>) => mayBeOk.ok),
+        map((response: HttpResponse<IMunicipio>) => response.body)
+      )
+      .subscribe(
+        (res: IMunicipio) => (this.updateEstadoColonia(res, cp.id)), (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  updateEstadoColonia(municipio: IMunicipio, idCp: number) {
+    this.estadoService
+      .find(municipio.estadoId)
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEstado>) => mayBeOk.ok),
+        map((response: HttpResponse<IEstado>) => response.body)
+      )
+      .subscribe(
+        (res: IEstado) => (this.setMunicipioEstado(municipio, res)), (res: HttpErrorResponse) => this.onError(res.message)
+      );
+    this.coloniaService
+      .query({
+        criteria: [{ key: 'codigoPostalId.equals', value: idCp }],
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IColonia[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IColonia[]>) => response.body)
+      )
+      .subscribe((res: IColonia[]) => (this.colonias = res), (res: HttpErrorResponse) => this.onError(res.message));
+  }
+
+  setMunicipioEstado(municipio: IMunicipio, estado: IEstado) {
+    this.municipios = [];
+    this.municipios.push(municipio);
+    this.editForm.get(['dirMunicipio']).setValue(municipio.id);
+
+    this.estados = [];
+    this.estados.push(estado);
+    this.editForm.get(['dirEstado']).setValue(estado.id);
+  }
+
+  setSkills(res: ISkill[]) {
+    this.skills = res;
+    this.skillsFilter = res;
+  }
+
+  addSkillCandidato() {
+    this.errorMessageSkill = null;
+    if (this.editForm.get(['skill']).value != null && this.editForm.get(['skillDominio']).value != null && this.editForm.get(['skillCalificacion']).value != null) {
+      const newSkillCandidato: ISkillCandidato = new SkillCandidato();
+      newSkillCandidato.idSkillId = this.editForm.get(['skill']).value;
+      const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
+      this.skillsSelected.push(skillSelected);
+      newSkillCandidato.idSkillNombre = skillSelected.nombre;
+      newSkillCandidato.nivelSkillId = this.editForm.get(['skillDominio']).value;
+      const letdominioSkillSelected = this.dominioSkill.find(item => item.id === newSkillCandidato.nivelSkillId);
+      newSkillCandidato.nivelSkillDominio = letdominioSkillSelected.dominio;
+      newSkillCandidato.calificacionSkill = this.editForm.get(['skillCalificacion']).value;
+      this.skillCandidatoes.push(newSkillCandidato);
+
+      this.editForm.get(['skill']).setValue(null);
+      this.editForm.get(['skillDominio']).setValue(null);
+      this.editForm.get(['skillCalificacion']).setValue(null);
+
+      this.updateSkills();
+    } else {
+      this.errorMessageSkill = 'Debe ingresar todos los datos';
+    }
+  }
+
+  updateSkills() {
+    const temp: ISkill[] = this.skills.slice(0);
+    this.skillsSelected.forEach(sk => {
+      const index = temp.indexOf(sk);
+      if (index >= 0) {
+        temp.splice(index, 1);
+      }
+    });
+    this.skillsFilter = temp;
+  }
+
+  removeSkillCandidato(event: any) {
+    this.errorMessageSkill = null;
+    const idSkill: number = event.srcElement.value;
+    const skillsCandidatoDelete: ISkillCandidato[] = this.skillCandidatoes.filter(s => s.idSkillId == idSkill);
+    const skillCandidatoDelete = skillsCandidatoDelete.shift();
+    const skillDel = this.skills.find(item => item.id === skillCandidatoDelete.idSkillId);
+    const index = this.skillCandidatoes.indexOf(skillCandidatoDelete);
+    if (index >= 0) {
+      this.skillCandidatoes.splice(index, 1);
+    }
+    const indeSkillDel = this.skillsSelected.indexOf(skillDel);
+    if (indeSkillDel >= 0) {
+      this.skillsSelected.splice(indeSkillDel, 1);
+    }
+    this.updateSkills();
+  }
+
 }
