@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, NgZone } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -62,6 +62,7 @@ import { SkillService } from '../skill';
 import { IDominioSkill } from 'app/shared/model/dominio-skill.model';
 import { DominioSkillService } from '../dominio-skill';
 import { ISkillCandidato, SkillCandidato } from 'app/shared/model/skill-candidato.model';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -74,7 +75,10 @@ export class CandidatoUpdateComponent implements OnInit {
   selecteds = new FormControl(0);
   matAutocomplete: MatAutocomplete;
   cuentaIntCtrl = new FormControl();
-  cuentasInt: any[];
+  cuentasIntSelected: ICuenta[];
+  cuentasInteres: ICuenta[];
+  cuentasRechSelected: ICuenta[];
+  cuentasRechazadas: ICuenta[];
   estados: IEstado[];
   allItems: any;
   municipios: IMunicipio[];
@@ -84,6 +88,11 @@ export class CandidatoUpdateComponent implements OnInit {
   skillCandidatoes: ISkillCandidato[];
   skillsSelected: ISkill[];
   errorMessageSkill: any;
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  geoCoder: any;
+  searchElementRef: ElementRef;
 
   isSaving: boolean;
 
@@ -196,19 +205,8 @@ export class CandidatoUpdateComponent implements OnInit {
   removable = true;
   removable2 = true;
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['EUSA'];
-  allFruits: string[] = ['AXA', 'AXOV', 'AXSI', 'BAZ'];
   filteredFruits2: Observable<string[]>;
-  fruits2: string[] = ['Listo!'];
-  allFruits2: string[] = ['Listo!', 'AXOV', 'AXSI', 'BAZ'];
-  ELEMENT_DATA2: Tarea[] = [
-    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
-    { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
-    { Skills: 'Angular', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' },
-    { Skills: 'Java', Dominio: 'Intermedio', Calificacion: '10.0', Botones: 'Eliminar' }
-  ];
-  dataSource2 = new MatTableDataSource(this.ELEMENT_DATA2);
-  displayedColumns2: string[] = ['Skills', 'Dominio', 'Calificacion', 'Botones'];
+
   addOnBlur = true;
   addOnBlur2 = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -216,11 +214,12 @@ export class CandidatoUpdateComponent implements OnInit {
   fruitCtrl2 = new FormControl();
   @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
-  fruitCtrl = new FormControl();
   @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
 
   constructor(
     protected codigoPostalService: CodigoPostalService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
     protected skillService: SkillService,
     protected dominioSkillService: DominioSkillService,
     protected estadoService: EstadoService,
@@ -247,6 +246,12 @@ export class CandidatoUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.allItems = ALL_ITEMS;
+    this.cuentaIntCtrl.valueChanges.subscribe(newValue => {
+      this.cuentasInteres = this.filterCuentasInteres(newValue);
+    });
+    this.fruitCtrl2.valueChanges.subscribe(newValue => {
+      this.cuentasRechazadas = this.filterCuentasRechazadas(newValue);
+    });
   }
 
   clearDir() {
@@ -268,6 +273,8 @@ export class CandidatoUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.errorMessageSkill = null;
+    this.cuentasIntSelected = [];
+    this.cuentasRechSelected = [];
     this.skillCandidatoes = [];
     this.skillsSelected = [];
     this.isSaving = false;
@@ -275,6 +282,27 @@ export class CandidatoUpdateComponent implements OnInit {
       this.updateForm(candidato);
     });
     this.clearDir();
+    this.mapsAPILoader.load().then(() => {
+      this.setCurrentLocation();
+      this.geoCoder = new google.maps.Geocoder;
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 50;
+        });
+      });
+    });
     this.skillService
       .query({
         size: ALL_ITEMS
@@ -326,7 +354,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<ICuenta[]>) => mayBeOk.ok),
         map((response: HttpResponse<ICuenta[]>) => response.body)
       )
-      .subscribe((res: ICuenta[]) => (this.cuentas = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: ICuenta[]) => (this.setCuentas(res)), (res: HttpErrorResponse) => this.onError(res.message));
     this.fuenteReclutamientoService
       .query()
       .pipe(
@@ -677,102 +705,98 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   addCuentaInt(event: MatChipInputEvent): void {
-    // Inicio primer chip autocompletable
-
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.cuentasInt.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.cuentaIntCtrl.setValue(null);
-    }
-    // Fin primer chip autocompletable
+    // No se permite agregar elementos que no esten en la base de datos
   }
 
-  remove(fruit: string): void {
-    // Inicio primer chip autocompletable
-    const index = this.fruits.indexOf(fruit);
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const cuentasIntSelected: ICuenta[] = this.cuentas.filter( c => (c.id === event.option.value));
+    const cuentaIntSelected: ISkill = cuentasIntSelected.shift();
+    this.cuentasIntSelected.push(cuentaIntSelected);
+
+    this.fruitInput.nativeElement.value = '';
+    this.cuentaIntCtrl.setValue(null);
+    this.updateCuentasInteres();
+  }
+
+  remove(cuentaInteres: ICuenta): void {
+    const index = this.cuentasIntSelected.indexOf(cuentaInteres);
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.cuentasIntSelected.splice(index, 1);
     }
+    this.updateCuentasInteres();
   }
 
-  remove2(fruit2: string): void {
-    // Inicio primer chip autocompletable
-    const index2 = this.fruits2.indexOf(fruit2);
-    if (index2 >= 0) {
-      this.fruits2.splice(index2, 1);
+  filterCuentasInteres(value: string): ICuenta[] {
+    const temp: ICuenta[] = this.cuentas.slice(0);
+    this.cuentasIntSelected.forEach(ci => {
+      const index = temp.indexOf(ci);
+      if (index >= 0) {
+        temp.splice(index, 1);
+      }
+    });
+    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
+  }
+
+  remove2(cuentaRechazada: ICuenta): void {
+    const index = this.cuentasRechSelected.indexOf(cuentaRechazada);
+    if (index >= 0) {
+      this.cuentasRechSelected.splice(index, 1);
     }
-    // Fin primer chip autocompletable
+    this.updateCuentasRechazadas();
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    // Inicio primer chip autocompletable
-    this.fruits2.push(event.option.viewValue);
+    const cuentasRechSelected: ICuenta[] = this.cuentas.filter( c => (c.id === event.option.value));
+    const cuentaRechSelected: ISkill = cuentasRechSelected.shift();
+    this.cuentasRechSelected.push(cuentaRechSelected);
+
     this.fruitInput2.nativeElement.value = '';
     this.fruitCtrl2.setValue(null);
-  }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    // Inicio primer chip autocompletable
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
-  }
-  add(event: MatChipInputEvent): void {
-    // Inicio primer chip autocompletable
-
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl.setValue(null);
-    }
-    // Fin primer chip autocompletable
+    this.updateCuentasRechazadas();
   }
   add2(event: MatChipInputEvent): void {
-    // Inicio primer chip autocompletable
+    // No se permite agregar elementos que no esten en la base de datos
+  }
 
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete2.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits2.push(value.trim());
+  filterCuentasRechazadas(value: string): ICuenta[] {
+    const temp: ICuenta[] = this.cuentas.slice(0);
+    this.cuentasRechSelected.forEach(cr => {
+      const index = temp.indexOf(cr);
+      if (index >= 0) {
+        temp.splice(index, 1);
       }
+    });
+    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
+  }
 
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.fruitCtrl2.setValue(null);
+  setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 50;
+        this.getAddress(this.latitude, this.longitude);
+      });
     }
-    // Fin primer chip autocompletable
+  }
+  markerDragEnd($event: MouseEvent) {
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+    this.getAddress(this.latitude, this.longitude);
+  }
+  getAddress(latitude: any, longitude: any) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          this.zoom = 50;
+          // this.address = results[0].formatted_address;
+        } else {
+          window.alert('No hay resultados disponibles');
+        }
+      } else {
+        window.alert('La geolocalizacion fallo: ' + status);
+      }
+
+    });
   }
 
   changeCodigoPostal(event: any) {
@@ -874,6 +898,12 @@ export class CandidatoUpdateComponent implements OnInit {
     this.skillsFilter = res;
   }
 
+  setCuentas(res: ICuenta[]) {
+    this.cuentas = res;
+    this.cuentasInteres = res;
+    this.cuentasRechazadas = res;
+  }
+
   addSkillCandidato() {
     this.errorMessageSkill = null;
     if (this.editForm.get(['skill']).value != null && this.editForm.get(['skillDominio']).value != null && this.editForm.get(['skillCalificacion']).value != null) {
@@ -907,6 +937,28 @@ export class CandidatoUpdateComponent implements OnInit {
       }
     });
     this.skillsFilter = temp;
+  }
+
+  updateCuentasInteres() {
+    const temp: ICuenta[] = this.cuentas.slice(0);
+    this.cuentasIntSelected.forEach(ci => {
+      const index = temp.indexOf(ci);
+      if (index >= 0) {
+        temp.splice(index, 1);
+      }
+    });
+    this.cuentasInteres = temp;
+  }
+
+  updateCuentasRechazadas() {
+    const temp: ICuenta[] = this.cuentas.slice(0);
+    this.cuentasRechSelected.forEach(cr => {
+      const index = temp.indexOf(cr);
+      if (index >= 0) {
+        temp.splice(index, 1);
+      }
+    });
+    this.cuentasRechazadas = temp;
   }
 
   removeSkillCandidato(event: any) {

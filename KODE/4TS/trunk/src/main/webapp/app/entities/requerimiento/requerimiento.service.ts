@@ -40,6 +40,7 @@ export class RequerimientoService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
+    console.log(options);
     return this.http
       .get<IRequerimiento[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
