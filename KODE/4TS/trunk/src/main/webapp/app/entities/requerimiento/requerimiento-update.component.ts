@@ -44,6 +44,7 @@ import { ISkill } from 'app/shared/model/skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 import { SkillRequerimientoService } from '../skill-requerimiento';
 import { SkillReqService } from '../../servicios/skill-req.service';
+import { ALL_ITEMS } from 'app/shared';
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -341,7 +342,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     });
     this.skillService
       .query({
-        size: 999999
+        size: ALL_ITEMS
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
