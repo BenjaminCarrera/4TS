@@ -13,13 +13,14 @@ import {
   requerimientoRoute,
   requerimientoPopupRoute
 } from './';
+import { MAPS_API_KEY } from 'app/shared/constants/goole.constants';
 
 const ENTITY_STATES = [...requerimientoRoute, ...requerimientoPopupRoute];
 
 @NgModule({
   imports: [AppSharedModule, RouterModule.forChild(ENTITY_STATES),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCrRv-Zq8fqhVFf02Kfg2TPrjcJsJQE0e0',
+      apiKey: MAPS_API_KEY,
       libraries: ['places']
     })],
   declarations: [

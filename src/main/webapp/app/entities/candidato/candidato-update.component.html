@@ -23,6 +23,11 @@
                                 </div>
                             </div>
 
+                            <input type="hidden" placeholder="Coor Lat" name="coorLat" id="field_coorLat"
+                                [value]="latitude" formControlName="coorLat" />
+                            <input type="hidden" placeholder="Coor Long" name="coorLong" id="field_coorLong"
+                                [value]="longitude" formControlName="coorLong" />
+
                             <div class="fieldset-content">
 
                                 <div class="row">
@@ -223,11 +228,6 @@
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <mat-form-field class="">
-                                            <input matInput placeholder="Lugar de Trabajo" name="lugarTrabajo"
-                                                id="field_lugarTrabajo" formControlName="lugarTrabajo"
-                                                (keydown.enter)="$event.preventDefault()" autocorrect="off"
-                                                autocapitalize="off" spellcheck="off" #search />
                                         </mat-form-field>
                                         <div class="form-group" [hidden]="!editForm.get('id').value">
                                             <div class="container">
@@ -707,20 +707,20 @@
                 <div class="col-sm-12">
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList aria-label="Fruit selection">
-                            <mat-chip *ngFor="let cuentaOption of cuentasInt; trackBy: trackCuentaById"
+                            <mat-chip *ngFor="let cuentaOption of cuentasIntSelected; trackBy: trackCuentaById"
                                 [selectable]="selectable" [removable]="removable" (removed)="remove(cuentaOption)"
                                 color="primary" selected>
                                 {{cuentaOption.clave}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input placeholder="Cuentas de interÃ©s para el candidato" #fruitInput
+                            <input placeholder="Cuentas de interés para el candidato" #fruitInput
                                 [formControl]="cuentaIntCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                                 (matChipInputTokenEnd)="addCuentaInt($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                            <mat-option *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById | async"
-                                [value]="cuentaOption.clave">
+                            <mat-option *ngFor="let cuentaOption of cuentasInteres; trackBy: trackCuentaById"
+                                [value]="cuentaOption.id">
                                 {{cuentaOption.clave}}
                             </mat-option>
                         </mat-autocomplete>
@@ -732,19 +732,21 @@
                 <div class="col-sm-12">
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList2 aria-label="Fruit selection">
-                            <mat-chip *ngFor="let fruit2 of fruits2" [selectable]="selectable2" [removable]="removable2"
-                                (removed)="remove2(fruit2)" color="primary" selected>
-                                {{fruit2}}
+                            <mat-chip *ngFor="let cuentaRechazada of cuentasRechSelected; trackBy: trackCuentaById"
+                                [selectable]="selectable2" [removable]="removable2" (removed)="remove2(cuentaRechazada)"
+                                color="primary" selected>
+                                {{cuentaRechazada.clave}}
                                 <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                             </mat-chip>
                             <input placeholder="Cuentas rechazadas por candidato" #fruitInput2
                                 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
-                                [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event2)">
+                                [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                            <mat-option *ngFor="let fruit2 of filteredFruits2 | async" [value]="fruit2">
-                                {{fruit2}}
+                            <mat-option *ngFor="let cuentaRechazada of cuentasRechazadas; trackBy: trackCuentaById"
+                                [value]="cuentaRechazada.id">
+                                {{cuentaRechazada.clave}}
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
@@ -753,8 +755,9 @@
             <br>
             <br>
             <div class="text-center">
-                <button mat-raised-button color="warn" type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving">
-                    <span >Guardar candidato</span>
+                <button mat-raised-button color="warn" type="submit" id="save-entity"
+                    [disabled]="editForm.invalid || isSaving">
+                    <span>Guardar candidato</span>
                 </button>
             </div>
             <br>
