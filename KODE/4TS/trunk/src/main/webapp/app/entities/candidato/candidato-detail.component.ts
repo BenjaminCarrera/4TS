@@ -35,7 +35,11 @@ export interface Skills {
   ]
 })
 export class CandidatoDetailComponent implements OnInit {
+  // Mostrar u ocultar cosas
+  mostrarDetalleCandidatoInactivo: boolean;
+  mostrarDisponibilidadEntrevistaCandidato: boolean;
   candidato: ICandidato;
+  mostrarAsignacionCandidato: boolean;
 
   // Enfoque del mapa
   lat = 19.4284700;
@@ -148,10 +152,43 @@ export class CandidatoDetailComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ candidato }) => {
       this.candidato = candidato;
     });
+    this.verificarStatus();
+    this.verificarDisponibilidadEntrevista();
+    this.verificarDisponibilidaAsignacion();
   }
 
   previousState() {
     window.history.back();
+  }
+
+  verificarStatus() {
+    if (this.candidato.estatusCandidatoEstatus === 'Activo') {
+      console.log('Esta activo');
+      this.mostrarDetalleCandidatoInactivo = false;
+    } else {
+      console.log('Esta inactivo');
+      this.mostrarDetalleCandidatoInactivo = true;
+    }
+  }
+  verificarDisponibilidadEntrevista() {
+    console.log(this.candidato.disponibilidadEntrevistaFecha);
+    if (this.candidato.disponibilidadEntrevistaFecha) {
+      console.log('Tiene fecha');
+      this.mostrarDisponibilidadEntrevistaCandidato = false;
+    } else {
+      console.log('No tiene fecha');
+      this.mostrarDisponibilidadEntrevistaCandidato = true;
+    }
+  }
+  verificarDisponibilidaAsignacion() {
+    console.log(this.candidato.disponibilidadAsignacionFecha);
+    if (this.candidato.disponibilidadAsignacionFecha) {
+      console.log('Tiene fecha de asignacion');
+      this.mostrarAsignacionCandidato = false;
+    } else {
+      console.log('No tiene fecha de asignacion');
+      this.mostrarAsignacionCandidato = true;
+    }
   }
 }
 

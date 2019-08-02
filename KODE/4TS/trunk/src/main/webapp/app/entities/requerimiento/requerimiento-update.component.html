@@ -52,6 +52,7 @@
                   formControlName="coorLat"
                 />
               </div>
+
               <div class="form-group">
                 <input
                   type="hidden"
@@ -603,7 +604,7 @@
             <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
               <span style="color:black">Cancelar</span>
             </button>
-            <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-danger"
+            <button type="submit" id="save-entity"  class="btn btn-danger"
             style="background-color: #f44336;">
               <span >Guardar</span>
             </button>
