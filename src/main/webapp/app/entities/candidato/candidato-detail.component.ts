@@ -155,6 +155,7 @@ export class CandidatoDetailComponent implements OnInit {
     this.verificarStatus();
     this.verificarDisponibilidadEntrevista();
     this.verificarDisponibilidaAsignacion();
+    this.candidato.foto = 'content/fotoCandidato/' + this.candidato.foto;
   }
 
   previousState() {
