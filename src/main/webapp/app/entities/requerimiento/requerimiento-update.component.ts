@@ -44,7 +44,17 @@ import { ISkill } from 'app/shared/model/skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 import { SkillRequerimientoService } from '../skill-requerimiento';
 import { SkillReqService } from '../../servicios/skill-req.service';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {FormGroupDirective, NgForm} from '@angular/forms';
 import { ALL_ITEMS } from 'app/shared';
+
+  // Verificar errores en inputs
+  export class MyErrorStateMatcher implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+      const isSubmitted = form && form.submitted;
+      return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    }
+  }
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -54,17 +64,29 @@ import { ALL_ITEMS } from 'app/shared';
   ]
 })
 export class RequerimientoUpdateComponent implements OnInit {
+  // Verificar errores en inputs
+  inputRequeridos = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  matcher = new MyErrorStateMatcher();
   // Cargar skills
   reqId: number;
   SkillReq: any = [];
+  SkillOpc: any = [];
   SkillReq2: any = [];
   fruitInput33: any = [];
   fruitInput22: any = [];
   fruitInputt: any = [];
   fruitInput333: any = [];
-  fruitInput222: any = [];
+  skillsOpcionalesBD: any = [];
+  skillsRequeridosBD: any = [];
+  skillsEscencialesBD: any = [];
   fruitInputtt: any = [];
   idre: number;
+  // Skills updates
+  todosSkillReq: any = [];
+  actualizarReq: boolean;
   // Verificar si selecciono algun skill
   selSkillOpc: number;
   selSkillReq: number;
@@ -158,32 +180,32 @@ export class RequerimientoUpdateComponent implements OnInit {
     fechaAlda: [],
     fechaResolucion: [],
     remplazoDe: [null, [Validators.maxLength(500)]],
-    vacantesSolicitadas: [],
+    vacantesSolicitadas: ['', Validators.required],
     proyecto: [null, [Validators.maxLength(200)]],
-    nombreContacto: [null, [Validators.maxLength(100)]],
-    tarifaSueldoNet: [],
-    prestaciones: [null, [Validators.maxLength(500)]],
-    duracionAsignacion: [],
-    lugarTrabajo: [null, [Validators.maxLength(500)]],
+    nombreContacto: [null, [Validators.maxLength(100), Validators.required]],
+    tarifaSueldoNet: ['', Validators.required],
+    prestaciones: [null, [Validators.maxLength(500), Validators.required]],
+    duracionAsignacion: ['', Validators.required],
+    lugarTrabajo: [null, [Validators.maxLength(500), Validators.required]],
     coorLat: [null],
     coorLong: [null],
     horario: [null, [Validators.maxLength(300)]],
     informacionExamen: [null, [Validators.maxLength(500)]],
     informacionAdicional: [null, [Validators.maxLength(1000)]],
-    cuentaId: [],
+    cuentaId: ['', Validators.required],
     subCuentaId: [],
     usuarioCreadorId: [],
-    usuarioAsignadoId: [],
-    estatusRequerimientoId: [],
-    prioridadId: [],
-    tipoSolicitudId: [],
-    tipoIngresoId: [],
-    baseTarifaId: [],
-    esquemaContratacionId: [],
-    perfilId: [],
-    nivelPerfilId: [],
+    usuarioAsignadoId: ['', Validators.required],
+    estatusRequerimientoId: ['', Validators.required],
+    prioridadId: ['', Validators.required],
+    tipoSolicitudId: ['', Validators.required],
+    tipoIngresoId: ['', Validators.required],
+    baseTarifaId: ['', Validators.required],
+    esquemaContratacionId: ['', Validators.required],
+    perfilId: ['', Validators.required],
+    nivelPerfilId: ['', Validators.required],
     estatusReqCanId: [],
-    tipoPeriodoId: []
+    tipoPeriodoId: ['', Validators.required]
   });
 
   constructor(
@@ -241,9 +263,9 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   remove(requerido: ISkill): void {
     const index = this.SkillRequeridosSelected.indexOf(requerido);
-
     if (index >= 0) {
       this.SkillRequeridosSelected.splice(index, 1);
+      this.fruitInputt.splice(index, 1);
     }
     this.selSkillReq ++ ;
   }
@@ -262,7 +284,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     const tempOpcionales: ISkill[] = this.Skill.slice(0);
     this.SkillOpcionalesSelected.forEach(opcional => {
       const index = tempOpcionales.indexOf(opcional);
-
       if (index >= 0) {
         tempOpcionales.splice(index, 1);
       }
@@ -292,7 +313,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     const tempEscenciales: ISkill[] = this.Skill.slice(0);
     this.SkillEsencialesSelected.forEach(esencial => {
       const index = tempEscenciales.indexOf(esencial);
-
       if (index >= 0) {
         tempEscenciales.splice(index, 1);
       }
@@ -301,12 +321,11 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   remove3(escencial: ISkill): void {
     const index = this.SkillEsencialesSelected.indexOf(escencial);
-
     if (index >= 0) {
       this.SkillEsencialesSelected.splice(index, 1);
+      this.fruitInput33.splice(index, 1);
     }
     // Fin primer chip autocompletable
-    this.selSkillEsc ++ ;
   }
   add3(event: MatChipInputEvent): void {
     // No se permite agregar elementos que no esten en la base de datos
@@ -364,18 +383,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           (res: ISkillRequerimiento[]) => this.setSkillsReq(res),
           (res: HttpErrorResponse) => this.onError(res.message)
         );
-      // this.skillRequerimientoService
-      // .query({
-      //   size: 99999
-      // })
-      // .pipe(
-      //   filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-      //   map((response: HttpResponse<IUser[]>) => response.body)
-      // )
-      // .subscribe(
-      //   (res: ISkillRequerimiento[]) => this.setSkills(res),
-      //   (res: HttpErrorResponse) => this.onError(res.message)
-      // );
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.updateForm(requerimiento);
@@ -467,6 +474,14 @@ export class RequerimientoUpdateComponent implements OnInit {
         map((response: HttpResponse<ITipoPeriodo[]>) => response.body)
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
+      if (this.editForm.get(['id']).value != null) {
+        this.actualizarReq = true;
+      } else {
+        this.actualizarReq = false;
+      }
+      // console.log('------------------------');
+      // console.log(this.actualizarReq);
+      // console.log('------------------------');
   }
 
   updateForm(requerimiento: IRequerimiento) {
@@ -511,6 +526,12 @@ export class RequerimientoUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const requerimiento = this.createFromForm();
+    if (requerimiento.vacantesSolicitadas !== undefined) {
+      console.log('tiene datos');
+    } else {
+      console.log('No tiene datos');
+      this.selected1.setValue(0);
+    }
     if (requerimiento.id !== undefined) {
       this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
     } else {
@@ -568,50 +589,97 @@ export class RequerimientoUpdateComponent implements OnInit {
   protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {
     const idRequerimiento = r.body.id;
     const addTempReqSkill: any[] = [];
-    // ---------------------------------------------------
-    const opcional = this.fruitInput22.filter(item =>  this.fruitInput222.indexOf(item) < 0);
-    if (opcional.length > 0) {
-      if (this.fruitInput222.length < this.fruitInput22.length) {
-          opcional.forEach(opcionall => {
+    if (this.actualizarReq !== true) {
+      // Si la pantalla es de registrar un nuevo requerimiento, debe de guardar sin condiciones los skills
+      this.SkillRequeridosSelected.forEach(requeridos => {
+        const tempAddRequerido = new SkillRequerimiento();
+        tempAddRequerido.idRequerimientoId = idRequerimiento;
+        tempAddRequerido.idSkillId = requeridos.id;
+        tempAddRequerido.tipoSkillId = 2;
+        addTempReqSkill.push(tempAddRequerido);
+      });
+      this.SkillOpcionalesSelected.forEach(opcionals => {
+        const tempAddOpcional = new SkillRequerimiento();
+        tempAddOpcional.idRequerimientoId = idRequerimiento;
+        tempAddOpcional.idSkillId = opcionals.id;
+        tempAddOpcional.tipoSkillId = 3;
+        addTempReqSkill.push(tempAddOpcional);
+      });
+      this.SkillEsencialesSelected.forEach(esencials => {
+        const tempAddEsencial = new SkillRequerimiento();
+        tempAddEsencial.idRequerimientoId = idRequerimiento;
+        tempAddEsencial.idSkillId = esencials.id;
+        tempAddEsencial.tipoSkillId = 1;
+        addTempReqSkill.push(tempAddEsencial);
+      });
+    } else {
+      console.log('Es la pantalla de actualizar requerimiento');
+      // Si la pantalla es de actualizar requerimiento, debe de verificar los skills
+      // Verificamos si hay diferencias en el input de skills opcionales
+      const opcional = this.fruitInput22.filter(item =>  this.skillsOpcionalesBD.indexOf(item) < 0);
+      console.log(this.fruitInput22);
+      console.log(this.skillsOpcionalesBD);
+      console.log(opcional);
+      if (opcional.length > 0 || opcional.length <= 0 ) {
+        // Si hay diferencias borramos todo
+          // console.log('Si hubo cambios');
+          // console.log(this.skillsOpcionalesBD);
+          this.skillsOpcionalesBD.forEach(element => {
+            this.buscaryBorrarSkillsOpcionales(element.id);
+          });
+          // console.log(this.SkillOpcionalesSelected);
+        this.SkillOpcionalesSelected.forEach(opcionall => {
           const tempAddOpcional = new SkillRequerimiento();
           tempAddOpcional.idRequerimientoId = idRequerimiento;
           tempAddOpcional.idSkillId = opcionall.id;
           tempAddOpcional.tipoSkillId = 3;
           addTempReqSkill.push(tempAddOpcional);
         });
+        console.log('Se borraron los skills solo de este requerimiento');
+        console.log('Se insertaron los skills de acueredp a los valores finales del input');
+      } else {
+        console.log('No hubo cambios en opcionales');
       }
-    } else {
-    }
-    // ---------------------------------------------------
-    const requerido = this.fruitInputt.filter(item =>  this.fruitInputtt.indexOf(item) < 0);
-    if (requerido.length > 0) {
-      if (this.fruitInputtt.length < this.fruitInputt.length) {
-        requerido.forEach(requeridoo => {
+      const requeridos = this.fruitInputt.filter(item =>  this.skillsRequeridosBD.indexOf(item) < 0);
+      console.log(this.fruitInputt);
+      console.log(this.skillsRequeridosBD);
+      console.log(requeridos);
+      if (requeridos.length > 0 || requeridos.length <= 0 ) {
+        this.skillsRequeridosBD.forEach(element => {
+          this.buscaryBorrarSkillsRequeridos(element.id);
+        });
+        this.SkillRequeridosSelected.forEach(requeridos => {
           const tempAddRequerido = new SkillRequerimiento();
           tempAddRequerido.idRequerimientoId = idRequerimiento;
-          tempAddRequerido.idSkillId = requeridoo.id;
+          tempAddRequerido.idSkillId = requeridos.id;
           tempAddRequerido.tipoSkillId = 2;
           addTempReqSkill.push(tempAddRequerido);
         });
-      } else if (this.fruitInput222.length > this.fruitInput22.length) {
+      } else {
+        console.log('No hubo cambios en requeridos');
       }
-    } else {
-    }
-    // ------------------------------------------------------
-    const escencial = this.fruitInput33.filter(item =>  this.fruitInput333.indexOf(item) < 0);
-    if (escencial.length > 0) {
-      if (this.fruitInput333.length < this.fruitInput33.length) {
-          escencial.forEach(esencial => {
+      const escencial = this.fruitInput33.filter(item =>  this.skillsEscencialesBD.indexOf(item) < 0);
+      console.log(this.fruitInput33);
+      console.log(this.skillsEscencialesBD);
+      console.log(escencial);
+      if (escencial.length > 0 || escencial.length <= 0 ) {
+        this.skillsEscencialesBD.forEach(element => {
+          this.buscaryBorrarSkillsEscenciales(element.id);
+        });
+        this.SkillEsencialesSelected.forEach(esencial => {
           const tempAddEsencial = new SkillRequerimiento();
           tempAddEsencial.idRequerimientoId = idRequerimiento;
           tempAddEsencial.idSkillId = esencial.id;
           tempAddEsencial.tipoSkillId = 1;
           addTempReqSkill.push(tempAddEsencial);
         });
-      } else if (this.fruitInput222.length > this.fruitInput22.length) {
+      } else {
+        console.log('No hubo cambios en escenciales');
       }
-    } else {
     }
+    // ---------------------------------------------------
+    // ------------------------------------------------------
+    // ------------------------------------------------------
     const updateKillReq = { lista: addTempReqSkill };
     this.subscribeToSaveResponseSkills(this.skillRequerimientoService.patch(updateKillReq));
   }
@@ -734,7 +802,6 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   setSkills(res: ISkill[]) {
     this.Skill = res;
-    console.log(this.Skill);
     this.FilterSkillsRequeridos = res;
     this.FilterSkillsOpcionales = res;
     this.FilterSkillsEsenciales = res;
@@ -745,6 +812,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     console.log(this.SkillReq);
     for (const clave of this.SkillReq) {
       if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
+          this.todosSkillReq.push(clave);
         if ( clave.tipoSkillId === 1) {
           // console.log('Es escencial' + clave.id);
           const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
@@ -755,7 +823,7 @@ export class RequerimientoUpdateComponent implements OnInit {
           const SkillsSelectedEsencial2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillEsencialesSelectedEscencial2: ISkill = SkillsSelectedEsencial2.shift();
           this.fruitInput33.push(SkillEsencialesSelectedEscencial2);
-          this.fruitInput333.push(SkillEsencialesSelectedEscencial2);
+          this.skillsEscencialesBD.push(SkillEsencialesSelectedEscencial2);
         } else if ( clave.tipoSkillId === 2) {
           // console.log('Es requerido' + clave.id);
           const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
@@ -766,7 +834,7 @@ export class RequerimientoUpdateComponent implements OnInit {
           const SkillsSelectedRequerido2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillRequeridosSelectedRequerido2: ISkill = SkillsSelectedRequerido2.shift();
           this.fruitInputt.push(SkillRequeridosSelectedRequerido2);
-          this.fruitInputtt.push(SkillRequeridosSelectedRequerido2);
+          this.skillsRequeridosBD.push(SkillRequeridosSelectedRequerido2);
         } else if ( clave.tipoSkillId === 3) {
           // console.log('Es opcional' + clave.id);
           const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
@@ -777,25 +845,61 @@ export class RequerimientoUpdateComponent implements OnInit {
           const SkillsSelectedOpcional2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillOpcionalesSelectedRequerido2: ISkill = SkillsSelectedOpcional2.shift();
           this.fruitInput22.push(SkillOpcionalesSelectedRequerido2);
-          this.fruitInput222.push(SkillOpcionalesSelectedRequerido2);
+          this.skillsOpcionalesBD.push(SkillOpcionalesSelectedRequerido2);
         } else {
           console.log('Error');
         }
       }
     }
-    console.log('input de escenciales');
-    console.log(this.fruitInput33);
-    console.log('input de opcionales');
-    console.log(this.fruitInput22);
-    console.log('input de requeridos');
-    console.log(this.fruitInputt);
+    // console.log('input de escenciales');
+    // console.log(this.fruitInput33);
+    // console.log('input de opcionales');
+    // console.log(this.fruitInput22);
+    // console.log('input de requeridos');
+    // console.log(this.fruitInputt);
   }
-  agregarSkillsOpcionales(idRequerimiento , addTempReqSkill) {
-  }
-  agregarSkillsRequeridos() {
 
+  buscaryBorrarSkillsOpcionales(id) {
+    for (const clave of this.SkillReq) {
+      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if ( clave.idSkillId === id && clave.tipoSkillId === 3) {
+          // console.log('Se busco entre todos los skills, el skill requerimiento opcional y es: ');
+          // console.log(clave);
+          this.skillRequerimientoService.delete(clave.id).subscribe(response => {
+          });
+        } else {
+          console.log('Error');
+        }
+      }
+    }
   }
-  agregarSkillsEscenciales() {
+  buscaryBorrarSkillsRequeridos(id) {
+    for (const clave of this.SkillReq) {
+      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if ( clave.idSkillId === id && clave.tipoSkillId === 2) {
+          // console.log('Se busco entre todos los skills, el skill requerimiento  requerido y es: ');
+          // console.log(clave);
+          this.skillRequerimientoService.delete(clave.id).subscribe(response => {
+          });
+        } else {
+          console.log('Error');
+        }
+      }
+    }
+  }
+  buscaryBorrarSkillsEscenciales(id) {
+    for (const clave of this.SkillReq) {
+      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if ( clave.idSkillId === id && clave.tipoSkillId === 1) {
+          // console.log('Se busco entre todos los skills, el skill requerimiento escencial y es: ');
+          // console.log(clave);
+          this.skillRequerimientoService.delete(clave.id).subscribe(response => {
+          });
+        } else {
+          console.log('Error');
+        }
+      }
+    }
+  }
 
-  }
 }
