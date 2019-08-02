@@ -28,7 +28,10 @@ import { NivelPerfilService } from '../nivel-perfil/nivel-perfil.service';
 
 @Component({
   selector: 'jhi-candidato',
-  templateUrl: './candidato.component.html'
+  templateUrl: './candidato.component.html',
+  styleUrls: [
+    'agreg-cand.component.scss'
+  ]
 })
 export class CandidatoComponent implements OnInit, OnDestroy {
   currentAccount: any;
