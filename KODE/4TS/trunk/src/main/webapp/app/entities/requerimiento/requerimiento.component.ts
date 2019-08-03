@@ -94,6 +94,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
+    console.log(this.criteria);
     this.requerimientoService
       .query({
         criteria: this.criteria,
