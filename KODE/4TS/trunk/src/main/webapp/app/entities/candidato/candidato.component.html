@@ -1,15 +1,16 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="App.candidato.home.title">Candidatos</span>
-        <button id="jh-create-entity" class="btn btn-danger float-right jh-create-entity create-candidato" [routerLink]="['/candidato/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="App.candidato.home.createLabel">
-            Create new Candidato
-            </span>
-        </button>
-    </h2>
-    <jhi-alert></jhi-alert>
-    <br/>
+<div class="row">
+    <div class="col-md-12" style="display: inline-block;">
+        <div class="row">
+            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
+                <h3 class="titulo">Candidatos</h3>
+            </div>
+            <div>
+                <a [routerLink]="['/candidato/new']">
+                    <button mat-raised-button color="warn">Añadir nuevo candidato</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 <form role="form" (ngSubmit)="updateFilters()" [formGroup]="editForm">
     <div class="row">
@@ -52,7 +53,7 @@
                 <mat-form-field class=" esp-arriba">
                     <mat-select formControlName="reclutadorId" placeholder="Reclutador asignado">
                         <mat-option> Reclutador asignado </mat-option>
-                        <mat-option *ngFor="let usuarios of usuariosAsignado" [value]="usuarios.id"> {{usuarios.login}} </mat-option>
+                        <mat-option *ngFor="let usuarios of usuariosAsignado" [value]="usuarios.id"> {{usuarios.firstName}} </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -60,7 +61,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p>
                 <label class="label-material">
               Estatus laboral:
@@ -101,7 +102,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <br>
             <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
             <button mat-raised-button color="warn">Buscar</button>
@@ -119,78 +120,94 @@
         <table class="table table-striped">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                    <th jhiSortBy="id">
-                        ID
-                    </th>
-                    <th jhiSortBy="nombre">
-                        Nombre
-                    </th>
-                    <th jhiSortBy="apellidoPaterno">
-                        Apellido Paterno
-                    </th>
-                    <th jhiSortBy="apellidoMaterno">
-                        Apellido Materno
-                    </th>
-                    <th jhiSortBy="telefonoCelular">
-                        Telefono Celular
-                    </th>
-                    <th jhiSortBy="salarioNeto">
-                        Salario Neto
-                    </th>
-                    <th jhiSortBy="costoTotal">
-                        Costo Total
-                    </th>
-                    <th jhiSortBy="fechaAlta">
-                        Fecha Alta
-                    </th>
-                    <th jhiSortBy="fechaUltimoSeguimiento">
-                        Fecha Ultimo Seguimiento
-                    </th>
-                    <th jhiSortBy="disponibilidadEntrevistaPeriodoTiempoPeriodo">
-                        Disponibilidad Entrevista Periodo Tiempo
-                    </th>
-                    <th jhiSortBy="disponibilidadAsignacionPeriodoTiempoPeriodo">
-                        Disponibilidad Asignacion Periodo Tiempo
+                    <th jhiSortBy="id"><span>ID</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusCandidatoEstatus">
-                        Estatus Candidato
+                        <span>Estatus Candidato</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
-                    <th jhiSortBy="perfilPerfil">
-                        Perfil
+                    <th jhiSortBy="nombre">
+                        <span>Nombre</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
-                    <th jhiSortBy="nivelPerfilNivel">
-                        Nivel Perfil
+                    <th jhiSortBy="apellidoPaterno">
+                        <span>Apellido Paterno</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="apellidoMaterno">
+                        <span>Apellido Materno</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="telefonoCelular">
+                        <span>Celular</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="institucionAcademicaInstitucion">
-                        Institución Académica
+                        <span>Reclutador</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="perfilPerfil">
+                        <span>Perfil</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="nivelPerfilNivel">
+                        <span>Nivel Perfil</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="fechaAlta">
+                        <span>Fecha Alta</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="esquemaContratacionKodeEsquema">
-                        Esquema Contratacion Kode
+                        <span>Esquema Contratacion</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="salarioNeto">
+                        <span>Salario Neto</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="costoTotal">
+                        <span>Costo Total</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusLaboralEstatus">
-                        Estatus Laboral
+                        <span>Estatus Laboral</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="disponibilidadEntrevistaPeriodoTiempoPeriodo">
+                        <span>Disponibilidad Entrevista</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="disponibilidadAsignacionPeriodoTiempoPeriodo">
+                        <span> Disponibilidad Asignacion</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
+                    </th>
+                    <th jhiSortBy="fechaUltimoSeguimiento">
+                        <span> Ultimo Seguimiento</span>
+                        <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let candidato of candidatoes ;trackBy: trackId">
                     <td><a [routerLink]="['/candidato', candidato.id, 'view' ]">{{candidato.id}}</a></td>
+                    <td>{{candidato.estatusCandidatoEstatus}}</td>
                     <td>{{candidato.nombre}}</td>
                     <td>{{candidato.apellidoPaterno}}</td>
                     <td>{{candidato.apellidoMaterno}}</td>
                     <td>{{candidato.telefonoCelular}} </td>
-                    <td>{{candidato.salarioNeto}}</td>
-                    <td>{{candidato.costoTotal}}</td>
-                    <td>{{candidato.fechaAlta | date:'medium'}}</td>
-                    <td>{{candidato.fechaUltimoSeguimiento | date:'medium'}}</td>
-                    <td>{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</td>
-                    <td>{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</td>
-                    <td>{{candidato.estatusCandidatoEstatus}}</td>
+                    <td>{{candidato.usuarioAsignadoFirstName}}</td>
                     <td>{{candidato.perfilPerfil}}</td>
                     <td>{{candidato.nivelPerfilNivel}}</td>
-                    <td>{{candidato.institucionAcademicaInstitucion}}</td>
+                    <td>{{candidato.fechaAlta | date:'medium'}}</td>
                     <td>{{candidato.esquemaContratacionKodeEsquema}}</td>
+                    <td>{{candidato.salarioNeto}}</td>
+                    <td>{{candidato.costoTotal}}</td>
                     <td>{{candidato.estatusLaboralEstatus}}</td>
+                    <td>{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</td>
+                    <td>{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</td>
+                    <td>{{candidato.fechaUltimoSeguimiento | date:'medium'}}</td>
                 </tr>
             </tbody>
         </table>

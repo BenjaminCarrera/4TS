@@ -774,19 +774,53 @@ export class CandidatoUpdateComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 50;
-        this.getAddress(this.latitude, this.longitude);
       });
     }
   }
   markerDragEnd($event: MouseEvent) {
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
-    this.getAddress(this.latitude, this.longitude);
   }
-  getAddress(latitude: any, longitude: any) {
-    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+
+  getAddress() {
+
+    let address: any = '';
+
+    if (this.editForm.get('dirCalle').value !== null) {
+      address += this.editForm.get('dirCalle').value + ' ';
+    }
+    if (this.editForm.get('noExt').value !== null) {
+      address += this.editForm.get('noExt').value + ', ';
+    }
+    if (this.editForm.get('dirCodigoPostal').value !== null) {
+      address += this.editForm.get('dirCodigoPostal').value + ' ';
+    }
+    if (this.editForm.get('dirColonia').value !== null) {
+      this.colonias.forEach( col => {
+        if (col.municipioId === this.editForm.get('dirColonia').value) {
+          address += col.colonia + ' ';
+        }
+      });
+    }
+    if (this.editForm.get('dirMunicipio').value !== null) {
+      this.municipios.forEach( mun => {
+        if (mun.id === this.editForm.get('dirMunicipio').value) {
+          address += mun.municipio + ' ';
+        }
+      });
+    }
+    if (this.editForm.get('dirEstado').value !== null) {
+      this.estados.forEach( est => {
+        if (est.id === this.editForm.get('dirEstado').value) {
+          address += est.estado;
+        }
+      });
+    }
+    this.geoCoder.geocode({ 'address':  address  }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
+          this.latitude = results[0].geometry.location.lat();
+          this.longitude = results[0].geometry.location.lng();
           this.zoom = 50;
           // this.address = results[0].formatted_address;
         } else {
@@ -964,7 +998,7 @@ export class CandidatoUpdateComponent implements OnInit {
   removeSkillCandidato(event: any) {
     this.errorMessageSkill = null;
     const idSkill: number = event.srcElement.value;
-    const skillsCandidatoDelete: ISkillCandidato[] = this.skillCandidatoes.filter(s => s.idSkillId == idSkill);
+    const skillsCandidatoDelete: ISkillCandidato[] = this.skillCandidatoes.filter(s => s.idSkillId === idSkill);
     const skillCandidatoDelete = skillsCandidatoDelete.shift();
     const skillDel = this.skills.find(item => item.id === skillCandidatoDelete.idSkillId);
     const index = this.skillCandidatoes.indexOf(skillCandidatoDelete);
