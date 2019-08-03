@@ -47,7 +47,6 @@ h3 {
     }
 }
 
-table,
 .mat-paginator {
     width: 450px;
 }
@@ -74,4 +73,26 @@ td.mat-footer-cell {
 .mat-header-cell {
     font-size: 15px !important;
     font-weight: bold !important;
+    padding-left: 37px !important;
+}
+
+table.mat-table {
+    width: 100% !important;
+}
+
+th {
+    color: rgba(0, 0, 0, .54) !important;
+}
+
+td {
+    font-size: 14px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+thead {
+    text-align: center;
+}
+
+tbody {
+    text-align: center;
 }
