@@ -6,7 +6,7 @@
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
                 <a routerLink="/agreg-req" routerLinkActive="active">
-                    <button mat-raised-button class="btn btn-danger">Editar</button>
+                    <button mat-raised-button color="warn">Editar</button>
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="col-sm-12" style="padding: 0px;">
-                                    <label class="btn btn-danger btn-file"> Cargar foto <input type="file" style="display: none;" /> </label>
+                                    <button mat-raised-button color="warn">Cargar foto <input type="file" style="display: none;" /> </button>
                                 </div>
                                 <div class="col-sm-12" style="padding: 0px;">
                                     <label class="form-label">Fecha de alta</label><br />
@@ -268,7 +268,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="padding-right: 0px;">
-                            <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="14">
+                            <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="5">
                                 <agm-marker [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [label]="'KODE'"> </agm-marker>
                             </agm-map>
                         </div>
@@ -633,7 +633,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" mat-raised-button color="warn">
               Añadir Tarea
             </button>
                     </div>
@@ -714,7 +714,7 @@
                 <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" />
             </div>
             <div class="col-sm-1 esp-arriba">
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" mat-raised-button color="warn">
           Añadir Bitácora
         </button>
             </div>
