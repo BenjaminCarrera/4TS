@@ -648,10 +648,10 @@ export class RequerimientoUpdateComponent implements OnInit {
         this.skillsRequeridosBD.forEach(element => {
           this.buscaryBorrarSkillsRequeridos(element.id);
         });
-        this.SkillRequeridosSelected.forEach(requeridos => {
+        this.SkillRequeridosSelected.forEach(sr => {
           const tempAddRequerido = new SkillRequerimiento();
           tempAddRequerido.idRequerimientoId = idRequerimiento;
-          tempAddRequerido.idSkillId = requeridos.id;
+          tempAddRequerido.idSkillId = sr.id;
           tempAddRequerido.tipoSkillId = 2;
           addTempReqSkill.push(tempAddRequerido);
         });
