@@ -15,6 +15,7 @@ import { IUser, UserService } from 'app/core';
 import { IDocumento } from 'app/shared/model/documento.model';
 import { DocumentoService } from 'app/entities/documento';
 import { ICuenta } from 'app/shared/model/cuenta.model';
+import { ICuenta } from 'app/shared/model/cuenta.model';
 import { CuentaService } from 'app/entities/cuenta';
 import { IFuenteReclutamiento } from 'app/shared/model/fuente-reclutamiento.model';
 import { FuenteReclutamientoService } from 'app/entities/fuente-reclutamiento';
@@ -73,6 +74,8 @@ import { SkillCandidatoService } from '../skill-candidato';
   ]
 })
 export class CandidatoUpdateComponent implements OnInit {
+  // Ocultar
+  ocultar = true;
   selecteds = new FormControl(0);
   matAutocomplete: MatAutocomplete;
   cuentaIntCtrl = new FormControl();
@@ -936,6 +939,23 @@ export class CandidatoUpdateComponent implements OnInit {
     this.cuentas = res;
     this.cuentasInteres = res;
     this.cuentasRechazadas = res;
+    console.log('todas las cuentas de interes');
+    console.log(this.editForm.get(['cuentaInteres']).value);
+    console.log('todas las cuentas de rechazo');
+    console.log(this.editForm.get(['cuentaRechazadas']).value);
+    this.editForm.get(['cuentaInteres']).value.forEach(element => {
+      this.cuentasIntSelected.push(element);
+    });
+    this.editForm.get(['cuentaRechazadas']).value.forEach(element => {
+      this.cuentasRechSelected.push(element);
+    });
+    // Recorremos todas las cuentas de la bd
+    // for (const cuenta of this.cuentas) {
+    //   if (clave.idRequerimientoId
+    // }
+  }
+
+  setCuentasCandidato(res: ICuenta[]) {
   }
 
   addSkillCandidato() {
