@@ -63,6 +63,7 @@ import { IDominioSkill } from 'app/shared/model/dominio-skill.model';
 import { DominioSkillService } from '../dominio-skill';
 import { ISkillCandidato, SkillCandidato } from 'app/shared/model/skill-candidato.model';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
+import { SkillCandidatoService } from '../skill-candidato';
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -218,6 +219,7 @@ export class CandidatoUpdateComponent implements OnInit {
 
   constructor(
     protected codigoPostalService: CodigoPostalService,
+    protected skillCandidatoService: SkillCandidatoService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     protected skillService: SkillService,
@@ -285,23 +287,6 @@ export class CandidatoUpdateComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
-      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
-      });
-      autocomplete.addListener('place_changed', () => {
-        this.ngZone.run(() => {
-          // get the place result
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          // verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          // set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 50;
-        });
-      });
     });
     this.skillService
       .query({
@@ -527,7 +512,7 @@ export class CandidatoUpdateComponent implements OnInit {
       nombre: this.editForm.get(['nombre']).value,
       apellidoPaterno: this.editForm.get(['apellidoPaterno']).value,
       apellidoMaterno: this.editForm.get(['apellidoMaterno']).value,
-      fechaNacimiento: this.editForm.get(['fechaNacimiento']).value,
+      fechaNacimiento: moment(this.editForm.get(['fechaNacimiento']).value),
       edad: this.editForm.get(['edad']).value,
       emailPrincipal: this.editForm.get(['emailPrincipal']).value,
       emailAdicional: this.editForm.get(['emailAdicional']).value,
@@ -572,8 +557,9 @@ export class CandidatoUpdateComponent implements OnInit {
       usuarioCreadorId: this.editForm.get(['usuarioCreadorId']).value,
       usuarioAsignadoId: this.editForm.get(['usuarioAsignadoId']).value,
       documentoId: this.editForm.get(['documentoId']).value,
-      cuentaInteres: this.editForm.get(['cuentaInteres']).value,
-      cuentaRechazadas: this.editForm.get(['cuentaRechazadas']).value,
+      cuentaInteres: this.cuentasIntSelected,
+      cuentaRechazadas: this.cuentasRechSelected,
+      skillCandidatoes: this.skillCandidatoes,
       fuenteReclutamientoId: this.editForm.get(['fuenteReclutamientoId']).value,
       estatusCandidatoId: this.editForm.get(['estatusCandidatoId']).value,
       perfilId: this.editForm.get(['perfilId']).value,
@@ -594,6 +580,8 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccess() {
+
+// this.subscribeToSaveResponseSkillsCand(this.skillCandidatoService.patch(this.skillCandidatoes));
     this.isSaving = false;
     this.previousState();
   }
@@ -709,7 +697,7 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    const cuentasIntSelected: ICuenta[] = this.cuentas.filter( c => (c.id === event.option.value));
+    const cuentasIntSelected: ICuenta[] = this.cuentas.filter(c => (c.id === event.option.value));
     const cuentaIntSelected: ISkill = cuentasIntSelected.shift();
     this.cuentasIntSelected.push(cuentaIntSelected);
 
@@ -734,7 +722,7 @@ export class CandidatoUpdateComponent implements OnInit {
         temp.splice(index, 1);
       }
     });
-    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
+    return temp.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
 
   remove2(cuentaRechazada: ICuenta): void {
@@ -745,7 +733,7 @@ export class CandidatoUpdateComponent implements OnInit {
     this.updateCuentasRechazadas();
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    const cuentasRechSelected: ICuenta[] = this.cuentas.filter( c => (c.id === event.option.value));
+    const cuentasRechSelected: ICuenta[] = this.cuentas.filter(c => (c.id === event.option.value));
     const cuentaRechSelected: ISkill = cuentasRechSelected.shift();
     this.cuentasRechSelected.push(cuentaRechSelected);
 
@@ -765,7 +753,7 @@ export class CandidatoUpdateComponent implements OnInit {
         temp.splice(index, 1);
       }
     });
-    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
+    return temp.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
 
   setCurrentLocation() {
