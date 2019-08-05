@@ -23,8 +23,10 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" placeholder="Coor Lat" name="coorLat" id="field_coorLat" [value]="latitude" formControlName="coorLat" />
-                            <input type="hidden" placeholder="Coor Long" name="coorLong" id="field_coorLong" [value]="longitude" formControlName="coorLong" />
+                            <input type="hidden" placeholder="Coor Lat" name="coorLat" id="field_coorLat"
+                                [value]="latitude" formControlName="coorLat" />
+                            <input type="hidden" placeholder="Coor Long" name="coorLong" id="field_coorLong"
+                                [value]="longitude" formControlName="coorLong" />
 
                             <div class="fieldset-content">
 
@@ -32,8 +34,11 @@
                                     <div class="col-md-4 espaciado-componentes">
                                         <div class="form-group">
                                             <mat-form-field class="full-width">
-                                                <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId" placeholder="Ejecutivo asignado">
-                                                    <mat-option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">
+                                                <mat-select id="field_usuarioAsignado" name="usuarioAsignado"
+                                                    formControlName="usuarioAsignadoId"
+                                                    placeholder="Ejecutivo asignado">
+                                                    <mat-option [value]="userOption.id"
+                                                        *ngFor="let userOption of users; trackBy: trackUserById">
                                                         {{userOption.firstName}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
@@ -47,8 +52,11 @@
                                             <p>
                                                 Estatus del candidato:
                                                 <br>
-                                                <mat-button-toggle-group id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId" aria-label="Estilo de fuente">
-                                                    <mat-button-toggle *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById">
+                                                <mat-button-toggle-group id="field_estatusCandidato"
+                                                    name="estatusCandidato" formControlName="estatusCandidatoId"
+                                                    aria-label="Estilo de fuente">
+                                                    <mat-button-toggle
+                                                        *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById">
                                                         {{estatusCandidatoOption.estatus}}</mat-button-toggle>
                                                 </mat-button-toggle-group>
                                             </p>
@@ -58,36 +66,55 @@
                                 <div class="row">
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput placeholder="Nombre" name="nombre" id="field_nombre" formControlName="nombre">
+                                            <input matInput placeholder="Nombre" name="nombre" id="field_nombre"
+                                                formControlName="nombre">
                                         </mat-form-field>
-                                        <div *ngIf="editForm.get('nombre').invalid && (editForm.get('nombre').dirty || editForm.get('nombre').touched)">
-                                            <small class="form-text text-danger" *ngIf="editForm.get('nombre').errors.required" jhiTranslate="entity.validation.required">
+                                        <div
+                                            *ngIf="editForm.get('nombre').invalid && (editForm.get('nombre').dirty || editForm.get('nombre').touched)">
+                                            <small class="form-text text-danger"
+                                                *ngIf="editForm.get('nombre').errors.required"
+                                                jhiTranslate="entity.validation.required">
                                                 Este campo es requerido.
                                             </small>
-                                            <small class="form-text text-danger" *ngIf="editForm.get('nombre').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                            <small class="form-text text-danger"
+                                                *ngIf="editForm.get('nombre').errors.maxlength"
+                                                jhiTranslate="entity.validation.maxlength"
+                                                [translateValues]="{ max: 100 }">
                                                 Este campo no puede ser de más de 100 caracteres.
                                             </small>
                                         </div>
                                     </div>
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="apellidoPaterno" id="field_apellidoPaterno" formControlName="apellidoPaterno" placeholder="Apellido paterno">
+                                            <input matInput name="apellidoPaterno" id="field_apellidoPaterno"
+                                                formControlName="apellidoPaterno" placeholder="Apellido paterno">
                                         </mat-form-field>
-                                        <div *ngIf="editForm.get('apellidoPaterno').invalid && (editForm.get('apellidoPaterno').dirty || editForm.get('apellidoPaterno').touched)">
-                                            <small class="form-text text-danger" *ngIf="editForm.get('apellidoPaterno').errors.required" jhiTranslate="entity.validation.required">
+                                        <div
+                                            *ngIf="editForm.get('apellidoPaterno').invalid && (editForm.get('apellidoPaterno').dirty || editForm.get('apellidoPaterno').touched)">
+                                            <small class="form-text text-danger"
+                                                *ngIf="editForm.get('apellidoPaterno').errors.required"
+                                                jhiTranslate="entity.validation.required">
                                                 Este campo es requerido.
                                             </small>
-                                            <small class="form-text text-danger" *ngIf="editForm.get('apellidoPaterno').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                            <small class="form-text text-danger"
+                                                *ngIf="editForm.get('apellidoPaterno').errors.maxlength"
+                                                jhiTranslate="entity.validation.maxlength"
+                                                [translateValues]="{ max: 100 }">
                                                 Este campo no puede ser de más de 100 caracteres.
                                             </small>
                                         </div>
                                     </div>
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="apellidoMaterno" id="field_apellidoMaterno" formControlName="apellidoMaterno" placeholder="Apellido materno">
+                                            <input matInput name="apellidoMaterno" id="field_apellidoMaterno"
+                                                formControlName="apellidoMaterno" placeholder="Apellido materno">
                                         </mat-form-field>
-                                        <div *ngIf="editForm.get('apellidoMaterno').invalid && (editForm.get('apellidoMaterno').dirty || editForm.get('apellidoMaterno').touched)">
-                                            <small class="form-text text-danger" *ngIf="editForm.get('apellidoMaterno').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                                        <div
+                                            *ngIf="editForm.get('apellidoMaterno').invalid && (editForm.get('apellidoMaterno').dirty || editForm.get('apellidoMaterno').touched)">
+                                            <small class="form-text text-danger"
+                                                *ngIf="editForm.get('apellidoMaterno').errors.maxlength"
+                                                jhiTranslate="entity.validation.maxlength"
+                                                [translateValues]="{ max: 100 }">
                                                 Este campo no puede ser de más de 100 caracteres.
                                             </small>
                                         </div>
@@ -96,25 +123,30 @@
                                 <div class="row">
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_perfil" name="perfil" formControlName="perfilId" placeholder="Perfil">
-                                                <mat-option [ngValue]="null"></mat-option>
-                                                <mat-option [ngValue]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">
+                                            <mat-select id="field_perfil" name="perfil" formControlName="perfilId"
+                                                placeholder="Perfil">
+                                                <mat-option [value]="null"></mat-option>
+                                                <mat-option [value]="perfilOption.id"
+                                                    *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">
                                                     {{perfilOption.perfil}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId" placeholder="Nivel de perfil">
-                                                <mat-option [ngValue]="null"></mat-option>
-                                                <mat-option [ngValue]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">
+                                            <mat-select id="field_nivelPerfil" name="nivelPerfil"
+                                                formControlName="nivelPerfilId" placeholder="Nivel de perfil">
+                                                <mat-option [value]="null"></mat-option>
+                                                <mat-option [value]="nivelPerfilOption.id"
+                                                    *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">
                                                     {{nivelPerfilOption.nivel}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="anosExperiencia" id="field_anosExperiencia" formControlName="anosExperiencia" placeholder="Años de experiencia">
+                                            <input matInput name="anosExperiencia" id="field_anosExperiencia"
+                                                formControlName="anosExperiencia" placeholder="Años de experiencia">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -124,7 +156,8 @@
                                         <div class="form-group">
                                             <label class="form-label">Sexo</label>
                                             <p>
-                                                <mat-button-toggle-group name="sexo" formControlName="sexo" id="field_sexo" aria-label="Estilo de fuente">
+                                                <mat-button-toggle-group name="sexo" formControlName="sexo"
+                                                    id="field_sexo" aria-label="Estilo de fuente">
                                                     <mat-button-toggle value="MASCULINO">
                                                         {{'App.Sexo.MASCULINO' | translate}}</mat-button-toggle>
                                                     <mat-button-toggle value="FEMENINO">
@@ -138,14 +171,17 @@
                                 <div class="row">
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput [matDatepicker]="picker2" name="fechaNacimiento" id="field_fechaNacimiento" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
+                                            <input matInput [matDatepicker]="picker2" name="fechaNacimiento"
+                                                id="field_fechaNacimiento" placeholder="Fecha de nacimiento"
+                                                formControlName="fechaNacimiento">
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="edad" id="field_edad" formControlName="edad" placeholder="Edad">
+                                            <input matInput name="edad" id="field_edad" formControlName="edad"
+                                                placeholder="Edad">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -159,12 +195,14 @@
                                 <div class="row">
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="emailPrincipal" id="field_emailPrincipal" formControlName="emailPrincipal" placeholder="Email principal">
+                                            <input matInput name="emailPrincipal" id="field_emailPrincipal"
+                                                formControlName="emailPrincipal" placeholder="Email principal">
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="emailAdicional" id="field_emailAdicional" formControlName="emailAdicional" placeholder="Email adicional">
+                                            <input matInput name="emailAdicional" id="field_emailAdicional"
+                                                formControlName="emailAdicional" placeholder="Email adicional">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -172,34 +210,42 @@
                                 <div class="row">
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="telefonoCelular" id="field_telefonoCelular" formControlName="telefonoCelular" placeholder="Teléfono celular">
+                                            <input matInput name="telefonoCelular" id="field_telefonoCelular"
+                                                formControlName="telefonoCelular" placeholder="Teléfono celular">
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="telefonoAdicional" id="field_telefonoAdicional" formControlName="telefonoAdicional" placeholder="Teléfono adicional">
+                                            <input matInput name="telefonoAdicional" id="field_telefonoAdicional"
+                                                formControlName="telefonoAdicional" placeholder="Teléfono adicional">
                                         </mat-form-field>
                                     </div>
                                 </div>
 
-                                <br>
-                                <Br>
+                                <br><Br>
 
 
 
                                 <div class="row">
                                     <div class="col-sm-6">
+                                        </mat-form-field>
                                         <div class="form-group" [hidden]="!editForm.get('id').value">
                                             <div class="container">
-                                                <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
-                                                    <agm-marker [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                                <agm-map [latitude]="editForm.get('coorLat').value"
+                                                    [longitude]="editForm.get('coorLong').value" [zoom]="16">
+                                                    <agm-marker [latitude]="editForm.get('coorLat').value"
+                                                        [longitude]="editForm.get('coorLong').value"
+                                                        [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+                                                    </agm-marker>
                                                 </agm-map>
                                             </div>
                                         </div>
                                         <div class="form-group" [hidden]="editForm.get('id').value">
                                             <div class="container">
                                                 <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
-                                                    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                                    <agm-marker [latitude]="latitude" [longitude]="longitude"
+                                                        [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+                                                    </agm-marker>
                                                 </agm-map>
                                             </div>
                                         </div>
@@ -209,14 +255,23 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <mat-form-field>
-                                                        <input matInput (change)="changeCodigoPostal($event)" name="dirCodigoPostal" id="field_dirCodigoPostal" formControlName="dirCodigoPostal" placeholder="CP">
+                                                        <input matInput (change)="changeCodigoPostal($event)"
+                                                            name="dirCodigoPostal" id="field_dirCodigoPostal"
+                                                            formControlName="dirCodigoPostal" placeholder="CP">
                                                     </mat-form-field>
                                                 </div>
-                                                <div *ngIf="editForm.get('dirCodigoPostal').invalid && (editForm.get('dirCodigoPostal').dirty || editForm.get('dirCodigoPostal').touched)">
-                                                    <small class="form-text text-danger" *ngIf="editForm.get('dirCodigoPostal').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                                                <div
+                                                    *ngIf="editForm.get('dirCodigoPostal').invalid && (editForm.get('dirCodigoPostal').dirty || editForm.get('dirCodigoPostal').touched)">
+                                                    <small class="form-text text-danger"
+                                                        *ngIf="editForm.get('dirCodigoPostal').errors.maxlength"
+                                                        jhiTranslate="entity.validation.maxlength"
+                                                        [translateValues]="{ max: 5 }">
                                                         Este campo no puede tener más de 5 caracteres.
                                                     </small>
-                                                    <small class="form-text text-danger" *ngIf="editForm.get('dirCodigoPostal').errors.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                                                    <small class="form-text text-danger"
+                                                        *ngIf="editForm.get('dirCodigoPostal').errors.minlength"
+                                                        jhiTranslate="entity.validation.minlength"
+                                                        [translateValues]="{ min: 5 }">
                                                         Este campo no puede tener menos de 5 caracteres.
                                                     </small>
                                                 </div>
@@ -224,9 +279,12 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <mat-form-field class="full-width">
-                                                        <mat-select matInput placeholder="Estado" name="dirEstado" id="field_dirEstado" formControlName="dirEstado" (selectionChange)="onChangeEstado($event)">
+                                                        <mat-select matInput placeholder="Estado" name="dirEstado"
+                                                            id="field_dirEstado" formControlName="dirEstado"
+                                                            (selectionChange)="onChangeEstado($event)">
                                                             <mat-option>Estado</mat-option>
-                                                            <mat-option [value]="estado.id" *ngFor="let estado of estados; trackBy: trackEstadoById">
+                                                            <mat-option [value]="estado.id"
+                                                                *ngFor="let estado of estados; trackBy: trackEstadoById">
                                                                 {{estado.estado}}</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -237,9 +295,13 @@
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <mat-form-field class="full-width">
-                                                        <mat-select matInput placeholder="Municipio / alcaldía" name="dirEstado" id="field_dirEstado" formControlName="dirMunicipio" (selectionChange)="onChangeMunicipio($event)">
+                                                        <mat-select matInput placeholder="Municipio / alcaldía"
+                                                            name="dirMunicipio" id="field_dirMunicipio"
+                                                            formControlName="dirMunicipio"
+                                                            (selectionChange)="onChangeMunicipio($event)">
                                                             <mat-option>Municipio / alcaldía</mat-option>
-                                                            <mat-option [value]="municipio.id" *ngFor="let municipio of municipios; trackBy: trackMunicipioById">
+                                                            <mat-option [value]="municipio.id"
+                                                                *ngFor="let municipio of municipios; trackBy: trackMunicipioById">
                                                                 {{municipio.municipio}}</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -250,9 +312,11 @@
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <mat-form-field class="full-width">
-                                                        <mat-select matInput placeholder="Colonia" name="dirColonia" id="field_dirColonia" formControlName="dirColonia">
+                                                        <mat-select matInput placeholder="Colonia" name="dirColonia"
+                                                            id="field_dirColonia" formControlName="dirColonia">
                                                             <mat-option>Colonia</mat-option>
-                                                            <mat-option [value]="colonia.id" *ngFor="let colonia of colonias; trackBy: trackColoniaById">
+                                                            <mat-option [value]="colonia.id"
+                                                                *ngFor="let colonia of colonias; trackBy: trackColoniaById">
                                                                 {{colonia.colonia}}</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -263,7 +327,8 @@
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <mat-form-field>
-                                                        <input matInput name="dirCalle" id="field_dirCalle" formControlName="dirCalle" placeholder="Calle">
+                                                        <input matInput name="dirCalle" id="field_dirCalle"
+                                                            formControlName="dirCalle" placeholder="Calle">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -272,13 +337,15 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <mat-form-field>
-                                                        <input matInput (change)="getAddress()" name="noExt" id="field_noExt" formControlName="noExt" placeholder="Número exterior">
+                                                        <input matInput name="noExt" id="field_noExt"
+                                                            formControlName="noExt" placeholder="Número exterior">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <mat-form-field>
-                                                    <input matInput name="noInt" id="field_noInt" formControlName="noInt" placeholder="Número Interior">
+                                                    <input matInput name="noInt" id="field_noInt"
+                                                        formControlName="noInt" placeholder="Número Interior">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -303,9 +370,11 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId" placeholder="Institución">
+                                            <mat-select id="field_usuarioAsignado" name="usuarioAsignado"
+                                                formControlName="usuarioAsignadoId" placeholder="Institución">
                                                 <mat-option>Institución</mat-option>
-                                                <mat-option [value]="institucionAcademicaOption.id" *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
+                                                <mat-option [value]="institucionAcademicaOption.id"
+                                                    *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
                                                     {{institucionAcademicaOption.institucion}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -316,9 +385,11 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_estudios" name="estudios" formControlName="estudiosId" placeholder="Estudios">
+                                            <mat-select id="field_estudios" name="estudios" formControlName="estudiosId"
+                                                placeholder="Estudios">
                                                 <mat-option>Estudios</mat-option>
-                                                <mat-option [value]="formacionAcademicaOption.id" *ngFor="let formacionAcademicaOption of formacionacademicas; trackBy: trackFormacionAcademicaById">
+                                                <mat-option [value]="formacionAcademicaOption.id"
+                                                    *ngFor="let formacionAcademicaOption of formacionacademicas; trackBy: trackFormacionAcademicaById">
                                                     {{formacionAcademicaOption.formacionAcademica}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -331,8 +402,11 @@
                                         <p>
                                             Estatus académico:
                                             <br>
-                                            <mat-button-toggle-group id="field_estatusAcademico" name="estatusAcademico" formControlName="estatusAcademicoId" aria-label="Estilo de fuente" class="botones-chicos">
-                                                <mat-button-toggle [value]="estatusAcademicoOption.id" *ngFor="let estatusAcademicoOption of estatusacademicos; trackBy: trackEstatusAcademicoById">
+                                            <mat-button-toggle-group id="field_estatusAcademico" name="estatusAcademico"
+                                                formControlName="estatusAcademicoId" aria-label="Estilo de fuente"
+                                                class="botones-chicos">
+                                                <mat-button-toggle [value]="estatusAcademicoOption.id"
+                                                    *ngFor="let estatusAcademicoOption of estatusacademicos; trackBy: trackEstatusAcademicoById">
                                                     {{estatusAcademicoOption.estatus}}</mat-button-toggle>
                                             </mat-button-toggle-group>
                                         </p>
@@ -349,9 +423,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_fuenteReclutamiento" name="fuenteReclutamiento" formControlName="fuenteReclutamientoId" placeholder="Fuente de reclutamiento">
+                                            <mat-select id="field_fuenteReclutamiento" name="fuenteReclutamiento"
+                                                formControlName="fuenteReclutamientoId"
+                                                placeholder="Fuente de reclutamiento">
                                                 <mat-option>Fuente de reclutamiento</mat-option>
-                                                <mat-option [value]="fuenteReclutamientoOption.id" *ngFor="let fuenteReclutamientoOption of fuentereclutamientos; trackBy: trackFuenteReclutamientoById">
+                                                <mat-option [value]="fuenteReclutamientoOption.id"
+                                                    *ngFor="let fuenteReclutamientoOption of fuentereclutamientos; trackBy: trackFuenteReclutamientoById">
                                                     {{fuenteReclutamientoOption.fuente}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -362,9 +439,13 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_esquemaContratacionKode" name="esquemaContratacionKode" formControlName="esquemaContratacionKodeId" placeholder="Esquema de contratación">
+                                            <mat-select id="field_esquemaContratacionKode"
+                                                name="esquemaContratacionKode"
+                                                formControlName="esquemaContratacionKodeId"
+                                                placeholder="Esquema de contratación">
                                                 <mat-option>Esquema de contratación</mat-option>
-                                                <mat-option [value]="esquemaContratacionKodeOption.id" *ngFor="let esquemaContratacionKodeOption of esquemacontratacionkodes; trackBy: trackEsquemaContratacionKodeById">
+                                                <mat-option [value]="esquemaContratacionKodeOption.id"
+                                                    *ngFor="let esquemaContratacionKodeOption of esquemacontratacionkodes; trackBy: trackEsquemaContratacionKodeById">
                                                     {{esquemaContratacionKodeOption.esquema}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -373,14 +454,16 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <mat-form-field>
-                                            <input matInput name="salarioNeto" id="field_salarioNeto" formControlName="salarioNeto" placeholder="Salario neto">
+                                            <input matInput name="salarioNeto" id="field_salarioNeto"
+                                                formControlName="salarioNeto" placeholder="Salario neto">
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <mat-form-field>
-                                            <input matInput name="costoTotal" id="field_costoTotal" formControlName="costoTotal" placeholder="Costo total">
+                                            <input matInput name="costoTotal" id="field_costoTotal"
+                                                formControlName="costoTotal" placeholder="Costo total">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -389,7 +472,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <mat-form-field>
-                                            <input matInput name="contatoDuracionMinima" id="field_contatoDuracionMinima" formControlName="contatoDuracionMinima" placeholder="Duración mínima de contrato (Meses)">
+                                            <input matInput name="contatoDuracionMinima"
+                                                id="field_contatoDuracionMinima" formControlName="contatoDuracionMinima"
+                                                placeholder="Duración mínima de contrato (Meses)">
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -405,8 +490,11 @@
 
                                 <label class="form-label">Estatus laboral:</label>
                                 <p>
-                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral" formControlName="estatusLaboralId" aria-label="Estilo de fuente" class="botones-chicos">
-                                        <mat-button-toggle [value]="estatusLaboralOption.id" *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById">
+                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral"
+                                        formControlName="estatusLaboralId" aria-label="Estilo de fuente"
+                                        class="botones-chicos">
+                                        <mat-button-toggle [value]="estatusLaboralOption.id"
+                                            *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById">
                                             {{estatusLaboralOption.estatus}}</mat-button-toggle>
                                     </mat-button-toggle-group>
                                 </p>
@@ -416,24 +504,35 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <mat-form-field>
-                                            <input matInput [matDatepicker]="picker3" id="field_disponibilidadEntrevistaFecha" name="disponibilidadEntrevistaFecha" placeholder="Disponibilidad de entrevista" formControlName="disponibilidadEntrevistaFecha">
+                                            <input matInput [matDatepicker]="picker3"
+                                                id="field_disponibilidadEntrevistaFecha"
+                                                name="disponibilidadEntrevistaFecha"
+                                                placeholder="Disponibilidad de entrevista"
+                                                formControlName="disponibilidadEntrevistaFecha">
                                             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                             <mat-datepicker #picker3></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="col-sm-1" style="text-align: center;">
-                                    <br> ó
+                                    <br>
+                                    ó
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field>
-                                        <input matInput name="disponibilidadEntrevistaPeriodo" id="field_disponibilidadEntrevistaPeriodo" formControlName="disponibilidadEntrevistaPeriodo" placeholder="">
+                                        <input matInput name="disponibilidadEntrevistaPeriodo"
+                                            id="field_disponibilidadEntrevistaPeriodo"
+                                            formControlName="disponibilidadEntrevistaPeriodo" placeholder="">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                     <mat-form-field class="full-width">
-                                        <mat-select id="field_disponibilidadEntrevistaPeriodoTiempo" name="disponibilidadEntrevistaPeriodoTiempo" formControlName="disponibilidadEntrevistaPeriodoTiempoId" placeholder="Periodo">
-                                            <mat-option [value]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">
+                                        <mat-select id="field_disponibilidadEntrevistaPeriodoTiempo"
+                                            name="disponibilidadEntrevistaPeriodoTiempo"
+                                            formControlName="disponibilidadEntrevistaPeriodoTiempoId"
+                                            placeholder="Periodo">
+                                            <mat-option [value]="tipoPeriodoOption.id"
+                                                *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">
                                                 {{tipoPeriodoOption.periodo}}</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -442,23 +541,31 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <mat-form-field>
-                                        <input matInput [matDatepicker]="picker4" id="field_disponibilidadAsignacionFecha" name="disponibilidadAsignacionFecha" formControlName="disponibilidadAsignacionFecha" placeholder="Disponibilidad de asignación">
+                                        <input matInput [matDatepicker]="picker4"
+                                            id="field_disponibilidadAsignacionFecha"
+                                            name="disponibilidadAsignacionFecha"
+                                            formControlName="disponibilidadAsignacionFecha"
+                                            placeholder="Disponibilidad de asignación">
                                         <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                         <mat-datepicker #picker4></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-1" style="text-align: center;">
-                                    <br> ó
+                                    <br>
+                                    ó
                                 </div>
                                 <div class="col-sm-4">
                                     <mat-form-field>
-                                        <input matInput name="disponibilidadAsignacionPeriodo" id="field_disponibilidadAsignacionPeriodo" formControlName="disponibilidadAsignacionPeriodo" placeholder="">
+                                        <input matInput name="disponibilidadAsignacionPeriodo"
+                                            id="field_disponibilidadAsignacionPeriodo"
+                                            formControlName="disponibilidadAsignacionPeriodo" placeholder="">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                     <mat-form-field class="full-width">
                                         <mat-select placeholder="">
-                                            <mat-option [value]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">
+                                            <mat-option [value]="tipoPeriodoOption.id"
+                                                *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">
                                                 {{tipoPeriodoOption.periodo}}</mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -479,7 +586,8 @@
                                     <div class="form-group">
                                         <br>
                                         <mat-form-field class="example-full-width">
-                                            <textarea matInput name="notas" id="field_notas" formControlName="notas" placeholder="Prestaciones" rows="12"></textarea>
+                                            <textarea matInput name="notas" id="field_notas" formControlName="notas"
+                                                placeholder="Prestaciones" rows="12"></textarea>
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -502,7 +610,8 @@
             <div class="row">
                 <div class="col-sm-3">
                     <mat-form-field>
-                        <input matInput name="porcentajeIngles" id="field_porcentajeIngles" formControlName="porcentajeIngles" placeholder="Ingles %">
+                        <input matInput name="porcentajeIngles" id="field_porcentajeIngles"
+                            formControlName="porcentajeIngles" placeholder="Ingles %">
                     </mat-form-field>
                     <br>
                 </div>
@@ -519,16 +628,19 @@
                 </div>
                 <div class="col-sm-2">
                     <mat-form-field class="full-width">
-                        <mat-select matInput placeholder="Dominio" name="skillDominio" id="field_skillDominio" formControlName="skillDominio">
+                        <mat-select matInput placeholder="Dominio" name="skillDominio" id="field_skillDominio"
+                            formControlName="skillDominio">
                             <mat-option>Dominio</mat-option>
-                            <mat-option [value]="dominio.id" *ngFor="let dominio of dominioSkill; trackBy: trackDominioById">
+                            <mat-option [value]="dominio.id"
+                                *ngFor="let dominio of dominioSkill; trackBy: trackDominioById">
                                 {{dominio.dominio}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-1">
                     <mat-form-field>
-                        <input matInput placeholder="Calificación" name="skillCalificacion" id="field_skillCalificacion" formControlName="skillCalificacion">
+                        <input matInput placeholder="Calificación" name="skillCalificacion" id="field_skillCalificacion"
+                            formControlName="skillCalificacion">
                     </mat-form-field>
                 </div>
                 <div class="col-sm-1">
@@ -545,7 +657,8 @@
                             <thead>
                                 <tr jhiSort>
                                     <th jhiSortBy="idCandidatoNombre"><span>Skill</span></th>
-                                    <th jhiSortBy="nivelSkillDominio"><span jhiTranslate="App.skillCandidato.nivelSkill">Dominio</span>
+                                    <th jhiSortBy="nivelSkillDominio"><span
+                                            jhiTranslate="App.skillCandidato.nivelSkill">Dominio</span>
                                     </th>
                                     <th jhiSortBy="calificacionSkill"><span>Calificacion</span>
                                     </th>
@@ -561,7 +674,8 @@
                                     </td>
                                     <td>{{skillCandidato.calificacionSkill}}</td>
                                     <td>
-                                        <button type="button" [value]="skillCandidato.idSkillId" class="btn btn-danger" (click)="removeSkillCandidato($event)"> Eliminar
+                                        <button type="button" [value]="skillCandidato.idSkillId" class="btn btn-danger"
+                                            (click)="removeSkillCandidato($event)"> Eliminar
                                         </button>
                                     </td>
                                 </tr>
@@ -593,14 +707,20 @@
                 <div class="col-sm-12">
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList aria-label="Fruit selection">
-                            <mat-chip *ngFor="let cuentaOption of cuentasIntSelected; trackBy: trackCuentaById" [selectable]="selectable" [removable]="removable" (removed)="remove(cuentaOption)" color="primary" selected>
+                            <mat-chip *ngFor="let cuentaOption of cuentasIntSelected; trackBy: trackCuentaById"
+                                [selectable]="selectable" [removable]="removable" (removed)="remove(cuentaOption)"
+                                color="primary" selected>
                                 {{cuentaOption.clave}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input placeholder="Cuentas de interés para el candidato" #fruitInput [formControl]="cuentaIntCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addCuentaInt($event)">
+                            <input placeholder="Cuentas de interés para el candidato" #fruitInput
+                                [formControl]="cuentaIntCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="addCuentaInt($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                            <mat-option *ngFor="let cuentaOption of cuentasInteres; trackBy: trackCuentaById" [value]="cuentaOption.id">
+                            <mat-option *ngFor="let cuentaOption of cuentasInteres; trackBy: trackCuentaById"
+                                [value]="cuentaOption.id">
                                 {{cuentaOption.clave}}
                             </mat-option>
                         </mat-autocomplete>
@@ -612,14 +732,20 @@
                 <div class="col-sm-12">
                     <mat-form-field class="example-chip-list">
                         <mat-chip-list #chipList2 aria-label="Fruit selection">
-                            <mat-chip *ngFor="let cuentaRechazada of cuentasRechSelected; trackBy: trackCuentaById" [selectable]="selectable2" [removable]="removable2" (removed)="remove2(cuentaRechazada)" color="primary" selected>
+                            <mat-chip *ngFor="let cuentaRechazada of cuentasRechSelected; trackBy: trackCuentaById"
+                                [selectable]="selectable2" [removable]="removable2" (removed)="remove2(cuentaRechazada)"
+                                color="primary" selected>
                                 {{cuentaRechazada.clave}}
                                 <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                             </mat-chip>
-                            <input placeholder="Cuentas rechazadas por candidato" #fruitInput2 [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)">
+                            <input placeholder="Cuentas rechazadas por candidato" #fruitInput2
+                                [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
+                                [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)">
                         </mat-chip-list>
                         <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                            <mat-option *ngFor="let cuentaRechazada of cuentasRechazadas; trackBy: trackCuentaById" [value]="cuentaRechazada.id">
+                            <mat-option *ngFor="let cuentaRechazada of cuentasRechazadas; trackBy: trackCuentaById"
+                                [value]="cuentaRechazada.id">
                                 {{cuentaRechazada.clave}}
                             </mat-option>
                         </mat-autocomplete>
@@ -629,7 +755,8 @@
             <br>
             <br>
             <div class="text-center">
-                <button mat-raised-button color="warn" type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving">
+                <button mat-raised-button color="warn" type="submit" id="save-entity"
+                    [disabled]="isSaving">
                     <span>Guardar candidato</span>
                 </button>
             </div>
