@@ -55,12 +55,12 @@ export class CandidatoService {
       fechaNacimiento:
         candidato.fechaNacimiento != null && candidato.fechaNacimiento.isValid() ? candidato.fechaNacimiento.format(DATE_FORMAT) : null,
       disponibilidadEntrevistaFecha:
-        candidato.disponibilidadEntrevistaFecha != null && candidato.disponibilidadEntrevistaFecha.isValid()
-          ? candidato.disponibilidadEntrevistaFecha.format(DATE_FORMAT)
+        candidato.disponibilidadEntrevistaFecha != null && candidato.disponibilidadEntrevistaFecha
+          ? candidato.disponibilidadEntrevistaFecha
           : null,
       disponibilidadAsignacionFecha:
-        candidato.disponibilidadAsignacionFecha != null && candidato.disponibilidadAsignacionFecha.isValid()
-          ? candidato.disponibilidadAsignacionFecha.format(DATE_FORMAT)
+        candidato.disponibilidadAsignacionFecha != null && candidato.disponibilidadAsignacionFecha
+          ? candidato.disponibilidadAsignacionFecha
           : null,
       fechaAlta: candidato.fechaAlta != null && candidato.fechaAlta.isValid() ? candidato.fechaAlta.toJSON() : null,
       fechaUltimoSeguimiento:

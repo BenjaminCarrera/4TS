@@ -2,12 +2,12 @@
     <div class="col-md-12" style="display: inline-block;">
         <div class="row">
             <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
-                <h3>Detalle del candidato - Jesús Daniel Cabrera Díaz</h3>
+                <h3>Detalle del candidato - {{ candidato.nombre }} {{ candidato.apellidoPaterno }} {{ candidato.apellidoMaterno }}</h3>
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
-                <a routerLink="/agreg-req" routerLinkActive="active">
-                    <button mat-raised-button color="warn">Editar</button>
-                </a>
+                <button type="submit" [routerLink]="['/candidato', candidato.id, 'edit']" mat-raised-button color="warn">
+                    <span class="d-none d-md-inline" >Editar</span>
+                </button>
             </div>
         </div>
     </div>
@@ -817,4 +817,4 @@
         </div>
         <br /><br />
     </mat-tab>
-</mat-tab-group>
+    </mat-tab-group>
