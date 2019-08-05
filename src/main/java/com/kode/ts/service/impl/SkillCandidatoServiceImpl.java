@@ -2,8 +2,12 @@ package com.kode.ts.service.impl;
 
 import com.kode.ts.service.SkillCandidatoService;
 import com.kode.ts.domain.SkillCandidato;
+import com.kode.ts.domain.SkillRequerimiento;
 import com.kode.ts.repository.SkillCandidatoRepository;
+import com.kode.ts.service.dto.ListaSkillCandidatoDTO;
+import com.kode.ts.service.dto.ListaSkillRequerimientoDTO;
 import com.kode.ts.service.dto.SkillCandidatoDTO;
+import com.kode.ts.service.dto.SkillRequerimientoDTO;
 import com.kode.ts.service.mapper.SkillCandidatoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.RollbackException;
 
 /**
  * Service Implementation for managing {@link SkillCandidato}.
@@ -45,6 +52,22 @@ public class SkillCandidatoServiceImpl implements SkillCandidatoService {
         SkillCandidato skillCandidato = skillCandidatoMapper.toEntity(skillCandidatoDTO);
         skillCandidato = skillCandidatoRepository.save(skillCandidato);
         return skillCandidatoMapper.toDto(skillCandidato);
+    }
+    
+    /**
+     * Save a skillCandidato.
+     *
+     * @param skillCandidatoDTO the entity to save.
+     * @return the persisted entity.
+     */
+    @Override
+    @Transactional
+    public ListaSkillCandidatoDTO saveLista(ListaSkillCandidatoDTO listaSkillCandidatoDTO) {
+        log.debug("Request to save SkillRequerimiento : {}", listaSkillCandidatoDTO);
+        if(listaSkillCandidatoDTO.getLista().size() > 0) {
+        	loopSkillCandidatos(listaSkillCandidatoDTO.getLista());
+        }
+        return listaSkillCandidatoDTO;
     }
 
     /**
@@ -85,5 +108,26 @@ public class SkillCandidatoServiceImpl implements SkillCandidatoService {
     public void delete(Long id) {
         log.debug("Request to delete SkillCandidato : {}", id);
         skillCandidatoRepository.deleteById(id);
+    }
+    
+    /**
+     * Save the skillRequerimientos by list.
+     *
+     * @param list of SkillRequerimientoDTO entity.
+     */
+    @Transactional
+    private void loopSkillCandidatos(List<SkillCandidatoDTO> lista) {
+    	
+        for(SkillCandidatoDTO item : lista) {
+        	try {
+        		SkillCandidato skillCandidato = skillCandidatoMapper.toEntity(item);
+        		skillCandidato = skillCandidatoRepository.save(skillCandidato);
+        	} catch (RollbackException e) {
+				
+			} catch (Exception e) {
+				
+			}	
+        }
+        
     }
 }

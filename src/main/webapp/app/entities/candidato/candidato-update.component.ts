@@ -559,7 +559,6 @@ export class CandidatoUpdateComponent implements OnInit {
       documentoId: this.editForm.get(['documentoId']).value,
       cuentaInteres: this.cuentasIntSelected,
       cuentaRechazadas: this.cuentasRechSelected,
-      skillCandidatoes: this.skillCandidatoes,
       fuenteReclutamientoId: this.editForm.get(['fuenteReclutamientoId']).value,
       estatusCandidatoId: this.editForm.get(['estatusCandidatoId']).value,
       perfilId: this.editForm.get(['perfilId']).value,
@@ -576,14 +575,27 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICandidato>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+    result.subscribe(r => this.onSaveSuccess(r), () => this.onSaveError());
   }
 
-  protected onSaveSuccess() {
+  protected subscribeToSaveResponseSkillsCand(result: Observable<HttpResponse<any>>) {
+    result.subscribe(r => this.onSaveSuccessFinal(r), () => this.onSaveError());
+  }
 
-// this.subscribeToSaveResponseSkillsCand(this.skillCandidatoService.patch(this.skillCandidatoes));
+  protected onSaveSuccessFinal(r: HttpResponse<any>) {
     this.isSaving = false;
     this.previousState();
+  }
+
+  protected onSaveSuccess(r: HttpResponse<ICandidato>) {
+    const idCandidato = r.body.id;
+    if (this.skillCandidatoes.length > 0) {
+      this.skillCandidatoes.forEach(c => {
+        c.idCandidatoId = idCandidato;
+      });
+    }
+    const updateSkillCan = { lista: this.skillCandidatoes };
+    this.subscribeToSaveResponseSkillsCand(this.skillCandidatoService.patch(updateSkillCan));
   }
 
   protected onSaveError() {
@@ -784,27 +796,27 @@ export class CandidatoUpdateComponent implements OnInit {
       address += this.editForm.get('dirCodigoPostal').value + ' ';
     }
     if (this.editForm.get('dirColonia').value !== null) {
-      this.colonias.forEach( col => {
+      this.colonias.forEach(col => {
         if (col.municipioId === this.editForm.get('dirColonia').value) {
           address += col.colonia + ' ';
         }
       });
     }
     if (this.editForm.get('dirMunicipio').value !== null) {
-      this.municipios.forEach( mun => {
+      this.municipios.forEach(mun => {
         if (mun.id === this.editForm.get('dirMunicipio').value) {
           address += mun.municipio + ' ';
         }
       });
     }
     if (this.editForm.get('dirEstado').value !== null) {
-      this.estados.forEach( est => {
+      this.estados.forEach(est => {
         if (est.id === this.editForm.get('dirEstado').value) {
           address += est.estado;
         }
       });
     }
-    this.geoCoder.geocode({ 'address':  address  }, (results, status) => {
+    this.geoCoder.geocode({ 'address': address }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
           this.latitude = results[0].geometry.location.lat();
