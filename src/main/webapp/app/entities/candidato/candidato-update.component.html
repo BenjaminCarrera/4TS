@@ -631,6 +631,18 @@
             </div>
             <br>
             <br>
+            <div *ngIf="!ocultar">
+                <label jhiTranslate="App.candidato.cuentaInteres" for="field_cuentaInteres">Cuenta Interes</label>
+                <select class="form-control" id="asd" multiple name="cuentaInteres" formControlName="cuentaInteres">
+                    <option [ngValue]="getSelected(editForm.get('cuentaInteres').value, cuentaOption)"
+                    *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}
+                    </option>
+                </select>
+                <label jhiTranslate="App.candidato.cuentaRechazadas" for="field_cuentaRechazadas">Cuenta Rechazadas</label>
+                <select class="form-control" id="field_cuentaRechazadas" multiple name="cuentaRechazadas" formControlName="cuentaRechazadas">
+                    <option [ngValue]="getSelected(editForm.get('cuentaRechazadas').value, cuentaOption)" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}</option>
+                </select>
+            </div>
             <div class="text-center">
                 <button mat-raised-button color="warn" type="submit" id="save-entity" [disabled]="isSaving">
                     <span>Guardar candidato</span>
