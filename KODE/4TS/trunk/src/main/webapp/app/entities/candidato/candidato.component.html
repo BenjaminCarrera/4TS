@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12" style="display: inline-block;">
         <div class="row">
-            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;padding-left: 10px;">
-                <h3 class="titulo">Candidatos</h3>
+            <div style="display: inline-block; padding-top: 10px; padding-right: 0px;padding-left: 10px;">
+                <h3 class="titulo">Cunsulta de Candidato</h3>
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
                 <a [routerLink]="['/candidato/new']">
@@ -120,71 +120,90 @@
         <table class="table table-striped">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                    <th jhiSortBy="id"><span>ID</span>
+                    <th jhiSortBy="id">
+                        <span>ID</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusCandidatoEstatus">
                         <span>Estatus Candidato</span>
+                        <br>
+
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="nombre">
                         <span>Nombre</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="apellidoPaterno">
                         <span>Apellido Paterno</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="apellidoMaterno">
                         <span>Apellido Materno</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="telefonoCelular">
                         <span>Celular</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="institucionAcademicaInstitucion">
                         <span>Reclutador</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="perfilPerfil">
                         <span>Perfil</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="nivelPerfilNivel">
                         <span>Nivel Perfil</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="fechaAlta">
                         <span>Fecha Alta</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="esquemaContratacionKodeEsquema">
                         <span>Esquema Contratacion</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="salarioNeto">
                         <span>Salario Neto</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="costoTotal">
                         <span>Costo Total</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusLaboralEstatus">
                         <span>Estatus Laboral</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="disponibilidadEntrevistaPeriodoTiempoPeriodo">
                         <span>Disponibilidad Entrevista</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="disponibilidadAsignacionPeriodoTiempoPeriodo">
                         <span> Disponibilidad Asignacion</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="fechaUltimoSeguimiento">
                         <span> Ultimo Seguimiento</span>
+                        <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                 </tr>

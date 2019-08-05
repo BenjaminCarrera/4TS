@@ -42,9 +42,9 @@ export class CandidatoDetailComponent implements OnInit {
   mostrarAsignacionCandidato: boolean;
 
   // Enfoque del mapa
-  lat = 19.4284700;
-  lng = -99.1276600;
-  zoom = 14;
+  lat = 19.391213;
+  lng = -99.165761;
+  zoom = 20;
 
   // Variables Tarea
   DATA_TAREA: PeriodicElement[] = [
