@@ -15,7 +15,6 @@ import { IUser, UserService } from 'app/core';
 import { IDocumento } from 'app/shared/model/documento.model';
 import { DocumentoService } from 'app/entities/documento';
 import { ICuenta } from 'app/shared/model/cuenta.model';
-import { ICuenta } from 'app/shared/model/cuenta.model';
 import { CuentaService } from 'app/entities/cuenta';
 import { IFuenteReclutamiento } from 'app/shared/model/fuente-reclutamiento.model';
 import { FuenteReclutamientoService } from 'app/entities/fuente-reclutamiento';
@@ -87,6 +86,7 @@ export class CandidatoUpdateComponent implements OnInit {
   allItems: any;
   municipios: IMunicipio[];
   skills: ISkill[];
+  skillsCandidato: ISkillCandidato[];
   skillsFilter: ISkill[];
   dominioSkill: IDominioSkill[];
   skillCandidatoes: ISkillCandidato[];
@@ -303,6 +303,18 @@ export class CandidatoUpdateComponent implements OnInit {
         (res: ISkill[]) => (this.setSkills(res)),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+      this.skillCandidatoService
+        .query({
+          size: ALL_ITEMS
+        })
+        .pipe(
+          filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+          map((response: HttpResponse<IUser[]>) => response.body)
+        )
+        .subscribe(
+          (res: ISkillCandidato[]) => (this.setSkillsCandidato(res)),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
     this.dominioSkillService
       .query({
         size: ALL_ITEMS,
@@ -549,10 +561,10 @@ export class CandidatoUpdateComponent implements OnInit {
       sexo: this.editForm.get(['sexo']).value,
       estadoCivil: this.editForm.get(['estadoCivil']).value,
       fechaAlta:
-        this.editForm.get(['fechaAlta']).value != null ? moment(this.editForm.get(['fechaAlta']).value, DATE_TIME_FORMAT) : undefined,
+        this.editForm.get(['fechaAlta']).value != null ? this.editForm.get(['fechaAlta']).value : undefined,
       fechaUltimoSeguimiento:
         this.editForm.get(['fechaUltimoSeguimiento']).value != null
-          ? moment(this.editForm.get(['fechaUltimoSeguimiento']).value, DATE_TIME_FORMAT)
+          ? this.editForm.get(['fechaUltimoSeguimiento']).value
           : undefined,
       foto: this.editForm.get(['foto']).value,
       disponibilidadEntrevistaPeriodoTiempoId: this.editForm.get(['disponibilidadEntrevistaPeriodoTiempoId']).value,
@@ -934,6 +946,36 @@ export class CandidatoUpdateComponent implements OnInit {
     this.skills = res;
     this.skillsFilter = res;
   }
+  setSkillsCandidato(res: ISkillCandidato[]) {
+    this.skillsCandidato = res;
+    console.log(this.skillsCandidato);
+    console.log(this.editForm.get(['id']).value);
+    for (const clave of this.skillsCandidato) {
+      if ( clave.idCandidatoId === this.editForm.get(['id']).value) {
+        console.log('se encontro un skill del candidato');
+        // console.log(clave);
+        const newSkillCandidato: ISkillCandidato = new SkillCandidato();
+        newSkillCandidato.idSkillId = clave.idSkillId;
+        // console.log(this.editForm.get(['skill']).value);
+        const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
+        // console.log('skill selected', skillSelected);
+        this.skillsSelected.push(skillSelected);
+        newSkillCandidato.idSkillNombre = skillSelected.nombre;
+        newSkillCandidato.nivelSkillId = clave.nivelSkillId;
+        console.log('res', newSkillCandidato);
+        // console.log(this.editForm.get(['skillDominio']).value);
+        newSkillCandidato.nivelSkillDominio = clave.nivelSkillDominio;
+        newSkillCandidato.calificacionSkill = clave.calificacionSkill;
+        // console.log(this.editForm.get(['skillCalificacion']).value);
+        this.skillCandidatoes.push(newSkillCandidato);
+        this.editForm.get(['skill']).setValue(null);
+        this.editForm.get(['skillDominio']).setValue(null);
+        this.editForm.get(['skillCalificacion']).setValue(null);
+        this.updateSkills();
+      }
+
+    }
+  }
 
   setCuentas(res: ICuenta[]) {
     this.cuentas = res;
@@ -955,27 +997,27 @@ export class CandidatoUpdateComponent implements OnInit {
     // }
   }
 
-  setCuentasCandidato(res: ICuenta[]) {
-  }
-
   addSkillCandidato() {
     this.errorMessageSkill = null;
     if (this.editForm.get(['skill']).value != null && this.editForm.get(['skillDominio']).value != null && this.editForm.get(['skillCalificacion']).value != null) {
       const newSkillCandidato: ISkillCandidato = new SkillCandidato();
       newSkillCandidato.idSkillId = this.editForm.get(['skill']).value;
+      // console.log(this.editForm.get(['skill']).value);
       const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
+      // console.log('skill selected', skillSelected);
       this.skillsSelected.push(skillSelected);
       newSkillCandidato.idSkillNombre = skillSelected.nombre;
       newSkillCandidato.nivelSkillId = this.editForm.get(['skillDominio']).value;
+      // console.log(this.editForm.get(['skillDominio']).value);
       const letdominioSkillSelected = this.dominioSkill.find(item => item.id === newSkillCandidato.nivelSkillId);
       newSkillCandidato.nivelSkillDominio = letdominioSkillSelected.dominio;
       newSkillCandidato.calificacionSkill = this.editForm.get(['skillCalificacion']).value;
+      // console.log(this.editForm.get(['skillCalificacion']).value);
       this.skillCandidatoes.push(newSkillCandidato);
-
+      console.log(newSkillCandidato);
       this.editForm.get(['skill']).setValue(null);
       this.editForm.get(['skillDominio']).setValue(null);
       this.editForm.get(['skillCalificacion']).setValue(null);
-
       this.updateSkills();
     } else {
       this.errorMessageSkill = 'Debe ingresar todos los datos';

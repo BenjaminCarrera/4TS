@@ -23,6 +23,12 @@
                                 </div>
                             </div>
 
+                            <div class="form-group" *ngIf="!ocultar">
+                                <label for="id" jhiTranslate="global.field.id">ID</label>
+                                <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                                    readonly />
+                            </div>
+
                             <input type="hidden" placeholder="Coor Lat" name="coorLat" id="field_coorLat" [value]="latitude" formControlName="coorLat" />
                             <input type="hidden" placeholder="Coor Long" name="coorLong" id="field_coorLong" [value]="longitude" formControlName="coorLong" />
 
