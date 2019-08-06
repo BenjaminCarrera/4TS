@@ -1,8 +1,5 @@
 /*Estilo de tabla*/
 
-
-/*Estilo de tabla*/
-
 td.mat-cell,
 td.mat-footer-cell {
     text-align: center !important;
@@ -19,6 +16,10 @@ table.mat-table {
     width: 100% !important;
 }
 
+.full-width {
+    width: 100% !important;
+}
+
 th {
     color: rgba(0, 0, 0, .54) !important;
 }
@@ -30,7 +31,6 @@ td {
 
 thead {
     text-align: center;
-    font-size: 13px;
 }
 
 tbody {
