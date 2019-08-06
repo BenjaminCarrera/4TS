@@ -1,11 +1,27 @@
-id;categoria
-1;initiatives
-2;listo
-3;Uganda Shilling Cotton
-4;Persevering Personal Loan Account
-5;De-engineered strategic integrate
-6;array payment
-7;optical transmitter
-8;Utah COM
-9;Botswana
-10;zero defect
+﻿id;categoria
+1;Lenguaje de Pogramación / Scripts
+2;Aplicaciones Móviles
+3;Bases de Datos
+4;Frameworks / Librerías
+5;Servidores de Hospedaje Web
+6;WebServices
+7;Reporteadores
+8;Business Intelligence / ETL
+9;Contenedores / Servidores de Aplicación
+10;Ambientes de Desarrollo (IDE)
+11;Plataforma de Colaboración
+12;Sistemas de Control de Versiones
+13;Patrones de Diseño
+14;Patrones de Arquitectura
+15;Administrador de Contenidos / Plantillas
+16;Administración de proyectos
+17;Metodologías / Modelos de Calidad
+18;Herramientas Case
+19;Herramientas de Diseño
+20;Prototipos & Wireframes
+21;Herramientas de Pruebas
+22;Virtualización / Contenedores
+23;Sistemas Operativos
+24;Protocolos / Plataformas de Comunicación
+25;Cloud Services
+26;Otros

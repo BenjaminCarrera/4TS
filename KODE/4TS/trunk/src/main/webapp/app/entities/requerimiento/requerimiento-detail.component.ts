@@ -10,6 +10,10 @@ import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-
 import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
 import { skillRequerimientoPopupRoute } from '../skill-requerimiento/skill-requerimiento.route';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { ITarea } from '../../shared/model/tarea.model';
+import { TareaService } from '../tarea/tarea.service';
+import { IBitacora } from 'app/shared/model/bitacora.model';
+import { BitacoraService } from '../bitacora/bitacora.service';
 
 export interface PeriodicElement {
   Id: number;
@@ -30,13 +34,14 @@ export interface Tarea {
   selector: 'jhi-requerimiento-detail',
   templateUrl: './requerimiento-detail.component.html',
   styleUrls: [
-    '../../res-conreq/res-conreq.component.scss'
+    'requerimiento.component.scss'
   ]
 })
 
 export class RequerimientoDetailComponent implements OnInit {
 
   page: any;
+  itemsPerPage: any;
 
   // skills
   skillsToShow: ISkillRequerimiento;
@@ -47,6 +52,8 @@ export class RequerimientoDetailComponent implements OnInit {
   tipoReq2: any [];
   skillReq3: ISkillRequerimiento;
   tipoReq3: any [];
+  tareas: ITarea [];
+  bitacoras: IBitacora[];
   // Enfoque del mapa
   lat: any;
   lng: any;
@@ -54,23 +61,7 @@ export class RequerimientoDetailComponent implements OnInit {
   requerimiento: IRequerimiento;
   skillRequerimientos: ISkillRequerimiento [];
   // Variables Tarea
-  DATA_TAREA: PeriodicElement[] = [
-    { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
-  ];
   dataSourceTarea: PeriodicElement[];
-  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
 
   // VAriables Bitacora
   DATA_BITACORA: Tarea[] = [
@@ -81,32 +72,21 @@ export class RequerimientoDetailComponent implements OnInit {
   ];
   dataSourceBitacora: Tarea[];
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
-  constructor(protected activatedRoute: ActivatedRoute,
-    protected skillRequerimientoService: SkillRequerimientoService) {
-    this.dataSourceTarea = this.DATA_TAREA.slice();
+  predicate: string;
+  reverse: any;
+  links: any;
+  parseLinks: any;
+  totalItems: number;
+
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    protected skillRequerimientoService: SkillRequerimientoService,
+    protected tareaService: TareaService,
+    protected bitacoraService: BitacoraService
+    ) {
     this.dataSourceBitacora = this.DATA_BITACORA.slice();
   }
 
-  sortDataTarea(sort: MatSort) {
-    const data = this.DATA_TAREA.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceTarea = data;
-      return;
-    }
-
-    this.dataSourceTarea = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Id': return compare(a.Id, b.Id, isAsc);
-        case 'Tarea': return compare(a.Tarea, b.Tarea, isAsc);
-        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
-        case 'Destinatario': return compare(a.Destinatario, b.Destinatario, isAsc);
-        case 'FechaAlta': return compare(a.FechaAlta, b.FechaAlta, isAsc);
-        case 'Estatus': return compare(a.Estatus, b.Estatus, isAsc);
-        default: return 0;
-      }
-    });
-  }
   sortDataBitacora(sort: MatSort) {
     const data = this.DATA_BITACORA.slice();
     if (!sort.active || sort.direction === '') {
@@ -126,17 +106,40 @@ export class RequerimientoDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.loadAll();
+
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
       this.requerimiento = requerimiento;
     });
-    this.loadSkillReq();
+
+    this.tareaService
+      .query({
+        page: this.page - 1,
+        size: 9999
+      })
+      .subscribe(
+        (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message, 'tareas')
+      );
+
+      this.bitacoraService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage
+      })
+      .subscribe(
+        (res: HttpResponse<IBitacora[]>) => this.paginateBitacoras(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message, 'bitacora-requerimiento')
+      );
+
     // Enfoque del mapa
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
   }
 
-  loadSkillReq() {
+  loadAll() {
     this.skillRequerimientoService
       .query({
         page: this.page - 1,
@@ -144,12 +147,14 @@ export class RequerimientoDetailComponent implements OnInit {
       })
       .subscribe(
         (res: HttpResponse<ISkillRequerimiento[]>) => this.paginateSkillRequerimientos(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
+        (res: HttpErrorResponse) => this.onError(res.message, 'skill')
       );
+      this.tareas = [];
   }
 
-  onError(message: string): void {
-    throw new Error('');
+  protected onError(message: string, aviso: string): void {
+    console.log(message, aviso);
+    // throw new Error('');
   }
 
   protected paginateSkillRequerimientos(data: ISkillRequerimiento[], headers: HttpHeaders) {
@@ -185,10 +190,31 @@ export class RequerimientoDetailComponent implements OnInit {
       }
     });
 
-    console.log(this.tipoReq1);
-    console.log(this.tipoReq2);
-    console.log(this.tipoReq3);
+    console.log('tipo 1', this.tipoReq1);
+    console.log('tipo 2', this.tipoReq2);
+    console.log('tipo 3', this.tipoReq3);
   }
+
+  protected paginateTareas(data: ITarea[], headers: HttpHeaders) {
+    // this.links = this.parseLinks.parse(headers.get('link'));
+    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.tareas = data;
+    }
+
+    protected paginateBitacoras(data: IBitacora[], headers: HttpHeaders) {
+      // this.links = this.parseLinks.parse(headers.get('link'));
+      // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+      this.bitacoras = data;
+    }
+
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
   // Get employees list
   // cargarTareas() {
   //   return this.restApi.getTareas().subscribe((data: ) => {
@@ -198,6 +224,10 @@ export class RequerimientoDetailComponent implements OnInit {
   // }
   previousState() {
     window.history.back();
+  }
+
+  trackId(index: number, item: ITarea) {
+    return item.id;
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {

@@ -352,8 +352,8 @@
                         </div>
                         <div class="col-sm-8">
                             <label class="form-label resultado" id="">
-                  5
-              </label>
+                                5
+                            </label>
                         </div>
                     </div>
 
@@ -447,18 +447,17 @@
         </div>
         <br />
     </mat-tab>
-
-    <mat-tab label="Tareas">
-        <br />
+    <br />
+    <mat-tab label="Tarea">
         <div class="row">
             <div class="col-sm-6">
                 <div class="row">
                     <div class="col-sm-2" style="padding-right: 0px; ">
                         <div>
-                            <h4 style="margin-bottom: 0px;padding-top: 5px; padding-right: 0px;">Tareas</h4>
+                            <h4 style="margin-bottom: 0px;padding-top: 12px; padding-right: 0px;">Tareas</h4>
                         </div>
                     </div>
-                    <div class="col-sm-6" style="padding-left: 0px;">
+                    <div class="col-sm-6" style="padding-left: 0px; padding-top: 10px;">
                         <button mat-raised-button color="warn">Añadir Tarea</button>
                     </div>
                 </div>
@@ -469,61 +468,58 @@
             <div class="col-sm-12">
                 <p>
                     <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" #group="matButtonToggleGroup">
-                        <mat-button-toggle value="Todas" > Todas </mat-button-toggle>
-                        <mat-button-toggle value="Abiertas" > Abiertas </mat-button-toggle>
-                        <mat-button-toggle value="Cerradas" > Cerradas </mat-button-toggle>
+                        <mat-button-toggle value="Todas"> Todas </mat-button-toggle>
+                        <mat-button-toggle value="Abiertas"> Abiertas </mat-button-toggle>
+                        <mat-button-toggle value="Cerradas"> Cerradas </mat-button-toggle>
                     </mat-button-toggle-group>
                 </p>
             </div>
         </div>
         <br />
-        <div class="row">
-            <div class="col-sm-12">
-
         <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceTarea" matSort (matSortChange)="sortDataTarea($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Id">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 126px !important;">Id</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Id }}</td>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="Tarea">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 82px !important;">Tarea</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Tarea }}</td>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 104px !important;">Creador</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Creador }}</td>
-                </ng-container>
-
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Destinatario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 141px !important;">Destinatario</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Destinatario }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="FechaAlta">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 143px !important;">Fecha de Alta</th>
-                    <td mat-cell *matCellDef="let element">{{ element.FechaAlta }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Estatus">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 130px !important;">Estatus</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Estatus }}</td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsTarea"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsTarea" [ngClass]="{ even: even }"></tr>
-            </table>
-
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-        </div>
+            <div class="alert alert-warning" *ngIf="tareas?.length === 0">
+                <span>No se encontraron tareas</span>
             </div>
+            <div *ngIf="tareas?.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse">
+                            <th jhiSortBy="id">
+                                <span jhiTranslate="global.field.id">
+                                    Id
+                                    </span>
+                            </th>
+                            <th jhiSortBy="tarea">
+                                <span>Tarea</span>
+                            </th>
+                            <th jhiSortBy="creador">
+                                <span>Creador</span>
+                            </th>
+                            <th jhiSortBy="destinatario">
+                                <span>Destinatario</span>
+                            </th>
+                            <th jhiSortBy="estatus">
+                                <span>Estatus</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tarea of tareas ;trackBy: trackId">
+                            <td> {{tarea.id}} </td>
+                            <td> {{tarea.titulo}} </td>
+                            <td> {{tarea.usuarioCreadorFirstName}} </td>
+                            <td> {{tarea.usuarioEjecutorFirstName}} </td>
+                            <td> {{tarea.estatusTareaEstatus}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div [hidden]="tareas?.length === 0">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [maxSize]="5"></jhi-item-count>
+                </div>
+            </div> -->
         </div>
-
     </mat-tab>
     <mat-tab label="Bitácora">
         <br />
@@ -542,27 +538,38 @@
         </div>
         <br /><br />
         <div>
-            <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Fecha">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Fecha }}</td>
-                </ng-container>
-                <!-- Weight Column -->
-                <ng-container matColumnDef="Creador">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Creador }}</td>
-                </ng-container>
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="Comentario">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentario</th>
-                    <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Comentario }}</td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora" [ngClass]="{ even: even }"></tr>
-            </table>
-
-            <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+            <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
+                <span>No se encontraron bitácoras</span>
+            </div>
+            <div *ngIf="bitacoras?.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>Fecha</span>
+                            </th>
+                            <th>
+                                <span>Creador</span>
+                            </th>
+                            <th>
+                                <span> Comentario </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bitacora of bitacoras">
+                            <td> {{bitacora.fecha | date:'medium'}} </td>
+                            <td> {{bitacora.usuarioFirstName}} </td>
+                            <td> {{bitacora.comentario}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div [hidden]="bitacoras?.length === 0">
+                <div class="row justify-content-center">
+                    <jhi-item-count [page]="page" [maxSize]="5"></jhi-item-count>
+                </div>
+            </div> -->
         </div>
     </mat-tab>
 </mat-tab-group>
