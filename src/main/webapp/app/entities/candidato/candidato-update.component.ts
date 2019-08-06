@@ -303,18 +303,18 @@ export class CandidatoUpdateComponent implements OnInit {
         (res: ISkill[]) => (this.setSkills(res)),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-      this.skillCandidatoService
-        .query({
-          size: ALL_ITEMS
-        })
-        .pipe(
-          filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-          map((response: HttpResponse<IUser[]>) => response.body)
-        )
-        .subscribe(
-          (res: ISkillCandidato[]) => (this.setSkillsCandidato(res)),
-          (res: HttpErrorResponse) => this.onError(res.message)
-        );
+    this.skillCandidatoService
+      .query({
+        size: ALL_ITEMS
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe(
+        (res: ISkillCandidato[]) => (this.setSkillsCandidato(res)),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.dominioSkillService
       .query({
         size: ALL_ITEMS,
@@ -951,7 +951,7 @@ export class CandidatoUpdateComponent implements OnInit {
     console.log(this.skillsCandidato);
     console.log(this.editForm.get(['id']).value);
     for (const clave of this.skillsCandidato) {
-      if ( clave.idCandidatoId === this.editForm.get(['id']).value) {
+      if (clave.idCandidatoId === this.editForm.get(['id']).value) {
         console.log('se encontro un skill del candidato');
         // console.log(clave);
         const newSkillCandidato: ISkillCandidato = new SkillCandidato();
@@ -1059,7 +1059,7 @@ export class CandidatoUpdateComponent implements OnInit {
 
   removeSkillCandidato(event: any) {
     this.errorMessageSkill = null;
-    const idSkill: number = event.srcElement.value;
+    const idSkill: number = parseInt(event.srcElement.value, 10);
     const skillsCandidatoDelete: ISkillCandidato[] = this.skillCandidatoes.filter(s => s.idSkillId === idSkill);
     const skillCandidatoDelete = skillsCandidatoDelete.shift();
     const skillDel = this.skills.find(item => item.id === skillCandidatoDelete.idSkillId);
