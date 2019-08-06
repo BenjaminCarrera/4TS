@@ -206,7 +206,7 @@
                                         </div>
                                         <div class="form-group" [hidden]="editForm.get('id').value">
                                             <div class="container">
-                                                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
+                                                <agm-map style="width:100%" [latitude]="latitude" [longitude]="longitude" [zoom]="16">
                                                     <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
                                                     </agm-marker>
                                                 </agm-map>
@@ -548,7 +548,7 @@
             </div>
             <br><br>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-6">
                     <div>
                         <table class="table table-striped">
                             <thead>
