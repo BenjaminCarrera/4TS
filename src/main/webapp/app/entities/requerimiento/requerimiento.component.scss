@@ -1,7 +1,37 @@
-/*Estilo de tabla*/
+.titulo {
+    padding-top: 2px !important;
+}
 
+.agm-map {
+    width: 100% !important;
+    height: 500px !important;
+}
 
-/*Estilo de tabla*/
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    padding-top: 10px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.mat-button-toggle-checked {
+    background-color: #f44336;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .botones-chicos {
+        font-size: 12.6px;
+    }
+}
+
+.mat-paginator {
+    width: 450px;
+}
 
 td.mat-cell,
 td.mat-footer-cell {

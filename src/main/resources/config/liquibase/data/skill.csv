@@ -1,11 +1,352 @@
-id;nombre
-1;mindshare navigating Money Market Account
-2;drive Analyst Awesome Fresh Hat
-3;Michigan Clothing
-4;Borders HDD
-5;redundant withdrawal Planner
-6;National
-7;benchmark
-8;invoice program
-9;synthesize
-10;Investor Tuna
+id;nombre;categoria_skill_id
+1;ASP .NET;1
+2;C;1
+3;C#;1
+4;C++;1
+5;CSS3;1
+6;Cobol;1
+7;Flex;1
+8;HQL;1
+9;HTML 4;1
+10;HTML 5;1
+11;Java EE;1
+12;Java ME;1
+13;Java SE;1
+14;JavaScript;1
+15;JPQL (Java Persistence Query Languaje);1
+16;JSP;1
+17;Servlets;1
+18;Objective – C;1
+19;Pearl;1
+20;PHP;1
+21;PL/SQL;1
+22;Ruby;1
+23;SQL;1
+24;Swift;1
+25;Sass;1
+26;Stylus;1
+27;Transact-SQL;1
+28;Visual Basic .NET;1
+29;Visual Basic  6.0;1
+30;XML;1
+31;XSL;1
+32;JSON;1
+33;Android SDK ;2
+34;Core Data;2
+35;Cordova;2
+36;Phonegap;2
+37;Xamarin;2
+38;Firebase;2
+39;RecyclerView;2
+40;Fragments;2
+41;Material Design;2
+42;Retrofit;2
+43;Picasso;2
+44;Camera capture;2
+45;Notificaciones Push ;2
+46;DB2;3
+47;Informix;3
+48;Microsoft SQL Server;3
+49;SQL Server Management Studio;3
+50;MySQL;3
+51;MongoDB;3
+52;Oracle Database;3
+53;RMAN;3
+54;RAC (Real Application Clusters);3
+55;Redis;3
+56;SQL Plus;3
+57;PostgreSQL;3
+58;SQLite;3
+59;TOAD;3
+60;SQL Developer;3
+61;Bootstrap;4
+62;CakePHP;4
+63;Cocoa Touch;4
+64;EJB;4
+65;JSF (Java Server Faces);4
+66;ICEfaces;4
+67;RichFaces;4
+68;PrimeFaces;4
+69;AngularJS;4
+70;EXT JS;4
+71;RXJava;4
+72;Ember .js;4
+73;Telerik;4
+74;Rails;4
+75;Smarty;4
+76;JFreeChart;4
+77;JQuery;4
+78;JavaMail;4
+79;LinQ;4
+80;Microsoft Silverlight;4
+81;MooTools;4
+82;Node.js;4
+83;JDBC;4
+84;IBatis;4
+85;Hystrix;4
+86;MyBatis;4
+87;Hibernate;4
+88;JPA;4
+89;Entity Framework;4
+90;ADO .NET;4
+91;Prototype;4
+92;Spring;4
+93;SpringMVC;4
+94;Struts;4
+95;Tapestry;4
+96;TopLink;4
+97;WPF (Windows Presentation Foundation);4
+98;WWF (Windows Workflow Foundation);4
+99;DotNetCharting;4
+100;Zend;4
+101;Log4j;4
+102;.NET Framework 4.0 y 4.5;4
+103;API…;4
+104;LAMBDA;4
+105;JAXB;4
+106;Polymer;4
+107;Postman;4
+108;1&1;5
+109;Bluehost;5
+110;Godaddy;5
+111;HostGator;5
+112;Hostinger.com;5
+113;iPage;5
+114;SiteBuilder.com;5
+115;Apache Axis;6
+116;Apache Axis2;6
+117;Apache CXF;6
+118;Eureka Server;6
+119;Java Web Services Development Pack;6
+120;JAX-WS;6
+121;Jersey;6
+122;Spring Rest;6
+123;Web Services Invocation Framework;6
+124;WCF (Windows Communication Foundation);6
+125;Active Reports;7
+126;Crystal Reports;7
+127;Eclipse BIRT Project;7
+128;iReport;7
+129;JasperReports;7
+130;Oracle Reports;7
+131;SQL Server Reporting Services;7
+132;CloverETL;8
+133;IBM Cognos;8
+134;IBM InfoSphere DataStage;8
+135;Informatica PowerCenter ;8
+136;Microsoft Analysis Services;8
+137;MicroStrategy;8
+138;OBIEE (Oracle Business Intelligence Enterprise Edition);8
+139;ODI (Oracle Data Integrator);8
+140;Oracle Warehouse Builder;8
+141;Pentaho;8
+142;Qlikview;8
+143;SAP Business Objects;8
+144;SAS;8
+145;SQL Server Integration Services;8
+146;Adobe Flex Builder;9
+147;Apache Tomcat;9
+148;Apache HTTP ;9
+149;Coldfusion;9
+150;BEA WebLogic Server;9
+151;Borland Enterprise Server;9
+152;Geronimo;9
+153;GlassFish;9
+154;IIS (Internet Information Services);9
+155;Java System Application Server;9
+156;Java System Web Server;9
+157;JBoss;9
+158;Jetty;9
+159;JRun;9
+160;NetWeaver Application Server;9
+161;Nginx;9
+162;Oracle Application Server;9
+163;WebLogic;9
+164;WebObjects;9
+165;WebSphere;9
+166;Xampp;9
+167;Android Studio;10
+168;ActiveState Komodo;10
+169;Apache ANT;10
+170;Eclipse;10
+171;Gradle;10
+172;JBuilder;10
+173;JDeveloper;10
+174;MyEclipse;10
+175;NetBeans;10
+176;Visual Studio;10
+177;WebLogic Workshop;10
+178;Xcode;10
+179;Microsoft Sharepoint;11
+180;Sharepoint Designer;11
+181;Infopath;11
+182;Team Foundation Server (TFS);12
+183;Apache Subversion (SVN);12
+184;BitBucket;12
+185;GitHub;12
+186;Git;12
+187;CVS;12
+188;CVSNT;12
+189;Jenkins;12
+190;Rational ClearCase;12
+191;TortoiseCVS;12
+192;SourceSafe;12
+193;Adaptador;13
+194;Decorador;13
+195;Delegate;13
+196;Facade;13
+197;Factory;13
+198;Iterator;13
+199;MVC;13
+200;Prototipo;13
+201;Proxy;13
+202;SOA;14
+203;Programación por Capas;14
+204;3-Niveles;14
+205;Modelo Vista Controlador (MVC);14
+206;Modelo Vista Modelo de Vista (MVVM);14
+207;Modelo Vista Presentador (MVP);14
+208;MVVC;14
+209;OpenCms;15
+210;dotCMS;15
+211;DotNetNuke;15
+212;Joomla!;15
+213;Drupal;15
+214;Wordpress;15
+215;Moodle;15
+216;PHP-Nuke;15
+217;Apache Maven;16
+218;dotProject;16
+219;Eclipse PPM Software;16
+220;HP Project & Portfolio Software;16
+221;JIRA;16
+222;Jenkins;16
+223;Microsoft Office Project Server;16
+224;Microsoft Project;16
+225;Microsoft Sharepoint Server;16
+226;Microsoft Team Foundation Server;16
+227;HP ALM;16
+228;IBM Rational Team Concert;16
+229;Remedy;16
+230;Ubuntu Server;16
+231;VersionOne;16
+232;Redmine;16
+233;SourceForge;16
+234;Wrike;16
+235;Trac;16
+236;Basecamp;16
+237;Phabricator;16
+238;Launchpad;16
+239;Odoo;16
+240;OpenProject;16
+241;Quire;16
+242;Mantis Bug Tracker;16
+243;Freedcamp;16
+244;GitBucket;16
+245;Gantter;16
+246;Redbooth;16
+247;Taskulu;16
+248;Bugzilla;16
+249;Teamwork Projects;16
+250;PMRobot;16
+251;Agile Software Development;17
+252;CMMI;17
+253;PMP;17
+254;Extreme Programming;17
+255;PSP / TSP;17
+256;RUP;17
+257;RAD;17
+258;SCRUM;17
+259;UML;17
+260;IBM Rational Software Architect Designer (RSAD);18
+261;Bizagi;18
+262;Eclipse UML2 Tools;18
+263;Enterprise Architect;18
+264;Microsoft Visio;18
+265;MyEclipse;18
+266;Rational Rose;18
+267;StarUML;18
+268;Erwin;18
+269;WorkflowGen;18
+270;KiSSFLOW;18
+271;Zoho Creator;18
+272;BPM Suite (Bizagi);18
+273;Bonita BPM;18
+274;Quam;18
+275;OmniFlow;18
+276;Adobe Edge Animate;19
+277;Adobe Dreamweaver;19
+278;Adobe After Effects;19
+279;Adobe Photoshop;19
+280;Adobe Illustrator;19
+281;Adobe InDesign;19
+282;Adobe Premiere;19
+283;Pencil Project;20
+284;Balsamiq Mockups;20
+285;Mockingbird;20
+286;Mockup Builder;20
+287;MockFlow;20
+288;Hot Gloo;20
+289;APACHE JMeter;21
+290;HP Load Runner;21
+291;HP Quality Center;21
+292;HP QuickTest Professional (QTP);21
+293;HP Unified Functional Testing (UFT);21
+294;Selenium IDE.;21
+295;Selenium Client API.;21
+296;Selenium Remote Control.;21
+297;Selenium WebDriver.;21
+298;Selenium Grid.;21
+299;Oracle Application Testing Suite;21
+300;Visual Studio Test Professional;21
+301;IBM Rational Function Tester;21
+302;TestLink;21
+303;HelixALM;21
+304;Sauce Labs;21
+305;MicroFocus ALM;21
+306;MicroFocus Quality Center Enterprise;21
+307;UserTesting;21
+308;TestRail;21
+309;qTest;21
+310;Rainforest QA;21
+311;SoapUI / SoapUI Pro;21
+312;Applause;21
+313;WebLOAD;21
+314;Zephyr;21
+315;PractiTest;21
+316;Firebug;21
+317;JaCoCo;21
+318;JUnit;21
+319;Cobertura;21
+320;CoderCover;21
+321;Coverage.py;21
+322;EMMA;21
+323;JCov;21
+324;NoUnit;21
+325;VirtualBox;22
+326;VMware Workstation Pro;22
+327;QEMU;22
+328;Docker Compones;22
+329;Kubernetes;22
+330;LINUX: [LISTAR DISTRIBUCIONES];23
+331;UNIX / derivativos;23
+332;Windows CE;23
+333;Windows NT3/NT4/2000;23
+334;Windows 3x/9x;23
+335;TCP / IP;24
+336;UDP;24
+337;HTTP;24
+338;FTP;24
+339;SSH (Secure Shell);24
+340;POP3;24
+341;PuTTY;24
+342;IMAP;24
+343;REST;24
+344;SOAP;24
+345;IxMediation ;24
+346;Google Cloud Plataform;25
+347;Windows Azure;25
+348;AWS Cloud;25
+349;Unity;26
+350;Filezilla;26
+351;Beyond Compar;26
