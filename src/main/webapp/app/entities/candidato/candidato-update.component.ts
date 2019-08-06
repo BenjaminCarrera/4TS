@@ -75,6 +75,8 @@ import { SkillCandidatoService } from '../skill-candidato';
 export class CandidatoUpdateComponent implements OnInit {
   // Ocultar
   ocultar = true;
+  // Verificar los skills
+  skillsCandidatoBd: ISkillCandidato[];
   selecteds = new FormControl(0);
   matAutocomplete: MatAutocomplete;
   cuentaIntCtrl = new FormControl();
@@ -508,11 +510,20 @@ export class CandidatoUpdateComponent implements OnInit {
   previousState() {
     window.history.back();
   }
-
+  borrarSkillCandidatos(id: number) {
+    this.skillCandidatoService.delete(id).subscribe(response => {});
+  }
   save() {
     this.isSaving = true;
     const candidato = this.createFromForm();
     if (candidato.id !== undefined) {
+      // console.log(this.skillsCandidato);
+      // console.log(this.editForm.get(['id']).value);
+      for (const clave of this.skillsCandidato) {
+        if ( clave.idCandidatoId === this.editForm.get(['id']).value) {
+          this.borrarSkillCandidatos(clave.id);
+        }
+      }
       this.subscribeToSaveResponse(this.candidatoService.update(candidato));
     } else {
       this.subscribeToSaveResponse(this.candidatoService.create(candidato));
@@ -948,13 +959,14 @@ export class CandidatoUpdateComponent implements OnInit {
   }
   setSkillsCandidato(res: ISkillCandidato[]) {
     this.skillsCandidato = res;
-    console.log(this.skillsCandidato);
-    console.log(this.editForm.get(['id']).value);
+    // console.log(this.skillsCandidato);
+    // console.log(this.editForm.get(['id']).value);
     for (const clave of this.skillsCandidato) {
       if (clave.idCandidatoId === this.editForm.get(['id']).value) {
-        console.log('se encontro un skill del candidato');
+        // console.log('se encontro un skill del candidato');
         // console.log(clave);
         const newSkillCandidato: ISkillCandidato = new SkillCandidato();
+        newSkillCandidato.id = clave.id;
         newSkillCandidato.idSkillId = clave.idSkillId;
         // console.log(this.editForm.get(['skill']).value);
         const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
@@ -962,18 +974,18 @@ export class CandidatoUpdateComponent implements OnInit {
         this.skillsSelected.push(skillSelected);
         newSkillCandidato.idSkillNombre = skillSelected.nombre;
         newSkillCandidato.nivelSkillId = clave.nivelSkillId;
-        console.log('res', newSkillCandidato);
+        // console.log('res', newSkillCandidato);
         // console.log(this.editForm.get(['skillDominio']).value);
         newSkillCandidato.nivelSkillDominio = clave.nivelSkillDominio;
         newSkillCandidato.calificacionSkill = clave.calificacionSkill;
         // console.log(this.editForm.get(['skillCalificacion']).value);
         this.skillCandidatoes.push(newSkillCandidato);
+        console.log('normal', this.skillCandidatoes);
         this.editForm.get(['skill']).setValue(null);
         this.editForm.get(['skillDominio']).setValue(null);
         this.editForm.get(['skillCalificacion']).setValue(null);
         this.updateSkills();
       }
-
     }
   }
 
