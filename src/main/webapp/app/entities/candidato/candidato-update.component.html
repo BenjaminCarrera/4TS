@@ -143,7 +143,7 @@
                                 <div class="row">
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput [matDatepicker]="picker2" type="date" name="fechaNacimiento" id="field_fechaNacimiento" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
+                                            <input matInput [matDatepicker]="picker2" name="fechaNacimiento" id="field_fechaNacimiento" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>
@@ -197,7 +197,7 @@
                                         </mat-form-field>
                                         <div class="form-group" [hidden]="!editForm.get('id').value">
                                             <div class="container">
-                                                <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
+                                                <agm-map style="width:100%" [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
                                                     <agm-marker [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
                                                     </agm-marker>
                                                 </agm-map>
