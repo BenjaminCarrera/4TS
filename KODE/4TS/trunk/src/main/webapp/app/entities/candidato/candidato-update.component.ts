@@ -286,6 +286,15 @@ export class CandidatoUpdateComponent implements OnInit {
     this.skillsSelected = [];
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      this.coloniaService
+        .find(candidato.coloniaId)
+        .pipe(
+          filter((mayBeOk: HttpResponse<IColonia>) => mayBeOk.ok),
+          map((response: HttpResponse<IColonia>) => response.body)
+        )
+        .subscribe(
+          (col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message)
+        );
       this.updateForm(candidato);
     });
     this.clearDir();
@@ -511,16 +520,14 @@ export class CandidatoUpdateComponent implements OnInit {
     window.history.back();
   }
   borrarSkillCandidatos(id: number) {
-    this.skillCandidatoService.delete(id).subscribe(response => {});
+    this.skillCandidatoService.delete(id).subscribe(response => { });
   }
   save() {
     this.isSaving = true;
     const candidato = this.createFromForm();
     if (candidato.id !== undefined) {
-      // console.log(this.skillsCandidato);
-      // console.log(this.editForm.get(['id']).value);
       for (const clave of this.skillsCandidato) {
-        if ( clave.idCandidatoId === this.editForm.get(['id']).value) {
+        if (clave.idCandidatoId === this.editForm.get(['id']).value) {
           this.borrarSkillCandidatos(clave.id);
         }
       }
@@ -593,7 +600,7 @@ export class CandidatoUpdateComponent implements OnInit {
       estatusAcademicoId: this.editForm.get(['estatusAcademicoId']).value,
       esquemaContratacionKodeId: this.editForm.get(['esquemaContratacionKodeId']).value,
       estatusLaboralId: this.editForm.get(['estatusLaboralId']).value,
-      coloniaId: this.editForm.get(['coloniaId']).value,
+      coloniaId: this.editForm.get(['dirColonia']).value,
       antecedentesEsquemaContratacionId: this.editForm.get(['antecedentesEsquemaContratacionId']).value,
       estudiosId: this.editForm.get(['estudiosId']).value,
       estCanInactivoId: this.editForm.get(['estCanInactivoId']).value
@@ -1084,6 +1091,37 @@ export class CandidatoUpdateComponent implements OnInit {
       this.skillsSelected.splice(indeSkillDel, 1);
     }
     this.updateSkills();
+  }
+
+  loadColonia(colonia: IColonia) {
+    this.colonias.push(colonia);
+    this.editForm.get(['dirColonia']).setValue(colonia.id);
+    this.municipioService
+      .find(colonia.municipioId)
+      .pipe(
+        filter((mayBeOk: HttpResponse<IMunicipio>) => mayBeOk.ok),
+        map((response: HttpResponse<IMunicipio>) => response.body)
+      )
+      .subscribe(
+        (mun: IMunicipio) => this.loadMunicipio(mun), (mun: HttpErrorResponse) => this.onError(mun.message)
+      );
+  }
+
+  loadMunicipio(municipio: IMunicipio) {
+    this.municipios.push(municipio);
+    this.editForm.get(['dirMunicipio']).setValue(municipio.id);
+    this.estadoService
+      .find(municipio.estadoId)
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEstado>) => mayBeOk.ok),
+        map((response: HttpResponse<IEstado>) => response.body)
+      )
+      .subscribe(
+        (est: IEstado) => {
+          this.estados.push(est);
+          this.editForm.get(['dirEstado']).setValue(est.id);
+        }, (est: HttpErrorResponse) => this.onError(est.message)
+      );
   }
 
 }
