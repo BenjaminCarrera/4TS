@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material';
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
@@ -10,10 +10,16 @@ import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-
 import { SkillRequerimientoService } from '../skill-requerimiento/skill-requerimiento.service';
 import { skillRequerimientoPopupRoute } from '../skill-requerimiento/skill-requerimiento.route';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { ITarea } from '../../shared/model/tarea.model';
+// Tareas
+import { ITarea } from 'app/shared/model/tarea.model';
+import { AccountService } from 'app/core';
+import { IEstatusTarea } from 'app/shared/model/estatus-tarea.model';
 import { TareaService } from '../tarea/tarea.service';
-import { IBitacora } from 'app/shared/model/bitacora.model';
-import { BitacoraService } from '../bitacora/bitacora.service';
+import { Subscription } from 'rxjs';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { EstatusTareaService } from '../estatus-tarea';
+import { ALL_ITEMS } from 'app/shared';
+import { filter, map } from 'rxjs/operators';
 
 export interface PeriodicElement {
   Id: number;
@@ -34,14 +40,29 @@ export interface Tarea {
   selector: 'jhi-requerimiento-detail',
   templateUrl: './requerimiento-detail.component.html',
   styleUrls: [
-    'requerimiento.component.scss'
+    '../../res-conreq/res-conreq.component.scss'
   ]
 })
 
 export class RequerimientoDetailComponent implements OnInit {
+  // Tarea
+  estatusTareas: IEstatusTarea[];
+  currentAccount: any;
+  tareas: ITarea[];
+  error: any;
+  success: any;
+  eventSubscriber: Subscription;
+  routeData: any;
+  links: any;
+  totalItems: any;
+  itemsPerPage: any;
+  page: any;
+  predicate: any;
+  previousPage: any;
+  reverse: any;
+  // Mostrar u ocultar cosas
 
   page: any;
-  itemsPerPage: any;
 
   // skills
   skillsToShow: ISkillRequerimiento;
@@ -52,8 +73,6 @@ export class RequerimientoDetailComponent implements OnInit {
   tipoReq2: any [];
   skillReq3: ISkillRequerimiento;
   tipoReq3: any [];
-  tareas: ITarea [];
-  bitacoras: IBitacora[];
   // Enfoque del mapa
   lat: any;
   lng: any;
@@ -61,7 +80,23 @@ export class RequerimientoDetailComponent implements OnInit {
   requerimiento: IRequerimiento;
   skillRequerimientos: ISkillRequerimiento [];
   // Variables Tarea
+  DATA_TAREA: PeriodicElement[] = [
+    { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+    { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
+  ];
   dataSourceTarea: PeriodicElement[];
+  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
 
   // VAriables Bitacora
   DATA_BITACORA: Tarea[] = [
@@ -72,74 +107,135 @@ export class RequerimientoDetailComponent implements OnInit {
   ];
   dataSourceBitacora: Tarea[];
   displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
-  predicate: string;
-  reverse: any;
-  links: any;
-  parseLinks: any;
-  totalItems: number;
-
   constructor(
-    protected activatedRoute: ActivatedRoute,
     protected skillRequerimientoService: SkillRequerimientoService,
+    // Tarea
     protected tareaService: TareaService,
-    protected bitacoraService: BitacoraService
-    ) {
+    protected parseLinks: JhiParseLinks,
+    protected jhiAlertService: JhiAlertService,
+    protected accountService: AccountService,
+    protected activatedRoute: ActivatedRoute,
+    protected router: Router,
+    protected eventManager: JhiEventManager,
+    protected estatusTareaService: EstatusTareaService) {
+    this.dataSourceTarea = this.DATA_TAREA.slice();
     this.dataSourceBitacora = this.DATA_BITACORA.slice();
-  }
-
-  sortDataBitacora(sort: MatSort) {
-    const data = this.DATA_BITACORA.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceBitacora = data;
-      return;
-    }
-
-    this.dataSourceBitacora = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Fecha': return compare(a.Fecha, b.Fecha, isAsc);
-        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
-        case 'Comentario': return compare(a.Comentario, b.Comentario, isAsc);
-        default: return 0;
-      }
+    // Tarea
+    this.itemsPerPage = 100;
+    this.routeData = this.activatedRoute.data.subscribe(data => {
+      this.page = 1;
+      this.previousPage = 1;
+      this.reverse = true;
+      this.predicate = 'id';
     });
   }
 
-  ngOnInit() {
-
-    this.loadAll();
-
-    this.activatedRoute.data.subscribe(({ requerimiento }) => {
-      this.requerimiento = requerimiento;
-    });
-
+  // Tarea
+  loadAll() {
     this.tareaService
       .query({
         page: this.page - 1,
-        size: 9999
+        size: this.itemsPerPage,
+        sort: this.sort(),
+        'usuarioCreadorId.equals': 1
       })
       .subscribe(
         (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message, 'tareas')
+        (res: HttpErrorResponse) => this.onError(res.message)
       );
+  }
 
-      this.bitacoraService
-      .query({
-        page: this.page - 1,
-        size: this.itemsPerPage
-      })
-      .subscribe(
-        (res: HttpResponse<IBitacora[]>) => this.paginateBitacoras(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message, 'bitacora-requerimiento')
-      );
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.transition();
+    }
+  }
 
+  transition() {
+    this.router.navigate(['/requerimiento/' + this.requerimiento.id + '/view'], {
+      queryParams: {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    });
+    this.loadAll();
+  }
+
+  public clear() {
+    this.page = 0;
+    this.router.navigate([
+      '/requerimiento/' + this.requerimiento.id + '/view',
+      {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    ]);
+    this.loadAll();
+  }
+  ngOnDestroy() {
+    this.eventManager.destroy(this.eventSubscriber);
+  }
+
+  trackId(index: number, item: ITarea) {
+    return item.id;
+  }
+
+  registerChangeInTareas() {
+    this.eventSubscriber = this.eventManager.subscribe('tareaListModification', response => this.loadAll());
+  }
+
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  protected paginateTareas(data: ITarea[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.tareas = data;
+  }
+
+  setEstatusTarea(res: IEstatusTarea[]) {
+    this.estatusTareas = res;
+  }
+  // fin
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ requerimiento }) => {
+      this.requerimiento = requerimiento;
+    });
+    this.loadSkillReq();
     // Enfoque del mapa
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
+    // Tareas
+    this.loadAll();
+    this.accountService.identity().then(account => {
+      this.currentAccount = account;
+    });
+    this.registerChangeInTareas();
+    this.estatusTareaService
+      .query({
+        size: ALL_ITEMS
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IEstatusTarea[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IEstatusTarea[]>) => response.body)
+      )
+      .subscribe(
+        (res: IEstatusTarea[]) => (this.setEstatusTarea(res)),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+      console.log(this.estatusTareas);
   }
 
-  loadAll() {
+  loadSkillReq() {
     this.skillRequerimientoService
       .query({
         page: this.page - 1,
@@ -147,16 +243,72 @@ export class RequerimientoDetailComponent implements OnInit {
       })
       .subscribe(
         (res: HttpResponse<ISkillRequerimiento[]>) => this.paginateSkillRequerimientos(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message, 'skill')
+        (res: HttpErrorResponse) => this.onError(res.message)
       );
-      this.tareas = [];
   }
 
-  protected onError(message: string, aviso: string): void {
-    console.log(message, aviso);
-    // throw new Error('');
+  onError(message: string): void {
+    throw new Error('');
   }
 
+  filtrarTareas(estatus: string) {
+    if (estatus === 'Abierta') {
+      console.log( 'Abierta');
+      this.tareaService
+        .query({
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          'requerimientoId.equals': this.requerimiento.id,
+          'estatusTareaId.equals': 1
+        })
+        .subscribe(
+          (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    } else if (estatus === 'Atendida') {
+      console.log( 'Atendida');
+      this.tareaService
+        .query({
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          'requerimientoId.equals': this.requerimiento.id,
+          'estatusTareaId.equals': 2
+        })
+        .subscribe(
+          (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    } else if (estatus === 'Cerrada') {
+      console.log( 'Cerrada');
+      this.tareaService
+        .query({
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          'requerimientoId.equals': this.requerimiento.id,
+          'estatusTareaId.equals': 3
+        })
+        .subscribe(
+          (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    } else if (estatus === 'Todas') {
+      console.log( 'Todas');
+      this.tareaService
+        .query({
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          'requerimientoId.equals': this.requerimiento.id
+        })
+        .subscribe(
+          (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
+  }
   protected paginateSkillRequerimientos(data: ISkillRequerimiento[], headers: HttpHeaders) {
     // this.links = this.parseLinks.parse(headers.get('link'));
     // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
@@ -190,31 +342,10 @@ export class RequerimientoDetailComponent implements OnInit {
       }
     });
 
-    console.log('tipo 1', this.tipoReq1);
-    console.log('tipo 2', this.tipoReq2);
-    console.log('tipo 3', this.tipoReq3);
+    console.log(this.tipoReq1);
+    console.log(this.tipoReq2);
+    console.log(this.tipoReq3);
   }
-
-  protected paginateTareas(data: ITarea[], headers: HttpHeaders) {
-    // this.links = this.parseLinks.parse(headers.get('link'));
-    // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.tareas = data;
-    }
-
-    protected paginateBitacoras(data: IBitacora[], headers: HttpHeaders) {
-      // this.links = this.parseLinks.parse(headers.get('link'));
-      // this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-      this.bitacoras = data;
-    }
-
-  sort() {
-    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
-  }
-
   // Get employees list
   // cargarTareas() {
   //   return this.restApi.getTareas().subscribe((data: ) => {
@@ -224,10 +355,6 @@ export class RequerimientoDetailComponent implements OnInit {
   // }
   previousState() {
     window.history.back();
-  }
-
-  trackId(index: number, item: ITarea) {
-    return item.id;
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
