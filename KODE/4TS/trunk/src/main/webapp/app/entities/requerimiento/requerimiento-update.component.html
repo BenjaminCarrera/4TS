@@ -80,7 +80,8 @@
 
               <div class="form-group">
                 <p>
-                  <label class="label-material"> Estatus del requerimiento:</label>
+                <label *ngIf="datos == true" class="label-material"> Estatus del requerimiento:</label>
+                <label *ngIf="datos == false" class="label-material" style="color: red;"> Estatus del requerimiento:</label>
                   <br />
                   <mat-button-toggle-group
                     aria-label="Estilo de fuente"
@@ -104,7 +105,7 @@
                 <div class="form-group">
                   <mat-form-field class="full-width">
                     <mat-select
-                      placeholder="Estatus del Requerimiento Cancelado"
+                      placeholder="Motivo del Requerimiento Cerrado"
                       id="field_estatusReqCan"
                       name="estatusReqCan"
                       formControlName="estatusReqCanId"
@@ -122,7 +123,8 @@
               <div class="row">
                 <div class="col-sm-12">
                   <p>
-                    <label class="label-material">Tipo de solicitud:</label>
+                    <label *ngIf="datos2 == true" class="label-material"> Tipo de solicitud:</label>
+                    <label *ngIf="datos2 == false" class="label-material" style="color: red;"> Tipo de solicitud:</label>
                     <br />
                     <mat-button-toggle-group
                       aria-label="Estilo de fuente"
@@ -135,6 +137,7 @@
                       <mat-button-toggle
                         [value]="tipoSolicitudOption.id"
                         *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById"
+                        (click)="verificarSolicitud(tipoSolicitudOption)"
                       >
                         {{ tipoSolicitudOption.solicitud }}
                       </mat-button-toggle>
@@ -146,7 +149,8 @@
               <div class="row">
                 <div class="col-sm-6">
                   <p>
-                    <label class="label-material">Tipo de ingreso:</label>
+                    <label *ngIf="datos3 == true" class="label-material"> Tipo de ingreso:</label>
+                    <label *ngIf="datos3 == false" class="label-material" style="color: red;"> Tipo de ingreso:</label>
                     <br />
                     <mat-button-toggle-group
                       name="fontStyle"

@@ -72,6 +72,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   ]);
   matcher = new MyErrorStateMatcher();
   cuentaUsuario: any;
+  datos = true;
+  datos2 = true;
+  datos3 = true;
+  datos4 = true;
   // Cargar skills
   reqId: number;
   SkillReq: any = [];
@@ -528,20 +532,50 @@ export class RequerimientoUpdateComponent implements OnInit {
   previousState() {
     window.history.back();
   }
+  verificacion() {
 
+  }
   save() {
     this.isSaving = true;
     const requerimiento = this.createFromForm();
-    if (requerimiento.vacantesSolicitadas !== undefined) {
-      console.log('tiene datos');
+    if (requerimiento.vacantesSolicitadas !== undefined && requerimiento.estatusRequerimientoId !== undefined
+      && requerimiento.prioridadId !== undefined && requerimiento.tipoSolicitudId !== undefined &&
+      requerimiento.tipoIngresoId !== undefined && requerimiento.vacantesSolicitadas !== undefined && requerimiento.cuentaId !== undefined
+      && requerimiento.nombreContacto !== undefined && requerimiento.tarifaSueldoNet !== undefined && requerimiento.baseTarifaId !== undefined
+      && requerimiento.esquemaContratacionId !== undefined && requerimiento.prestaciones !== undefined)  {
+      let reqCerrado = false;
+      let reqReemplazo = false;
+      if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
+        console.log('El requerimiento es cerrado y tiene un motivo');
+        reqCerrado = true;
+      } else {
+        console.log('El requerimiento es cerrado y no tiene un motivo');
+        this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
+        this.selected1.setValue(0);
+      }
+      if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
+        console.log('El requerimiento es reemplazo y tiene un reemplazo');
+        reqReemplazo = true;
+      } else {
+        console.log('El requerimiento es reemplazo y no tiene un reemplazo');
+        this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
+        this.selected1.setValue(0);
+      }
+      if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
+        console.log('tiene datos');
+        if (requerimiento.id !== undefined) {
+          this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+        } else {
+          this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+        }
+      }
     } else {
       console.log('No tiene datos');
       this.selected1.setValue(0);
-    }
-    if (requerimiento.id !== undefined) {
-      this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
-    } else {
-      this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+      this.datos = false;
+      this.datos2 = false;
+      this.datos3 = false;
+      console.log(requerimiento.remplazoDe);
     }
   }
 
@@ -692,6 +726,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   protected onSaveError() {
+    this.selected1.setValue(0);
     this.isSaving = false;
   }
   protected onError(errorMessage: string) {
@@ -765,6 +800,10 @@ export class RequerimientoUpdateComponent implements OnInit {
     } else {
       this.reqCancelado = false;
     }
+    this.datos = true;
+  }
+  verificarSolicitud(status: string) {
+    this.datos2 = true;
   }
   verificarReemplazo(status: string) {
     if (status === 'Reemplazo') {
@@ -772,6 +811,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     } else {
       this.reemplazo = false;
     }
+    this.datos3 = true;
     return this.reemplazo;
   }
   // Get Current Location Coordinates
