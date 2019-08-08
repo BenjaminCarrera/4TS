@@ -50,10 +50,12 @@
                                     <div class="col-md-4 espaciado-componentes">
                                         <div class="form-group">
                                             <p>
-                                                <label class="form-label">Estatus del candidato:</label>
+                                                <label *ngIf="statusCandidato == true" class="label-material"> Estatus del candidato:</label>
+                                                <label *ngIf="statusCandidato == false" class="label-material" style="color: red;"> Estatus del candidato:</label>
                                                 <br>
                                                 <mat-button-toggle-group id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId" aria-label="Estilo de fuente">
-                                                    <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById">
+                                                    <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById"
+                                                    (click)="verificarStatusCandidato()">
                                                         {{estatusCandidatoOption.estatus}}</mat-button-toggle>
                                                 </mat-button-toggle-group>
                                             </p>
@@ -127,12 +129,13 @@
                                 <div class="row">
                                     <div class="col-md-12 espaciado-componentes">
                                         <div class="form-group">
-                                            <label class="form-label">Sexo</label>
+                                            <label *ngIf="sexo == true" class="label-material"> Sexo:</label>
+                                            <label *ngIf="sexo == false" class="label-material" style="color: red;"> Sexo: </label>
                                             <p>
                                                 <mat-button-toggle-group name="sexo" formControlName="sexo" id="field_sexo" aria-label="Estilo de fuente">
-                                                    <mat-button-toggle value="MASCULINO">
+                                                    <mat-button-toggle value="MASCULINO"  (click)="verificarSexo()">
                                                         {{'App.Sexo.MASCULINO' | translate}}</mat-button-toggle>
-                                                    <mat-button-toggle value="FEMENINO">
+                                                    <mat-button-toggle value="FEMENINO"  (click)="verificarSexo()">
                                                         {{'App.Sexo.FEMENINO' | translate}}</mat-button-toggle>
                                                 </mat-button-toggle-group>
                                             </p>
@@ -311,9 +314,10 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <mat-form-field class="full-width">
-                                            <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId" placeholder="Institución">
+                                            <mat-select id="field_institucionAcademicaId" name="institucionAcademicaId" formControlName="institucionAcademicaId" placeholder="Institución">
                                                 <mat-option>Institución</mat-option>
-                                                <mat-option [value]="institucionAcademicaOption.id" *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
+                                                <mat-option [value]="institucionAcademicaOption.id"
+                                                *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
                                                     {{institucionAcademicaOption.institucion}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -410,11 +414,15 @@
                             </div>
                             <br>
                             <div class="form-group">
-
-                                <label class="form-label">Estatus laboral:</label>
+                                <label *ngIf="statusLaboral == true" class="label-material"> Estatus laboral:</label>
+                                <label *ngIf="statusLaboral == false" class="label-material" style="color: red;"> Estatus laboral:</label>
                                 <p>
-                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral" formControlName="estatusLaboralId" aria-label="Estilo de fuente" class="botones-chicos">
-                                        <mat-button-toggle [value]="estatusLaboralOption.id" *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById">
+                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral"
+                                    formControlName="estatusLaboralId" aria-label="Estilo de fuente" class="botones-chicos">
+                                        <mat-button-toggle [value]="estatusLaboralOption.id"
+                                        *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById"
+                                        (click)="verificarStatusLaboral()"
+                                        >
                                             {{estatusLaboralOption.estatus}}</mat-button-toggle>
                                     </mat-button-toggle-group>
                                 </p>

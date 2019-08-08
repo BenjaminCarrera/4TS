@@ -178,7 +178,7 @@ export class CandidatoUpdateComponent implements OnInit {
     curp: [null, [Validators.maxLength(50)]],
     rfc: [null, [Validators.maxLength(50)]],
     nss: [null, [Validators.maxLength(50)]],
-    sexo: [],
+    sexo: ['', Validators.required],
     estadoCivil: [],
     fechaAlta: [],
     fechaUltimoSeguimiento: [],
@@ -186,18 +186,18 @@ export class CandidatoUpdateComponent implements OnInit {
     disponibilidadEntrevistaPeriodoTiempoId: [],
     disponibilidadAsignacionPeriodoTiempoId: [],
     usuarioCreadorId: [],
-    usuarioAsignadoId: [],
+    usuarioAsignadoId: ['', Validators.required],
     documentoId: [],
     cuentaInteres: [],
     cuentaRechazadas: [],
     fuenteReclutamientoId: [],
-    estatusCandidatoId: [],
+    estatusCandidatoId: ['', Validators.required],
     perfilId: [],
     nivelPerfilId: [],
     institucionAcademicaId: [],
     estatusAcademicoId: [],
     esquemaContratacionKodeId: [],
-    estatusLaboralId: [],
+    estatusLaboralId: ['', Validators.required],
     coloniaId: [],
     antecedentesEsquemaContratacionId: [],
     estudiosId: [],
@@ -223,6 +223,9 @@ export class CandidatoUpdateComponent implements OnInit {
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   cuentaUsuario: any;
+  statusLaboral = true;
+  sexo = true;
+  statusCandidato = true;
 
   constructor(
     private accountService: AccountService,
@@ -536,15 +539,35 @@ export class CandidatoUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const candidato = this.createFromForm();
-    if (candidato.id) {
-      for (const clave of this.skillsCandidato) {
-        if (clave.idCandidatoId === this.editForm.get(['id']).value) {
-          this.borrarSkillCandidatos(clave.id);
-        }
-      }
-      this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+    if ( this.editForm.get(['estatusCandidatoId']).value === '' ) {
+      console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+      this.statusCandidato = false;
     } else {
-      this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+      console.log('Si hay estatus del candidato seleccionado', this.statusCandidato);
+    }
+    if ( this.editForm.get(['sexo']).value === '' ) {
+      console.log('No hay sexo del candidato seleccionado', this.sexo);
+      this.sexo = false;
+    } else {
+      console.log('Si hay sexo del candidato seleccionado', this.sexo);
+    }
+    if ( this.editForm.get(['estatusLaboralId']).value === '' ) {
+      this.selecteds.setValue(0);
+      this.isSaving = false;
+      console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
+      this.statusLaboral = false;
+    } else {
+      console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
+      if (candidato.id) {
+        for (const clave of this.skillsCandidato) {
+          if (clave.idCandidatoId === this.editForm.get(['id']).value) {
+            this.borrarSkillCandidatos(clave.id);
+          }
+        }
+        this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+      } else {
+        this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+      }
     }
   }
 
@@ -645,6 +668,9 @@ export class CandidatoUpdateComponent implements OnInit {
   protected onSaveError() {
     this.selecteds.setValue(0);
     this.isSaving = false;
+    console.log('--------------');
+    console.log('hola');
+    console.log(this.editForm.get(['estatusCandidatoId']).value);
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
@@ -1119,6 +1145,15 @@ export class CandidatoUpdateComponent implements OnInit {
           this.editForm.get(['dirEstado']).setValue(est.id);
         }, (est: HttpErrorResponse) => this.onError(est.message)
       );
+  }
+  verificarStatusLaboral() {
+    this.statusLaboral = true;
+  }
+  verificarSexo() {
+    this.sexo = true;
+  }
+  verificarStatusCandidato() {
+    this.statusCandidato = true;
   }
 
 }
