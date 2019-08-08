@@ -287,7 +287,7 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.clearDir();
     this.activatedRoute.data.subscribe(({ candidato }) => {
-      if (candidato.coloniaId !== null) {
+      if (candidato.coloniaId) {
         this.coloniaService
           .find(candidato.coloniaId)
           .pipe(
@@ -461,7 +461,7 @@ export class CandidatoUpdateComponent implements OnInit {
       nombre: candidato.nombre,
       apellidoPaterno: candidato.apellidoPaterno,
       apellidoMaterno: candidato.apellidoMaterno,
-      fechaNacimiento: candidato.fechaNacimiento !== null ? candidato.fechaNacimiento.toDate() : null,
+      fechaNacimiento: candidato.fechaNacimiento ? candidato.fechaNacimiento.toDate() : null,
       edad: candidato.edad,
       emailPrincipal: candidato.emailPrincipal,
       emailAdicional: candidato.emailAdicional,
@@ -481,9 +481,9 @@ export class CandidatoUpdateComponent implements OnInit {
       salarioNeto: candidato.salarioNeto,
       costoTotal: candidato.costoTotal,
       contatoDuracionMinima: candidato.contatoDuracionMinima,
-      disponibilidadEntrevistaFecha: candidato.disponibilidadEntrevistaFecha !== null ? candidato.disponibilidadEntrevistaFecha.toDate() : null,
+      disponibilidadEntrevistaFecha: candidato.disponibilidadEntrevistaFecha ? candidato.disponibilidadEntrevistaFecha.toDate() : null,
       disponibilidadEntrevistaPeriodo: candidato.disponibilidadEntrevistaPeriodo,
-      disponibilidadAsignacionFecha: candidato.disponibilidadAsignacionFecha !== null ? candidato.disponibilidadAsignacionFecha.toDate() : null,
+      disponibilidadAsignacionFecha: candidato.disponibilidadAsignacionFecha ? candidato.disponibilidadAsignacionFecha.toDate() : null,
       disponibilidadAsignacionPeriodo: candidato.disponibilidadAsignacionPeriodo,
       antecedenteUltimoEmpleador: candidato.antecedenteUltimoEmpleador,
       antecedenteSalarioNeto: candidato.antecedenteSalarioNeto,
@@ -494,8 +494,8 @@ export class CandidatoUpdateComponent implements OnInit {
       nss: candidato.nss,
       sexo: candidato.sexo,
       estadoCivil: candidato.estadoCivil,
-      fechaAlta: candidato.fechaAlta != null ? candidato.fechaAlta.format(DATE_TIME_FORMAT) : null,
-      fechaUltimoSeguimiento: candidato.fechaUltimoSeguimiento != null ? candidato.fechaUltimoSeguimiento.format(DATE_TIME_FORMAT) : null,
+      fechaAlta: candidato.fechaAlta ? candidato.fechaAlta.format(DATE_TIME_FORMAT) : null,
+      fechaUltimoSeguimiento: candidato.fechaUltimoSeguimiento ? candidato.fechaUltimoSeguimiento.format(DATE_TIME_FORMAT) : null,
       foto: candidato.foto,
       disponibilidadEntrevistaPeriodoTiempoId: candidato.disponibilidadEntrevistaPeriodoTiempoId,
       disponibilidadAsignacionPeriodoTiempoId: candidato.disponibilidadAsignacionPeriodoTiempoId,
@@ -635,6 +635,7 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   protected onSaveError() {
+    this.selecteds.setValue(0);
     this.isSaving = false;
   }
   protected onError(errorMessage: string) {
@@ -993,12 +994,12 @@ export class CandidatoUpdateComponent implements OnInit {
     this.cuentas = res;
     this.cuentasInteres = res;
     this.cuentasRechazadas = res;
-    if (this.editForm.get(['cuentaInteres']).value !== null) {
+    if (this.editForm.get(['cuentaInteres']).value) {
       this.editForm.get(['cuentaInteres']).value.forEach(element => {
         this.cuentasIntSelected.push(element);
       });
     }
-    if (this.editForm.get(['cuentaRechazadas']).value !== null) {
+    if (this.editForm.get(['cuentaRechazadas']).value) {
       this.editForm.get(['cuentaRechazadas']).value.forEach(element => {
         this.cuentasRechSelected.push(element);
       });
