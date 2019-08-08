@@ -528,7 +528,7 @@ export class CandidatoUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const candidato = this.createFromForm();
-    if (candidato.id !== undefined) {
+    if (candidato.id) {
       for (const clave of this.skillsCandidato) {
         if (clave.idCandidatoId === this.editForm.get(['id']).value) {
           this.borrarSkillCandidatos(clave.id);
