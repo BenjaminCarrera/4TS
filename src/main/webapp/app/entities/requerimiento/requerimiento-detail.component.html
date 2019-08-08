@@ -1,583 +1,570 @@
 <div class="row">
-  <div class="col-md-12" style="display: inline-block;">
-    <div class="row">
-      <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
-        <h3>Detalle de requerimiento - {{ requerimiento.id }}</h3>
-      </div>
-      <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 13px;padding-left:25px;">
-        <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+    <div class="col-md-12" style="display: inline-block;">
+        <div class="row">
+            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                <h3>Detalle de requerimiento - {{ requerimiento.id }}</h3>
+            </div>
+            <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 13px;padding-left:25px;">
+                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
           <span style="color:black">Cancelar</span>
         </button>
-        <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button color="warn">
+                <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button color="warn">
           <span class="d-none d-md-inline">Editar</span>
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <mat-tab-group>
-  <mat-tab label="Datos generales">
-    <br />
-    <div class="row">
-      <div class="col-sm-4">
-        <div
-          class="panel panel-default"
-          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-        >
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <h4>Datos generales</h4>
-              </div>
-              <div class="col-sm-4">
-                <label class="form-label">Fecha de alta</label><br />
-                <label class="form-label resultado" id="">{{ requerimiento.fechaAlda | date: 'MMM dd, yyyy' }}</label>
-              </div>
-              <div class="col-sm-4">
-                <label class="form-label">Fecha de resolucion</label><br />
-                <label class="form-label resultado" id="">{{ requerimiento.fechaResolucion | date: 'MMM dd, yyyy' }}</label>
-              </div>
+    <mat-tab label="Datos generales">
+        <br />
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h4>Datos generales</h4>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label">Fecha de alta</label><br />
+                                <label class="form-label resultado" id="">{{ requerimiento.fechaAlda | date: 'MMM dd, yyyy' }}</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="form-label">Fecha de resolucion</label><br />
+                                <label class="form-label resultado" id="">{{ requerimiento.fechaResolucion | date: 'MMM dd, yyyy' }}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Reemplazo de:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id=""> {{ requerimiento.remplazoDe }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Ejecutivo asignado:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.usuarioCreadorFirstName }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Reclutador asignado:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.usuarioAsignadoFirstName }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Estatus del requerimiento:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.estatusRequerimientoEstatus }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Motivo de cierre del requerimiento:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.estatusReqCanMotivo }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Prioridad:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.prioridadPrioridad }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Tipo de solicitud:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.tipoSolicitudSolicitud }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Tipo de ingreso:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.tipoIngresoTipo }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Reemplazo de:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.remplazoDe }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Cuenta:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.cuentaClave }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Subcuenta:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.subCuentaClave }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Proyecto:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.proyecto }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Nombre de contacto:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.nombreContacto }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Tarifa / Sueldo neto:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">${{ requerimiento.tarifaSueldoNet }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Base de tarifa / Base de sueldo neto:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.baseTarifaBase }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Prestaciones:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.prestaciones }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Esquema de contratación:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.esquemaContratacionEsquema }} </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <h4>Datos del perfil</h4>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Perfil: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.perfilPerfil }} </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Nivel de perfil: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.nivelPerfilNivel }} </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Duración de asignación: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.duracionAsignacion }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Tipo de período: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.tipoPeriodoPeriodo }} </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Lugar de trabajo: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.lugarTrabajo }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Horario: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.horario }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Información del examen: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.informacionExamen }} </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="form-label">Información adicional: </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <label class="form-label resultado" id="">{{ requerimiento.informacionAdicional }} </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Ubicación</h4>
+                        </div>
+                        <div class="col-sm-12" style="padding-right: 0px;">
+                            <div class="google-maps" id="mapa">
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+                                    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'"> </agm-marker>
+                                </agm-map>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Reemplazo de:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id=""> {{ requerimiento.remplazoDe }} </label>
-              </div>
+            <div class="col">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <h4>Skills solictados del requerimiento</h4>
+                    <br />
+                    <label class="form-label">Skills esenciales:</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li *ngFor="let req1 of tipoReq1" class="resultado-lista">{{ req1.idSkillNombre }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br />
+                    <label class="form-label">Skills requeridos:</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li *ngFor="let req2 of tipoReq2" class="resultado-lista">{{ req2.idSkillNombre }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br />
+                    <label class="form-label">Skills opcionales:</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li *ngFor="let req3 of tipoReq3" class="resultado-lista">{{ req3.idSkillNombre }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Ejecutivo asignado:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.usuarioCreadorFirstName }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Reclutador asignado:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.usuarioAsignadoFirstName }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Estatus del requerimiento:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.estatusRequerimientoEstatus }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Motivo de cierre del requerimiento:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.estatusReqCanMotivo }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Prioridad:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.prioridadPrioridad }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Tipo de solicitud:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.tipoSolicitudSolicitud }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Tipo de ingreso:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.tipoIngresoTipo }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Reemplazo de:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.remplazoDe }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Cuenta:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.cuentaClave }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Subcuenta:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.subCuentaClave }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Proyecto:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.proyecto }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Nombre de contacto:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.nombreContacto }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Tarifa / Sueldo neto:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">${{ requerimiento.tarifaSueldoNet }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Base de tarifa / Base de sueldo neto:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.baseTarifaBase }} </label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Prestaciones:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.prestaciones }}</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <label class="form-label">Esquema de contratación:</label>
-              </div>
-              <div class="col-sm-9">
-                <label class="form-label resultado" id="">{{ requerimiento.esquemaContratacionEsquema }} </label>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col">
-        <div
-          class="panel panel-default"
-          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-        >
-          <h4>Datos del perfil</h4>
-          <br />
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Perfil: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.perfilPerfil }} </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Nivel de perfil: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.nivelPerfilNivel }} </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Duración de asignación: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.duracionAsignacion }}</label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Tipo de período: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.tipoPeriodoPeriodo }} </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Lugar de trabajo: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.lugarTrabajo }}</label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Horario: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.horario }}</label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Información del examen: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.informacionExamen }} </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-3">
-              <label class="form-label">Información adicional: </label>
-            </div>
-            <div class="col-sm-9">
-              <label class="form-label resultado" id="">{{ requerimiento.informacionAdicional }} </label>
-            </div>
-          </div>
-          <br />
-          <div class="row">
-            <div class="col-sm-12">
-              <h4>Ubicación</h4>
-            </div>
-            <div class="col-sm-12" style="padding-right: 0px;">
-              <div class="google-maps" id="mapa">
-                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
-                  <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'"> </agm-marker>
-                </agm-map>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div
-          class="panel panel-default"
-          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-        >
-          <h4>Skills solictados del requerimiento</h4>
-          <br />
-          <label class="form-label">Skills esenciales:</label>
-          <div class="row">
-            <div class="col-sm-12">
-              <ul>
-                <li *ngFor="let req1 of tipoReq1" class="resultado-lista">{{ req1.idSkillNombre }}</li>
-              </ul>
-            </div>
-          </div>
-          <br />
-          <label class="form-label">Skills requeridos:</label>
-          <div class="row">
-            <div class="col-sm-12">
-              <ul>
-                <li *ngFor="let req2 of tipoReq2" class="resultado-lista">{{ req2.idSkillNombre }}</li>
-              </ul>
-            </div>
-          </div>
-          <br />
-          <label class="form-label">Skills opcionales:</label>
-          <div class="row">
-            <div class="col-sm-12">
-              <ul>
-                <li *ngFor="let req3 of tipoReq3" class="resultado-lista">{{ req3.idSkillNombre }}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br />
-  </mat-tab>
-  <mat-tab label="Estadística">
-    <br />
-    <div class="row">
-      <div class="col">
-        <div
-          class="panel panel-default"
-          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-        >
-          <div class="row">
-            <div class="col-sm-12">
-              <h4>Estadísticas del requerimiento</h4>
-            </div>
-          </div>
-          <br />
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Vacantes solicitadas: </label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">
+        <br />
+    </mat-tab>
+    <mat-tab label="Estadística">
+        <br />
+        <div class="row">
+            <div class="col">
+                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Estadísticas del requerimiento</h4>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Vacantes solicitadas: </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">
                 {{ requerimiento.vacantesSolicitadas }}
               </label>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Vacantes cubiertas:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Vacantes cubiertas:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">
                 5
               </label>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Vacantes pendientes:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">2</label>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Vacantes pendientes:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">2</label>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Candidatos enviados:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">4</label>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Candidatos enviados:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">4</label>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Candidatos en consideración:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">5</label>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Candidatos en consideración:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">5</label>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Candidatos entrevistados:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">4</label>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Candidatos entrevistados:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">4</label>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Fecha de último envío de CV:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">3</label>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha de último envío de CV:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">3</label>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Fecha de última entrevista:</label>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Fecha de última entrevista:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">22/07/2019</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Días activo desde apertura:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">30</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Monto de la oportunidad:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">$1600</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Sueldo neto deseado:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">$18000</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label class="form-label">Sueldo neto máximo:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="form-label resultado" id="">$17000</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">22/07/2019</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Días activo desde apertura:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">30</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Monto de la oportunidad:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">$1600</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Sueldo neto deseado:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">$18000</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2">
-              <label class="form-label">Sueldo neto máximo:</label>
-            </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">$17000</label>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
+        <br />
+    </mat-tab>
     <br />
-  </mat-tab>
-  <br />
-  <mat-tab label="Tarea">
-    <br />
-    <div class="row">
-      <div class="col-sm-6">
+    <mat-tab label="Tarea">
+        <br />
         <div class="row">
-          <div class="col-sm-2">
-            <div>
-              <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div>
+                            <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
               <span class="d-none d-md-inline">Añadir tarea </span>
             </button>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 esp-arriba">
-        <label class="label-material">
+        <div class="row">
+            <div class="col-sm-12 esp-arriba">
+                <label class="label-material">
           Filtrar por:
         </label>
-      </div>
-      <div class="col-sm-12">
-        <p>
-          <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
-            <mat-button-toggle
-              *ngFor="let estatusTarea of estatusTareas; trackBy: trackId"
-              value="estatusTarea.estatus"
-              (click)="filtrarTareas(estatusTarea.estatus)"
-              >{{ estatusTarea.estatus }}
-            </mat-button-toggle>
-          </mat-button-toggle-group>
-        </p>
-      </div>
-    </div>
-    <br />
-    <div class="alert alert-warning" *ngIf="tareas?.length === 0">
-      <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
-    </div>
-    <div class="table-responsive" *ngIf="tareas?.length > 0">
-      <table class="table table-striped">
-        <thead>
-          <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="titulo"><span>Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioEjecutorFirstName"><span>Destinatario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoTareaTipo"><span>Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tarea of tareas; trackBy: trackId">
-            <td>
-              <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
-            </td>
-            <td>{{ tarea.titulo }}</td>
-            <td>
-              {{ tarea.usuarioCreadorFirstName }}
-            </td>
-            <td>
-              {{ tarea.usuarioEjecutorFirstName }}
-            </td>
-            <td>
-              <div *ngIf="tarea.estatusTareaId">
-                {{ tarea.estatusTareaEstatus }}
-              </div>
-            </td>
-            <td>
-              <div *ngIf="tarea.tipoTareaId">
-                {{ tarea.tipoTareaTipo }}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div [hidden]="tareas?.length === 0">
-      <div class="row justify-content-center">
-        <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-      </div>
-      <div class="row justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [(page)]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="loadPage(page)"
-        ></ngb-pagination>
-      </div>
-    </div>
-  </mat-tab>
-  <mat-tab label="Bitácora">
-    <br />
-    <div class="row">
-      <div class="col-sm-6">
-        <h4>Bitácora</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-11 esp-arriba">
-        <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" style="width:100%" />
-      </div>
-      <div class="col-sm-1  esp-arriba">
-        <button mat-raised-button color="warn">Añadir Bitácora</button>
-      </div>
-    </div>
-    <br /><br />
-    <div>
-      <table
-        mat-table
-        class="mat-elevation-z8 table-hover"
-        [dataSource]="dataSourceBitacora"
-        matSort
-        (matSortChange)="sortDataBitacora($event)"
-      >
-        <!-- Position Column -->
-        <ng-container matColumnDef="Fecha">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-          <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Fecha }}</td>
-        </ng-container>
-        <!-- Weight Column -->
-        <ng-container matColumnDef="Creador">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
-          <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Creador }}</td>
-        </ng-container>
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Comentario">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentario</th>
-          <td mat-cell *matCellDef="let element2" style="text-align: UNSET !important;">{{ element2.Comentario }}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora" [ngClass]="{ even: even }"></tr>
-      </table>
+            </div>
+            <div class="col-sm-12">
+                <p>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
+                        <mat-button-toggle *ngFor="let estatusTarea of estatusTareas; trackBy: trackId" value="estatusTarea.estatus" (click)="filtrarTareas(estatusTarea.estatus)">{{ estatusTarea.estatus }}
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </p>
+            </div>
+        </div>
+        <br />
+        <div class="alert alert-warning" *ngIf="tareas?.length === 0">
+            <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
+        </div>
+        <div class="table-responsive" *ngIf="tareas?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="titulo"><span>Tarea</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="usuarioEjecutorFirstName"><span>Destinatario</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="tipoTareaTipo"><span>Tipo</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tarea of tareas; trackBy: trackId">
+                        <td>
+                            <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
+                        </td>
+                        <td>{{ tarea.titulo }}</td>
+                        <td>
+                            {{ tarea.usuarioCreadorFirstName }}
+                        </td>
+                        <td>
+                            {{ tarea.usuarioEjecutorFirstName }}
+                        </td>
+                        <td>
+                            <div *ngIf="tarea.estatusTareaId">
+                                {{ tarea.estatusTareaEstatus }}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="tarea.tipoTareaId">
+                                {{ tarea.tipoTareaTipo }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div [hidden]="tareas?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Bitácora">
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Bitácora</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11 esp-arriba">
+                <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" style="width:100%" />
+            </div>
+            <div class="col-sm-1  esp-arriba">
+                <button mat-raised-button color="warn">Añadir Bitácora</button>
+            </div>
+        </div>
+        <br /><br />
 
-      <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-    </div>
-  </mat-tab>
+        <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
+            <span> Requerimiento sin Bitácoras</span>
+        </div>
+        <div class="table-responsive" *ngIf="bitacoras?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
+                        <td jhiSortBy="fecha"> <span> Fecha </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </td>
+                        <td jhiSortBy="usuarioFirstName"> <span> Creador </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </td>
+                        <td jhiSortBy="comentario"> <span> Comentario </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bitacora of bitacoras">
+                        <td> {{bitacora.fecha | date: 'medium'}} </td>
+                        <td> {{bitacora.candidatoNombre}} </td>
+                        <td> {{bitacora.comentario}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-tab>
 </mat-tab-group>
