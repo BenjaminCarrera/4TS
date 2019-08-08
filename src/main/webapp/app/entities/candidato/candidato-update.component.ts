@@ -285,19 +285,21 @@ export class CandidatoUpdateComponent implements OnInit {
     this.skillCandidatoes = [];
     this.skillsSelected = [];
     this.isSaving = false;
-    this.activatedRoute.data.subscribe(({ candidato }) => {
-      this.coloniaService
-        .find(candidato.coloniaId)
-        .pipe(
-          filter((mayBeOk: HttpResponse<IColonia>) => mayBeOk.ok),
-          map((response: HttpResponse<IColonia>) => response.body)
-        )
-        .subscribe(
-          (col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message)
-        );
-      this.updateForm(candidato);
-    });
     this.clearDir();
+    this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.coloniaId !== null) {
+        this.coloniaService
+          .find(candidato.coloniaId)
+          .pipe(
+            filter((mayBeOk: HttpResponse<IColonia>) => mayBeOk.ok),
+            map((response: HttpResponse<IColonia>) => response.body)
+          )
+          .subscribe(
+            (col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message)
+          );
+        this.updateForm(candidato);
+      }
+    });
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -458,7 +460,7 @@ export class CandidatoUpdateComponent implements OnInit {
       nombre: candidato.nombre,
       apellidoPaterno: candidato.apellidoPaterno,
       apellidoMaterno: candidato.apellidoMaterno,
-      fechaNacimiento: candidato.fechaNacimiento,
+      fechaNacimiento: candidato.fechaNacimiento !== null ? candidato.fechaNacimiento.toDate() : null,
       edad: candidato.edad,
       emailPrincipal: candidato.emailPrincipal,
       emailAdicional: candidato.emailAdicional,
@@ -478,9 +480,9 @@ export class CandidatoUpdateComponent implements OnInit {
       salarioNeto: candidato.salarioNeto,
       costoTotal: candidato.costoTotal,
       contatoDuracionMinima: candidato.contatoDuracionMinima,
-      disponibilidadEntrevistaFecha: candidato.disponibilidadEntrevistaFecha,
+      disponibilidadEntrevistaFecha: candidato.disponibilidadEntrevistaFecha !== null ? candidato.disponibilidadEntrevistaFecha.toDate() : null,
       disponibilidadEntrevistaPeriodo: candidato.disponibilidadEntrevistaPeriodo,
-      disponibilidadAsignacionFecha: candidato.disponibilidadAsignacionFecha,
+      disponibilidadAsignacionFecha: candidato.disponibilidadAsignacionFecha !== null ? candidato.disponibilidadAsignacionFecha.toDate() : null,
       disponibilidadAsignacionPeriodo: candidato.disponibilidadAsignacionPeriodo,
       antecedenteUltimoEmpleador: candidato.antecedenteUltimoEmpleador,
       antecedenteSalarioNeto: candidato.antecedenteSalarioNeto,
@@ -966,28 +968,18 @@ export class CandidatoUpdateComponent implements OnInit {
   }
   setSkillsCandidato(res: ISkillCandidato[]) {
     this.skillsCandidato = res;
-    // console.log(this.skillsCandidato);
-    // console.log(this.editForm.get(['id']).value);
     for (const clave of this.skillsCandidato) {
       if (clave.idCandidatoId === this.editForm.get(['id']).value) {
-        // console.log('se encontro un skill del candidato');
-        // console.log(clave);
         const newSkillCandidato: ISkillCandidato = new SkillCandidato();
         newSkillCandidato.id = clave.id;
         newSkillCandidato.idSkillId = clave.idSkillId;
-        // console.log(this.editForm.get(['skill']).value);
         const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
-        // console.log('skill selected', skillSelected);
         this.skillsSelected.push(skillSelected);
         newSkillCandidato.idSkillNombre = skillSelected.nombre;
         newSkillCandidato.nivelSkillId = clave.nivelSkillId;
-        // console.log('res', newSkillCandidato);
-        // console.log(this.editForm.get(['skillDominio']).value);
         newSkillCandidato.nivelSkillDominio = clave.nivelSkillDominio;
         newSkillCandidato.calificacionSkill = clave.calificacionSkill;
-        // console.log(this.editForm.get(['skillCalificacion']).value);
         this.skillCandidatoes.push(newSkillCandidato);
-        console.log('normal', this.skillCandidatoes);
         this.editForm.get(['skill']).setValue(null);
         this.editForm.get(['skillDominio']).setValue(null);
         this.editForm.get(['skillCalificacion']).setValue(null);
@@ -1000,16 +992,16 @@ export class CandidatoUpdateComponent implements OnInit {
     this.cuentas = res;
     this.cuentasInteres = res;
     this.cuentasRechazadas = res;
-    console.log('todas las cuentas de interes');
-    console.log(this.editForm.get(['cuentaInteres']).value);
-    console.log('todas las cuentas de rechazo');
-    console.log(this.editForm.get(['cuentaRechazadas']).value);
-    this.editForm.get(['cuentaInteres']).value.forEach(element => {
-      this.cuentasIntSelected.push(element);
-    });
-    this.editForm.get(['cuentaRechazadas']).value.forEach(element => {
-      this.cuentasRechSelected.push(element);
-    });
+    if (this.editForm.get(['cuentaInteres']).value !== null) {
+      this.editForm.get(['cuentaInteres']).value.forEach(element => {
+        this.cuentasIntSelected.push(element);
+      });
+    }
+    if (this.editForm.get(['cuentaRechazadas']).value !== null) {
+      this.editForm.get(['cuentaRechazadas']).value.forEach(element => {
+        this.cuentasRechSelected.push(element);
+      });
+    }
     // Recorremos todas las cuentas de la bd
     // for (const cuenta of this.cuentas) {
     //   if (clave.idRequerimientoId
@@ -1021,19 +1013,14 @@ export class CandidatoUpdateComponent implements OnInit {
     if (this.editForm.get(['skill']).value != null && this.editForm.get(['skillDominio']).value != null && this.editForm.get(['skillCalificacion']).value != null) {
       const newSkillCandidato: ISkillCandidato = new SkillCandidato();
       newSkillCandidato.idSkillId = this.editForm.get(['skill']).value;
-      // console.log(this.editForm.get(['skill']).value);
       const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
-      // console.log('skill selected', skillSelected);
       this.skillsSelected.push(skillSelected);
       newSkillCandidato.idSkillNombre = skillSelected.nombre;
       newSkillCandidato.nivelSkillId = this.editForm.get(['skillDominio']).value;
-      // console.log(this.editForm.get(['skillDominio']).value);
       const letdominioSkillSelected = this.dominioSkill.find(item => item.id === newSkillCandidato.nivelSkillId);
       newSkillCandidato.nivelSkillDominio = letdominioSkillSelected.dominio;
       newSkillCandidato.calificacionSkill = this.editForm.get(['skillCalificacion']).value;
-      // console.log(this.editForm.get(['skillCalificacion']).value);
       this.skillCandidatoes.push(newSkillCandidato);
-      console.log(newSkillCandidato);
       this.editForm.get(['skill']).setValue(null);
       this.editForm.get(['skillDominio']).setValue(null);
       this.editForm.get(['skillCalificacion']).setValue(null);

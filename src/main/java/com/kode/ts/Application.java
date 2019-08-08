@@ -19,6 +19,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
+import java.util.TimeZone;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
@@ -94,5 +98,14 @@ public class Application implements InitializingBean {
             serverPort,
             contextPath,
             env.getActiveProfiles());
+    }
+    
+    @PostConstruct
+    public void init() {
+        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+        if (!activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_TEST)) {
+            TimeZone.setDefault(TimeZone.getTimeZone("UTC"));   // It will set UTC timezone
+        }
+        log.info("Spring boot application running in timezone : '{}'", new Date());   // It will print timezone
     }
 }
