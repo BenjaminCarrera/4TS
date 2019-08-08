@@ -742,9 +742,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
-                        <th jhiSortBy="id"> <span jhiTranslate="global.field.id">ID</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
                         <th jhiSortBy="fecha"> <span> Fecha </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
@@ -758,7 +755,6 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let bitacora of bitacoras">
-                        <td> {{bitacora.id}} </td>
                         <td> {{bitacora.fecha | date: 'medium'}} </td>
                         <td> {{bitacora.usuarioFirstName}} </td>
                         <td> {{bitacora.comentario}} </td>
