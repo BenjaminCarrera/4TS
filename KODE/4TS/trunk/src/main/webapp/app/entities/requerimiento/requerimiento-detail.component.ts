@@ -20,6 +20,8 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { EstatusTareaService } from '../estatus-tarea';
 import { ALL_ITEMS } from 'app/shared';
 import { filter, map } from 'rxjs/operators';
+import { IBitacora } from '../../shared/model/bitacora.model';
+import { BitacoraService } from '../bitacora/bitacora.service';
 
 export interface PeriodicElement {
   Id: number;
@@ -49,6 +51,7 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   estatusTareas: IEstatusTarea[];
   currentAccount: any;
   tareas: ITarea[];
+  bitacoras: IBitacora[];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -60,6 +63,15 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   predicate: any;
   previousPage: any;
   reverse: any;
+  routeDataBitacora: any;
+  linksBitacora: any;
+  totalItemsBitacora: any;
+  itemsPerPageBitacora: any;
+  pageBitacora: any;
+  predicateBitacora: any;
+  previousPageBitacora: any;
+  reverseBitacora: any;
+
   // Mostrar u ocultar cosas
   // skills
   skillsToShow: ISkillRequerimiento;
@@ -77,37 +89,37 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   requerimiento: IRequerimiento;
   skillRequerimientos: ISkillRequerimiento [];
   // Variables Tarea
-  DATA_TAREA: PeriodicElement[] = [
-    { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-    { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
-  ];
-  dataSourceTarea: PeriodicElement[];
-  displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
+  // DATA_TAREA: PeriodicElement[] = [
+  //   { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
+  //   { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
+  // ];
+  // dataSourceTarea: PeriodicElement[];
+  // displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
 
   // VAriables Bitacora
-  DATA_BITACORA: Tarea[] = [
-    { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
-    { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
-    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
-    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
-  ];
-  dataSourceBitacora: Tarea[];
-  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
+  // DATA_BITACORA: Tarea[] = [
+  //   { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
+  //   { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
+  //   { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
+  //   { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
+  // ];
+  // dataSourceBitacora: Tarea[];
+  // displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
   constructor(
     protected skillRequerimientoService: SkillRequerimientoService,
-    // Tarea
     protected tareaService: TareaService,
+    protected bitacoraService: BitacoraService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
@@ -115,8 +127,6 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected estatusTareaService: EstatusTareaService) {
-    this.dataSourceTarea = this.DATA_TAREA.slice();
-    this.dataSourceBitacora = this.DATA_BITACORA.slice();
     // Tarea
     this.itemsPerPage = 100;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -124,6 +134,14 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
       this.previousPage = 1;
       this.reverse = true;
       this.predicate = 'id';
+    });
+    // Bitácora
+    this.itemsPerPageBitacora = 100;
+    this.routeDataBitacora = this.activatedRoute.data.subscribe(data => {
+      this.pageBitacora = 1;
+      this.previousPageBitacora = 1;
+      this.reverseBitacora = true;
+      this.predicateBitacora = 'id';
     });
   }
 
@@ -149,28 +167,70 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  transition() {
-    this.router.navigate(['/requerimiento/' + this.requerimiento.id + '/view'], {
-      queryParams: {
-        page: this.page,
-        size: this.itemsPerPage,
-        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-      }
-    });
-    this.loadAll();
+    transition() {
+      this.router.navigate(['/requerimiento/' + this.requerimiento.id + '/view'], {
+        queryParams: {
+          page: this.page,
+          size: this.itemsPerPage,
+          sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+        }
+      });
+      this.loadAll();
+    }
+
+    public clear() {
+      this.page = 0;
+      this.router.navigate([
+        '/requerimiento/' + this.requerimiento.id + '/view',
+        {
+          page: this.page,
+          sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+        }
+      ]);
+      this.loadAll();
+    }
+
+  // Bitacoras
+  loadBitacora() {
+    this.bitacoraService
+      .query({
+        page: this.pageBitacora - 1,
+        size: this.itemsPerPageBitacora,
+        sort: this.sortBitacora(),
+        'requerimientoId.equals': this.requerimiento.id
+      })
+      .subscribe(
+        (res: HttpResponse<IBitacora[]>) => this.paginateBitacoras(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
-  public clear() {
-    this.page = 0;
-    this.router.navigate([
-      '/requerimiento/' + this.requerimiento.id + '/view',
-      {
-        page: this.page,
-        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-      }
-    ]);
-    this.loadAll();
+  sortBitacora() {
+    const result = [this.predicateBitacora + ',' + (this.reverseBitacora ? 'asc' : 'desc')];
+    if (this.predicateBitacora !== 'id') {
+      result.push('id');
+    }
+    return result;
   }
+
+  loadPageBitacora(pageBitacora: number) {
+    if (pageBitacora !== this.previousPageBitacora) {
+      this.previousPageBitacora = pageBitacora;
+      this.transitionBitacora();
+    }
+  }
+
+  transitionBitacora() {
+    this.router.navigate(['/requerimiento/' + this.requerimiento.id + '/view'], {
+      queryParams: {
+        page: this.pageBitacora,
+        size: this.itemsPerPageBitacora,
+        sort: this.predicateBitacora + ',' + (this.reverseBitacora ? 'asc' : 'desc')
+      }
+    });
+    this.loadBitacora();
+  }
+
   ngOnDestroy() {
     this.eventManager.destroy(this.eventSubscriber);
   }
@@ -197,6 +257,12 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
     this.tareas = data;
   }
 
+  protected paginateBitacoras(data: IBitacora[], headers: HttpHeaders) {
+    this.linksBitacora = this.parseLinks.parse(headers.get('link'));
+    this.totalItemsBitacora = parseInt(headers.get('X-Total-Count'), 10);
+    this.bitacoras = data;
+  }
+
   setEstatusTarea(res: IEstatusTarea[]) {
     this.estatusTareas = res;
   }
@@ -211,6 +277,8 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
     this.lat = this.requerimiento.coorLat;
     this.lng = this.requerimiento.coorLong;
     this.zoom = 10;
+    // Bitácoras
+    this.loadBitacora();
     // Tareas
     this.loadAll();
     this.accountService.identity().then(account => {
