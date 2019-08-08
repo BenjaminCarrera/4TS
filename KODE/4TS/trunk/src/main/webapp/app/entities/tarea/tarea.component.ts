@@ -36,8 +36,9 @@ export class TareaComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager
   ) {
-    this.itemsPerPage = ITEMS_PER_PAGE;
+    this.itemsPerPage = 5;
     this.routeData = this.activatedRoute.data.subscribe(data => {
+      console.log(data);
       this.page = data.pagingParams.page;
       this.previousPage = data.pagingParams.page;
       this.reverse = data.pagingParams.ascending;
