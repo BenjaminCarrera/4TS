@@ -451,6 +451,7 @@ export class CandidatoUpdateComponent implements OnInit {
         map((response: HttpResponse<IEstCanInactivo[]>) => response.body)
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
+
   }
 
   updateForm(candidato: ICandidato) {

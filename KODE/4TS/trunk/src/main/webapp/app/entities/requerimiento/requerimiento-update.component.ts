@@ -584,6 +584,7 @@ export class RequerimientoUpdateComponent implements OnInit {
 
   protected onSaveSuccessFinal(r: HttpResponse<any>) {
     this.isSaving = false;
+    this.previousState();
   }
 
   protected onSaveSuccess(r: HttpResponse<IRequerimiento>) {

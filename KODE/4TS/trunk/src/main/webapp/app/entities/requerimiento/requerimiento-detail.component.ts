@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material';
@@ -44,7 +44,7 @@ export interface Tarea {
   ]
 })
 
-export class RequerimientoDetailComponent implements OnInit {
+export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   // Tarea
   estatusTareas: IEstatusTarea[];
   currentAccount: any;
@@ -61,9 +61,6 @@ export class RequerimientoDetailComponent implements OnInit {
   previousPage: any;
   reverse: any;
   // Mostrar u ocultar cosas
-
-  page: any;
-
   // skills
   skillsToShow: ISkillRequerimiento;
   skillTS: any [];

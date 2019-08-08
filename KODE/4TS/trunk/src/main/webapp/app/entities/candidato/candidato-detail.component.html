@@ -771,31 +771,7 @@
         <br /><br />
 
         <div class="row">
-            <div class="col-sm-12">
-                <div>
-                    <table mat-table class="mat-elevation-z8 tabla-chica table-hover" [dataSource]="dataSourceSkills" matSort (matSortChange)="sortDataSkills($event)">
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="Skills">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 73px !important;">Skills</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Skills }}</td>
-                        </ng-container>
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="Dominio">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 53px !important;">Dominio</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Dominio }}</td>
-                        </ng-container>
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="Calificacion">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 78px !important;">Calificación</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Calificacion }}</td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
-                        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills" [ngClass]="{ even: even }"></tr>
-                    </table>
 
-                    <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-                </div>
-            </div>
         </div>
 
         <div class="row">
