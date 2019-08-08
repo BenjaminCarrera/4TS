@@ -623,86 +623,98 @@
         <br />
     </mat-tab>
     <mat-tab label="Tareas">
-            <br/>
-            <div class="row">
-              <div class="col-sm-6">
+        <br/>
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="row">
-                  <div class="col-sm-2">
-                    <div>
-                      <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+                    <div class="col-sm-2">
+                        <div>
+                            <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6">
+                    <div class="col-sm-6">
                         <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
                             <span class="d-none d-md-inline" >Añadir tarea </span>
                         </button>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12 esp-arriba">
+        </div>
+        <div class="row">
+            <div class="col-sm-12 esp-arriba">
                 <label class="label-material">
                   Filtrar por:
                 </label>
-              </div>
-              <div class="col-sm-12">
-                <p>
-                  <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" >
-                    <mat-button-toggle *ngFor="let estatusTarea of estatusTareas ;trackBy: trackId" value="estatusTarea.estatus" (click)='filtrarTareas(estatusTarea.estatus)' >{{estatusTarea.estatus}} </mat-button-toggle>
-                  </mat-button-toggle-group>
-                </p>
-              </div>
             </div>
+            <div class="col-sm-12">
+                <p>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
+                        <mat-button-toggle *ngFor="let estatusTarea of estatusTareas ;trackBy: trackId" value="estatusTarea.estatus" (click)='filtrarTareas(estatusTarea.estatus)'>{{estatusTarea.estatus}} </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </p>
+            </div>
+        </div>
         <br/>
-    <div class="alert alert-warning" *ngIf="tareas?.length === 0">
-        <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
-    </div>
-    <div class="table-responsive" *ngIf="tareas?.length > 0">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="titulo"><span >Tarea</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="usuarioEjecutorFirstName"><span >Destinatario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estatusTareaEstatus"><span >Estatus</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tipoTareaTipo"><span >Tipo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let tarea of tareas ;trackBy: trackId">
-                <td><a [routerLink]="['/tarea', tarea.id, 'view' ]">{{tarea.id}}</a></td>
-                <td>{{tarea.titulo}}</td>
-                <td>
-                    {{tarea.usuarioCreadorFirstName}}
-                </td>
-                <td>
-                    {{tarea.usuarioEjecutorFirstName}}
-                </td>
-                <td>
-                    <div *ngIf="tarea.estatusTareaId">
-                        {{tarea.estatusTareaEstatus}}
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="tarea.tipoTareaId">
-                        {{tarea.tipoTareaTipo}}
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div [hidden]="tareas?.length === 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        <div class="alert alert-warning" *ngIf="tareas?.length === 0">
+            <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
         </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        <div class="table-responsive" *ngIf="tareas?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="titulo"><span>Tarea</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="usuarioEjecutorFirstName"><span>Destinatario</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="tipoTareaTipo"><span>Tipo</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tarea of tareas ;trackBy: trackId">
+                        <td><a [routerLink]="['/tarea', tarea.id, 'view' ]">{{tarea.id}}</a></td>
+                        <td>{{tarea.titulo}}</td>
+                        <td>
+                            {{tarea.usuarioCreadorFirstName}}
+                        </td>
+                        <td>
+                            {{tarea.usuarioEjecutorFirstName}}
+                        </td>
+                        <td>
+                            <div *ngIf="tarea.estatusTareaId">
+                                {{tarea.estatusTareaEstatus}}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="tarea.tipoTareaId">
+                                {{tarea.tipoTareaTipo}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
+        <div [hidden]="tareas?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
     </mat-tab>
     <mat-tab label="Bitácora">
         <br />
@@ -723,32 +735,43 @@
             </div>
         </div>
         <br /><br />
-        <div class="col-sm-12">
-            <div>
-                <table mat-table class="mat-elevation-z8 table-hover" [dataSource]="dataSourceBitacora" matSort (matSortChange)="sortDataBitacora($event)">
-                    <!-- Fecha Column -->
-                    <ng-container matColumnDef="Fecha">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;">{{ element.Fecha }}</td>
-                    </ng-container>
-
-                    <!-- Creador Column -->
-                    <ng-container matColumnDef="Creador">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Creador</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;">{{ element.Creador }}</td>
-                    </ng-container>
-
-                    <!-- Comentario Column -->
-                    <ng-container matColumnDef="Comentario">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentario</th>
-                        <td mat-cell *matCellDef="let element" style="text-align: UNSET !important;">{{ element.Comentario }}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsBitacora"></tr>
-                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsBitacora" [ngClass]="{ even: even }"></tr>
-                </table>
-
-                <mat-paginator [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
+        <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
+            <span>Candidato sin bitácoras</span>
+        </div>
+        <div class="table-responsive" *ngIf="bitacoras?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
+                        <th jhiSortBy="id"> <span jhiTranslate="global.field.id">ID</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="fecha"> <span> Fecha </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="usuarioFirstName"> <span> Creador </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="comentario"> <span> Comentario </span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bitacora of bitacoras">
+                        <td> {{bitacora.id}} </td>
+                        <td> {{bitacora.fecha | date: 'medium'}} </td>
+                        <td> {{bitacora.usuarioFirstName}} </td>
+                        <td> {{bitacora.comentario}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div [hidden]="bitacoras?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="pageBitacora" [total]="totalItemsBitacora" [maxSize]="5" [itemsPerPage]="itemsPerPageBitacora"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItemsBitacora" [(page)]="pageBitacora" [pageSize]="itemsPerPageBitacora" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPageBitacora(pageBitacora)"></ngb-pagination>
             </div>
         </div>
     </mat-tab>
@@ -769,33 +792,41 @@
             </div>
         </div>
         <br /><br />
-        <div class="row">
-            <div class="col-sm-12">
-                <div>
-                    <table mat-table class="mat-elevation-z8 tabla-chica table-hover" [dataSource]="dataSourceSkills" matSort (matSortChange)="sortDataSkills($event)">
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="Skills">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 73px !important;">Skills</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Skills }}</td>
-                        </ng-container>
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="Dominio">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 53px !important;">Dominio</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Dominio }}</td>
-                        </ng-container>
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="Calificacion">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 78px !important;">Calificación</th>
-                            <td mat-cell *matCellDef="let element">{{ element.Calificacion }}</td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumnsSkills"></tr>
-                        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsSkills" [ngClass]="{ even: even }"></tr>
-                    </table>
-
-                    <mat-paginator class="tabla-chica" [pageSizeOptions]="[100, 200, 300, 500]" showFirstLastButtons></mat-paginator>
-                </div>
-            </div>
+        <div class="alert alert-warning" *ngIf="skillsCandidato?.length === 0">
+            <span>Candidato sin skills</span>
         </div>
+        <div class="table-responsive tabla-chica" *ngIf="skillsCandidato?.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicateSkillCand" [(ascending)]="reverseSkillCand" [callback]="transitionSkillCand.bind(this)">
+                        <th jhiSortBy="idSkillNombre"> <span>Skill</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="nivelSkillDominio"> <span>Dominio</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="calificacionSkill"> <span>Calificación</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let skill of skillsCandidato">
+                        <td> {{skill.idSkillNombre}} </td>
+                        <td> {{skill.nivelSkillDominio}} </td>
+                        <td> {{skill.calificacionSkill}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- <div [hidden]="skillsCandidato?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="pageSkillCand" [total]="totalItemsSkillCand" [maxSize]="5" [itemsPerPage]="itemsPerPageSkillCand"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItemsSkillCand" [(page)]="pageSkillCand" [pageSize]="itemsPerPageSkillCand" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPageSkillCand(pageSkillCand)"></ngb-pagination>
+            </div>
+        </div> -->
 
         <div class="row">
             <div class="col-sm-12">
@@ -819,4 +850,4 @@
         </div>
         <br /><br />
     </mat-tab>
-    </mat-tab-group>
+</mat-tab-group>

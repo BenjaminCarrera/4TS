@@ -40,7 +40,41 @@ h4 {
     font-size: 13px;
 }
 
+td.mat-cell,
+td.mat-footer-cell {
+    text-align: center !important;
+}
+
+.mat-sort-header-container,
+.mat-header-cell {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    padding-left: 37px !important;
+}
+
+table.mat-table {
+    width: 100% !important;
+}
+
+th {
+    color: rgba(0, 0, 0, .54) !important;
+}
+
+td {
+    font-size: 14px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+thead {
+    text-align: center;
+    font-size: 15px;
+}
+
+tbody {
+    text-align: center;
+}
+
 agm-map {
-  width: 100% !important;
-  height: 360px;
+    width: 100% !important;
+    height: 360px;
 }

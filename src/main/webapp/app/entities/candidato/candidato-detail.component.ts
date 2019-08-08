@@ -14,6 +14,10 @@ import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/ht
 import { EstatusTareaService } from '../estatus-tarea';
 import { ALL_ITEMS } from 'app/shared';
 import { filter, map } from 'rxjs/operators';
+import { IBitacora } from 'app/shared/model/bitacora.model';
+import { BitacoraService } from '../bitacora/bitacora.service';
+import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
+import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
 
 export interface Tarea {
   Fecha: string;
@@ -58,17 +62,36 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   estatusTareas: IEstatusTarea[];
   currentAccount: any;
   tareas: ITarea[];
+  bitacoras: IBitacora[];
+  skillsCandidato: ISkillCandidato[];
   error: any;
   success: any;
   eventSubscriber: Subscription;
   routeData: any;
+  routeDataBitacora: any;
+  routeDataSkillCand: any;
   links: any;
   totalItems: any;
   itemsPerPage: any;
+  linksBitacora: any;
+  totalItemsBitacora: any;
+  itemsPerPageBitacora: any;
+  linksSkillCand: any;
+  totalItemsSkillCand: any;
+  itemsPerPageSkillCand: any;
   page: any;
   predicate: any;
   previousPage: any;
   reverse: any;
+  pageBitacora: any;
+  predicateBitacora: any;
+  reverseBitacora: any;
+  previousPageBitacora: any;
+  pageSkillCand: any;
+  predicateSkillCand: any;
+  previousPageSkillCand: any;
+  reverseSkillCand: any;
+
   // Mostrar u ocultar cosas
   mostrarDetalleCandidatoInactivo: boolean;
   mostrarDisponibilidadEntrevistaCandidato: boolean;
@@ -82,6 +105,8 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   constructor(
     // Tarea
     protected tareaService: TareaService,
+    protected bitacoraService: BitacoraService,
+    protected skillCandidatoService: SkillCandidatoService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
@@ -92,49 +117,28 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     ) {
     // Tarea
     this.itemsPerPage = 100;
+    this.itemsPerPageBitacora = 100;
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.page = 1;
       this.previousPage = 1;
       this.reverse = true;
       this.predicate = 'id';
     });
-    this.dataSourceBitacora = this.DATA_BITACORA.slice();
-    this.dataSourceSkills = this.DATA_SKILLS.slice();
-  }
-  sortDataBitacora(sort: MatSort) {
-    const data = this.DATA_BITACORA.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceBitacora = data;
-      return;
-    }
 
-    this.dataSourceBitacora = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Fecha': return compare(a.Fecha, b.Fecha, isAsc);
-        case 'Creador': return compare(a.Creador, b.Creador, isAsc);
-        case 'Comentario': return compare(a.Comentario, b.Comentario, isAsc);
-        default: return 0;
-      }
+    this.routeDataBitacora = this.activatedRoute.data.subscribe(data => {
+      this.pageBitacora = 1;
+      this.previousPageBitacora = 1;
+      this.reverseBitacora = true;
+      this.predicateBitacora = 'id';
     });
-  }
 
-  sortDataSkills(sort: MatSort) {
-    const data = this.DATA_SKILLS.slice();
-    if (!sort.active || sort.direction === '') {
-      this.dataSourceSkills = data;
-      return;
-    }
-
-    this.dataSourceSkills = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Skills': return compare(a.Skills, b.Skills, isAsc);
-        case 'Dominio': return compare(a.Dominio, b.Dominio, isAsc);
-        case 'Calificacion': return compare(a.Calificacion, b.Calificacion, isAsc);
-        default: return 0;
-      }
+    this.routeDataSkillCand = this.activatedRoute.data.subscribe(data => {
+      this.pageSkillCand = 1;
+      this.previousPageSkillCand = 1;
+      this.reverseSkillCand = true;
+      this.predicateSkillCand = 'id';
     });
+
   }
 
   // Tarea
@@ -152,10 +156,52 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       );
   }
 
+  loadAllBitacora() {
+    this.bitacoraService
+      .query({
+        page: this.pageBitacora - 1,
+        size: this.itemsPerPageBitacora,
+        sort: this.sortBitacora(),
+        'candidatoId.equals': this.candidato.id
+      })
+      .subscribe(
+        (res: HttpResponse<IBitacora[]>) => this.paginateBitacoras(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
+  loadAllSkillCand() {
+    this.skillCandidatoService
+      .query({
+        page: this.pageSkillCand - 1,
+        size: this.itemsPerPageSkillCand,
+        sort: this.sortSkillCand(),
+        'idCandidatoId.equals': this.candidato.id
+      })
+      .subscribe(
+        (res: HttpResponse<ISkillCandidato[]>) => this.paginateSkillCandidatoes(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
+
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.transition();
+    }
+  }
+
+  loadPageBitacora(pageBitacora: number) {
+    if (pageBitacora !== this.previousPageBitacora) {
+      this.previousPageBitacora = pageBitacora;
+      this.transitionBitacora();
+    }
+  }
+
+  loadPageSkillCand(pageSkillCand: number) {
+    if (pageSkillCand !== this.previousPageSkillCand) {
+      this.previousPageSkillCand = pageSkillCand;
+      this.transitionSkillCand();
     }
   }
 
@@ -168,6 +214,28 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       }
     });
     this.loadAll();
+  }
+
+  transitionBitacora() {
+    this.router.navigate(['/candidato/' + this.candidato.id + '/view'], {
+      queryParams: {
+        page: this.pageBitacora,
+        size: this.itemsPerPageBitacora,
+        sort: this.predicateBitacora + ',' + (this.reverseBitacora ? 'asc' : 'desc')
+      }
+    });
+    this.loadAllBitacora();
+  }
+
+  transitionSkillCand() {
+    this.router.navigate(['/candidato/' + this.candidato.id + '/view'], {
+      queryParams: {
+        page: this.pageSkillCand,
+        size: this.itemsPerPageSkillCand,
+        sort: this.predicateSkillCand + ',' + (this.reverseSkillCand ? 'asc' : 'desc')
+      }
+    });
+    this.loadAllSkillCand();
   }
 
   public clear() {
@@ -201,10 +269,38 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     return result;
   }
 
+  sortBitacora() {
+    const result = [this.predicateBitacora + ',' + (this.reverseBitacora ? 'asc' : 'desc')];
+    if (this.predicateBitacora !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  sortSkillCand() {
+    const result = [this.predicateSkillCand + ',' + (this.reverseSkillCand ? 'asc' : 'desc')];
+    if (this.predicateSkillCand !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
   protected paginateTareas(data: ITarea[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.tareas = data;
+  }
+
+  protected paginateBitacoras(data: IBitacora[], headers: HttpHeaders) {
+    this.linksBitacora = this.parseLinks.parse(headers.get('link'));
+    this.totalItemsBitacora = parseInt(headers.get('X-Total-Count'), 10);
+    this.bitacoras = data;
+  }
+
+  protected paginateSkillCandidatoes(data: ISkillCandidato[], headers: HttpHeaders) {
+    this.linksSkillCand = this.parseLinks.parse(headers.get('link'));
+    this.totalItemsSkillCand = parseInt(headers.get('X-Total-Count'), 10);
+    this.skillsCandidato = data;
   }
 
   protected onError(errorMessage: string) {
@@ -224,6 +320,8 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     this.candidato.foto = 'content/fotoCandidato/' + this.candidato.foto;
     // Tareas
     this.loadAll();
+    this.loadAllBitacora();
+    this.loadAllSkillCand();
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
