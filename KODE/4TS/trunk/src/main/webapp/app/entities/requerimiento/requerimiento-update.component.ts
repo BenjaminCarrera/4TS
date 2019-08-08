@@ -47,6 +47,7 @@ import { SkillReqService } from '../../servicios/skill-req.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {FormGroupDirective, NgForm} from '@angular/forms';
 import { ALL_ITEMS } from 'app/shared';
+import { AccountService, JhiLanguageHelper } from 'app/core';
 
   // Verificar errores en inputs
   export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -70,6 +71,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
+  cuentaUsuario: any;
   // Cargar skills
   reqId: number;
   SkillReq: any = [];
@@ -209,6 +211,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   });
 
   constructor(
+    private accountService: AccountService,
     public restApi: SkillReqService,
     protected skillRequerimientoService: SkillRequerimientoService,
     protected skillService: SkillService,
@@ -333,6 +336,9 @@ export class RequerimientoUpdateComponent implements OnInit {
   // Fin Codigo de la pantalla
 
   ngOnInit() {
+    this.accountService.identity().then(account => {
+      this.cuentaUsuario = account;
+    });
     // load Places Autocomplete
     this.currentDate = moment();
     this.SkillRequeridosSelected = [];
@@ -559,7 +565,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       informacionAdicional: this.editForm.get(['informacionAdicional']).value,
       cuentaId: this.editForm.get(['cuentaId']).value,
       subCuentaId: this.editForm.get(['subCuentaId']).value,
-      usuarioCreadorId: this.editForm.get(['usuarioCreadorId']).value,
+      usuarioCreadorId: this.cuentaUsuario.id,
       usuarioAsignadoId: this.editForm.get(['usuarioAsignadoId']).value,
       estatusRequerimientoId: this.editForm.get(['estatusRequerimientoId']).value,
       prioridadId: this.editForm.get(['prioridadId']).value,

@@ -64,6 +64,7 @@ import { DominioSkillService } from '../dominio-skill';
 import { ISkillCandidato, SkillCandidato } from 'app/shared/model/skill-candidato.model';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { SkillCandidatoService } from '../skill-candidato';
+import { AccountService, JhiLanguageHelper } from 'app/core';
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -221,8 +222,10 @@ export class CandidatoUpdateComponent implements OnInit {
   @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
+  cuentaUsuario: any;
 
   constructor(
+    private accountService: AccountService,
     protected codigoPostalService: CodigoPostalService,
     protected skillCandidatoService: SkillCandidatoService,
     private mapsAPILoader: MapsAPILoader,
@@ -279,6 +282,11 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.accountService.identity().then(account => {
+      this.cuentaUsuario = account;
+      console.log('---------------------------');
+      console.log(this.cuentaUsuario);
+    });
     this.errorMessageSkill = null;
     this.cuentasIntSelected = [];
     this.cuentasRechSelected = [];
@@ -590,7 +598,7 @@ export class CandidatoUpdateComponent implements OnInit {
       foto: this.editForm.get(['foto']).value,
       disponibilidadEntrevistaPeriodoTiempoId: this.editForm.get(['disponibilidadEntrevistaPeriodoTiempoId']).value,
       disponibilidadAsignacionPeriodoTiempoId: this.editForm.get(['disponibilidadAsignacionPeriodoTiempoId']).value,
-      usuarioCreadorId: this.editForm.get(['usuarioCreadorId']).value,
+      usuarioCreadorId: this.cuentaUsuario.id,
       usuarioAsignadoId: this.editForm.get(['usuarioAsignadoId']).value,
       documentoId: this.editForm.get(['documentoId']).value,
       cuentaInteres: this.cuentasIntSelected,
