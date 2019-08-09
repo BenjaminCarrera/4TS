@@ -1,4 +1,4 @@
-id;nombre;categoria_skill_id
+﻿id;nombre;categoria_skill_id
 1;ASP .NET;1
 2;C;1
 3;C#;1
@@ -16,7 +16,7 @@ id;nombre;categoria_skill_id
 15;JPQL (Java Persistence Query Languaje);1
 16;JSP;1
 17;Servlets;1
-18;Objective C;1
+18;Objective – C;1
 19;Pearl;1
 20;PHP;1
 21;PL/SQL;1
@@ -101,7 +101,7 @@ id;nombre;categoria_skill_id
 100;Zend;4
 101;Log4j;4
 102;.NET Framework 4.0 y 4.5;4
-103;API;4
+103;API…;4
 104;LAMBDA;4
 105;JAXB;4
 106;Polymer;4

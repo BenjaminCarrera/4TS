@@ -1,31 +1,31 @@
-id;formacion_academica
+﻿id;formacion_academica
 1;Actuaria
 2;Arquitectura
 3;Fisica
-4;Ingenieria Bionica
-5;Ingenieria en Ciencias de la Computacion
-6;Ingenieria en Desarrollo de Software
-7;Ingenieria en Desarrollo e Inovacion Empresarial
-8;Ingenieria en Electronica en Computacion
-9;Ingenieria en Electronica y Comunicaciones
-10;Ingenieria en Informatica
-11;Ingenieria en Mecatronica
-12;Ingenieria en Sistemas Computacionales
-13;Ingenieria en Sistemas Electronicos
-14;Ingenieria en Tecnologias de la Informacion y Comunicacion
-15;Ingenieria en Telecomunicaciones
-16;Ingenieria en Telematica
-17;Ingenieria Industrial
-18;Ingenieria Industrial Quimica
-19;Ingenieria Mecanica Electrica
-20;Ingenieria Quimica
+4;Ingeniería Bionica
+5;Ingeniería en Ciencias de la Computación
+6;Ingeniería en Desarrollo de Software
+7;Ingeniería en Desarrollo e Inovacion Empresarial
+8;Ingeniería en Electronica en Computación
+9;Ingeniería en Electronica y Comunicaciones
+10;Ingeniería en Informática
+11;Ingeniería en Mecatronica
+12;Ingeniería en Sistemas Computaciónales
+13;Ingeniería en Sistemas Electronicos
+14;Ingeniería en Tecnologias de la Informacion y Comunicacion
+15;Ingeniería en Telecomunicaciones
+16;Ingeniería en Telemática
+17;Ingeniería Industrial
+18;Ingeniería Industrial Quimica
+19;Ingeniería Mecanica Electrica
+20;Ingeniería Quimica
 21;Licenciatura Ciencias de la Comunicacion
-22;Licenciatura en Administracion de Empresas
-23;Licenciatura en Administracion Industrial
-24;Licenciatura en Administracion Internacional de Negocios
+22;Licenciatura en Administración de Empresas
+23;Licenciatura en Administración Industrial
+24;Licenciatura en Administración Internacional de Negocios
 25;Licenciatura en Animacion y Arte Digital
 26;Licenciatura en Biologia
-27;Licenciatura en Computacion
+27;Licenciatura en Computación
 28;Licenciatura en Contaduria Publica
 29;Licenciatura en Derecho
 30;Licenciatura en Diseño de Informacion
@@ -35,8 +35,8 @@ id;formacion_academica
 34;Licenciatura en Economia
 35;Licenciatura en Finanzas
 36;Licenciatura en Geografia
-37;Licenciatura en Informatica
-38;Licenciatura en Matematicas aplicadas a la computacion
+37;Licenciatura en Informática
+38;Licenciatura en Matematicas aplicadas a la Computación
 39;Licenciatura en Mercadotecnia
 40;Licenciatura en Pedagogia
 41;Licenciatura en Psicologia
@@ -47,10 +47,10 @@ id;formacion_academica
 46;Licenciatura en Tecnologias de la Informacion y Comunicacion
 47;Licenciatura en Turismo
 48;Lincenciatura en Sistemas y Tecnologia de la Informacion
-49;Maestria en Administracion de Negocios
+49;Maestria en Administración de Negocios
 50;Maestria en Ciencias
-51;Tecnico Analista de Sistemas y Programador de Computadoras
-52;Tecnico Superior Universitario en Administracion
-53;Tecnico Superior Universitario en Computacion
-54;Tecnico Superior Universitario en Informatica
-55;Tecnico Superior Universitario en Telematica
+51;Técnico Analista de Sistemas y Programador de Computadoras
+52;Técnico Superior Universitario en Administración
+53;Técnico Superior Universitario en Computación
+54;Técnico Superior Universitario en Informática
+55;Técnico Superior Universitario en Telemática

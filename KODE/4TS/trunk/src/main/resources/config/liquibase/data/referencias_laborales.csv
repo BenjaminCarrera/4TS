@@ -1,11 +1,3 @@
-id;empresa;nombre_contacto;puesto_contacto;email_contaco;telefono_contacto
-1;withdrawal alarm Timor-Leste;Personal Loan Account Inverse;Track;Books CSS Holy See (Vatican City State);Data Tasty Steel Pan
-2;Manor;Utah zero defect;bypass e-services;Russian Federation program;Practical
-3;emulation SQL;Persevering Gorgeous Steel Salad Associate;Fantastic whiteboard;lavender;neural Cloned Massac
-4;SCSI Communications Underpass;Officer parse;Intuitive;quantifying Phased connecting;Automated
-5;architect;lavender;copying primary invoice;EXE;Personal Loan Accoun
-6;connect Zimbabwe Dollar;Forward;Pre-emptive Reduced;Kids Customer;Practical AI didacti
-7;Tunnel;Configuration;Jewelery monitoring Infrastructure;Gorgeous ROI implement;Saint Helena Pound
-8;Borders;Integration;Bond Markets Units European Composite Unit (EURCO);Facilitator;Cambridgeshire
-9;Borders Internal;open-source Ouguiya;AGP circuit;optical deposit;Pizza Fish next-gene
-10;UIC-Franc;Generic El Salvador Colon US Dollar purple;XSS RSS Outdoors;Music copying Reduced;Chair connecting syn
+id;empresa;nombre_contacto;puesto_contacto;email_contaco;telefono_contacto;candidato_id
+1;KODE;Edy;Desarrollador;edy@kode.com;5152365895;1
+2;IBM;Abraham;Desarrollador;abraham@kode.com;3215489654;2
