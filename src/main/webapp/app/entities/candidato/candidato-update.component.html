@@ -54,8 +54,7 @@
                                                 <label *ngIf="statusCandidato == false" class="label-material" style="color: red;"> Estatus del candidato:</label>
                                                 <br>
                                                 <mat-button-toggle-group id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId" aria-label="Estilo de fuente">
-                                                    <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById"
-                                                    (click)="verificarStatusCandidato()">
+                                                    <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById" (click)="verificarStatusCandidato()">
                                                         {{estatusCandidatoOption.estatus}}</mat-button-toggle>
                                                 </mat-button-toggle-group>
                                             </p>
@@ -133,9 +132,9 @@
                                             <label *ngIf="sexo == false" class="label-material" style="color: red;"> Sexo: </label>
                                             <p>
                                                 <mat-button-toggle-group name="sexo" formControlName="sexo" id="field_sexo" aria-label="Estilo de fuente">
-                                                    <mat-button-toggle value="MASCULINO"  (click)="verificarSexo()">
+                                                    <mat-button-toggle value="MASCULINO" (click)="verificarSexo()">
                                                         {{'App.Sexo.MASCULINO' | translate}}</mat-button-toggle>
-                                                    <mat-button-toggle value="FEMENINO"  (click)="verificarSexo()">
+                                                    <mat-button-toggle value="FEMENINO" (click)="verificarSexo()">
                                                         {{'App.Sexo.FEMENINO' | translate}}</mat-button-toggle>
                                                 </mat-button-toggle-group>
                                             </p>
@@ -316,8 +315,7 @@
                                         <mat-form-field class="full-width">
                                             <mat-select id="field_institucionAcademicaId" name="institucionAcademicaId" formControlName="institucionAcademicaId" placeholder="Institución">
                                                 <mat-option>Institución</mat-option>
-                                                <mat-option [value]="institucionAcademicaOption.id"
-                                                *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
+                                                <mat-option [value]="institucionAcademicaOption.id" *ngFor="let institucionAcademicaOption of institucionacademicas; trackBy: trackInstitucionAcademicaById">
                                                     {{institucionAcademicaOption.institucion}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -417,12 +415,8 @@
                                 <label *ngIf="statusLaboral == true" class="label-material"> Estatus laboral:</label>
                                 <label *ngIf="statusLaboral == false" class="label-material" style="color: red;"> Estatus laboral:</label>
                                 <p>
-                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral"
-                                    formControlName="estatusLaboralId" aria-label="Estilo de fuente" class="botones-chicos">
-                                        <mat-button-toggle [value]="estatusLaboralOption.id"
-                                        *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById"
-                                        (click)="verificarStatusLaboral()"
-                                        >
+                                    <mat-button-toggle-group id="field_estatusLaboral" name="estatusLaboral" formControlName="estatusLaboralId" aria-label="Estilo de fuente" class="botones-chicos">
+                                        <mat-button-toggle [value]="estatusLaboralOption.id" *ngFor="let estatusLaboralOption of estatuslaborals; trackBy: trackEstatusLaboralById" (click)="verificarStatusLaboral()">
                                             {{estatusLaboralOption.estatus}}</mat-button-toggle>
                                     </mat-button-toggle-group>
                                 </p>
@@ -504,10 +498,12 @@
                     </div>
                 </div>
             </div>
-            </div>
             <br><br>
             <input type="hidden" [formControl]="selecteds">
             <div class="text-center">
+                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+                    <span style="color:black">Cancelar</span>
+                </button>
                 <button mat-raised-button color="warn" type="button" (click)="siguiente()">Siguiente</button>
             </div>
         </mat-tab>

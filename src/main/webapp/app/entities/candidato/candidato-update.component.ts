@@ -308,8 +308,8 @@ export class CandidatoUpdateComponent implements OnInit {
           .subscribe(
             (col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message)
           );
-        this.updateForm(candidato);
       }
+      this.updateForm(candidato);
     });
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
