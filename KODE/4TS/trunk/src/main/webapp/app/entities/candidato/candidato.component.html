@@ -14,7 +14,7 @@
 </div>
 <form role="form" (ngSubmit)="updateFilters()" [formGroup]="editForm">
     <div class="row">
-        <div class="col-md-3 ">
+        <div class="col-3 ">
             <p>
                 <label class="label-material">
                     Estatus del candidato:
@@ -26,14 +26,14 @@
             </p>
         </div>
 
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <input id="field_nombre" formControlName="nombre" name="nombre" matInput placeholder="Nombre">
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <input formControlName="apellidoPaterno" matInput placeholder="Apellido paterno">
@@ -41,14 +41,14 @@
             </div>
 
         </div>
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <input formControlName="apellidoMaterno" matInput placeholder="Apellido materno">
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-3 ">
+        <div class="col-3 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <mat-select formControlName="reclutadorId" placeholder="Reclutador asignado">
@@ -72,7 +72,7 @@
                 </mat-button-toggle-group>
             </p>
         </div>
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <mat-select formControlName="esquemaContratacionId" placeholder="Esquema de contratación">
@@ -82,7 +82,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <mat-select formControlName="perfilId" placeholder="Perfil">
@@ -92,7 +92,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-2 ">
+        <div class="col-2 ">
             <div class="example-container">
                 <mat-form-field class=" esp-arriba">
                     <mat-select formControlName="nivelPerfilId" placeholder="Nivel perfil">
@@ -102,7 +102,7 @@
                 </mat-form-field>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-3">
             <br>
             <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
             <button mat-raised-button color="warn">Buscar</button>
