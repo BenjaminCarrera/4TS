@@ -213,6 +213,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     estatusReqCanId: [],
     tipoPeriodoId: ['', Validators.required]
   });
+  actualizacion: boolean;
 
   constructor(
     private accountService: AccountService,
@@ -495,6 +496,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
 
   updateForm(requerimiento: IRequerimiento) {
+    this.actualizacion = true;
     this.editForm.patchValue({
       id: requerimiento.id,
       // fechaAlda: requerimiento.fechaAlda,
@@ -538,44 +540,108 @@ export class RequerimientoUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const requerimiento = this.createFromForm();
-    if (requerimiento.vacantesSolicitadas !== undefined && requerimiento.estatusRequerimientoId !== undefined
-      && requerimiento.prioridadId !== undefined && requerimiento.tipoSolicitudId !== undefined &&
-      requerimiento.tipoIngresoId !== undefined && requerimiento.vacantesSolicitadas !== undefined && requerimiento.cuentaId !== undefined
-      && requerimiento.nombreContacto !== undefined && requerimiento.tarifaSueldoNet !== undefined && requerimiento.baseTarifaId !== undefined
-      && requerimiento.esquemaContratacionId !== undefined && requerimiento.prestaciones !== undefined)  {
-      let reqCerrado = false;
-      let reqReemplazo = false;
-      if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
-        console.log('El requerimiento es cerrado y tiene un motivo');
-        reqCerrado = true;
-      } else {
-        console.log('El requerimiento es cerrado y no tiene un motivo');
-        this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
-        this.selected1.setValue(0);
-      }
-      if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
-        console.log('El requerimiento es reemplazo y tiene un reemplazo');
-        reqReemplazo = true;
-      } else {
-        console.log('El requerimiento es reemplazo y no tiene un reemplazo');
-        this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
-        this.selected1.setValue(0);
-      }
-      if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
-        console.log('tiene datos');
-        if (requerimiento.id !== undefined) {
-          this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+    // Si actualiza
+    if (this.actualizacion === true) {
+      if (this.editForm.get(['vacantesSolicitadas']).value !== undefined && this.editForm.get(['vacantesSolicitadas']).value !== null &&
+      this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null &&
+      this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null &&
+      this.editForm.get(['prestaciones']).value !== undefined && this.editForm.get(['prestaciones']).value  !== null &&
+       this.editForm.get(['duracionAsignacion']).value !== undefined && this.editForm.get(['duracionAsignacion']).value !== null &&
+       this.editForm.get(['lugarTrabajo']).value !== undefined && this.editForm.get(['lugarTrabajo']).value !== null &&
+        this.editForm.get(['cuentaId']).value !== undefined && this.editForm.get(['cuentaId']).value !== null &&
+        this.editForm.get(['usuarioAsignadoId']).value !== undefined && this.editForm.get(['usuarioAsignadoId']).value !== null &&
+         this.editForm.get(['prioridadId']).value !== undefined &&  this.editForm.get(['prioridadId']).value !== null &&
+          this.editForm.get(['esquemaContratacionId']).value !== undefined && this.editForm.get(['esquemaContratacionId']).value !== null &&
+          this.editForm.get(['baseTarifaId']).value !== undefined && this.editForm.get(['baseTarifaId']).value !== null &&
+           this.editForm.get(['perfilId']).value !== undefined && this.editForm.get(['perfilId']).value !== null &&
+           this.editForm.get(['nivelPerfilId']).value !== undefined && this.editForm.get(['nivelPerfilId']).value !== null &&
+             this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null)  {
+        let reqCerrado = false;
+        let reqReemplazo = false;
+        if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
+          console.log('El requerimiento es cerrado y tiene un motivo');
+          reqCerrado = true;
         } else {
-          this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+          console.log('El requerimiento es cerrado y no tiene un motivo');
+          this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
+          this.selected1.setValue(0);
         }
+        if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
+          console.log('El requerimiento es reemplazo y tiene un reemplazo');
+          reqReemplazo = true;
+        } else {
+          console.log('El requerimiento es reemplazo y no tiene un reemplazo');
+          this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
+          this.selected1.setValue(0);
+        }
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
+          console.log('tiene datos');
+          console.log(this.editForm.get(['vacantesSolicitadas']).value,
+          this.editForm.get(['nombreContacto']).value,
+          this.editForm.get(['tarifaSueldoNet']).value,
+          this.editForm.get(['prestaciones']).value,
+           this.editForm.get(['duracionAsignacion']).value,
+           this.editForm.get(['lugarTrabajo']).value,
+            this.editForm.get(['cuentaId']).value,
+            this.editForm.get(['usuarioAsignadoId']).value,
+             this.editForm.get(['prioridadId']).value,
+              this.editForm.get(['esquemaContratacionId']).value,
+              this.editForm.get(['baseTarifaId']).value,
+               this.editForm.get(['perfilId']).value,
+               this.editForm.get(['nivelPerfilId']).value,
+                 this.editForm.get(['tipoPeriodoId']).value);
+          if (requerimiento.id !== undefined) {
+            this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+          } else {
+            this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+          }
+        }
+      } else {
+        console.log('No tiene datos');
+        this.selected1.setValue(0);
+        console.log(requerimiento.remplazoDe);
       }
     } else {
-      console.log('No tiene datos');
-      this.selected1.setValue(0);
-      this.datos = false;
-      this.datos2 = false;
-      this.datos3 = false;
-      console.log(requerimiento.remplazoDe);
+      // Si agrega
+      if (requerimiento.vacantesSolicitadas !== undefined && requerimiento.estatusRequerimientoId !== undefined
+        && requerimiento.prioridadId !== undefined && requerimiento.tipoSolicitudId !== undefined &&
+        requerimiento.tipoIngresoId !== undefined && requerimiento.vacantesSolicitadas !== undefined && requerimiento.cuentaId !== undefined
+        && requerimiento.nombreContacto !== undefined && requerimiento.tarifaSueldoNet !== undefined && requerimiento.baseTarifaId !== undefined
+        && requerimiento.esquemaContratacionId !== undefined && requerimiento.prestaciones !== undefined)  {
+        let reqCerrado = false;
+        let reqReemplazo = false;
+        if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
+          console.log('El requerimiento es cerrado y tiene un motivo');
+          reqCerrado = true;
+        } else {
+          console.log('El requerimiento es cerrado y no tiene un motivo');
+          this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
+          this.selected1.setValue(0);
+        }
+        if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
+          console.log('El requerimiento es reemplazo y tiene un reemplazo');
+          reqReemplazo = true;
+        } else {
+          console.log('El requerimiento es reemplazo y no tiene un reemplazo');
+          this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
+          this.selected1.setValue(0);
+        }
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
+          console.log('tiene datos');
+          if (requerimiento.id !== undefined) {
+            this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+          } else {
+            this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+          }
+        }
+      } else {
+        console.log('No tiene datos');
+        this.selected1.setValue(0);
+        this.datos = false;
+        this.datos2 = false;
+        this.datos3 = false;
+        console.log(requerimiento.remplazoDe);
+      }
     }
   }
 
