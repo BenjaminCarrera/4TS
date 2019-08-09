@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map} from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IRequerimiento } from 'app/shared/model/requerimiento.model';
@@ -21,15 +21,13 @@ import { ITipoSolicitud } from 'app/shared/model/tipo-solicitud.model';
 import { TipoSolicitudService } from '../tipo-solicitud';
 import { IPrioridadReq } from 'app/shared/model/prioridad-req.model';
 import { PrioridadReqService } from '../prioridad-req';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ITEMS_PER_PAGE } from 'app/shared';
 
 @Component({
   selector: 'jhi-requerimiento',
   templateUrl: './requerimiento.component.html',
-  styleUrls: [
-    '../../con-req/con-req.component.scss'
-  ]
+  styleUrls: ['../../con-req/con-req.component.scss']
 })
 export class RequerimientoComponent implements OnInit, OnDestroy {
   currentAccount: any;
@@ -57,7 +55,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   criteriaTemp: any;
 
   editForm = this.fb.group({
-    idReq: [],
+    idReq: ['', [Validators.max(9999), Validators.min(0)]],
     usuarioAsignadoId: [],
     estatusRequerimientoId: [],
     cuentaId: [],
@@ -144,46 +142,50 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.criteria = [];
     this.criteriaTemp = {};
-    if (this.editForm.get(['idReq']).value != null) {
-      this.criteriaTemp = { key: 'id.equals', value: this.editForm.get(['idReq']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['usuarioAsignadoId']).value != null) {
-      this.criteriaTemp = { key: 'usuarioAsignadoId.equals', value: this.editForm.get(['usuarioAsignadoId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['estatusRequerimientoId']).value != null) {
-      this.criteriaTemp = { key: 'estatusRequerimientoId.equals', value: this.editForm.get(['estatusRequerimientoId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['cuentaId']).value != null) {
-      this.criteriaTemp = { key: 'cuentaId.equals', value: this.editForm.get(['cuentaId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['perfilId']).value != null) {
-      this.criteriaTemp = { key: 'perfilId.equals', value: this.editForm.get(['perfilId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['nivelPerfilId']).value != null) {
-      this.criteriaTemp = { key: 'nivelPerfilId.equals', value: this.editForm.get(['nivelPerfilId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['tipoSolicitudId']).value != null) {
-      this.criteriaTemp = { key: 'tipoSolicitudId.equals', value: this.editForm.get(['tipoSolicitudId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    if (this.editForm.get(['prioridadId']).value != null) {
-      this.criteriaTemp = { key: 'prioridadId.equals', value: this.editForm.get(['prioridadId']).value };
-      this.criteria.push(this.criteriaTemp);
-    }
-    this.router.navigate([
-      '/requerimiento',
-      {
-        page: this.page,
-        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+    const id = this.editForm.get(['idReq']).value;
+    if (id > 9999) {
+    } else {
+      if (this.editForm.get(['idReq']).value != null) {
+        this.criteriaTemp = { key: 'id.equals', value: this.editForm.get(['idReq']).value };
+        this.criteria.push(this.criteriaTemp);
       }
-    ]);
-    this.loadAll();
+      if (this.editForm.get(['usuarioAsignadoId']).value != null) {
+        this.criteriaTemp = { key: 'usuarioAsignadoId.equals', value: this.editForm.get(['usuarioAsignadoId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['estatusRequerimientoId']).value != null) {
+        this.criteriaTemp = { key: 'estatusRequerimientoId.equals', value: this.editForm.get(['estatusRequerimientoId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['cuentaId']).value != null) {
+        this.criteriaTemp = { key: 'cuentaId.equals', value: this.editForm.get(['cuentaId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['perfilId']).value != null) {
+        this.criteriaTemp = { key: 'perfilId.equals', value: this.editForm.get(['perfilId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['nivelPerfilId']).value != null) {
+        this.criteriaTemp = { key: 'nivelPerfilId.equals', value: this.editForm.get(['nivelPerfilId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['tipoSolicitudId']).value != null) {
+        this.criteriaTemp = { key: 'tipoSolicitudId.equals', value: this.editForm.get(['tipoSolicitudId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      if (this.editForm.get(['prioridadId']).value != null) {
+        this.criteriaTemp = { key: 'prioridadId.equals', value: this.editForm.get(['prioridadId']).value };
+        this.criteria.push(this.criteriaTemp);
+      }
+      this.router.navigate([
+        '/requerimiento',
+        {
+          page: this.page,
+          sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+        }
+      ]);
+      this.loadAll();
+    }
   }
 
   sort() {
@@ -292,7 +294,7 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInRequerimientos() {
-    this.eventSubscriber = this.eventManager.subscribe('requerimientoListModification', response => this.loadAll());
+      this.eventSubscriber = this.eventManager.subscribe('requerimientoListModification', response => this.loadAll());
   }
 
   protected paginateRequerimientos(data: IRequerimiento[], headers: HttpHeaders) {
