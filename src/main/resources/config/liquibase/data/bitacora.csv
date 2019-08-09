@@ -1,11 +1,5 @@
-id;fecha;comentario
-1;2019-07-02T07:52:57;Buckinghamshire Rubber Small
-2;2019-07-02T01:24:30;Cambridgeshire users driver
-3;2019-07-02T00:30:24;Bike
-4;2019-07-02T04:14:01;Cotton
-5;2019-07-02T00:50:46;withdrawal Solutions Gorgeous Steel Car
-6;2019-07-02T12:06:23;didactic
-7;2019-07-02T12:57:05;Forward
-8;2019-07-02T12:53:23;explicit index Summit
-9;2019-07-02T00:14:17;Rustic Granite Pizza
-10;2019-07-02T18:04:19;Generic Fresh Towels
+﻿id;fecha;comentario;requerimiento_id;candidato_id
+1;2019-07-02T07:52:57;Bitacora del candidato 1 y requerimiento 1;1;1
+2;2019-07-02T01:24:30;Bitacora del candidato 1 y requerimiento 2;2;1
+3;2019-07-02T00:30:24;Bitacora del candidato 2 y requerimiento 1;1;2
+4;2019-07-02T07:52:58;Bitacora del candidato 2 y requerimiento 2;2;2

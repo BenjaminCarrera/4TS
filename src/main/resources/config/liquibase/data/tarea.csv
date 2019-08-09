@@ -1,11 +1,6 @@
-id;descripcion;titulo
-1;Refined New York PNG;Keyboard Overpass
-2;open-source;circuit Engineer Intelligent
-3;SAS deposit;Saint Barthelemy
-4;generating Savings Account Indian Rupee;haptic Macedonia
-5;synthesizing;Sports back up ivory
-6;navigate Croatian Kuna hack;implementation XML Liaison
-7;deploy payment;SSL Savings Account reintermediate
-8;Clothing Chair;Savings Account
-9;Bacon evolve;Utah Mission
-10;protocol Awesome;Oklahoma
+﻿id;descripcion;titulo;requerimiento_id;candidato_id;estatus_tarea_id;tipo_tarea_id
+1;Revisar disponibilidad;Revisar disponibilidad;5;2;1;1
+2;Contactar;Contactar;4;1;2;2
+3;Enviar correo;Enviar correo;3;2;3;3
+4;Llamar;Llamar;2;1;1;4
+5;Crear cita;Crear cita;1;2;2;5
