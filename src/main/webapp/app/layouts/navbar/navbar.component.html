@@ -84,7 +84,7 @@
                 </ul>
             </li> -->
 
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *jhiHasAnyAuthority="'3'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="candidato" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="user"></fa-icon>
