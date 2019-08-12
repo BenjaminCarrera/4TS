@@ -88,34 +88,7 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   zoom = 10;
   requerimiento: IRequerimiento;
   skillRequerimientos: ISkillRequerimiento [];
-  // Variables Tarea
-  // DATA_TAREA: PeriodicElement[] = [
-  //   { Id: 1, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 2, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 4, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 5, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 3, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 6, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 7, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 8, Tarea: 'Abiertas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 9, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 10, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 11, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' },
-  //   { Id: 12, Tarea: 'Cerradas', Creador: 'Capgemini', Destinatario: 'Java', FechaAlta: 'Junior', Estatus: 'MABE' }
-  // ];
-  // dataSourceTarea: PeriodicElement[];
-  // displayedColumnsTarea: string[] = ['Id', 'Tarea', 'Creador', 'Destinatario', 'FechaAlta', 'Estatus'];
 
-  // VAriables Bitacora
-  // DATA_BITACORA: Tarea[] = [
-  //   { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
-  //   { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
-  //   { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
-  //   { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
-  // ];
-  // dataSourceBitacora: Tarea[];
-  // displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
   constructor(
     protected skillRequerimientoService: SkillRequerimientoService,
     protected tareaService: TareaService,
@@ -152,7 +125,7 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
         page: this.page - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
-        'usuarioCreadorId.equals': 1
+        'requerimientoId.equals': this.requerimiento.id
       })
       .subscribe(
         (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),

@@ -1,621 +1,417 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-  <jhi-alert-error></jhi-alert-error>
-  <div class="form-group" [hidden]="!editForm.get('id').value">
+    <jhi-alert-error></jhi-alert-error>
+    <div class="form-group" [hidden]="!editForm.get('id').value">
         <input type="hidden" class="form-control" id="id" name="id" formControlName="id" readonly />
-  </div>
-  <div class="form-group" [hidden]="!editForm.get('id').value">
+    </div>
+    <div class="form-group" [hidden]="!editForm.get('id').value">
         <div class="col-md-12" style="display: inline-block;">
             <div class="row">
                 <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
-                        <h3>Actualizar el requerimiento - {{editForm.get('id').value}}</h3>
+                    <h3>Actualizar el requerimiento - {{editForm.get('id').value}}</h3>
                 </div>
             </div>
         </div>
-  </div>
-  <div class="form-group" [hidden]="editForm.get('id').value">
+    </div>
+    <div class="form-group" [hidden]="editForm.get('id').value">
         <div class="col-md-12" style="display: inline-block;">
             <div class="row">
                 <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
-                        <h3>Registrar un nuevo requerimiento</h3>
+                    <h3>Registrar un nuevo requerimiento</h3>
                 </div>
             </div>
         </div>
-  </div>
-  <mat-tab-group [selectedIndex]="selected1.value" (selectedIndexChange)="selected1.setValue($event)">
-    <mat-tab label="Generales">
-      <br />
-      <div class="row">
-        <div class="col-sm-6" style="padding-right: 0px; ">
-          <div
-            class="panel panel-default"
-            style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-          >
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-4">
-                  <h4>Datos generales</h4>
-                </div>
-                <div class="col-sm-4">
-                </div>
-                <div class="col-sm-4">
-                </div>
-                <!--  -->
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="hidden"
-                  placeholder="Coor Lat"
-                  name="coorLat"
-                  id="field_coorLat"
-                  [value]="latitude"
-                  formControlName="coorLat"
-                />
-              </div>
-
-              <div class="form-group">
-                <input
-                  type="hidden"
-                  placeholder="Coor Long"
-                  name="coorLong"
-                  id="field_coorLong"
-                  [value]="longitude"
-                  formControlName="coorLong"
-                />
-              </div>
-              <div class="form-group">
-                <mat-form-field class="full-width">
-                  <mat-select
-                    placeholder="Ejecutivo asignado"
-                    id="field_usuarioAsignado"
-                    name="usuarioAsignado"
-                    formControlName="usuarioAsignadoId"
-                  >
-                    <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{
-                      userOption.firstName
-                    }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div class="form-group">
-                <p>
-                <label *ngIf="datos == true" class="label-material"> Estatus del requerimiento:</label>
-                <label *ngIf="datos == false" class="label-material" style="color: red;"> Estatus del requerimiento:</label>
-                  <br />
-                  <mat-button-toggle-group
-                    aria-label="Estilo de fuente"
-                    class="botones-chicos2"
-                    #group="matButtonToggleGroup"
-                    id="field_estatusRequerimiento"
-                    name="estatusRequerimiento"
-                    formControlName="estatusRequerimientoId"
-                  >
-                    <mat-button-toggle
-                      [value]="estatusRequerimientoOption.id"
-                      *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById"
-                      (click)="verificarReqEstatus(estatusRequerimientoOption.estatus)"
-                    >
-                      {{ estatusRequerimientoOption.estatus }}
-                    </mat-button-toggle>
-                  </mat-button-toggle-group>
-                </p>
-              </div>
-              <div class="form-group" *ngIf="reqCancelado">
-                <div class="form-group">
-                  <mat-form-field class="full-width">
-                    <mat-select
-                      placeholder="Motivo del Requerimiento Cerrado"
-                      id="field_estatusReqCan"
-                      name="estatusReqCan"
-                      formControlName="estatusReqCanId"
-                    >
-                      <mat-option
-                        [value]="estReqCerradoOption.id"
-                        *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById"
-                        >{{ estReqCerradoOption.motivo }}</mat-option
-                      >
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <p>
-                    <label *ngIf="datos2 == true" class="label-material"> Tipo de solicitud:</label>
-                    <label *ngIf="datos2 == false" class="label-material" style="color: red;"> Tipo de solicitud:</label>
-                    <br />
-                    <mat-button-toggle-group
-                      aria-label="Estilo de fuente"
-                      class="botones-chicos3"
-                      #group2="matButtonToggleGroup"
-                      id="field_tipoSolicitud"
-                      name="tipoSolicitud"
-                      formControlName="tipoSolicitudId"
-                    >
-                      <mat-button-toggle
-                        [value]="tipoSolicitudOption.id"
-                        *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById"
-                        (click)="verificarSolicitud(tipoSolicitudOption)"
-                      >
-                        {{ tipoSolicitudOption.solicitud }}
-                      </mat-button-toggle>
-                    </mat-button-toggle-group>
-                  </p>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-6">
-                  <p>
-                    <label *ngIf="datos3 == true" class="label-material"> Tipo de ingreso:</label>
-                    <label *ngIf="datos3 == false" class="label-material" style="color: red;"> Tipo de ingreso:</label>
-                    <br />
-                    <mat-button-toggle-group
-                      name="fontStyle"
-                      aria-label="Estilo de fuente"
-                      class="botones-chicos"
-                      #group3="matButtonToggleGroup"
-                      id="field_tipoIngreso"
-                      name="tipoIngreso"
-                      formControlName="tipoIngresoId"
-                    >
-                      <mat-button-toggle
-                        [value]="tipoIngresoOption.id"
-                        *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById"
-                        (click)="verificarReemplazo(tipoIngresoOption.tipo)"
-                      >
-                        {{ tipoIngresoOption.tipo }}
-                      </mat-button-toggle>
-                    </mat-button-toggle-group>
-                  </p>
-                </div>
-                <div class="col-sm-6" *ngIf="reemplazo">
-                  <br />
-                  <mat-form-field class="">
-                    <input
-                      matInput
-                      placeholder="Reemplazo de"
-                      name="remplazoDe"
-                      id="field_remplazoDe"
-                      formControlName="remplazoDe"
-                    />
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                      <input
-                        matInput
-                        placeholder="Vacantes solicitadas"
-                        name="vacantesSolicitadas"
-                        id="field_vacantesSolicitadas"
-                        formControlName="vacantesSolicitadas"
-                      />
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-
-                    <mat-form-field class="full-width">
-                            <mat-select placeholder="Prioridad" id="field_prioridad" name="prioridad" formControlName="prioridadId">
-                              <mat-option [value]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.prioridad}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Cuenta" id="field_cuenta" name="cuenta" formControlName="cuentaId">
-                        <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{
-                          cuentaOption.clave
-                        }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Subcuenta" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
-                        <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{
-                          cuentaOption.clave
-                        }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field>
-                      <input matInput placeholder="Proyecto" name="proyecto" id="field_proyecto" formControlName="proyecto" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                      <input
-                        matInput
-                        placeholder="Nombre de contacto"
-                        name="nombreContacto"
-                        id="field_nombreContacto"
-                        formControlName="nombreContacto"
-                      />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                      <input
-                        matInput
-                        placeholder="Tarifa Sueldo Net"
-                        name="tarifaSueldoNet"
-                        id="field_tarifaSueldoNet"
-                        formControlName="tarifaSueldoNet"
-                      />
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Base de Tarifa" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
-                        <mat-option
-                          [value]="baseTarifaOption.id"
-                          *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById"
-                          >{{ baseTarifaOption.base }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select
-                        placeholder="Esquema de contratación"
-                        id="field_esquemaContratacion"
-                        name="esquemaContratacion"
-                        formControlName="esquemaContratacionId"
-                      >
-                        <mat-option
-                          [value]="esqContRecOption.id"
-                          *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById"
-                          >{{ esqContRecOption.esquema }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                            <textarea
-                        matInput
-                        placeholder="Prestaciones"
-                        name="prestaciones"
-                        id="field_prestaciones"
-                        formControlName="prestaciones"
-                        rows="9"
-                        ></textarea>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6" style="padding-right: 0px; padding-left: 33px;">
-          <div
-            class="panel panel-default"
-            style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
-          >
-            <h4>Datos del perfil</h4>
+    </div>
+    <mat-tab-group [selectedIndex]="selected1.value" (selectedIndexChange)="selected1.setValue($event)">
+        <mat-tab label="Generales">
             <br />
-            <div class="fieldset-content">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Perfil" id="field_perfil" name="perfil" formControlName="perfilId">
-                        <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{
-                          perfilOption.perfil
-                        }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Nivel del Perfil" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
-                        <mat-option
-                          [value]="nivelPerfilOption.id"
-                          *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById"
-                          >{{ nivelPerfilOption.nivel }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                      <input
-                        matInput
-                        placeholder="Duración de Asignación"
-                        name="duracionAsignacion"
-                        id="field_duracionAsignacion"
-                        formControlName="duracionAsignacion"
-                      />
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="full-width">
-                      <mat-select placeholder="Tipo de período" id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
-                        <mat-option
-                          [value]="tipoPeriodoOption.id"
-                          *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById"
-                          >{{ tipoPeriodoOption.periodo }}</mat-option
-                        >
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-sm-12">
-                  <!-- app.component.html -->
-                  <mat-form-field class="">
-                    <input
-                      matInput
-                      placeholder="Lugar de Residencia"
-                      name="lugarTrabajo"
-                      id="field_lugarTrabajo"
-                      formControlName="lugarTrabajo"
-                      (keydown.enter)="$event.preventDefault()"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      spellcheck="off"
-                      #search
-                    />
-                  </mat-form-field>
+            <div class="row">
+                <div class="col-sm-6" style="padding-right: 0px; ">
+                    <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h4>Datos generales</h4>
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                                <!--  -->
+                            </div>
 
+                            <div class="form-group">
+                                <input type="hidden" placeholder="Coor Lat" name="coorLat" id="field_coorLat" [value]="latitude" formControlName="coorLat" />
+                            </div>
 
-                  <div class="form-group" [hidden]="!editForm.get('id').value">
-                        <div class="container">
-                        <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
-                            <agm-marker
-                            [latitude]="editForm.get('coorLat').value"
-                            [longitude]="editForm.get('coorLong').value"
-                            [markerDraggable]="true"
-                            (dragEnd)="markerDragEnd($event)"
-                            ></agm-marker>
-                        </agm-map>
+                            <div class="form-group">
+                                <input type="hidden" placeholder="Coor Long" name="coorLong" id="field_coorLong" [value]="longitude" formControlName="coorLong" />
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="full-width">
+                                    <mat-select placeholder="Ejecutivo asignado" id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId">
+                                        <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{ userOption.firstName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <p>
+                                    <label *ngIf="datos == true" class="label-material"> Estatus del requerimiento:</label>
+                                    <label *ngIf="datos == false" class="label-material" style="color: red;"> Estatus del requerimiento:</label>
+                                    <br />
+                                    <mat-button-toggle-group aria-label="Estilo de fuente" class="botones-chicos2" #group="matButtonToggleGroup" id="field_estatusRequerimiento" name="estatusRequerimiento" formControlName="estatusRequerimientoId">
+                                        <mat-button-toggle [value]="estatusRequerimientoOption.id" *ngFor="let estatusRequerimientoOption of estatusrequerimientos; trackBy: trackEstatusRequerimientoById" (click)="verificarReqEstatus(estatusRequerimientoOption.estatus)">
+                                            {{ estatusRequerimientoOption.estatus }}
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </p>
+                            </div>
+                            <div class="form-group" *ngIf="reqCancelado">
+                                <div class="form-group">
+                                    <mat-form-field class="full-width">
+                                        <mat-select placeholder="Motivo del Requerimiento Cerrado" id="field_estatusReqCan" name="estatusReqCan" formControlName="estatusReqCanId">
+                                            <mat-option [value]="estReqCerradoOption.id" *ngFor="let estReqCerradoOption of estreqcerrados; trackBy: trackEstReqCerradoById">{{ estReqCerradoOption.motivo }}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        <label *ngIf="datos2 == true" class="label-material"> Tipo de solicitud:</label>
+                                        <label *ngIf="datos2 == false" class="label-material" style="color: red;"> Tipo de solicitud:</label>
+                                        <br />
+                                        <mat-button-toggle-group aria-label="Estilo de fuente" class="botones-chicos3" #group2="matButtonToggleGroup" id="field_tipoSolicitud" name="tipoSolicitud" formControlName="tipoSolicitudId">
+                                            <mat-button-toggle [value]="tipoSolicitudOption.id" *ngFor="let tipoSolicitudOption of tiposolicituds; trackBy: trackTipoSolicitudById" (click)="verificarSolicitud(tipoSolicitudOption)">
+                                                {{ tipoSolicitudOption.solicitud }}
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>
+                                        <label *ngIf="datos3 == true" class="label-material"> Tipo de ingreso:</label>
+                                        <label *ngIf="datos3 == false" class="label-material" style="color: red;"> Tipo de ingreso:</label>
+                                        <br />
+                                        <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente" class="botones-chicos" #group3="matButtonToggleGroup" id="field_tipoIngreso" name="tipoIngreso" formControlName="tipoIngresoId">
+                                            <mat-button-toggle [value]="tipoIngresoOption.id" *ngFor="let tipoIngresoOption of tipoingresos; trackBy: trackTipoIngresoById" (click)="verificarReemplazo(tipoIngresoOption.tipo)">
+                                                {{ tipoIngresoOption.tipo }}
+                                            </mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6" *ngIf="reemplazo">
+                                    <br />
+                                    <mat-form-field class="">
+                                        <input matInput placeholder="Reemplazo de" name="remplazoDe" id="field_remplazoDe" formControlName="remplazoDe" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Vacantes solicitadas" name="vacantesSolicitadas" id="field_vacantesSolicitadas" formControlName="vacantesSolicitadas" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Prioridad" id="field_prioridad" name="prioridad" formControlName="prioridadId">
+                                                <mat-option [value]="prioridadReqOption.id" *ngFor="let prioridadReqOption of prioridadreqs; trackBy: trackPrioridadReqById">{{prioridadReqOption.prioridad}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Cuenta" id="field_cuenta" name="cuenta" formControlName="cuentaId">
+                                                <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{ cuentaOption.clave }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Subcuenta" id="field_subCuenta" name="subCuenta" formControlName="subCuentaId">
+                                                <mat-option [value]="cuentaOption.id" *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{ cuentaOption.clave }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <input matInput placeholder="Proyecto" name="proyecto" id="field_proyecto" formControlName="proyecto" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Nombre de contacto" name="nombreContacto" id="field_nombreContacto" formControlName="nombreContacto" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Tarifa Sueldo Net" name="tarifaSueldoNet" id="field_tarifaSueldoNet" formControlName="tarifaSueldoNet" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Base de Tarifa" id="field_baseTarifa" name="baseTarifa" formControlName="baseTarifaId">
+                                                <mat-option [value]="baseTarifaOption.id" *ngFor="let baseTarifaOption of basetarifas; trackBy: trackBaseTarifaById">{{ baseTarifaOption.base }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Esquema de contratación" id="field_esquemaContratacion" name="esquemaContratacion" formControlName="esquemaContratacionId">
+                                                <mat-option [value]="esqContRecOption.id" *ngFor="let esqContRecOption of esqcontrecs; trackBy: trackEsqContRecById">{{ esqContRecOption.esquema }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <textarea matInput placeholder="Prestaciones" name="prestaciones" id="field_prestaciones" formControlName="prestaciones" rows="9"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                  </div>
-                  <div class="form-group" [hidden]="editForm.get('id').value">
-                        <div class="container">
-                        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
-                                <agm-marker
-                                [latitude]="latitude"
-                                [longitude]="longitude"
-                                [markerDraggable]="true"
-                                (dragEnd)="markerDragEnd($event)"
-                                ></agm-marker>
-                        </agm-map>
+                    </div>
+                </div>
+                <div class="col-sm-6" style="padding-right: 0px; padding-left: 33px;">
+                    <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                        <h4>Datos del perfil</h4>
+                        <br />
+                        <div class="fieldset-content">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Perfil" id="field_perfil" name="perfil" formControlName="perfilId">
+                                                <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of perfils; trackBy: trackPerfilById">{{ perfilOption.perfil }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Nivel del Perfil" id="field_nivelPerfil" name="nivelPerfil" formControlName="nivelPerfilId">
+                                                <mat-option [value]="nivelPerfilOption.id" *ngFor="let nivelPerfilOption of nivelperfils; trackBy: trackNivelPerfilById">{{ nivelPerfilOption.nivel }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Duración de Asignación" name="duracionAsignacion" id="field_duracionAsignacion" formControlName="duracionAsignacion" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="full-width">
+                                            <mat-select placeholder="Tipo de período" id="field_tipoPeriodo" name="tipoPeriodo" formControlName="tipoPeriodoId">
+                                                <mat-option [value]="tipoPeriodoOption.id" *ngFor="let tipoPeriodoOption of tipoperiodos; trackBy: trackTipoPeriodoById">{{ tipoPeriodoOption.periodo }}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- app.component.html -->
+                                    <mat-form-field class="">
+                                        <input matInput placeholder="Lugar de Residencia" name="lugarTrabajo" id="field_lugarTrabajo" formControlName="lugarTrabajo" (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                                    </mat-form-field>
+
+
+                                    <div class="form-group" [hidden]="!editForm.get('id').value">
+                                        <div class="container">
+                                            <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
+                                                <agm-marker [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                            </agm-map>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" [hidden]="editForm.get('id').value">
+                                        <div class="container">
+                                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="16">
+                                                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                            </agm-map>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <mat-form-field class="">
+                                            <input matInput placeholder="Horario" name="horario" id="field_horario" formControlName="horario" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="Información del examen" rows="9" name="informacionExamen" id="field_informacionExamen" formControlName="informacionExamen"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <mat-form-field class="example-full-width">
+                                            <textarea matInput placeholder="Informacion Adicional" rows="9" name="informacionAdicional" id="field_informacionAdicional" formControlName="informacionAdicional"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                  </div>
+                    </div>
                 </div>
-              </div>
-
-              <br />
-
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <mat-form-field class="">
-                      <input matInput placeholder="Horario" name="horario" id="field_horario" formControlName="horario" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="example-full-width">
-                      <textarea
-                        matInput
-                        placeholder="Información del examen"
-                        rows="9"
-                        name="informacionExamen"
-                        id="field_informacionExamen"
-                        formControlName="informacionExamen"
-                      ></textarea>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <mat-form-field class="example-full-width">
-                      <textarea
-                        matInput
-                        placeholder="Informacion Adicional"
-                        rows="9"
-                        name="informacionAdicional"
-                        id="field_informacionAdicional"
-                        formControlName="informacionAdicional"
-                      ></textarea>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <input type="hidden" [formControl]="selected1" />
-      <div class="text-center">
-        <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+            <br />
+            <input type="hidden" [formControl]="selected1" />
+            <div class="text-center">
+                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
           <span style="color:black">Cancelar</span>
         </button>
-        <button type="button" id="cancel-save" class="btn btn-danger" (click)="siguiente()" style="background-color: #f44336;">
+                <button type="button" id="cancel-save" class="btn btn-danger" (click)="siguiente()" style="background-color: #f44336;">
           Siguiente
         </button>
-      </div>
-      <br />
-    </mat-tab>
-    <mat-tab label="Skills">
-      <br />
-      <div class="row">
-        <div class="col-sm-12">
-          <h4>Skills solicitados</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <br />
-          <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList aria-label="Requeridos">
-              <mat-chip *ngFor="let selectedRequeridos of SkillRequeridosSelected; trackBy: trackSkillById" [selectable]="selectable" [removable]="removable" (removed)="remove(selectedRequeridos)">
-                {{ selectedRequeridos.nombre }}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input
-                placeholder="Requeridos"
-                #fruitInput
-                [formControl]="requeridosCtrl"
-                [matAutocomplete]="auto"
-                [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="add($event)"
-              />
-            </mat-chip-list>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let requeridos of FilterSkillsRequeridos; trackBy: trackSkillById" [value]="requeridos.id">
-                {{ requeridos.nombre }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList2 aria-label="Fruit selection">
-              <mat-chip
-                *ngFor="let selectedOpcionales of SkillOpcionalesSelected"
-                [selectable]="selectable"
-                [removable]="removable"
-                (removed)="remove2(selectedOpcionales)"
-                color="primary"
-                selected
-              >
-                {{ selectedOpcionales.nombre }}
-                <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
-              </mat-chip>
-              <input
-                placeholder="Opcionales"
-                #fruitInput2
-                [formControl]="opcionalesCtrl"
-                [matAutocomplete]="auto2"
-                [matChipInputFor]="chipList2"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
-                [matChipInputAddOnBlur]="addOnBlur2"
-                (matChipInputTokenEnd)="add2($event)"
-              />
-            </mat-chip-list>
-            <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
-                <mat-option *ngFor="let opcionales of FilterSkillsOpcionales; trackBy: trackSkillById " [value]="opcionales.id">
-                    {{ opcionales.nombre }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList3 aria-label="Fruit selection">
-              <mat-chip
-                *ngFor="let selectedEsencial of SkillEsencialesSelected"
-                [selectable]="selectable3"
-                [removable]="removable3"
-                (removed)="remove3(selectedEsencial)"
-                color="primary"
-                selected
-              >
-                {{ selectedEsencial.nombre }}
-                <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
-              </mat-chip>
-              <input
-                placeholder="Escenciales"
-                #fruitInput3
-                [formControl]="esencialesCtrl"
-                [matAutocomplete]="auto3"
-                [matChipInputFor]="chipList3"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes3"
-                [matChipInputAddOnBlur]="addOnBlur3"
-                (matChipInputTokenEnd)="add3($event)"
-              />
-            </mat-chip-list>
-            <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
-                <mat-option *ngFor="let esencial of FilterSkillsEsenciales; trackBy: trackSkillById" [value]="esencial.id">
-                    {{ esencial.nombre }}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <div>
-            <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+            </div>
+            <br />
+        </mat-tab>
+        <mat-tab label="Skills">
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Skills solicitados</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <br />
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList aria-label="Requeridos">
+                            <mat-chip *ngFor="let selectedRequeridos of SkillRequeridosSelected; trackBy: trackSkillById" [selectable]="selectable" [removable]="removable" (removed)="remove(selectedRequeridos)">
+                                {{ selectedRequeridos.nombre }}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Requeridos" #fruitInput [formControl]="requeridosCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)"
+                            />
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            <mat-option *ngFor="let requeridos of FilterSkillsRequeridos; trackBy: trackSkillById" [value]="requeridos.id">
+                                {{ requeridos.nombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList2 aria-label="Fruit selection">
+                            <mat-chip *ngFor="let selectedOpcionales of SkillOpcionalesSelected" [selectable]="selectable" [removable]="removable" (removed)="remove2(selectedOpcionales)" color="primary" selected>
+                                {{ selectedOpcionales.nombre }}
+                                <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Opcionales" #fruitInput2 [formControl]="opcionalesCtrl" [matAutocomplete]="auto2" [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2" [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)"
+                            />
+                        </mat-chip-list>
+                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
+                            <mat-option *ngFor="let opcionales of FilterSkillsOpcionales; trackBy: trackSkillById " [value]="opcionales.id">
+                                {{ opcionales.nombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field class="example-chip-list">
+                        <mat-chip-list #chipList3 aria-label="Fruit selection">
+                            <mat-chip *ngFor="let selectedEsencial of SkillEsencialesSelected" [selectable]="selectable3" [removable]="removable3" (removed)="remove3(selectedEsencial)" color="primary" selected>
+                                {{ selectedEsencial.nombre }}
+                                <mat-icon matChipRemove *ngIf="removable3">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Escenciales" #fruitInput3 [formControl]="esencialesCtrl" [matAutocomplete]="auto3" [matChipInputFor]="chipList3" [matChipInputSeparatorKeyCodes]="separatorKeysCodes3" [matChipInputAddOnBlur]="addOnBlur3" (matChipInputTokenEnd)="add3($event)"
+                            />
+                        </mat-chip-list>
+                        <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected3($event)">
+                            <mat-option *ngFor="let esencial of FilterSkillsEsenciales; trackBy: trackSkillById" [value]="esencial.id">
+                                {{ esencial.nombre }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div>
+                        <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
               <span style="color:black">Cancelar</span>
             </button>
-            <button type="submit" id="save-entity"  class="btn btn-danger"
-            style="background-color: #f44336;">
+                        <button type="submit" id="save-entity" class="btn btn-danger" style="background-color: #f44336;">
               <span >Guardar</span>
             </button>
-          </div>
-        </div>
-      </div>
-      <br />
-    </mat-tab>
-  </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </mat-tab>
+    </mat-tab-group>
 </form>
