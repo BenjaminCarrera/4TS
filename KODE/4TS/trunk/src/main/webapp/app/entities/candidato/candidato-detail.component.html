@@ -1,782 +1,878 @@
 <div class="row">
-    <div class="col-md-12" style="display: inline-block;">
-        <div class="row">
-            <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
-                <h3>Detalle del candidato - {{ candidato.nombre }} {{ candidato.apellidoPaterno }} {{ candidato.apellidoMaterno }}</h3>
-            </div>
-            <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
-                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
-                    <span style="color:black">Cancelar</span>
-                  </button>
-                <button type="submit" [routerLink]="['/candidato', candidato.id, 'edit']" mat-raised-button color="warn">
-                    <span class="d-none d-md-inline" >Editar</span>
-                </button>
-            </div>
-        </div>
+  <div class="col-md-12" style="display: inline-block;">
+    <div class="row">
+      <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+        <h3>Detalle del candidato - {{ candidato.nombre }} {{ candidato.apellidoPaterno }} {{ candidato.apellidoMaterno }}</h3>
+      </div>
+      <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 10px;padding-left:25px;">
+        <button type="submit" [routerLink]="['/candidato']" mat-raised-button class="btn gris" >
+          <span class="d-none d-md-inline">Cancelar</span>
+        </button>
+        <button type="submit" [routerLink]="['/candidato', candidato.id, 'edit']" mat-raised-button color="warn">
+          <span class="d-none d-md-inline">Editar</span>
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 <mat-tab-group>
-    <mat-tab label="Detalle del candidato">
-        <br />
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4>Datos generales</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <img [src]="candidato.foto" class="img-thumbnail" />
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="col-sm-12" style="padding: 0px;">
-                                    <button mat-raised-button (click)="fileInput.click()" color="warn">Cargar foto <input #fileInput type="file" style="display: none;" /> </button>
-                                </div>
-                                <div class="col-sm-12" style="padding: 0px;">
-                                    <label class="form-label">Fecha de alta</label><br />
-                                    <label class="form-label resultado" id="">{{candidato.fechaAlta | date: 'MMM dd, yyyy'}}</label>
-                                </div>
-                                <div class="col-sm-12" style="padding: 0px;">
-                                    <label class="form-label">Último seguimiento</label><br />
-                                    <label class="form-label resultado" id="">{{candidato.fechaUltimoSeguimiento | date: 'MMM dd, yyyy'}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row esp-arriba">
-                            <div class="col-sm-4">
-                                <label class="form-label">Id candidato:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">36</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Reclutador asignado:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.usuarioAsignadoFirstName}}</label>
-                            </div>
-                        </div>
-                        <div class="row" *ngIf="!mostrarDetalleCandidatoInactivo">
-                            <div class="col-sm-4">
-                                <label class="form-label">Estatus del candidato:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.estatusCandidatoEstatus}}</label>
-                            </div>
-                        </div>
-                        <div class="row" *ngIf="mostrarDetalleCandidatoInactivo">
-                            <div class="col-sm-4">
-                                <label class="form-label">Razon del candidato inactivo:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.estCanInactivoMotivo}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Nombre completo:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{ candidato.nombre }} {{ candidato.apellidoPaterno }} {{ candidato.apellidoMaterno }}</label
+  <mat-tab label="Detalle del candidato">
+    <br />
+    <div class="row">
+      <div class="col-sm-4">
+        <div
+          class="panel panel-default"
+          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
+        >
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Datos generales</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <img [src]="candidato.foto" class="img-thumbnail" />
+              </div>
+              <div class="col-sm-6">
+                <div class="col-sm-12" style="padding: 0px;">
+                  <button mat-raised-button (click)="fileInput.click()" color="warn">
+                    Cargar foto <input #fileInput type="file" style="display: none;" />
+                  </button>
+                </div>
+                <br>
+                <div class="col-sm-12" style="padding: 0px;">
+                  <label class="form-label">Fecha de alta</label><br />
+                  <label class="form-label resultado" id="">{{ candidato.fechaAlta | date: 'MMM dd, yyyy' }}</label>
+                </div>
+                <div class="col-sm-12" style="padding: 0px;">
+                  <label class="form-label">Último seguimiento</label><br />
+                  <label class="form-label resultado" id="">{{ candidato.fechaUltimoSeguimiento | date: 'MMM dd, yyyy' }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="row esp-arriba">
+              <div class="col-sm-4">
+                <label class="form-label">Id candidato:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">36</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Reclutador asignado:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.usuarioAsignadoFirstName }}</label>
+              </div>
+            </div>
+            <div class="row" *ngIf="!mostrarDetalleCandidatoInactivo">
+              <div class="col-sm-4">
+                <label class="form-label">Estatus del candidato:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.estatusCandidatoEstatus }}</label>
+              </div>
+            </div>
+            <div class="row" *ngIf="mostrarDetalleCandidatoInactivo">
+              <div class="col-sm-4">
+                <label class="form-label">Razon del candidato inactivo:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.estCanInactivoMotivo }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Nombre completo:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id=""
+                  >{{ candidato.nombre }} {{ candidato.apellidoPaterno }} {{ candidato.apellidoMaterno }}</label
                 >
               </div>
             </div>
             <div class="row">
               <div class="col-sm-4">
                 <label class="form-label">Perfil y nivel:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.perfilPerfil}} - {{candidato.nivelPerfilNivel}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Años de experiencia:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{ candidato.anosExperiencia }}</label>
-                            </div>
-                        </div>
-
-                        <br />
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Sexo:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.sexo}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Fecha de nacimiento:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{ candidato.fechaNacimiento }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Edad:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{ candidato.edad }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Estado civil:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.estadoCivil}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">CURP:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.curp}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">RFC:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.rfc}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">NSS:</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label class="form-label resultado" id="">{{candidato.nss}}</label>
-                            </div>
-                        </div>
-                        <br />
-
-                        <div class="form-flex">
-                            <div class="form-group">
-                                <h4>Información de contacto</h4>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h4>Email</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Email principal:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.emailPrincipal }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Email adicional:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.emailAdicional }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Email asignación:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.emailAsignacion }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Email KODE:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.emailKode }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Web:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.web }}</label>
-                            </div>
-                        </div>
-                        <br /><br />
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h5>Teléfono</h5>
-                            </div>
-                            <div class="col-sm-1">
-                                <span class="glyphicon glyphicon-phone"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Teléfono celular:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.telefonoCelular }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Teléfono adicional:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.telefonoAdicional }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Teléfono casa:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.telefonoCasa }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Teléfono trabajo:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{ candidato.telefonoTrabajo }}</label>
-                            </div>
-                        </div>
-
-                        <br /><br />
-                    </div>
-                </div>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.perfilPerfil }} - {{ candidato.nivelPerfilNivel }}</label>
+              </div>
             </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <h4>Dirección</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12" style="padding-right: 0px;">
-                            <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="5">
-                                <agm-marker [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [label]="'KODE'"> </agm-marker>
-                            </agm-map>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row esp-arriba">
-                                <div class="col-sm-5">
-                                    <label class="form-label">CP:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">{{candidato.dirCodigoPostal}}</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Estado:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">Ciudad de México</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Municipio / alcaldía:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">Benito Juárez</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Calle:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">{{candidato.dirCalle}}</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Colonia:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">{{candidato.coloniaColonia}}</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Número exterior:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">{{candidato.noExt}}</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <label class="form-label">Número Interior:</label>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-label resultado" id="">{{candidato.noInt}}</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Años de experiencia:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.anosExperiencia }}</label>
+              </div>
             </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-flex">
-                                <h4>Formación académica</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Institución:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.institucionAcademicaInstitucion}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Estudios:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.estudiosFormacionAcademica}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Estatus académico:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.estatusAcademicoEstatus}}</label>
-                        </div>
-                    </div>
 
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-flex">
-                                <h4>Información de reclutamiento</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Fuente de reclutamiento:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.fuenteReclutamientoFuente}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Esquema de contratación KODE:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.esquemaContratacionKodeEsquema}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Salario neto mensual:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">${{candidato.salarioNeto}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Costo total mensual:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">${{candidato.costoTotal}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Duración mínima de contrato (meses):</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.contatoDuracionMinima}}</label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-flex">
-                                <h4>Disponibilidad</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Estatus laboral:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.estatusLaboralEstatus}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="!mostrarDisponibilidadEntrevistaCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Disponibilidad de entrevista:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadEntrevistaFecha | date: 'MMM dd, yyyy'}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Periodo de la entrevista:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadEntrevistaPeriodo}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Tiempo del periodo de la entrevista:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="!mostrarAsignacionCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Disponibilidad de asignación:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadAsignacionFecha | date: 'MMM dd, yyyy'}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="mostrarAsignacionCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Disponibilidad Asignación Periodo:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadAsignacionPeriodo}}</label>
-                        </div>
-                    </div>
-                    <div class="row" *ngIf="mostrarAsignacionCandidato">
-                        <div class="col-sm-4">
-                            <label class="form-label">Disponibilidad de asignación periodo tiempo:</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <label class="form-label resultado" id="">{{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-flex">
-                                <h4>Antecedentes laborales</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Último empleador:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.antecedenteUltimoEmpleador}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Esquema de contratación:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.antecedentesEsquemaContratacionEsquema}}</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="form-label">Salario neto mensual:</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <label class="form-label resultado" id="">{{candidato.antecedenteSalarioNeto}}</label>
-                        </div>
-                    </div>
-                    <div *ngFor="let referencia of referenciasLaborales">
-                        <br />
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h5>Referencia laboral</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Empresa:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id=""> {{referencia.empresa}} </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Nombre del contacto:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{referencia.nombreContacto}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Puesto del contacto:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{referencia.puestoContacto}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Email del contacto:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id="">{{referencia.emailContaco}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="form-label">Teléfono del contacto:</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <label class="form-label resultado" id=""> {{referencia.telefonoContacto}} </label>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-flex">
-                                <h4>Notas</h4>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 text-justify">
-                            <label class="form-label">{{candidato.notas}}
-              </label>
-                        </div>
-                    </div>
-                </div>
+            <br />
+
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Sexo:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.sexo }}</label>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Fecha de nacimiento:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.fechaNacimiento }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Edad:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.edad }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Estado civil:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.estadoCivil }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">CURP:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.curp }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">RFC:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.rfc }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">NSS:</label>
+              </div>
+              <div class="col-sm-7">
+                <label class="form-label resultado" id="">{{ candidato.nss }}</label>
+              </div>
+            </div>
+            <br />
+
+            <div class="form-flex">
+              <div class="form-group">
+                <h4>Información de contacto</h4>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-2">
+                <h5>Email</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Email principal:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.emailPrincipal }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Email adicional:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.emailAdicional }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Email asignación:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.emailAsignacion }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Email KODE:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.emailKode }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Web:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.web }}</label>
+              </div>
+            </div>
+            <br /><br />
+            <div class="row">
+              <div class="col-sm-12">
+                <h5>Teléfono</h5>
+              </div>
+              <div class="col-sm-1">
+                <span class="glyphicon glyphicon-phone"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Teléfono celular:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.telefonoCelular }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Teléfono adicional:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.telefonoAdicional }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Teléfono casa:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.telefonoCasa }}</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="form-label">Teléfono trabajo:</label>
+              </div>
+              <div class="col-sm-8">
+                <label class="form-label resultado" id="">{{ candidato.telefonoTrabajo }}</label>
+              </div>
+            </div>
+
+            <br /><br />
+          </div>
         </div>
-        <br />
-    </mat-tab>
-    <mat-tab label="Tareas">
-        <br/>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div>
-                            <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
-                            <span class="d-none d-md-inline" >Añadir tarea </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 esp-arriba">
-                <label class="label-material">
-                  Filtrar por:
-                </label>
-            </div>
+      </div>
+      <div class="col-sm-4">
+        <div
+          class="panel panel-default"
+          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
+        >
+          <div class="row">
             <div class="col-sm-12">
-                <p>
-                    <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
-                        <mat-button-toggle *ngFor="let estatusTarea of estatusTareas ;trackBy: trackId" value="estatusTarea.estatus" (click)='filtrarTareas(estatusTarea.estatus)'>{{estatusTarea.estatus}} </mat-button-toggle>
-                    </mat-button-toggle-group>
-                </p>
-                <br>
-                <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
+              <div class="form-group">
+                <h4>Dirección</h4>
+              </div>
             </div>
-        </div>
-        <br/>
-        <div class="alert alert-warning" *ngIf="tareas?.length === 0">
-            <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
-        </div>
-        <div class="table-responsive" *ngIf="tareas?.length > 0">
-            <table class="table table-striped">
-                <thead>
-                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                        <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="titulo"><span>Tarea</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="usuarioEjecutorFirstName"><span>Destinatario</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="tipoTareaTipo"><span>Tipo</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let tarea of tareas ;trackBy: trackId">
-                        <td><a [routerLink]="['/tarea', tarea.id, 'view' ]">{{tarea.id}}</a></td>
-                        <td>{{tarea.titulo}}</td>
-                        <td>
-                            {{tarea.usuarioCreadorFirstName}}
-                        </td>
-                        <td>
-                            {{tarea.usuarioEjecutorFirstName}}
-                        </td>
-                        <td>
-                            <div *ngIf="tarea.estatusTareaId">
-                                {{tarea.estatusTareaEstatus}}
-                            </div>
-                        </td>
-                        <td>
-                            <div *ngIf="tarea.tipoTareaId">
-                                {{tarea.tipoTareaTipo}}
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div [hidden]="tareas?.length === 0">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+          </div>
+          <div class="row">
+            <div class="col-sm-12" style="padding-right: 0px;">
+              <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="5">
+                <agm-marker [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [label]="'KODE'"> </agm-marker>
+              </agm-map>
             </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row esp-arriba">
+                <div class="col-sm-5">
+                  <label class="form-label">CP:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">{{ candidato.dirCodigoPostal }}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Estado:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">Ciudad de México</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Municipio / alcaldía:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">Benito Juárez</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Calle:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">{{ candidato.dirCalle }}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Colonia:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">{{ candidato.coloniaColonia }}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Número exterior:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">{{ candidato.noExt }}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5">
+                  <label class="form-label">Número Interior:</label>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label resultado" id="">{{ candidato.noInt }}</label>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </mat-tab>
-    <mat-tab label="Bitácora">
-        <br />
-        <div class="row">
-            <div class="col-sm-6">
-                <h4>Bitácora</h4>
+      </div>
+      <div class="col-sm-4">
+        <div
+          class="panel panel-default"
+          style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
+        >
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-flex">
+                <h4>Formación académica</h4>
+              </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-11 esp-arriba">
-                <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" />
-            </div>
-            <div class="col-sm-1 esp-arriba">
-                <button type="submit" mat-raised-button color="warn">
-          Añadir Bitácora
-        </button>
-            </div>
-        </div>
-        <br /><br />
-        <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
-            <span>Candidato sin bitácoras</span>
-        </div>
-        <div class="table-responsive" *ngIf="bitacoras?.length > 0">
-            <table class="table table-striped">
-                <thead>
-                    <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
-                        <th jhiSortBy="fecha"> <span> Fecha </span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="usuarioFirstName"> <span> Creador </span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="comentario"> <span> Comentario </span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let bitacora of bitacoras">
-                        <td> {{bitacora.fecha | date: 'medium'}} </td>
-                        <td> {{bitacora.usuarioFirstName}} </td>
-                        <td> {{bitacora.comentario}} </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div [hidden]="bitacoras?.length === 0">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="pageBitacora" [total]="totalItemsBitacora" [maxSize]="5" [itemsPerPage]="itemsPerPageBitacora"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItemsBitacora" [(page)]="pageBitacora" [pageSize]="itemsPerPageBitacora" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPageBitacora(pageBitacora)"></ngb-pagination>
-            </div>
-        </div>
-    </mat-tab>
-    <mat-tab label="Conocimientos">
-        <br />
-        <div class="row">
-            <div class="col-sm-8">
-                <h4>Conocimientos técnicos</h4>
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-1">
-                <label class="form-label">Inglés:</label>
-            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-4">
-                <label class="form-label resultado" id="">{{candidato.porcentajeIngles}}%</label>
+              <label class="form-label">Institución:</label>
             </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.institucionAcademicaInstitucion }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Estudios:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.estudiosFormacionAcademica }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Estatus académico:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.estatusAcademicoEstatus }}</label>
+            </div>
+          </div>
+
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-flex">
+                <h4>Información de reclutamiento</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Fuente de reclutamiento:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.fuenteReclutamientoFuente }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Esquema de contratación KODE:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.esquemaContratacionKodeEsquema }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Salario neto mensual:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">${{ candidato.salarioNeto }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Costo total mensual:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">${{ candidato.costoTotal }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Duración mínima de contrato (meses):</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.contatoDuracionMinima }}</label>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-flex">
+                <h4>Disponibilidad</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Estatus laboral:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.estatusLaboralEstatus }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="!mostrarDisponibilidadEntrevistaCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Disponibilidad de entrevista:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaFecha | date: 'MMM dd, yyyy' }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Periodo de la entrevista:</label>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaPeriodo }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Tiempo del periodo de la entrevista:</label>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="!mostrarAsignacionCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Disponibilidad de asignación:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha | date: 'MMM dd, yyyy' }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="mostrarAsignacionCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Disponibilidad Asignacion Periodo:</label>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionPeriodo }}</label>
+            </div>
+          </div>
+          <div class="row" *ngIf="mostrarAsignacionCandidato">
+            <div class="col-sm-4">
+              <label class="form-label">Disponibilidad de asignacion periodo tiempo:</label>
+            </div>
+            <div class="col-sm-7">
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionPeriodoTiempoPeriodo }}</label>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-flex">
+                <h4>Antecedentes laborales</h4>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Último empleador:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.antecedenteUltimoEmpleador }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Esquema de contratación:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.antecedentesEsquemaContratacionEsquema }}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Salario neto mensual:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">{{ candidato.antecedenteSalarioNeto }}</label>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>Referencia laboral 1</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Empresa:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">NA-AT Technologies S.A. de C.V.</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Nombre del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">Andrés Sánchez Camargo</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Puesto del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">Project Manager Officer</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Email del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">andressanchez@hotmail.com</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Teléfono del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">55 47372107</label>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>Referencia laboral 2</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Empresa:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">Grupo Salinas</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Nombre del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">Marcela Lopez Ramírez</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Puesto del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">Gerente de Sistemas</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Email del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">marcela_lopez@salinas.com.mx</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label class="form-label">Teléfono del contacto:</label>
+            </div>
+            <div class="col-sm-8">
+              <label class="form-label resultado" id="">55 67005387</label>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-flex">
+                <h4>Notas</h4>
+              </div>
+            </div>
+            <div class="col-sm-12 text-justify">
+              <label class="form-label">{{ candidato.notas }} </label>
+            </div>
+          </div>
         </div>
-        <br /><br />
-        <div class="alert alert-warning" *ngIf="skillsCandidato?.length === 0">
-            <span>Candidato sin skills</span>
+      </div>
+    </div>
+    <br />
+  </mat-tab>
+  <mat-tab label="Tareas">
+    <br />
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-2">
+            <div>
+              <h4 style="margin-bottom: 0px;margin-top: 5px;">Tareas</h4>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
+              <span class="d-none d-md-inline">Añadir tarea </span>
+            </button>
+          </div>
         </div>
-        <div class="table-responsive tabla-chica" *ngIf="skillsCandidato?.length > 0">
-            <table class="table table-striped">
-                <thead>
-                    <tr jhiSort [(predicate)]="predicateSkillCand" [(ascending)]="reverseSkillCand" [callback]="transitionSkillCand.bind(this)">
-                        <th jhiSortBy="idSkillNombre"> <span>Skill</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="nivelSkillDominio"> <span>Dominio</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th jhiSortBy="calificacionSkill"> <span>Calificación</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let skill of skillsCandidato">
-                        <td> {{skill.idSkillNombre}} </td>
-                        <td> {{skill.nivelSkillDominio}} </td>
-                        <td> {{skill.calificacionSkill}} </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- <div [hidden]="skillsCandidato?.length === 0">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 esp-arriba">
+        <label class="label-material">
+          Filtrar por:
+        </label>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
+            <mat-button-toggle
+              *ngFor="let estatusTarea of estatusTareas; trackBy: trackId"
+              value="estatusTarea.estatus"
+              (click)="filtrarTareas(estatusTarea.estatus)"
+              >{{ estatusTarea.estatus }}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </p>
+        <br />
+        <button type="reset" (click)="clear()" class="btn gris">Limpiar</button>
+      </div>
+    </div>
+    <br />
+    <div class="alert alert-warning" *ngIf="tareas?.length === 0">
+      <span jhiTranslate="App.tarea.home.notFound">No tareas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="tareas?.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="titulo">
+              <span>Tarea</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="usuarioCreadorFirstName">
+              <span>Creador</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="usuarioEjecutorFirstName">
+              <span>Destinatario</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="estatusTareaEstatus">
+              <span>Estatus</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="tipoTareaTipo">
+              <span>Tipo</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareas; trackBy: trackId">
+            <td>
+              <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
+            </td>
+            <td>{{ tarea.titulo }}</td>
+            <td>
+              {{ tarea.usuarioCreadorFirstName }}
+            </td>
+            <td>
+              {{ tarea.usuarioEjecutorFirstName }}
+            </td>
+            <td>
+              <div *ngIf="tarea.estatusTareaId">
+                {{ tarea.estatusTareaEstatus }}
+              </div>
+            </td>
+            <td>
+              <div *ngIf="tarea.tipoTareaId">
+                {{ tarea.tipoTareaTipo }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div [hidden]="tareas?.length === 0">
+      <div class="row justify-content-center">
+        <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+      </div>
+      <div class="row justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPage(page)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Bitácora">
+    <br />
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Bitácora</h4>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-11 esp-arriba">
+        <input type="text" name="estatusTarea" id="estatusTarea" class="form-control" />
+      </div>
+      <div class="col-sm-1 esp-arriba">
+            <button type="submit" [routerLink]="['/bitacora/new']" mat-raised-button color="warn">
+              <span class="d-none d-md-inline">Añadir Bitácora </span>
+            </button>
+      </div>
+    </div>
+    <br /><br />
+    <div class="alert alert-warning" *ngIf="bitacoras?.length === 0">
+      <span>Candidato sin bitácoras</span>
+    </div>
+    <div class="table-responsive" *ngIf="bitacoras?.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
+            <th jhiSortBy="fecha">
+              <span> Fecha </span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="usuarioFirstName">
+              <span> Creador </span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="comentario">
+              <span> Comentario </span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bitacora of bitacoras">
+            <td>{{ bitacora.fecha | date: 'medium' }}</td>
+            <td>{{ bitacora.usuarioFirstName }}</td>
+            <td>{{ bitacora.comentario }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div [hidden]="bitacoras?.length === 0">
+      <div class="row justify-content-center">
+        <jhi-item-count
+          [page]="pageBitacora"
+          [total]="totalItemsBitacora"
+          [maxSize]="5"
+          [itemsPerPage]="itemsPerPageBitacora"
+        ></jhi-item-count>
+      </div>
+      <div class="row justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItemsBitacora"
+          [(page)]="pageBitacora"
+          [pageSize]="itemsPerPageBitacora"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="loadPageBitacora(pageBitacora)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Conocimientos">
+    <br />
+    <div class="row">
+      <div class="col-sm-8">
+        <h4>Conocimientos técnicos</h4>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-1">
+        <label class="form-label">Inglés:</label>
+      </div>
+      <div class="col-sm-4">
+        <label class="form-label resultado" id="">{{ candidato.porcentajeIngles }}%</label>
+      </div>
+    </div>
+    <br /><br />
+    <div class="alert alert-warning" *ngIf="skillsCandidato?.length === 0">
+      <span>Candidato sin skills</span>
+    </div>
+    <div class="table-responsive tabla-chica" *ngIf="skillsCandidato?.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr jhiSort [(predicate)]="predicateSkillCand" [(ascending)]="reverseSkillCand" [callback]="transitionSkillCand.bind(this)">
+            <th jhiSortBy="idSkillNombre">
+              <span>Skill</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="nivelSkillDominio">
+              <span>Dominio</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="calificacionSkill">
+              <span>Calificación</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let skill of skillsCandidato">
+            <td>{{ skill.idSkillNombre }}</td>
+            <td>{{ skill.nivelSkillDominio }}</td>
+            <td>{{ skill.calificacionSkill }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div [hidden]="skillsCandidato?.length === 0">
             <div class="row justify-content-center">
                 <jhi-item-count [page]="pageSkillCand" [total]="totalItemsSkillCand" [maxSize]="5" [itemsPerPage]="itemsPerPageSkillCand"></jhi-item-count>
             </div>
@@ -785,26 +881,28 @@
             </div>
         </div> -->
 
-        <div class="row">
-            <div class="col-sm-12">
-                <h4>Cuentas</h4>
-            </div>
-            <br />
-            <div class="col-sm-12">
-                <label class="form-label">Cuentas de interés para el candidato (opcional)</label>
-                <mat-chip-list>
-                    <mat-chip *ngFor="let cuentaInteres of candidato.cuentaInteres; let last = last">{{cuentaInteres.clave}}</mat-chip>
-                </mat-chip-list>
-            </div>
-            <br /><br />
-            <br />
-            <div class="col-sm-12">
-                <label class="form-label">Cuentas rechazadas por candidato (opcional)</label>
-                <mat-chip-list>
-                    <mat-chip color="primary" selected *ngFor="let cuentaRechazadas of candidato.cuentaRechazadas; let last = last">{{cuentaRechazadas.clave}}</mat-chip>
-                </mat-chip-list>
-            </div>
-        </div>
-        <br /><br />
-    </mat-tab>
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>Cuentas</h4>
+      </div>
+      <br />
+      <div class="col-sm-12">
+        <label class="form-label">Cuentas de interés para el candidato (opcional)</label>
+        <mat-chip-list>
+          <mat-chip *ngFor="let cuentaInteres of candidato.cuentaInteres; let last = last">{{ cuentaInteres.clave }}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <br /><br />
+      <br />
+      <div class="col-sm-12">
+        <label class="form-label">Cuentas rechazadas por candidato (opcional)</label>
+        <mat-chip-list>
+          <mat-chip color="primary" selected *ngFor="let cuentaRechazadas of candidato.cuentaRechazadas; let last = last">{{
+            cuentaRechazadas.clave
+          }}</mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <br /><br />
+  </mat-tab>
 </mat-tab-group>

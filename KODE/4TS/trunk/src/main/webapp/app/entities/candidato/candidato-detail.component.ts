@@ -18,8 +18,6 @@ import { IBitacora } from 'app/shared/model/bitacora.model';
 import { BitacoraService } from '../bitacora/bitacora.service';
 import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
-import { ReferenciasLaborales, IReferenciasLaborales } from '../../shared/model/referencias-laborales.model';
-import { ReferenciasLaboralesService } from '../referencias-laborales/referencias-laborales.service';
 
 export interface Tarea {
   Fecha: string;
@@ -41,6 +39,24 @@ export interface Skills {
   ]
 })
 export class CandidatoDetailComponent implements OnInit, OnDestroy {
+  // Variables Bitacora
+  DATA_BITACORA: Tarea[] = [
+    { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
+    { Fecha: '26/06/2019', Creador: 'MABE', Comentario: 'MABE agregó "Spring MVC" a la lista de "Skills esenciales"' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'El cliente me solicita esperar a que se lleven a cabo las entrevistas antes de enviar más gente.' },
+    { Fecha: '04/01/2019', Creador: 'Sistema', Comentario: 'MABE actualizó el campo "Tarifa" de $35 000.00 a $45 000.00' }
+  ];
+  dataSourceBitacora: Tarea[];
+  displayedColumnsBitacora: string[] = ['Fecha', 'Creador', 'Comentario'];
+
+  // Variables Skills
+  DATA_SKILLS: Skills[] = [
+    { Skills: 'Hibernate', Dominio: 'Intermedio', Calificacion: '10.0', Eliminar: 'Eliminar' },
+    { Skills: 'Angular', Dominio: 'Avanzado', Calificacion: '9.0', Eliminar: 'Eliminar' },
+    { Skills: 'Java', Dominio: 'Principiante', Calificacion: '7.0', Eliminar: 'Eliminar' },
+  ];
+  dataSourceSkills: Skills[];
+  displayedColumnsSkills: string[] = ['Skills', 'Dominio', 'Calificacion'];
 
   // Tarea
   estatusTareas: IEstatusTarea[];
@@ -80,7 +96,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   mostrarDetalleCandidatoInactivo: boolean;
   mostrarDisponibilidadEntrevistaCandidato: boolean;
   candidato: ICandidato;
-  referenciasLaborales: IReferenciasLaborales[];
   mostrarAsignacionCandidato: boolean;
   // Enfoque del mapa
   lat = 19.391213;
@@ -90,7 +105,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   constructor(
     // Tarea
     protected tareaService: TareaService,
-    protected referenciasLaboralesService: ReferenciasLaboralesService,
     protected bitacoraService: BitacoraService,
     protected skillCandidatoService: SkillCandidatoService,
     protected parseLinks: JhiParseLinks,
@@ -138,18 +152,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       })
       .subscribe(
         (res: HttpResponse<ITarea[]>) => this.paginateTareas(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
-  }
-
-  loadReferenciasLaborales() {
-    this.referenciasLaboralesService
-      .query({
-        size: this.itemsPerPage,
-        'candidatoId.equals': this.candidato.id
-      })
-      .subscribe(
-        (res: HttpResponse<IReferenciasLaborales[]>) => this.paginateReferenciasLaborales(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
   }
@@ -304,14 +306,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
-
-  protected paginateReferenciasLaborales(data: IReferenciasLaborales[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.referenciasLaborales = data;
-    console.log('Referencias', this.referenciasLaborales);
-  }
-
   setEstatusTarea(res: IEstatusTarea[]) {
     this.estatusTareas = res;
   }
@@ -323,13 +317,11 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     this.verificarStatus();
     this.verificarDisponibilidadEntrevista();
     this.verificarDisponibilidaAsignacion();
-    this.loadReferenciasLaborales();
-    this.candidato.foto = 'content/fotoCandidato/' + this.candidato.foto;
+    this.candidato.foto = 'content/fotoCandidato/' + this.candidato.foto + '.jpg';
     // Tareas
     this.loadAll();
     this.loadAllBitacora();
     this.loadAllSkillCand();
-
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
