@@ -653,8 +653,11 @@
                 </select>
             </div>
             <div class="text-center">
+                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+                            <span style="color:black">Cancelar</span>
+                        </button>
                 <button mat-raised-button color="warn" type="submit" id="save-entity" [disabled]="isSaving">
-                    <span>Guardar candidato</span>
+                    <span>Guardar</span>
                 </button>
             </div>
             <br>
