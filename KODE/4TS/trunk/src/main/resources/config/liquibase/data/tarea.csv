@@ -1,6 +1,6 @@
-﻿id;descripcion;titulo;requerimiento_id;candidato_id;estatus_tarea_id;tipo_tarea_id
-1;Revisar disponibilidad;Revisar disponibilidad;5;2;1;1
-2;Contactar;Contactar;4;1;2;2
-3;Enviar correo;Enviar correo;3;2;3;3
-4;Llamar;Llamar;2;1;1;4
-5;Crear cita;Crear cita;1;2;2;5
+﻿id;descripcion;titulo;requerimiento_id;candidato_id;estatus_tarea_id;tipo_tarea_id;usuario_creador_id;usuario_ejecutor_id
+1;Revisar disponibilidad;Revisar disponibilidad;5;2;1;1;1;2
+2;Contactar;Contactar;4;1;2;2;1;2
+3;Enviar correo;Enviar correo;3;2;3;3;1;2
+4;Llamar;Llamar;2;1;1;4;2;1
+5;Crear cita;Crear cita;1;2;2;5;2;1
