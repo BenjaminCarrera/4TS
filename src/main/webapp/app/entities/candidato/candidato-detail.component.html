@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="col-sm-12" style="padding: 0px;">
-                                    <button mat-raised-button color="warn">Cargar foto <input type="file" style="display: none;" /> </button>
+                                    <button mat-raised-button (click)="fileInput.click()" color="warn">Cargar foto <input #fileInput type="file" style="display: none;" /> </button>
                                 </div>
                                 <div class="col-sm-12" style="padding: 0px;">
                                     <label class="form-label">Fecha de alta</label><br />
@@ -655,6 +655,8 @@
                         <mat-button-toggle *ngFor="let estatusTarea of estatusTareas ;trackBy: trackId" value="estatusTarea.estatus" (click)='filtrarTareas(estatusTarea.estatus)'>{{estatusTarea.estatus}} </mat-button-toggle>
                     </mat-button-toggle-group>
                 </p>
+                <br>
+                <button type="reset" (click)="clear()" class="btn gris"> Limpiar </button>
             </div>
         </div>
         <br/>
