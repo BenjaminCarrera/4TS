@@ -65,6 +65,7 @@ import { AccountService, JhiLanguageHelper } from 'app/core';
   ]
 })
 export class RequerimientoUpdateComponent implements OnInit {
+
   // Verificar errores en inputs
   inputRequeridos = new FormControl('', [
     Validators.required,
@@ -529,6 +530,12 @@ export class RequerimientoUpdateComponent implements OnInit {
       estatusReqCanId: requerimiento.estatusReqCanId,
       tipoPeriodoId: requerimiento.tipoPeriodoId
     });
+    if (requerimiento.tipoIngresoTipo === 'Reemplazo') {
+      this.reemplazo = true;
+    }
+    if (requerimiento.estatusRequerimientoEstatus === 'Cerrado') {
+      this.reqCancelado = true;
+    }
   }
 
   previousState() {
