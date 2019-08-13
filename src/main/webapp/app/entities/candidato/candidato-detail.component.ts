@@ -18,6 +18,7 @@ import { IBitacora } from 'app/shared/model/bitacora.model';
 import { BitacoraService } from '../bitacora/bitacora.service';
 import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
+import { CANDIDATO_IMAGE, CANDIDATO_DEFAULT_IMAGE } from 'app/shared/constants/candidato.constants';
 
 export interface Tarea {
   Fecha: string;
@@ -114,7 +115,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected estatusTareaService: EstatusTareaService
-    ) {
+  ) {
     // Tarea
     this.itemsPerPage = 100;
     this.itemsPerPageBitacora = 100;
@@ -312,12 +313,16 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   // fin
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.foto) {
+        candidato.foto = CANDIDATO_IMAGE + candidato.foto;
+      } else {
+        candidato.foto = CANDIDATO_IMAGE + CANDIDATO_DEFAULT_IMAGE;
+      }
       this.candidato = candidato;
     });
     this.verificarStatus();
     this.verificarDisponibilidadEntrevista();
     this.verificarDisponibilidaAsignacion();
-    this.candidato.foto = 'content/fotoCandidato/' + this.candidato.foto + '.jpg';
     // Tareas
     this.loadAll();
     this.loadAllBitacora();
@@ -338,14 +343,14 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
         (res: IEstatusTarea[]) => (this.setEstatusTarea(res)),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-      console.log(this.estatusTareas);
+    console.log(this.estatusTareas);
   }
   previousState() {
     window.history.back();
   }
   filtrarTareas(estatus: string) {
     if (estatus === 'Abierta') {
-      console.log( 'Abierta');
+      console.log('Abierta');
       this.tareaService
         .query({
           page: this.page - 1,
@@ -359,7 +364,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
           (res: HttpErrorResponse) => this.onError(res.message)
         );
     } else if (estatus === 'Atendida') {
-      console.log( 'Atendida');
+      console.log('Atendida');
       this.tareaService
         .query({
           page: this.page - 1,
@@ -373,7 +378,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
           (res: HttpErrorResponse) => this.onError(res.message)
         );
     } else if (estatus === 'Cerrada') {
-      console.log( 'Cerrada');
+      console.log('Cerrada');
       this.tareaService
         .query({
           page: this.page - 1,
@@ -387,7 +392,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
           (res: HttpErrorResponse) => this.onError(res.message)
         );
     } else if (estatus === 'Todas') {
-      console.log( 'Todas');
+      console.log('Todas');
       this.tareaService
         .query({
           page: this.page - 1,
