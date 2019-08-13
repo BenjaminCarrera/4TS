@@ -263,7 +263,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="candidato_id, cuenta_interes_id" tableName="candidato_cuenta_interes"/>
-        
+
         <createTable tableName="candidato_cuenta_rechazadas">
             <column name="cuenta_rechazadas_id" type="bigint">
                 <constraints nullable="false"/>
@@ -274,7 +274,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="candidato_id, cuenta_rechazadas_id" tableName="candidato_cuenta_rechazadas"/>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -332,6 +332,16 @@
             <column name="fecha_alta" type="datetime"/>
             <column name="fecha_ultimo_seguimiento" type="datetime"/>
             <column name="foto" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
+        </loadData>
+    </changeSet>
+    <changeSet id="20190702185238-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/candidato_cuenta_interes.csv"
+                  separator=";"
+                  tableName="candidato_cuenta_interes">
+            <column name="cuenta_rechazadas_id" type="bigint"/>
+            <column name="candidato_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>
