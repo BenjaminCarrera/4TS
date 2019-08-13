@@ -7,6 +7,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { USER_IMAGE } from 'app/shared/constants/user.constants';
 
 @Component({
   selector: 'jhi-navbar',
@@ -74,6 +75,6 @@ export class NavbarComponent implements OnInit {
   }
 
   getImageUrl() {
-    return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
+    return this.isAuthenticated() ? USER_IMAGE + this.accountService.getImageUrl() : null;
   }
 }
