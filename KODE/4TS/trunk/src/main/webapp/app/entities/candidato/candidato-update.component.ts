@@ -74,6 +74,8 @@ import { AccountService, JhiLanguageHelper } from 'app/core';
   ]
 })
 export class CandidatoUpdateComponent implements OnInit {
+  // Variable para la fecha de Alta
+  currentDate: moment.Moment;
   // Ocultar
   ocultar = true;
   // Verificar los skills
@@ -298,6 +300,11 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.clearDir();
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.fechaAlta ) {
+        this.currentDate = candidato.fechaAlta;
+      } else {
+        this.currentDate = moment();
+      }
       if (candidato.coloniaId) {
         this.coloniaService
           .find(candidato.coloniaId)
@@ -612,8 +619,7 @@ export class CandidatoUpdateComponent implements OnInit {
       nss: this.editForm.get(['nss']).value,
       sexo: this.editForm.get(['sexo']).value,
       estadoCivil: this.editForm.get(['estadoCivil']).value,
-      fechaAlta:
-        this.editForm.get(['fechaAlta']).value != null ? this.editForm.get(['fechaAlta']).value : undefined,
+      fechaAlta: this.currentDate,
       fechaUltimoSeguimiento:
         this.editForm.get(['fechaUltimoSeguimiento']).value != null
           ? this.editForm.get(['fechaUltimoSeguimiento']).value
