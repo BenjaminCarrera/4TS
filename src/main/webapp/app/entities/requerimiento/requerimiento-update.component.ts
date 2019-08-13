@@ -346,7 +346,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.cuentaUsuario = account;
     });
     // load Places Autocomplete
-    this.currentDate = moment();
+
     this.SkillRequeridosSelected = [];
     this.SkillOpcionalesSelected = [];
     this.SkillEsencialesSelected = [];
@@ -397,6 +397,11 @@ export class RequerimientoUpdateComponent implements OnInit {
         );
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
+      if (requerimiento.fechaAlta ) {
+        this.currentDate = requerimiento.fechaAlta;
+      } else {
+        this.currentDate = moment();
+      }
       this.updateForm(requerimiento);
     });
     this.cuentaService
