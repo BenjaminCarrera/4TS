@@ -16,7 +16,7 @@
     },
     "login": "Login",
     "firstName": "Nombre",
-    "lastName": "Apellidos",
+    "lastName": "Apellido Paterno",
     "email": "Email",
     "activated": "Activado",
     "deactivated": "Desactivado",

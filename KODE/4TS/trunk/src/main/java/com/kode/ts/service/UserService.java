@@ -118,6 +118,8 @@ public class UserService {
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
+        newUser.setSecondName(userDTO.getSecondName());
+        newUser.setIniciales(userDTO.getIniciales());
         newUser.setEmail(userDTO.getEmail().toLowerCase());
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
@@ -149,6 +151,8 @@ public class UserService {
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
+        user.setSecondName(userDTO.getSecondName());
+        user.setIniciales(userDTO.getIniciales());
         user.setEmail(userDTO.getEmail().toLowerCase());
         user.setImageUrl(userDTO.getImageUrl());
         if (userDTO.getLangKey() == null) {
@@ -184,12 +188,14 @@ public class UserService {
      * @param langKey   language key.
      * @param imageUrl  image URL of user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl, String setSecondName, String iniciales) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
+                user.setSecondName(setSecondName);
+                user.setIniciales(iniciales);
                 user.setEmail(email.toLowerCase());
                 user.setLangKey(langKey);
                 user.setImageUrl(imageUrl);
@@ -214,6 +220,8 @@ public class UserService {
                 user.setLogin(userDTO.getLogin().toLowerCase());
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
+                user.setSecondName(userDTO.getSecondName());
+                user.setIniciales(userDTO.getIniciales());
                 user.setEmail(userDTO.getEmail().toLowerCase());
                 user.setImageUrl(userDTO.getImageUrl());
                 user.setActivated(userDTO.isActivated());
