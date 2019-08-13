@@ -1,7 +1,16 @@
-id;login;password_hash;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by
-1;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;System;System;admin@localhost;;true;es;system;system
-2;ejecutivo;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Anonymous;User;ejecutivo@localhost;;true;es;system;system
-3;supervisorcm;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;Administrator;supervisorcm@localhost;;true;es;system;system
-4;supervisorrh;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;User;User;supervisorrh@localhost;;true;es;system;system
-5;reclutador;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;User;User;reclutador@localhost;;true;es;system;system
-6;gestorrh;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;User;User;gestorrh@localhost;;true;es;system;system
+id;login;password_hash;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by;second_name;iniciales
+1;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;System;System;admin@localhost;default.png;true;es;system;system;admin;ADMIN
+2;cecia.lozano;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Cecia Areli;Lozano;cecia.lozano@kode.com.mx;default.png;true;es;system;system;Souberbielle;CALS
+3;mariana.parada;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Mariana;Parada;mariana.parada@kode.com.mx;default.png;true;es;system;system;Cardona;MPC
+4;martha.covarrubias;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Martha Teresa;Covarrubias;martha.covarrubias@kode.com.mx;default.png;true;es;system;system;Najera;MTCN
+5;mayte.barnard;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Mayte Adriana;Barnard;mayte.barnard@kode.com.mx;default.png;true;es;system;system;Esparza;MABE
+6;juan.garcia;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Juan Manuel;García;juan.garcia@kode.com.mx;default.png;true;es;system;system;Carranza;JMGC
+7;pamela.cossio;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Pamela Elizabeth;Cossio;pamela.cossio@kode.com.mx;default.png;true;es;system;system;Gonzalez;PCG
+8;gabriela.cruz;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Gabriela;Cruz;gabriela.cruz@kode.com.mx;default.png;true;es;system;system;Escobar;GCE
+9;gabriela.duran;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Gabriela;Duran;gabriela.duran@kode.com.mx;default.png;true;es;system;system;Rosales;GDR
+10;frida.jimenez;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Frida Viviana;Jimenez;frida.jimenez@kode.com.mx;default.png;true;es;system;system;Reyes;FJR
+11;fernanda.pacheco;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Maria Fernanda;Pacheco;fernanda.pacheco@kode.com.mx;default.png;true;es;system;system;Moreno;FPM
+12;dayana.serratos;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Dayana Maricela;Serratos;dayana.serratos@kode.com.mx;default.png;true;es;system;system;Zamudio;DASZ
+13;monica.delmoral;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Monica Margarita;Del Moral;monica.delmoral@kode.com.mx;default.png;true;es;system;system;Torres;MDT
+14;brenda.hernandez;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Brenda Pamela;Hernandez;brenda.hernandez@kode.com.mx;default.png;true;es;system;system;Flores;BHF
+15;yasser.chavez;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Yasser Bolivar;Chavez;yasser.chavez@kode.com.mx;default.png;true;es;system;system;Nader;YBCN

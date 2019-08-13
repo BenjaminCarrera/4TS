@@ -3,3 +3,4 @@ id;nombre;descripcion;activated;deleted;created_by;created_date;last_modified_by
 2;Requerimientos;Acceso al modulo de Requerimientos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:36
 3;Candidatos;Acceso al modulo de Candidatos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:37
 4;Entidades;Eliminar permisos;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:38
+5;Cuenta;Ajustes de cuenta de usuario;true;false;admin;2019-06-04T13:48:07;admin;2019-06-03T15:20:38

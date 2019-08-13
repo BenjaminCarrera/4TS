@@ -4,8 +4,8 @@
     "form": {
       "firstname": "Nombre",
       "firstname.placeholder": "Su nombre",
-      "lastname": "Apellidos",
-      "lastname.placeholder": "Sus apellidos",
+      "lastname": "Apellido Paterno",
+      "lastname.placeholder": "apellido paterno",
       "language": "Idioma",
       "button": "Guardar"
     },
@@ -22,9 +22,9 @@
           "maxlength": "Su nombre no puede tener más de 50 caracteres"
         },
         "lastname": {
-          "required": "Se requiere que ingrese sus apellidos.",
-          "minlength": "Se requiere que sus apellidos tengan por lo menos 1 caracter",
-          "maxlength": "Sus apellidos no pueden tener más de 50 caracteres"
+          "required": "Se requiere que ingrese su apellido paterno.",
+          "minlength": "Se requiere que su apellido paterno tengan por lo menos 1 caracter",
+          "maxlength": "Su apellido paterno no pueden tener más de 50 caracteres"
         }
       }
     }
