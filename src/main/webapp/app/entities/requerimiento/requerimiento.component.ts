@@ -137,7 +137,13 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     ]);
     this.loadAll();
   }
-
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
   updateFilters() {
     this.page = 0;
     this.criteria = [];
