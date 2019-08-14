@@ -101,7 +101,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   title = 'AGM project';
   latitude = 19.390907;
   longitude = -99.165759;
-  zoom: 14;
+  zoom = 14;
   address: string;
   private geoCoder;
   @ViewChild('search', { static: false })
