@@ -673,10 +673,10 @@
               (click)="filtrarTareas(estatusTarea.estatus)"
               >{{ estatusTarea.estatus }}
             </mat-button-toggle>
+            <mat-button-toggle value="Todas" (click)="filtrarTareas('Todas')">Todas</mat-button-toggle>
           </mat-button-toggle-group>
         </p>
         <br />
-        <button type="reset" (click)="clear()" class="btn gris">Limpiar</button>
       </div>
     </div>
     <br />

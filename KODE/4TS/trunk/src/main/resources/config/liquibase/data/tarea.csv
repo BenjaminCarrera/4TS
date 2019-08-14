@@ -3,4 +3,6 @@
 2;Contactar;Contactar;4;1;2;2;1;2
 3;Enviar correo;Enviar correo;3;2;3;3;1;2
 4;Llamar;Llamar;2;1;1;4;2;1
-5;Crear cita;Crear cita;1;2;2;5;2;1
+5;Crear cita;Crear cita;1;2;1;5;2;1
+6;Cancelar cita;Cancelar cita;1;2;2;5;2;1
+7;Preguntar por cita;Preguntar por cita;1;2;3;5;2;1
