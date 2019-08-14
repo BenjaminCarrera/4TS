@@ -456,8 +456,9 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
     console.log('-------------------------999999');
-    if (this.editForm.get(['id']).value !== null) {
+    if (this.editForm.get(['id']).value !== undefined) {
       this.actualizarCandidato = true;
+      console.log(this.editForm.get(['id']).value);
       console.log('-------------------------2 si hay id');
     } else {
       this.actualizarCandidato = false;
@@ -547,28 +548,25 @@ export class CandidatoUpdateComponent implements OnInit {
       let nombre: boolean;
       let apPat: boolean;
       let emailPrinc: boolean;
-      if (this.editForm.get(['nombre']).value === null) {
+      if (this.editForm.get(['nombre']).value === '') {
         console.log('No hay nombre', this.statusCandidato);
         console.log(this.editForm.get(['nombre']).value);
-        this.statusCandidato = false;
         nombre = false;
       } else {
-        console.log('Si hay nombre', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        console.log('Si hay nombre', this.editForm.get(['nombre']).value);
         nombre = true;
       }
-      if (this.editForm.get(['apellidoPaterno']).value === null) {
+      if (this.editForm.get(['apellidoPaterno']).value === undefined) {
         console.log('No hay apellidoPaterno', this.statusCandidato);
         console.log(this.editForm.get(['apellidoPaterno']).value);
-        this.statusCandidato = false;
         apPat = false;
       } else {
         console.log('Si hay apellidoPaterno', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
         apPat = true;
       }
-      if (this.editForm.get(['emailPrincipal']).value === null) {
+      if (this.editForm.get(['emailPrincipal']).value === undefined) {
         console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
         console.log(this.editForm.get(['emailPrincipal']).value);
-        this.statusCandidato = false;
         emailPrinc = false;
       } else {
         console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
