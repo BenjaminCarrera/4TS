@@ -34,12 +34,12 @@ public class Candidato implements Serializable {
     private Float anosExperiencia;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "nombre", length = 100, nullable = false)
     private String nombre;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "apellido_paterno", length = 100, nullable = false)
     private String apellidoPaterno;
 
@@ -54,7 +54,7 @@ public class Candidato implements Serializable {
     private Integer edad;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Column(name = "email_principal", length = 100, nullable = false)
     private String emailPrincipal;
 
@@ -168,6 +168,7 @@ public class Candidato implements Serializable {
     @Column(name = "estado_civil")
     private EstadoCivil estadoCivil;
 
+	@NotNull
     @Column(name = "fecha_alta")
     private Instant fechaAlta;
 

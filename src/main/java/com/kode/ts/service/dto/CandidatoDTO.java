@@ -19,11 +19,11 @@ public class CandidatoDTO implements Serializable {
     private Float anosExperiencia;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     private String nombre;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     private String apellidoPaterno;
 
     @Size(max = 100)
@@ -34,7 +34,7 @@ public class CandidatoDTO implements Serializable {
     private Integer edad;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     private String emailPrincipal;
 
     @Size(max = 100)
@@ -111,10 +111,12 @@ public class CandidatoDTO implements Serializable {
     @Size(max = 50)
     private String nss;
 
+	@NotNull
     private Sexo sexo;
 
     private EstadoCivil estadoCivil;
 
+	@NotNull
     private Instant fechaAlta;
 
     private Instant fechaUltimoSeguimiento;
@@ -131,10 +133,12 @@ public class CandidatoDTO implements Serializable {
 
     private String disponibilidadAsignacionPeriodoTiempoPeriodo;
 
+	@NotNull
     private Long usuarioCreadorId;
 
     private String usuarioCreadorFirstName;
 
+	@NotNull
     private Long usuarioAsignadoId;
 
     private String usuarioAsignadoFirstName;
@@ -151,6 +155,7 @@ public class CandidatoDTO implements Serializable {
 
     private String fuenteReclutamientoFuente;
 
+	@NotNull
     private Long estatusCandidatoId;
 
     private String estatusCandidatoEstatus;
@@ -175,6 +180,7 @@ public class CandidatoDTO implements Serializable {
 
     private String esquemaContratacionKodeEsquema;
 
+	@NotNull
     private Long estatusLaboralId;
 
     private String estatusLaboralEstatus;

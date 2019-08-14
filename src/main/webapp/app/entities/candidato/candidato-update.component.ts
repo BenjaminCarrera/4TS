@@ -538,8 +538,50 @@ export class CandidatoUpdateComponent implements OnInit {
     this.skillCandidatoService.delete(id).subscribe(response => {});
   }
   save() {
+    let reqDir = false;
     this.isSaving = true;
     const candidato = this.createFromForm();
+    if (this.editForm.get(['dirCodigoPostal']).value || this.editForm.get('dirCalle').value || this.editForm.get('noExt').value || this.editForm.get('dirColonia').value || this.editForm.get('dirMunicipio').value || this.editForm.get('dirEstado').value || this.editForm.get('noInt').value) {
+      reqDir = true;
+    }
+    if (reqDir) {
+      if (!this.editForm.get(['dirCodigoPostal']).value) {
+        this.editForm.get(['dirCodigoPostal']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['dirCalle']).value) {
+        this.editForm.get(['dirCalle']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['noExt']).value) {
+        this.editForm.get(['noExt']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['dirColonia']).value) {
+        this.editForm.get(['dirColonia']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['dirMunicipio']).value) {
+        this.editForm.get(['dirMunicipio']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['dirEstado']).value) {
+        this.editForm.get(['dirEstado']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      if (!this.editForm.get(['noInt']).value) {
+        this.editForm.get(['noInt']).setErrors({'incorrect': true});
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+      return;
+    }
     if (this.actualizarCandidato !== false) {
       console.log('actualizando');
       let estatusCan: boolean;
