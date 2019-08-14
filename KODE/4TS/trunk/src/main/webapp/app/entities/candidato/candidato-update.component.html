@@ -1,5 +1,22 @@
-<h3>Agregar nuevo candidato</h3>
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+          <div class="form-group" [hidden]="!editForm.get('id').value">
+                <div class="col-md-12" style="display: inline-block;">
+                    <div class="row">
+                        <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                                <h3>Actualizar el candidato</h3>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="form-group" [hidden]="editForm.get('id').value">
+                <div class="col-md-12" style="display: inline-block;">
+                    <div class="row">
+                        <div style="display: inline-block; padding-top: 0px; padding-right: 0px;">
+                                <h3>Registrar un nuevo candidato</h3>
+                        </div>
+                    </div>
+                </div>
+          </div>
     <mat-tab-group [selectedIndex]="selecteds.value" (selectedIndexChange)="selecteds.setValue($event)">
         <mat-tab label="Paso 1">
             <br>
