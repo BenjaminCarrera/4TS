@@ -69,9 +69,7 @@ import { AccountService, JhiLanguageHelper } from 'app/core';
 @Component({
   selector: 'jhi-agreg-cand',
   templateUrl: './candidato-update.component.html',
-  styleUrls: [
-    'agreg-cand.component.scss'
-  ]
+  styleUrls: ['agreg-cand.component.scss']
 })
 export class CandidatoUpdateComponent implements OnInit {
   // Variable para la fecha de Alta
@@ -99,7 +97,7 @@ export class CandidatoUpdateComponent implements OnInit {
   errorMessageSkill: any;
   latitude = 19.390907;
   longitude = -99.165759;
-  zoom: 14;
+  zoom = 14;
   geoCoder: any;
   searchElementRef: ElementRef;
 
@@ -228,6 +226,7 @@ export class CandidatoUpdateComponent implements OnInit {
   statusLaboral = true;
   sexo = true;
   statusCandidato = true;
+  actualizarCandidato: boolean;
 
   constructor(
     private accountService: AccountService,
@@ -281,9 +280,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IEstado[]>) => mayBeOk.ok),
         map((response: HttpResponse<IEstado[]>) => response.body)
       )
-      .subscribe(
-        (res: IEstado[]) => (this.estados = res), (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IEstado[]) => (this.estados = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   ngOnInit() {
@@ -300,7 +297,7 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.clearDir();
     this.activatedRoute.data.subscribe(({ candidato }) => {
-      if (candidato.fechaAlta ) {
+      if (candidato.fechaAlta) {
         this.currentDate = candidato.fechaAlta;
       } else {
         this.currentDate = moment();
@@ -312,15 +309,13 @@ export class CandidatoUpdateComponent implements OnInit {
             filter((mayBeOk: HttpResponse<IColonia>) => mayBeOk.ok),
             map((response: HttpResponse<IColonia>) => response.body)
           )
-          .subscribe(
-            (col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message)
-          );
+          .subscribe((col: IColonia) => this.loadColonia(col), (col: HttpErrorResponse) => this.onError(col.message));
       }
       this.updateForm(candidato);
     });
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
+      this.geoCoder = new google.maps.Geocoder();
     });
     this.skillService
       .query({
@@ -330,10 +325,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
         map((response: HttpResponse<IUser[]>) => response.body)
       )
-      .subscribe(
-        (res: ISkill[]) => (this.setSkills(res)),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: ISkill[]) => this.setSkills(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.skillCandidatoService
       .query({
         size: ALL_ITEMS
@@ -342,22 +334,16 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
         map((response: HttpResponse<IUser[]>) => response.body)
       )
-      .subscribe(
-        (res: ISkillCandidato[]) => (this.setSkillsCandidato(res)),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: ISkillCandidato[]) => this.setSkillsCandidato(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.dominioSkillService
       .query({
-        size: ALL_ITEMS,
+        size: ALL_ITEMS
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IDominioSkill[]>) => mayBeOk.ok),
         map((response: HttpResponse<IDominioSkill[]>) => response.body)
       )
-      .subscribe(
-        (res: IDominioSkill[]) => this.dominioSkill = res,
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IDominioSkill[]) => (this.dominioSkill = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.tipoPeriodoService
       .query()
       .pipe(
@@ -385,7 +371,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<ICuenta[]>) => mayBeOk.ok),
         map((response: HttpResponse<ICuenta[]>) => response.body)
       )
-      .subscribe((res: ICuenta[]) => (this.setCuentas(res)), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: ICuenta[]) => this.setCuentas(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.fuenteReclutamientoService
       .query()
       .pipe(
@@ -469,7 +455,14 @@ export class CandidatoUpdateComponent implements OnInit {
         map((response: HttpResponse<IEstCanInactivo[]>) => response.body)
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
-
+    console.log('-------------------------999999');
+    if (this.editForm.get(['id']).value !== null) {
+      this.actualizarCandidato = true;
+      console.log('-------------------------2 si hay id');
+    } else {
+      this.actualizarCandidato = false;
+      console.log('-------------------------2 no hay id');
+    }
   }
 
   updateForm(candidato: ICandidato) {
@@ -541,42 +534,163 @@ export class CandidatoUpdateComponent implements OnInit {
     window.history.back();
   }
   borrarSkillCandidatos(id: number) {
-    this.skillCandidatoService.delete(id).subscribe(response => { });
+    this.skillCandidatoService.delete(id).subscribe(response => {});
   }
   save() {
     this.isSaving = true;
     const candidato = this.createFromForm();
-    if ( this.editForm.get(['estatusCandidatoId']).value === '' ) {
-      console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
-      console.log(this.editForm.get(['estatusCandidatoId']).value);
-      this.statusCandidato = false;
-    } else {
-      console.log('Si hay estatus del candidato seleccionado', this.statusCandidato);
-    }
-    if ( this.editForm.get(['sexo']).value === '' ) {
-      console.log('No hay sexo del candidato seleccionado', this.sexo);
-      this.sexo = false;
-    } else {
-      console.log('Si hay sexo del candidato seleccionado', this.sexo);
-    }
-    if ( this.editForm.get(['estatusLaboralId']).value === '' ) {
-      this.selecteds.setValue(0);
-      this.isSaving = false;
-      console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
-      this.statusLaboral = false;
-    } else {
-      console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
-      if (candidato.id) {
-        for (const clave of this.skillsCandidato) {
-          if (clave.idCandidatoId === this.editForm.get(['id']).value) {
-            this.borrarSkillCandidatos(clave.id);
-          }
-        }
-        this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+    if (this.actualizarCandidato !== false) {
+      console.log('actualizando');
+      let estatusCan: boolean;
+      let sex: boolean;
+      let estatusLab: boolean;
+      let nombre: boolean;
+      let apPat: boolean;
+      let emailPrinc: boolean;
+      if (this.editForm.get(['nombre']).value === null) {
+        console.log('No hay nombre', this.statusCandidato);
+        console.log(this.editForm.get(['nombre']).value);
+        this.statusCandidato = false;
+        nombre = false;
       } else {
-        this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+        console.log('Si hay nombre', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        nombre = true;
+      }
+      if (this.editForm.get(['apellidoPaterno']).value === null) {
+        console.log('No hay apellidoPaterno', this.statusCandidato);
+        console.log(this.editForm.get(['apellidoPaterno']).value);
+        this.statusCandidato = false;
+        apPat = false;
+      } else {
+        console.log('Si hay apellidoPaterno', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        apPat = true;
+      }
+      if (this.editForm.get(['emailPrincipal']).value === null) {
+        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+        console.log(this.editForm.get(['emailPrincipal']).value);
+        this.statusCandidato = false;
+        emailPrinc = false;
+      } else {
+        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        emailPrinc = true;
+      }
+      if (this.editForm.get(['estatusCandidatoId']).value === null) {
+        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+        console.log(this.editForm.get(['estatusCandidatoId']).value);
+        this.statusCandidato = false;
+        estatusCan = false;
+      } else {
+        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        estatusCan = true;
+      }
+      if (this.editForm.get(['sexo']).value === null) {
+        console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+        this.sexo = false;
+        sex = false;
+      } else {
+        console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+        sex = true;
+      }
+      if (this.editForm.get(['estatusLaboralId']).value === null) {
+        console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
+        this.statusLaboral = false;
+        estatusLab = false;
+      } else {
+        estatusLab = true;
+        console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
+      }
+      if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true) {
+        if (candidato.id) {
+          for (const clave of this.skillsCandidato) {
+            if (clave.idCandidatoId === this.editForm.get(['id']).value) {
+              this.borrarSkillCandidatos(clave.id);
+            }
+          }
+          this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+        } else {
+          this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+        }
+      } else {
+        this.selecteds.setValue(0);
+        this.isSaving = false;
+      }
+    } else {
+      console.log('nuevo');
+      let estatusCan: boolean;
+      let sex: boolean;
+      let estatusLab: boolean;
+      if (this.editForm.get(['estatusCandidatoId']).value === undefined) {
+        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+        console.log(this.editForm.get(['estatusCandidatoId']).value);
+        this.statusCandidato = false;
+        estatusCan = false;
+      } else {
+        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+        estatusCan = true;
+      }
+      if (this.editForm.get(['sexo']).value === undefined) {
+        console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+        this.sexo = false;
+        sex = false;
+      } else {
+        console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+        sex = true;
+      }
+      if (this.editForm.get(['estatusLaboralId']).value === undefined) {
+        console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
+        this.statusLaboral = false;
+        estatusLab = false;
+      } else {
+        estatusLab = true;
+        console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
+      }
+      if (estatusCan === true && sex === true && estatusLab === true) {
+        if (candidato.id) {
+          for (const clave of this.skillsCandidato) {
+            if (clave.idCandidatoId === this.editForm.get(['id']).value) {
+              this.borrarSkillCandidatos(clave.id);
+            }
+          }
+          this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+        } else {
+          this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+        }
+      } else {
+        this.selecteds.setValue(0);
+        this.isSaving = false;
       }
     }
+    // if (this.editForm.get(['estatusCandidatoId']).value === '') {
+    //   console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+    //   console.log(this.editForm.get(['estatusCandidatoId']).value);
+    //   this.statusCandidato = false;
+    // } else {
+    //   console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
+    // }
+    // if (this.editForm.get(['sexo']).value === '') {
+    //   console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+    //   this.sexo = false;
+    // } else {
+    //   console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
+    // }
+    // if (this.editForm.get(['estatusLaboralId']).value === '') {
+    //   this.selecteds.setValue(0);
+    //   this.isSaving = false;
+    //   console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
+    //   this.statusLaboral = false;
+    // } else {
+    //   console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
+    //   if (candidato.id) {
+    //     for (const clave of this.skillsCandidato) {
+    //       if (clave.idCandidatoId === this.editForm.get(['id']).value) {
+    //         this.borrarSkillCandidatos(clave.id);
+    //       }
+    //     }
+    //     this.subscribeToSaveResponse(this.candidatoService.update(candidato));
+    //   } else {
+    //     this.subscribeToSaveResponse(this.candidatoService.create(candidato));
+    //   }
+    // }
   }
 
   private createFromForm(): ICandidato {
@@ -622,9 +736,7 @@ export class CandidatoUpdateComponent implements OnInit {
       estadoCivil: this.editForm.get(['estadoCivil']).value,
       fechaAlta: this.currentDate,
       fechaUltimoSeguimiento:
-        this.editForm.get(['fechaUltimoSeguimiento']).value != null
-          ? this.editForm.get(['fechaUltimoSeguimiento']).value
-          : undefined,
+        this.editForm.get(['fechaUltimoSeguimiento']).value != null ? this.editForm.get(['fechaUltimoSeguimiento']).value : undefined,
       foto: this.editForm.get(['foto']).value,
       disponibilidadEntrevistaPeriodoTiempoId: this.editForm.get(['disponibilidadEntrevistaPeriodoTiempoId']).value,
       disponibilidadAsignacionPeriodoTiempoId: this.editForm.get(['disponibilidadAsignacionPeriodoTiempoId']).value,
@@ -787,7 +899,7 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    const cuentasIntSelected: ICuenta[] = this.cuentas.filter(c => (c.id === event.option.value));
+    const cuentasIntSelected: ICuenta[] = this.cuentas.filter(c => c.id === event.option.value);
     const cuentaIntSelected: ISkill = cuentasIntSelected.shift();
     this.cuentasIntSelected.push(cuentaIntSelected);
 
@@ -823,7 +935,7 @@ export class CandidatoUpdateComponent implements OnInit {
     this.updateCuentasRechazadas();
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    const cuentasRechSelected: ICuenta[] = this.cuentas.filter(c => (c.id === event.option.value));
+    const cuentasRechSelected: ICuenta[] = this.cuentas.filter(c => c.id === event.option.value);
     const cuentaRechSelected: ISkill = cuentasRechSelected.shift();
     this.cuentasRechSelected.push(cuentaRechSelected);
 
@@ -861,7 +973,6 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   getAddress() {
-
     let address: any = '';
 
     if (this.editForm.get('dirCalle').value !== null) {
@@ -894,7 +1005,7 @@ export class CandidatoUpdateComponent implements OnInit {
         }
       });
     }
-    this.geoCoder.geocode({ 'address': address }, (results, status) => {
+    this.geoCoder.geocode({ address }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
           this.latitude = results[0].geometry.location.lat();
@@ -907,7 +1018,6 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         window.alert('La geolocalizacion fallo: ' + status);
       }
-
     });
   }
 
@@ -922,9 +1032,7 @@ export class CandidatoUpdateComponent implements OnInit {
           filter((mayBeOk: HttpResponse<ICodigoPostal[]>) => mayBeOk.ok),
           map((response: HttpResponse<ICodigoPostal[]>) => response.body)
         )
-        .subscribe(
-          (res: ICodigoPostal[]) => (this.updateMunicipio(res)), (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        .subscribe((res: ICodigoPostal[]) => this.updateMunicipio(res), (res: HttpErrorResponse) => this.onError(res.message));
     } else if (cp.length === 0) {
       this.clearDir();
     }
@@ -941,9 +1049,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IMunicipio[]>) => mayBeOk.ok),
         map((response: HttpResponse<IMunicipio[]>) => response.body)
       )
-      .subscribe(
-        (res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IMunicipio[]) => (this.municipios = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   onChangeMunicipio(event: any) {
@@ -956,9 +1062,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IColonia[]>) => mayBeOk.ok),
         map((response: HttpResponse<IColonia[]>) => response.body)
       )
-      .subscribe(
-        (res: IColonia[]) => (this.colonias = res), (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IColonia[]) => (this.colonias = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateMunicipio(codigosPostales: ICodigoPostal[]) {
@@ -969,9 +1073,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IMunicipio>) => mayBeOk.ok),
         map((response: HttpResponse<IMunicipio>) => response.body)
       )
-      .subscribe(
-        (res: IMunicipio) => (this.updateEstadoColonia(res, cp.id)), (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IMunicipio) => this.updateEstadoColonia(res, cp.id), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateEstadoColonia(municipio: IMunicipio, idCp: number) {
@@ -981,12 +1083,10 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IEstado>) => mayBeOk.ok),
         map((response: HttpResponse<IEstado>) => response.body)
       )
-      .subscribe(
-        (res: IEstado) => (this.setMunicipioEstado(municipio, res)), (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: IEstado) => this.setMunicipioEstado(municipio, res), (res: HttpErrorResponse) => this.onError(res.message));
     this.coloniaService
       .query({
-        criteria: [{ key: 'codigoPostalId.equals', value: idCp }],
+        criteria: [{ key: 'codigoPostalId.equals', value: idCp }]
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IColonia[]>) => mayBeOk.ok),
@@ -1053,7 +1153,11 @@ export class CandidatoUpdateComponent implements OnInit {
 
   addSkillCandidato() {
     this.errorMessageSkill = null;
-    if (this.editForm.get(['skill']).value != null && this.editForm.get(['skillDominio']).value != null && this.editForm.get(['skillCalificacion']).value != null) {
+    if (
+      this.editForm.get(['skill']).value != null &&
+      this.editForm.get(['skillDominio']).value != null &&
+      this.editForm.get(['skillCalificacion']).value != null
+    ) {
       const newSkillCandidato: ISkillCandidato = new SkillCandidato();
       newSkillCandidato.idSkillId = this.editForm.get(['skill']).value;
       const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
@@ -1132,9 +1236,7 @@ export class CandidatoUpdateComponent implements OnInit {
         filter((mayBeOk: HttpResponse<IMunicipio>) => mayBeOk.ok),
         map((response: HttpResponse<IMunicipio>) => response.body)
       )
-      .subscribe(
-        (mun: IMunicipio) => this.loadMunicipio(mun), (mun: HttpErrorResponse) => this.onError(mun.message)
-      );
+      .subscribe((mun: IMunicipio) => this.loadMunicipio(mun), (mun: HttpErrorResponse) => this.onError(mun.message));
   }
 
   loadMunicipio(municipio: IMunicipio) {
@@ -1150,7 +1252,8 @@ export class CandidatoUpdateComponent implements OnInit {
         (est: IEstado) => {
           this.estados.push(est);
           this.editForm.get(['dirEstado']).setValue(est.id);
-        }, (est: HttpErrorResponse) => this.onError(est.message)
+        },
+        (est: HttpErrorResponse) => this.onError(est.message)
       );
   }
   verificarStatusLaboral() {
@@ -1162,5 +1265,4 @@ export class CandidatoUpdateComponent implements OnInit {
   verificarStatusCandidato() {
     this.statusCandidato = true;
   }
-
 }

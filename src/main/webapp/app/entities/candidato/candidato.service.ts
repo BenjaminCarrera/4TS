@@ -53,7 +53,7 @@ export class CandidatoService {
   protected convertDateFromClient(candidato: ICandidato): ICandidato {
     const copy: ICandidato = Object.assign({}, candidato, {
       fechaNacimiento:
-        candidato.fechaNacimiento != null ? candidato.fechaNacimiento.format(DATE_FORMAT) : null,
+        candidato.fechaNacimiento != null && candidato.fechaNacimiento.isValid() ? candidato.fechaNacimiento.format(DATE_FORMAT) : null,
       disponibilidadEntrevistaFecha:
         candidato.disponibilidadEntrevistaFecha != null && candidato.disponibilidadEntrevistaFecha
           ? candidato.disponibilidadEntrevistaFecha
