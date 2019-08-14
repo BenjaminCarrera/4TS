@@ -7,7 +7,6 @@
 
 
 /*Estilo de tabla*/
-
 td.mat-cell,
 td.mat-footer-cell {
     text-align: center !important;
@@ -15,23 +14,32 @@ td.mat-footer-cell {
 
 .mat-sort-header-container,
 .mat-header-cell {
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: bold !important;
+    padding-left: 37px !important;
 }
 
 table.mat-table {
     width: 100% !important;
 }
 
-.full-width {
-    width: 100% !important;
+th {
+    color: rgba(0, 0, 0, .54) !important;
 }
 
-h4 {
-    font-weight: bold;
-    font-size: 20px;
+td {
+    font-size: 14px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+thead {
+    text-align: center;
+    font-size: 15px;
+}
+
+tbody {
+    text-align: center;
+}
 // .google-maps {
 //   position: relative !important;
 //   height: 0 !important;

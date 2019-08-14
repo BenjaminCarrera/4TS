@@ -97,9 +97,9 @@ export class CandidatoUpdateComponent implements OnInit {
   skillCandidatoes: ISkillCandidato[];
   skillsSelected: ISkill[];
   errorMessageSkill: any;
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  latitude = 19.390907;
+  longitude = -99.165759;
+  zoom: 14;
   geoCoder: any;
   searchElementRef: ElementRef;
 
@@ -548,6 +548,7 @@ export class CandidatoUpdateComponent implements OnInit {
     const candidato = this.createFromForm();
     if ( this.editForm.get(['estatusCandidatoId']).value === '' ) {
       console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
+      console.log(this.editForm.get(['estatusCandidatoId']).value);
       this.statusCandidato = false;
     } else {
       console.log('Si hay estatus del candidato seleccionado', this.statusCandidato);

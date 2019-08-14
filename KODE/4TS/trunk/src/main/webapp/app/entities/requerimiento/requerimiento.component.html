@@ -18,7 +18,8 @@
         <div class="col-md-3 esp-arriba">
             <div class="example-container">
                 <mat-form-field class="full-width">
-                    <input id="field_idReq" name="req" formControlName="idReq" matInput #postalCode maxlength="4" placeholder="ID de requerimiento" type="number" pattern="[0-9]+">
+                    <input id="field_idReq" name="req" formControlName="idReq" matInput #postalCode maxlength="4"
+                    placeholder="ID de requerimiento" type="text" pattern="[0-9]">
                     <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
                 </mat-form-field>
             </div>
@@ -107,7 +108,7 @@
     <jhi-alert></jhi-alert>
     <br />
     <div class="alert alert-warning" *ngIf="requerimientos?.length === 0">
-        <span>No se encontraron requerimientos</span>
+        <span>Ningún Requerimiento encontrado</span>
     </div>
     <div *ngIf="requerimientos?.length > 0">
         <table class="table table-striped">
