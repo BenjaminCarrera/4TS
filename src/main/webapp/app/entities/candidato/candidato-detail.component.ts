@@ -40,6 +40,9 @@ export interface Skills {
   ]
 })
 export class CandidatoDetailComponent implements OnInit, OnDestroy {
+  // Imagen
+  selectedFile: File;
+  imagen: string | ArrayBuffer;
   // Variables Bitacora
   DATA_BITACORA: Tarea[] = [
     { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },
@@ -344,6 +347,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
     console.log(this.estatusTareas);
+    this.imagen = this.candidato.foto;
   }
   previousState() {
     window.history.back();
@@ -434,6 +438,17 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       console.log('No tiene fecha de asignacion');
       this.mostrarAsignacionCandidato = true;
     }
+  }
+  // Imagen
+  onFileChanged(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.imagen = reader.result;
+    reader.readAsDataURL(file);
+  }
+
+  onUpload() {
+    // upload code goes here
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
