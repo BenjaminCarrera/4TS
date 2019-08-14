@@ -99,9 +99,9 @@ export class RequerimientoUpdateComponent implements OnInit {
   selSkillEsc: number;
   // Mapa
   title = 'AGM project';
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  latitude = 19.390907;
+  longitude = -99.165759;
+  zoom: 14;
   address: string;
   private geoCoder;
   @ViewChild('search', { static: false })
