@@ -62,9 +62,9 @@ export class CandidatoService {
         candidato.disponibilidadAsignacionFecha != null && candidato.disponibilidadAsignacionFecha
           ? candidato.disponibilidadAsignacionFecha
           : null,
-      fechaAlta: candidato.fechaAlta != null && candidato.fechaAlta.isValid() ? candidato.fechaAlta.toJSON() : null,
+      fechaAlta: candidato.fechaAlta != null ? candidato.fechaAlta.toJSON() : null,
       fechaUltimoSeguimiento:
-        candidato.fechaUltimoSeguimiento != null && candidato.fechaUltimoSeguimiento.isValid()
+        candidato.fechaUltimoSeguimiento != null
           ? candidato.fechaUltimoSeguimiento.toJSON()
           : null
     });
