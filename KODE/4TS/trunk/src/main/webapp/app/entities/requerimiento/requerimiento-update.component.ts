@@ -65,7 +65,6 @@ import { AccountService, JhiLanguageHelper } from 'app/core';
   ]
 })
 export class RequerimientoUpdateComponent implements OnInit {
-
   // Verificar errores en inputs
   inputRequeridos = new FormControl('', [
     Validators.required,
@@ -346,7 +345,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.cuentaUsuario = account;
     });
     // load Places Autocomplete
-
+    this.currentDate = moment();
     this.SkillRequeridosSelected = [];
     this.SkillOpcionalesSelected = [];
     this.SkillEsencialesSelected = [];
@@ -397,11 +396,6 @@ export class RequerimientoUpdateComponent implements OnInit {
         );
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
-      if (requerimiento.fechaAlta ) {
-        this.currentDate = requerimiento.fechaAlta;
-      } else {
-        this.currentDate = moment();
-      }
       this.updateForm(requerimiento);
     });
     this.cuentaService
@@ -535,12 +529,6 @@ export class RequerimientoUpdateComponent implements OnInit {
       estatusReqCanId: requerimiento.estatusReqCanId,
       tipoPeriodoId: requerimiento.tipoPeriodoId
     });
-    if (requerimiento.tipoIngresoTipo === 'Reemplazo') {
-      this.reemplazo = true;
-    }
-    if (requerimiento.estatusRequerimientoEstatus === 'Cerrado') {
-      this.reqCancelado = true;
-    }
   }
 
   previousState() {
@@ -570,23 +558,23 @@ export class RequerimientoUpdateComponent implements OnInit {
              this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null)  {
         let reqCerrado = false;
         let reqReemplazo = false;
-        if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
-          console.log('El requerimiento es cerrado y tiene un motivo');
+        if (this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
+          console.log('El requerimiento es cerrado y tiene un motivo', this.reqCancelado, requerimiento.estatusReqCanId);
           reqCerrado = true;
         } else {
-          console.log('El requerimiento es cerrado y no tiene un motivo');
+          console.log('El requerimiento es cerrado y no tiene un motivo', this.reqCancelado, requerimiento.estatusReqCanId);
           this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         }
-        if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
+        if (this.reemplazo === true && requerimiento.remplazoDe !== null) {
           console.log('El requerimiento es reemplazo y tiene un reemplazo');
           reqReemplazo = true;
         } else {
-          console.log('El requerimiento es reemplazo y no tiene un reemplazo');
+          console.log('El requerimiento es reemplazo y no tiene un reemplazo', this.reemplazo, requerimiento.remplazoDe);
           this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         }
-        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ||  this.reqCancelado === false && requerimiento.estatusReqCanId === null && this.reemplazo === true && requerimiento.remplazoDe !== null || this.reqCancelado === true && requerimiento.estatusReqCanId !== null && this.reemplazo === false && requerimiento.remplazoDe !== null || this.reqCancelado === true && requerimiento.estatusReqCanId !== null && this.reemplazo === false && requerimiento.remplazoDe === null || this.reqCancelado === false && requerimiento.estatusReqCanId !== null && this.reemplazo === true && requerimiento.remplazoDe !== null) {
           console.log('tiene datos');
           console.log(this.editForm.get(['vacantesSolicitadas']).value,
           this.editForm.get(['nombreContacto']).value,
