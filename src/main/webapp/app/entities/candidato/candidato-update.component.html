@@ -196,8 +196,8 @@
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        </mat-form-field>
                                         <div class="form-group" [hidden]="!editForm.get('id').value">
+                                            asd
                                             <div class="container">
                                                 <agm-map style="width:100%" [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [zoom]="16">
                                                     <agm-marker [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
