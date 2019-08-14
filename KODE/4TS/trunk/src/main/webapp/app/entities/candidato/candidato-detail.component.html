@@ -32,13 +32,16 @@
             </div>
             <div class="row">
               <div class="col-sm-4">
-                <img [src]="candidato.foto" class="img-thumbnail" />
+                <img [src]="imagen" class="img-thumbnail" />
               </div>
               <div class="col-sm-6">
                 <div class="col-sm-12" style="padding: 0px;">
-                  <button mat-raised-button (click)="fileInput.click()" color="warn">
-                    Cargar foto <input #fileInput type="file" style="display: none;" />
-                  </button>
+                    <input
+                    style="display: none"
+                    type="file" (change)="onFileChanged($event)"
+                    #fileInput>
+                  <button (click)="fileInput.click()" mat-raised-button color="warn">Seleccionar foto </button>
+                  <br>
                 </div>
                 <br>
                 <div class="col-sm-12" style="padding: 0px;">
