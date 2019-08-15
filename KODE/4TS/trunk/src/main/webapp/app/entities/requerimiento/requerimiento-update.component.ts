@@ -579,6 +579,8 @@ export class RequerimientoUpdateComponent implements OnInit {
         } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
           console.log('El requerimiento es cerrado y tiene un motivo');
           reqCerrado = true;
+        } else {
+          console.log('El requerimiento no es cerrado');
         }
         // Tipo de ingreso
         if (this.reemplazo === true && requerimiento.remplazoDe === null ) {
@@ -587,8 +589,11 @@ export class RequerimientoUpdateComponent implements OnInit {
           this.selected1.setValue(0);
         } else if (this.reemplazo === true && requerimiento.remplazoDe !== null ) {
           console.log('El ingreso es reemplazo y tiene un motivo');
-          reqCerrado = true;
+          reqReemplazo = true;
+        } else {
+          this.editForm.get(['remplazoDe']).reset();
         }
+        console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
         // if (this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
         //   console.log('El requerimiento es cerrado y no tiene un motivo');
         //   this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
@@ -618,28 +623,13 @@ export class RequerimientoUpdateComponent implements OnInit {
         //   this.selected1.setValue(0);
         // }
         // --------------------------------------------
-        // if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
-        //   console.log('tiene datos');
-        //   console.log(this.editForm.get(['vacantesSolicitadas']).value,
-        //   this.editForm.get(['nombreContacto']).value,
-        //   this.editForm.get(['tarifaSueldoNet']).value,
-        //   this.editForm.get(['prestaciones']).value,
-        //   this.editForm.get(['duracionAsignacion']).value,
-        //   this.editForm.get(['lugarTrabajo']).value,
-        //   this.editForm.get(['cuentaId']).value,
-        //   this.editForm.get(['usuarioAsignadoId']).value,
-        //   this.editForm.get(['prioridadId']).value,
-        //   this.editForm.get(['esquemaContratacionId']).value,
-        //   this.editForm.get(['baseTarifaId']).value,
-        //   this.editForm.get(['perfilId']).value,
-        //   this.editForm.get(['nivelPerfilId']).value,
-        //   this.editForm.get(['tipoPeriodoId']).value);
-        //   if (requerimiento.id !== undefined) {
-        //     this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
-        //   } else {
-        //     this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
-        //   }
-        // }
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
+          if (requerimiento.id !== undefined) {
+            this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+          } else {
+            this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+          }
+        }
       } else {
         console.log('No tiene datos en actualizar');
         this.selected1.setValue(0);
@@ -911,6 +901,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     } else {
       this.reqCancelado = false;
       this.estReq = true;
+      this.editForm.get(['estatusReqCanId']).reset();
     }
   }
   verificarSolicitud(status: string) {
@@ -921,6 +912,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.reemplazo = true;
     } else {
       this.reemplazo = false;
+      this.editForm.get(['remplazoDe']).reset();
     }
     this.datos3 = true;
     return this.reemplazo;
