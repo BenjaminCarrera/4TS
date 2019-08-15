@@ -594,35 +594,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           this.editForm.get(['remplazoDe']).reset();
         }
         console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
-        // if (this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
-        //   console.log('El requerimiento es cerrado y no tiene un motivo');
-        //   this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
-        // } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
-        //   console.log('El requerimiento es cerrado y tiene un motivo');
-        //   reqCerrado = true;
-        // } else {
-        //   this.selected1.setValue(0);
-        // }
-
-        // if (this.reemplazo === true && requerimiento.remplazoDe !== null) {
-        //   console.log('El requerimiento es reemplazo y tiene un reemplazo, nada mas que hacer');
-        //   console.log(this.editForm.get(['remplazoDe']).value);
-        //   reqReemplazo = true;
-        // } else {
-        //   console.log('El requerimiento es reemplazo y no tiene un reemplazo');
-        //   this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // // console.log(this.editForm.get(['estatusRequerimientoId']).value);
-        // if (this.editForm.get(['tipoIngresoId']).value === 2 &&  this.editForm.get(['remplazoDe']).value === '') {
-        //   this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // if (this.editForm.get(['estatusRequerimientoId']).value === 2 &&  this.editForm.get(['estatusReqCanId']).value === '') {
-        //   this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // --------------------------------------------
         if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
           if (requerimiento.id !== undefined) {
             this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
