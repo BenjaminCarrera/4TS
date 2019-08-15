@@ -5,7 +5,7 @@
                 <h3>Detalle de requerimiento - {{ requerimiento.id }}</h3>
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 13px;padding-left:25px;">
-                <button type="button" id="cancel-save" class="btn gris" (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn gris"  mat-raised-button  (click)="previousState()">
           <span style="color:black">Cancelar</span>
         </button>
                 <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button color="warn">
@@ -36,15 +36,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label class="form-label">Reemplazo de:</label>
-                            </div>
-                            <div class="col-sm-9">
-                                <label class="form-label resultado" id=""> {{ requerimiento.remplazoDe }} </label>
-                            </div>
-                        </div>
-                        <div class="row">
+                        <div class="row" style="padding-top: 13px;">
                             <div class="col-sm-3">
                                 <label class="form-label">Ejecutivo asignado:</label>
                             </div>
