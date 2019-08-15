@@ -496,17 +496,11 @@ export class RequerimientoUpdateComponent implements OnInit {
       } else {
         this.actualizarReq = false;
       }
-      // console.log('------------------------');
-      // console.log(this.actualizarReq);
-      // console.log('------------------------');
-     console.log('-----------', this.reqCancelado);
   }
 
   updateForm(requerimiento: IRequerimiento) {
     this.editForm.patchValue({
       id: requerimiento.id,
-      // fechaAlda: requerimiento.fechaAlda,
-      // fechaResolucion: requerimiento.fechaResolucion,
       remplazoDe: requerimiento.remplazoDe,
       vacantesSolicitadas: requerimiento.vacantesSolicitadas,
       proyecto: requerimiento.proyecto,
@@ -554,7 +548,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     const requerimiento = this.createFromForm();
     // Si actualiza
     if (this.actualizarReq === true) {
-      console.log('esta actualizando');
       if (this.editForm.get(['vacantesSolicitadas']).value !== undefined && this.editForm.get(['vacantesSolicitadas']).value !== null &&
       this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null &&
       this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null &&
@@ -571,29 +564,21 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null)  {
         let reqCerrado = false;
         let reqReemplazo = false;
-        // Estatus del requerimiento
         if (this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
-          console.log('El requerimiento es cerrado y no tiene un motivo');
           this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
-          console.log('El requerimiento es cerrado y tiene un motivo');
           reqCerrado = true;
         } else {
-          console.log('El requerimiento no es cerrado');
         }
-        // Tipo de ingreso
         if (this.reemplazo === true && requerimiento.remplazoDe === null ) {
-          console.log('El ingreso es reemplazo y no tiene un motivo');
           this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         } else if (this.reemplazo === true && requerimiento.remplazoDe !== null ) {
-          console.log('El ingreso es reemplazo y tiene un motivo');
           reqReemplazo = true;
         } else {
           this.editForm.get(['remplazoDe']).reset();
         }
-        console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
         if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
           if (requerimiento.id !== undefined) {
             this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
@@ -602,13 +587,9 @@ export class RequerimientoUpdateComponent implements OnInit {
           }
         }
       } else {
-        console.log('No tiene datos en actualizar');
         this.selected1.setValue(0);
-        console.log(this.editForm.get(['tipoIngresoId']).value, this.editForm.get(['remplazoDe']).value);
         }
     } else {
-      // Si agrega
-      console.log('esta agregando');
       if (requerimiento.vacantesSolicitadas !== undefined && requerimiento.estatusRequerimientoId !== undefined
         && requerimiento.prioridadId !== undefined && requerimiento.tipoSolicitudId !== undefined &&
         requerimiento.tipoIngresoId !== undefined && requerimiento.vacantesSolicitadas !== undefined && requerimiento.cuentaId !== undefined
@@ -617,23 +598,18 @@ export class RequerimientoUpdateComponent implements OnInit {
         let reqCerrado = false;
         let reqReemplazo = false;
         if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined ) {
-          console.log('El requerimiento es cerrado y tiene un motivo');
           reqCerrado = true;
         } else {
-          console.log('El requerimiento es cerrado y no tiene un motivo');
           this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         }
         if (this.reemplazo === true && requerimiento.remplazoDe !== undefined) {
-          console.log('El requerimiento es reemplazo y tiene un reemplazo');
           reqReemplazo = true;
         } else {
-          console.log('El requerimiento es reemplazo y no tiene un reemplazo');
           this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
           this.selected1.setValue(0);
         }
         if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false ) {
-          console.log('tiene datos');
           if (requerimiento.id !== undefined) {
             this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
           } else {
@@ -641,7 +617,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           }
         }
       } else {
-        console.log('No tiene datos en agregar');
         this.selected1.setValue(0);
         this.estReq = false;
         this.datos2 = false;
@@ -725,21 +700,14 @@ export class RequerimientoUpdateComponent implements OnInit {
         addTempReqSkill.push(tempAddEsencial);
       });
     } else {
-      console.log('Es la pantalla de actualizar requerimiento');
       // Si la pantalla es de actualizar requerimiento, debe de verificar los skills
       // Verificamos si hay diferencias en el input de skills opcionales
       const opcional = this.fruitInput22.filter(item =>  this.skillsOpcionalesBD.indexOf(item) < 0);
-      console.log(this.fruitInput22);
-      console.log(this.skillsOpcionalesBD);
-      console.log(opcional);
       if (opcional.length > 0 || opcional.length <= 0 ) {
         // Si hay diferencias borramos todo
-          // console.log('Si hubo cambios');
-          // console.log(this.skillsOpcionalesBD);
           this.skillsOpcionalesBD.forEach(element => {
             this.buscaryBorrarSkillsOpcionales(element.id);
           });
-          // console.log(this.SkillOpcionalesSelected);
         this.SkillOpcionalesSelected.forEach(opcionall => {
           const tempAddOpcional = new SkillRequerimiento();
           tempAddOpcional.idRequerimientoId = idRequerimiento;
@@ -747,15 +715,9 @@ export class RequerimientoUpdateComponent implements OnInit {
           tempAddOpcional.tipoSkillId = 3;
           addTempReqSkill.push(tempAddOpcional);
         });
-        console.log('Se borraron los skills solo de este requerimiento');
-        console.log('Se insertaron los skills de acueredp a los valores finales del input');
       } else {
-        console.log('No hubo cambios en opcionales');
       }
       const requeridos = this.fruitInputt.filter(item =>  this.skillsRequeridosBD.indexOf(item) < 0);
-      console.log(this.fruitInputt);
-      console.log(this.skillsRequeridosBD);
-      console.log(requeridos);
       if (requeridos.length > 0 || requeridos.length <= 0 ) {
         this.skillsRequeridosBD.forEach(element => {
           this.buscaryBorrarSkillsRequeridos(element.id);
@@ -768,12 +730,8 @@ export class RequerimientoUpdateComponent implements OnInit {
           addTempReqSkill.push(tempAddRequerido);
         });
       } else {
-        console.log('No hubo cambios en requeridos');
       }
       const escencial = this.fruitInput33.filter(item =>  this.skillsEscencialesBD.indexOf(item) < 0);
-      console.log(this.fruitInput33);
-      console.log(this.skillsEscencialesBD);
-      console.log(escencial);
       if (escencial.length > 0 || escencial.length <= 0 ) {
         this.skillsEscencialesBD.forEach(element => {
           this.buscaryBorrarSkillsEscenciales(element.id);
@@ -786,7 +744,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           addTempReqSkill.push(tempAddEsencial);
         });
       } else {
-        console.log('No hubo cambios en escenciales');
       }
     }
     // ---------------------------------------------------
@@ -929,13 +886,10 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   setSkillsReq(res: ISkillRequerimiento[]) {
     this.SkillReq = res;
-    console.log('todos los skill');
-    console.log(this.SkillReq);
     for (const clave of this.SkillReq) {
       if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
           this.todosSkillReq.push(clave);
         if ( clave.tipoSkillId === 1) {
-          // console.log('Es escencial' + clave.id);
           const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
           this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
@@ -946,7 +900,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           this.fruitInput33.push(SkillEsencialesSelectedEscencial2);
           this.skillsEscencialesBD.push(SkillEsencialesSelectedEscencial2);
         } else if ( clave.tipoSkillId === 2) {
-          // console.log('Es requerido' + clave.id);
           const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
           this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
@@ -957,7 +910,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           this.fruitInputt.push(SkillRequeridosSelectedRequerido2);
           this.skillsRequeridosBD.push(SkillRequeridosSelectedRequerido2);
         } else if ( clave.tipoSkillId === 3) {
-          // console.log('Es opcional' + clave.id);
           const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
           const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
           this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
@@ -967,29 +919,17 @@ export class RequerimientoUpdateComponent implements OnInit {
           const SkillOpcionalesSelectedRequerido2: ISkill = SkillsSelectedOpcional2.shift();
           this.fruitInput22.push(SkillOpcionalesSelectedRequerido2);
           this.skillsOpcionalesBD.push(SkillOpcionalesSelectedRequerido2);
-        } else {
-          console.log('Error');
         }
       }
     }
-    // console.log('input de escenciales');
-    // console.log(this.fruitInput33);
-    // console.log('input de opcionales');
-    // console.log(this.fruitInput22);
-    // console.log('input de requeridos');
-    // console.log(this.fruitInputt);
   }
 
   buscaryBorrarSkillsOpcionales(id) {
     for (const clave of this.SkillReq) {
       if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
         if ( clave.idSkillId === id && clave.tipoSkillId === 3) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento opcional y es: ');
-          // console.log(clave);
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }
@@ -998,12 +938,8 @@ export class RequerimientoUpdateComponent implements OnInit {
     for (const clave of this.SkillReq) {
       if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
         if ( clave.idSkillId === id && clave.tipoSkillId === 2) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento  requerido y es: ');
-          // console.log(clave);
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }
@@ -1012,12 +948,8 @@ export class RequerimientoUpdateComponent implements OnInit {
     for (const clave of this.SkillReq) {
       if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
         if ( clave.idSkillId === id && clave.tipoSkillId === 1) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento escencial y es: ');
-          // console.log(clave);
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }
