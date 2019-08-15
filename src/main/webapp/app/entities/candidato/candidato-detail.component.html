@@ -274,13 +274,13 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <h4>Dirección</h4>
+                <h4>Direccións</h4>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12" style="padding-right: 0px;">
-              <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="13">
+              <agm-map [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [zoom]="zoom">
                 <agm-marker [latitude]="candidato.coorLat" [longitude]="candidato.coorLong" [label]="'KODE'"> </agm-marker>
               </agm-map>
             </div>
