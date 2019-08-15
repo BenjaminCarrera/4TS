@@ -350,7 +350,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillOpcionalesSelected = [];
     this.SkillEsencialesSelected = [];
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -879,17 +878,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     }
     this.datos3 = true;
     return this.reemplazo;
-  }
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 50;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
   }
   markerDragEnd($event: MouseEvent) {
     this.latitude = $event.coords.lat;

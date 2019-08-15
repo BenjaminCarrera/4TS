@@ -32,6 +32,7 @@ h3{
 }
 .gris{
   background-color:#e9e9e9;
+  font-size: 14px;
 }
 @media (max-width: 600px) {
   .botones-chicos{
@@ -77,6 +78,10 @@ label.form-label{
 h4{
   font-weight: bold !important;
   font-size: 20px !important;
+}
+h5{
+  font-weight: bold !important;
+  font-size: 17px !important;
 }
 .boton-secundario{
   background-color: #007bff;
