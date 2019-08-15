@@ -80,8 +80,8 @@
 
                     <div class="form-group">
                       <p>
-                      <label *ngIf="datos == true" class="label-material"> Estatus del requerimiento:</label>
-                      <label *ngIf="datos == false" class="label-material" style="color: red;"> Estatus del requerimiento:</label>
+                      <label *ngIf="estReq == true" class="label-material"> Estatus del requerimiento:</label>
+                      <label *ngIf="estReq == false" class="label-material" style="color: red;"> Estatus del requerimiento:</label>
                         <br />
                         <mat-button-toggle-group
                           aria-label="Estilo de fuente"
@@ -424,10 +424,10 @@
                         </div>
                         <div class="form-group" [hidden]="editForm.get('id').value">
                               <div class="container">
-                              <agm-map [latitude]="19.390907" [longitude]="-99.165759" [zoom]="16">
+                              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="14">
                                       <agm-marker
-                                      [latitude]="19.390907"
-                                      [longitude]="-99.165759"
+                                      [latitude]="latitude"
+                                      [longitude]="longitude"
                                       [markerDraggable]="true"
                                       (dragEnd)="markerDragEnd($event)"
                                       ></agm-marker>
