@@ -555,20 +555,21 @@ export class RequerimientoUpdateComponent implements OnInit {
     // Si actualiza
     if (this.actualizarReq === true) {
       console.log('esta actualizando');
-      if (this.editForm.get(['vacantesSolicitadas']).value !== undefined && this.editForm.get(['vacantesSolicitadas']).value !== null &&
-      this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null &&
-      this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null &&
-      this.editForm.get(['prestaciones']).value !== undefined && this.editForm.get(['prestaciones']).value  !== null &&
-      this.editForm.get(['duracionAsignacion']).value !== undefined && this.editForm.get(['duracionAsignacion']).value !== null &&
-      this.editForm.get(['lugarTrabajo']).value !== undefined && this.editForm.get(['lugarTrabajo']).value !== null &&
-      this.editForm.get(['cuentaId']).value !== undefined && this.editForm.get(['cuentaId']).value !== null &&
-      this.editForm.get(['usuarioAsignadoId']).value !== undefined && this.editForm.get(['usuarioAsignadoId']).value !== null &&
-      this.editForm.get(['prioridadId']).value !== undefined &&  this.editForm.get(['prioridadId']).value !== null &&
-      this.editForm.get(['esquemaContratacionId']).value !== undefined && this.editForm.get(['esquemaContratacionId']).value !== null &&
-      this.editForm.get(['baseTarifaId']).value !== undefined && this.editForm.get(['baseTarifaId']).value !== null &&
-      this.editForm.get(['perfilId']).value !== undefined && this.editForm.get(['perfilId']).value !== null &&
-      this.editForm.get(['nivelPerfilId']).value !== undefined && this.editForm.get(['nivelPerfilId']).value !== null &&
-      this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null)  {
+      if (this.editForm.get(['vacantesSolicitadas']).value !== undefined && this.editForm.get(['vacantesSolicitadas']).value !== null && this.editForm.get(['vacantesSolicitadas']).value !== '' &&
+      this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null && this.editForm.get(['nombreContacto']).value !== '' &&
+      this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null && this.editForm.get(['tarifaSueldoNet']).value !== '' &&
+      this.editForm.get(['prestaciones']).value !== undefined && this.editForm.get(['prestaciones']).value !== null && this.editForm.get(['prestaciones']).value !== '' &&
+      this.editForm.get(['duracionAsignacion']).value !== undefined && this.editForm.get(['duracionAsignacion']).value !== null && this.editForm.get(['duracionAsignacion']).value !== '' &&
+      this.editForm.get(['lugarTrabajo']).value !== undefined && this.editForm.get(['lugarTrabajo']).value !== null && this.editForm.get(['lugarTrabajo']).value !== '' &&
+      this.editForm.get(['cuentaId']).value !== undefined && this.editForm.get(['cuentaId']).value !== null && this.editForm.get(['cuentaId']).value !== '' &&
+      this.editForm.get(['usuarioAsignadoId']).value !== undefined && this.editForm.get(['usuarioAsignadoId']).value !== null && this.editForm.get(['usuarioAsignadoId']).value !== '' &&
+      this.editForm.get(['prioridadId']).value !== undefined && this.editForm.get(['prioridadId']).value !== null && this.editForm.get(['prioridadId']).value  !== '' &&
+      this.editForm.get(['esquemaContratacionId']).value !== undefined && this.editForm.get(['esquemaContratacionId']).value !== null && this.editForm.get(['esquemaContratacionId']).value  !== '' &&
+      this.editForm.get(['baseTarifaId']).value !== undefined && this.editForm.get(['baseTarifaId']).value !== null && this.editForm.get(['baseTarifaId']).value !== '' &&
+      this.editForm.get(['perfilId']).value !== undefined && this.editForm.get(['perfilId']).value !== null && this.editForm.get(['perfilId']).value !== '' &&
+      this.editForm.get(['nivelPerfilId']).value !== undefined && this.editForm.get(['nivelPerfilId']).value !== null && this.editForm.get(['nivelPerfilId']).value !== '' &&
+      this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null && this.editForm.get(['tipoPeriodoId']).value  !== '')  {
+        console.log(this.editForm.get(['tarifaSueldoNet']).value);
         let reqCerrado = false;
         let reqReemplazo = false;
         // Estatus del requerimiento
