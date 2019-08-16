@@ -672,12 +672,12 @@ export class RequerimientoUpdateComponent implements OnInit {
         }
         console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
         if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
-          // console.log('tiene datos');
-          // if (requerimiento.id !== undefined) {
-          //   this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
-          // } else {
-          //   this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
-          // }
+          console.log('tiene datos');
+          if (requerimiento.id !== undefined) {
+            this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
+          } else {
+            this.subscribeToSaveResponse(this.requerimientoService.create(requerimiento));
+          }
         }
       } else {
         console.log('No tiene datos en agregar');
