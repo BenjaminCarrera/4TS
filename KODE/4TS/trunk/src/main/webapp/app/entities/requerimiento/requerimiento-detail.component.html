@@ -28,11 +28,11 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de alta</label><br />
-                                <label class="form-label resultado" id="">{{ requerimiento.fechaAlda | date: 'MMM dd, yyyy' }}</label>
+                                <label class="form-label resultado" id="">{{ requerimiento.fechaAlda | date: 'dd-MMM-yyyy' }}</label>
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de resolucion</label><br />
-                                <label class="form-label resultado" id="">{{ requerimiento.fechaResolucion | date: 'MMM dd, yyyy' }}</label>
+                                <label class="form-label resultado" id="">{{ requerimiento.fechaResolucion | date: 'dd-MMM-yyyy' }}</label>
                             </div>
                         </div>
 
@@ -552,7 +552,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let bitacora of bitacoras">
-                        <td> {{bitacora.fecha | date: 'medium'}} </td>
+                        <td> {{bitacora.fecha | date: 'dd-MMM-yyyy hh:mm'}} </td>
                         <td> {{bitacora.candidatoNombre}} </td>
                         <td> {{bitacora.comentario}} </td>
                     </tr>
