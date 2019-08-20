@@ -152,7 +152,7 @@
                 <label class="form-label">CURP:</label>
               </div>
               <div class="col-sm-7">
-                <label class="form-label resultado" id="">{{ candidato.curp }}</label>
+                <label class="form-label curp" id="">{{ candidato.curp }}</label>
               </div>
             </div>
             <div class="row">
@@ -160,7 +160,7 @@
                 <label class="form-label">RFC:</label>
               </div>
               <div class="col-sm-7">
-                <label class="form-label resultado" id="">{{ candidato.rfc }}</label>
+                <label class="form-label curp" id="">{{ candidato.rfc }}</label>
               </div>
             </div>
             <div class="row">
@@ -353,12 +353,12 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="padding-right: 0px;">
             <div class="col-sm-4">
               <label class="form-label">Institución:</label>
             </div>
-            <div class="col-sm-8">
-              <label class="form-label resultado" id="">{{ candidato.institucionAcademicaInstitucion }}</label>
+            <div class="col-sm-8" style="padding-right: 0px;">
+              <label class="form-label resultado" id="" >{{ candidato.institucionAcademicaInstitucion }}</label>
             </div>
           </div>
           <div class="row">
@@ -452,7 +452,7 @@
           </div>
           <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
             <div class="col-sm-4">
-              <label class="form-label">Periodo de la entrevista:</label>
+              <label class="form-label">Tiempo de la entrevista:</label>
             </div>
             <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaPeriodo }}</label>
@@ -460,7 +460,7 @@
           </div>
           <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
             <div class="col-sm-4">
-              <label class="form-label">Tiempo del periodo de la entrevista:</label>
+              <label class="form-label">Periodo de la entrevista:</label>
             </div>
             <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo }}</label>
@@ -476,15 +476,15 @@
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
             <div class="col-sm-4">
-              <label class="form-label">Disponibilidad Asignacion Periodo:</label>
+              <label class="form-label">Tiempo de la asignacion:</label>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-8">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionPeriodo }}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
             <div class="col-sm-4">
-              <label class="form-label">Disponibilidad de asignacion periodo tiempo:</label>
+              <label class="form-label">Periodo de la Asignacion:</label>
             </div>
             <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionPeriodoTiempoPeriodo }}</label>
