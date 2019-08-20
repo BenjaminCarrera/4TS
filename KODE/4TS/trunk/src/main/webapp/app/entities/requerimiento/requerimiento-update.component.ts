@@ -38,6 +38,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { startWith } from 'rxjs/operators';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
+import {Location, Appearance} from '@angular-material-extensions/google-maps-autocomplete';
 import { NgZone } from '@angular/core';
 import { SkillService } from '../skill';
 import { ISkill } from 'app/shared/model/skill.model';
@@ -350,8 +351,12 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.SkillRequeridosSelected = [];
     this.SkillOpcionalesSelected = [];
     this.SkillEsencialesSelected = [];
+
+    this.latitude = 19.3909455;
+    this.longitude = -99.1664295;
+    this.setCurrentLocation();
+
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -934,7 +939,6 @@ export class RequerimientoUpdateComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 50;
-        this.getAddress(this.latitude, this.longitude);
       });
     }
   }
@@ -959,6 +963,11 @@ export class RequerimientoUpdateComponent implements OnInit {
       }
 
     });
+  }
+  onLocationSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
   }
   setSkills(res: ISkill[]) {
     this.Skill = res;
