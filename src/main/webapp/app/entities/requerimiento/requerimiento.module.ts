@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 import { AgmCoreModule } from '@agm/core';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AppSharedModule } from 'app/shared';
 import {
   RequerimientoComponent,
@@ -22,7 +23,9 @@ const ENTITY_STATES = [...requerimientoRoute, ...requerimientoPopupRoute];
     AgmCoreModule.forRoot({
       apiKey: MAPS_API_KEY,
       libraries: ['places']
-    })],
+    }),
+    MatGoogleMapsAutocompleteModule
+  ],
   declarations: [
     RequerimientoComponent,
     RequerimientoDetailComponent,

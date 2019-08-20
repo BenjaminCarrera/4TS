@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "@agm/core": "^1.0.0-beta.7",
+    "@angular-material-extensions/google-maps-autocomplete": "^2.0.0",
     "@angular/animations": "latest",
     "@angular/cdk": "latest",
     "@angular/common": "8.0.0",
