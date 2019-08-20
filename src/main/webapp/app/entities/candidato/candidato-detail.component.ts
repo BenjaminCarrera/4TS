@@ -104,7 +104,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   // Enfoque del mapa
   lat = 19.391213;
   lng = -99.165761;
-  zoom = 15;
+  zoom = 16;
   message: string;
   constructor(
     // Tarea
