@@ -60,6 +60,17 @@ color: rgba(0,0,0,.50);
 .resultado{
   font-weight: bold;
   font-size: 16px !important;
+  text-transform: lowercase;
+}
+.resultado::first-letter {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+}
+.curp{
+  font-weight: bold;
+  font-size: 16px !important;
+  text-transform: uppercase;
 }
 .subtitulo{
   font-size: 13px;
