@@ -128,7 +128,7 @@
                 <label class="form-label">Fecha de nacimiento:</label>
               </div>
               <div class="col-sm-7">
-                <label class="form-label resultado" id="">{{ candidato.fechaNacimiento }}</label>
+                <label class="form-label resultado" id="">{{ candidato.fechaNacimiento | date: 'dd-MMM-yyyy' }}</label>
               </div>
             </div>
             <div class="row">
@@ -261,12 +261,11 @@
                 <label class="form-label resultado" id="">{{ candidato.telefonoTrabajo }}</label>
               </div>
             </div>
-
-            <br /><br />
+            <br />
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <div
           class="panel panel-default"
           style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
@@ -285,13 +284,11 @@
               </agm-map>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12">
               <div class="row esp-arriba">
                 <div class="col-sm-5">
                   <label class="form-label">CP:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">{{ candidato.dirCodigoPostal }}</label>
                 </div>
               </div>
@@ -299,7 +296,7 @@
                 <div class="col-sm-5">
                   <label class="form-label">Estado:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">Ciudad de México</label>
                 </div>
               </div>
@@ -307,7 +304,7 @@
                 <div class="col-sm-5">
                   <label class="form-label">Municipio / alcaldía:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">Benito Juárez</label>
                 </div>
               </div>
@@ -315,7 +312,7 @@
                 <div class="col-sm-5">
                   <label class="form-label">Calle:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">{{ candidato.dirCalle }}</label>
                 </div>
               </div>
@@ -323,7 +320,7 @@
                 <div class="col-sm-5">
                   <label class="form-label">Colonia:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">{{ candidato.coloniaColonia }}</label>
                 </div>
               </div>
@@ -331,7 +328,7 @@
                 <div class="col-sm-5">
                   <label class="form-label">Número exterior:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">{{ candidato.noExt }}</label>
                 </div>
               </div>
@@ -339,12 +336,10 @@
                 <div class="col-sm-5">
                   <label class="form-label">Número Interior:</label>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <label class="form-label resultado" id="">{{ candidato.noInt }}</label>
                 </div>
-              </div>
             </div>
-          </div>
           <br>
           <div class="row">
             <div class="col-sm-12">
@@ -354,26 +349,26 @@
             </div>
           </div>
           <div class="row" style="padding-right: 0px;">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Institución:</label>
             </div>
-            <div class="col-sm-8" style="padding-right: 0px;">
+            <div class="col-sm-7" style="padding-right: 0px;">
               <label class="form-label resultado" id="" >{{ candidato.institucionAcademicaInstitucion }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Estudios:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.estudiosFormacionAcademica }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Estatus académico:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.estatusAcademicoEstatus }}</label>
             </div>
           </div>
@@ -387,42 +382,42 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Fuente de reclutamiento:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.fuenteReclutamientoFuente }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Esquema de contratación KODE:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.esquemaContratacionKodeEsquema }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Salario neto mensual:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">${{ candidato.salarioNeto }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Costo total mensual:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">${{ candidato.costoTotal }}</label>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Duración mínima de contrato (meses):</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.contatoDuracionMinima }}</label>
             </div>
           </div>
@@ -435,23 +430,23 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Estatus laboral:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.estatusLaboralEstatus }}</label>
             </div>
           </div>
           <div class="row" *ngIf="!mostrarDisponibilidadEntrevistaCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Disponibilidad de entrevista:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadEntrevistaFecha | date: 'MMM dd, yyyy' }}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Tiempo de la entrevista:</label>
             </div>
             <div class="col-sm-7">
@@ -459,7 +454,7 @@
             </div>
           </div>
           <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Periodo de la entrevista:</label>
             </div>
             <div class="col-sm-7">
@@ -467,23 +462,23 @@
             </div>
           </div>
           <div class="row" *ngIf="!mostrarAsignacionCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Disponibilidad de asignación:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha | date: 'MMM dd, yyyy' }}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Tiempo de la asignacion:</label>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionPeriodo }}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <label class="form-label">Periodo de la Asignacion:</label>
             </div>
             <div class="col-sm-7">
@@ -492,7 +487,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div
           class="panel panel-default"
           style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
@@ -526,7 +521,7 @@
               <label class="form-label">Salario neto mensual:</label>
             </div>
             <div class="col-sm-8">
-              <label class="form-label resultado" id="">{{ candidato.antecedenteSalarioNeto }}</label>
+              <label class="form-label resultado" id=""> ${{ candidato.antecedenteSalarioNeto }}</label>
             </div>
           </div>
           <br />
