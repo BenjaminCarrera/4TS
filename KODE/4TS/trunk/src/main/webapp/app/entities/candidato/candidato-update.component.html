@@ -162,14 +162,14 @@
                                 <div class="row">
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput [matDatepicker]="picker2" name="fechaNacimiento" id="field_fechaNacimiento" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
+                                            <input matInput [matDatepicker]="picker2" (dateChange)="calculateAge()" name="fechaNacimiento" id="field_fechaNacimiento" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6 espaciado-componentes">
                                         <mat-form-field>
-                                            <input matInput name="edad" id="field_edad" formControlName="edad" placeholder="Edad">
+                                            <input matInput [value]="age" name="edad" id="field_edad" formControlName="edad" placeholder="Edad" [readonly]="true">
                                         </mat-form-field>
                                     </div>
                                 </div>

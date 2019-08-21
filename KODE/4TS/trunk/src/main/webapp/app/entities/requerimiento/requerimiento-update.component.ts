@@ -965,7 +965,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     });
   }
   onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
