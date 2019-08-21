@@ -19,6 +19,7 @@ import { BitacoraService } from '../bitacora/bitacora.service';
 import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
 import { CANDIDATO_IMAGE, CANDIDATO_DEFAULT_IMAGE } from 'app/shared/constants/candidato.constants';
+import { formatNumber } from '@angular/common';
 
 export interface Tarea {
   Fecha: string;
@@ -107,6 +108,9 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   lng = -99.165761;
   zoom = 16;
   message: string;
+  primerosDigitos: string;
+  segundosDigitos: string;
+  tercerosDigitos: string;
   constructor(
     // Tarea
     protected tareaService: TareaService,
@@ -354,6 +358,9 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       );
     console.log(this.estatusTareas);
     this.imagen = this.candidato.foto;
+     this.candidato.salarioNeto = formatNumber(this.candidato.salarioNeto) ;
+     this.candidato.costoTotal = formatNumber(this.candidato.costoTotal) ;
+     this.candidato.antecedenteSalarioNeto = formatNumber(this.candidato.antecedenteSalarioNeto) ;
   }
   previousState() {
     window.history.back();
@@ -456,6 +463,9 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   onUpload() {
     // upload code goes here
   }
+}
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
