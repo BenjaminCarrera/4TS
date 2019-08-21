@@ -101,6 +101,7 @@ export class CandidatoUpdateComponent implements OnInit {
   zoom = 14;
   geoCoder: any;
   searchElementRef: ElementRef;
+  estatusCandidatoId = 1;
 
   isSaving: boolean;
 
@@ -192,7 +193,7 @@ export class CandidatoUpdateComponent implements OnInit {
     cuentaInteres: [],
     cuentaRechazadas: [],
     fuenteReclutamientoId: [],
-    estatusCandidatoId: ['', Validators.required],
+    estatusCandidatoId: [],
     perfilId: [],
     nivelPerfilId: [],
     institucionAcademicaId: [],
@@ -297,6 +298,9 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.clearDir();
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.estatusCandidatoId) {
+        this.estatusCandidatoId = candidato.estatusCandidatoId;
+      }
       if (candidato.fechaNacimiento) {
         const timeDiff = Math.abs(Date.now() - new Date(candidato.fechaNacimiento.toDate()).getTime());
         this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
@@ -459,14 +463,10 @@ export class CandidatoUpdateComponent implements OnInit {
         map((response: HttpResponse<IEstCanInactivo[]>) => response.body)
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
-    console.log('-------------------------999999');
     if (this.editForm.get(['id']).value !== undefined) {
       this.actualizarCandidato = true;
-      console.log(this.editForm.get(['id']).value);
-      console.log('-------------------------2 si hay id');
     } else {
       this.actualizarCandidato = false;
-      console.log('-------------------------2 no hay id');
     }
   }
 
@@ -584,7 +584,6 @@ export class CandidatoUpdateComponent implements OnInit {
       }
     }
     if (this.actualizarCandidato !== false) {
-      console.log('actualizando');
       let estatusCan: boolean;
       let sex: boolean;
       let estatusLab: boolean;
@@ -592,53 +591,37 @@ export class CandidatoUpdateComponent implements OnInit {
       let apPat: boolean;
       let emailPrinc: boolean;
       if (this.editForm.get(['nombre']).value === '') {
-        console.log('No hay nombre', this.statusCandidato);
-        console.log(this.editForm.get(['nombre']).value);
         nombre = false;
       } else {
-        console.log('Si hay nombre', this.editForm.get(['nombre']).value);
         nombre = true;
       }
       if (this.editForm.get(['apellidoPaterno']).value === undefined) {
-        console.log('No hay apellidoPaterno', this.statusCandidato);
-        console.log(this.editForm.get(['apellidoPaterno']).value);
         apPat = false;
       } else {
-        console.log('Si hay apellidoPaterno', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
         apPat = true;
       }
       if (this.editForm.get(['emailPrincipal']).value === undefined) {
-        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
-        console.log(this.editForm.get(['emailPrincipal']).value);
         emailPrinc = false;
       } else {
-        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
         emailPrinc = true;
       }
-      if (this.editForm.get(['estatusCandidatoId']).value === null) {
-        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
-        console.log(this.editForm.get(['estatusCandidatoId']).value);
+      if (this.estatusCandidatoId === null) {
         this.statusCandidato = false;
         estatusCan = false;
       } else {
-        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
         estatusCan = true;
       }
       if (this.editForm.get(['sexo']).value === null) {
-        console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
         this.sexo = false;
         sex = false;
       } else {
-        console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
         sex = true;
       }
       if (this.editForm.get(['estatusLaboralId']).value === null) {
-        console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
         this.statusLaboral = false;
         estatusLab = false;
       } else {
         estatusLab = true;
-        console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
       }
       if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true) {
         if (candidato.id) {
@@ -656,34 +639,26 @@ export class CandidatoUpdateComponent implements OnInit {
         this.isSaving = false;
       }
     } else {
-      console.log('nuevo');
       let estatusCan: boolean;
       let sex: boolean;
       let estatusLab: boolean;
-      if (this.editForm.get(['estatusCandidatoId']).value === undefined) {
-        console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
-        console.log(this.editForm.get(['estatusCandidatoId']).value);
+      if (this.estatusCandidatoId === undefined) {
         this.statusCandidato = false;
         estatusCan = false;
       } else {
-        console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
         estatusCan = true;
       }
       if (this.editForm.get(['sexo']).value === undefined) {
-        console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
         this.sexo = false;
         sex = false;
       } else {
-        console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
         sex = true;
       }
       if (this.editForm.get(['estatusLaboralId']).value === undefined) {
-        console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
         this.statusLaboral = false;
         estatusLab = false;
       } else {
         estatusLab = true;
-        console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
       }
       if (estatusCan === true && sex === true && estatusLab === true) {
         if (candidato.id) {
@@ -701,37 +676,6 @@ export class CandidatoUpdateComponent implements OnInit {
         this.isSaving = false;
       }
     }
-    // if (this.editForm.get(['estatusCandidatoId']).value === '') {
-    //   console.log('No hay estatus del candidato seleccionado', this.statusCandidato);
-    //   console.log(this.editForm.get(['estatusCandidatoId']).value);
-    //   this.statusCandidato = false;
-    // } else {
-    //   console.log('Si hay estatus del candidato seleccionado', this.statusCandidato, this.editForm.get(['estatusCandidatoId']).value);
-    // }
-    // if (this.editForm.get(['sexo']).value === '') {
-    //   console.log('No hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
-    //   this.sexo = false;
-    // } else {
-    //   console.log('Si hay sexo del candidato seleccionado', this.sexo, this.editForm.get(['sexo']).value);
-    // }
-    // if (this.editForm.get(['estatusLaboralId']).value === '') {
-    //   this.selecteds.setValue(0);
-    //   this.isSaving = false;
-    //   console.log('No hay status laboral del candidato seleccionado', this.statusLaboral);
-    //   this.statusLaboral = false;
-    // } else {
-    //   console.log('Si hay status laboral del candidato seleccionado', this.statusLaboral);
-    //   if (candidato.id) {
-    //     for (const clave of this.skillsCandidato) {
-    //       if (clave.idCandidatoId === this.editForm.get(['id']).value) {
-    //         this.borrarSkillCandidatos(clave.id);
-    //       }
-    //     }
-    //     this.subscribeToSaveResponse(this.candidatoService.update(candidato));
-    //   } else {
-    //     this.subscribeToSaveResponse(this.candidatoService.create(candidato));
-    //   }
-    // }
   }
 
   private createFromForm(): ICandidato {
@@ -787,7 +731,7 @@ export class CandidatoUpdateComponent implements OnInit {
       cuentaInteres: this.cuentasIntSelected,
       cuentaRechazadas: this.cuentasRechSelected,
       fuenteReclutamientoId: this.editForm.get(['fuenteReclutamientoId']).value,
-      estatusCandidatoId: this.editForm.get(['estatusCandidatoId']).value,
+      estatusCandidatoId: this.estatusCandidatoId,
       perfilId: this.editForm.get(['perfilId']).value,
       nivelPerfilId: this.editForm.get(['nivelPerfilId']).value,
       institucionAcademicaId: this.editForm.get(['institucionAcademicaId']).value,
@@ -828,9 +772,6 @@ export class CandidatoUpdateComponent implements OnInit {
   protected onSaveError() {
     this.selecteds.setValue(0);
     this.isSaving = false;
-    console.log('--------------');
-    console.log('hola');
-    console.log(this.editForm.get(['estatusCandidatoId']).value);
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
@@ -1308,5 +1249,8 @@ export class CandidatoUpdateComponent implements OnInit {
   calculateAge() {
     const timeDiff = Math.abs(Date.now() - new Date(this.editForm.get(['fechaNacimiento']).value).getTime());
     this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+  }
+  selectionChanged(item) {
+    this.estatusCandidatoId = item.value;
   }
 }
