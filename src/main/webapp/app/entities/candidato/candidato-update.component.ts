@@ -86,6 +86,7 @@ export class CandidatoUpdateComponent implements OnInit {
   cuentasRechSelected: ICuenta[];
   cuentasRechazadas: ICuenta[];
   estados: IEstado[];
+  age: number;
   allItems: any;
   municipios: IMunicipio[];
   skills: ISkill[];
@@ -284,10 +285,9 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.age = null;
     this.accountService.identity().then(account => {
       this.cuentaUsuario = account;
-      console.log('---------------------------');
-      console.log(this.cuentaUsuario);
     });
     this.errorMessageSkill = null;
     this.cuentasIntSelected = [];
@@ -297,6 +297,10 @@ export class CandidatoUpdateComponent implements OnInit {
     this.isSaving = false;
     this.clearDir();
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.fechaNacimiento) {
+        const timeDiff = Math.abs(Date.now() - new Date(candidato.fechaNacimiento.toDate()).getTime());
+        this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+      }
       if (candidato.fechaAlta) {
         this.currentDate = candidato.fechaAlta;
       } else {
@@ -535,52 +539,49 @@ export class CandidatoUpdateComponent implements OnInit {
     window.history.back();
   }
   borrarSkillCandidatos(id: number) {
-    this.skillCandidatoService.delete(id).subscribe(response => {});
+    this.skillCandidatoService.delete(id).subscribe(response => { });
   }
   save() {
     let reqDir = false;
     this.isSaving = true;
     const candidato = this.createFromForm();
-    if (this.editForm.get(['dirCodigoPostal']).value || this.editForm.get('dirCalle').value || this.editForm.get('noExt').value || this.editForm.get('dirColonia').value || this.editForm.get('dirMunicipio').value || this.editForm.get('dirEstado').value || this.editForm.get('noInt').value) {
+    if (this.editForm.get(['dirCodigoPostal']).value || this.editForm.get('dirCalle').value || this.editForm.get('noExt').value || this.editForm.get('dirColonia').value || this.editForm.get('dirMunicipio').value || this.editForm.get('dirEstado').value) {
       reqDir = true;
     }
     if (reqDir) {
       if (!this.editForm.get(['dirCodigoPostal']).value) {
-        this.editForm.get(['dirCodigoPostal']).setErrors({'incorrect': true});
+        this.editForm.get(['dirCodigoPostal']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
       if (!this.editForm.get(['dirCalle']).value) {
-        this.editForm.get(['dirCalle']).setErrors({'incorrect': true});
+        this.editForm.get(['dirCalle']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
       if (!this.editForm.get(['noExt']).value) {
-        this.editForm.get(['noExt']).setErrors({'incorrect': true});
+        this.editForm.get(['noExt']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
       if (!this.editForm.get(['dirColonia']).value) {
-        this.editForm.get(['dirColonia']).setErrors({'incorrect': true});
+        this.editForm.get(['dirColonia']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
       if (!this.editForm.get(['dirMunicipio']).value) {
-        this.editForm.get(['dirMunicipio']).setErrors({'incorrect': true});
+        this.editForm.get(['dirMunicipio']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
       if (!this.editForm.get(['dirEstado']).value) {
-        this.editForm.get(['dirEstado']).setErrors({'incorrect': true});
+        this.editForm.get(['dirEstado']).setErrors({ 'incorrect': true });
         this.selecteds.setValue(0);
         this.isSaving = false;
       }
-      if (!this.editForm.get(['noInt']).value) {
-        this.editForm.get(['noInt']).setErrors({'incorrect': true});
-        this.selecteds.setValue(0);
-        this.isSaving = false;
+      if (this.isSaving === false) {
+        return;
       }
-      return;
     }
     if (this.actualizarCandidato !== false) {
       console.log('actualizando');
@@ -1278,7 +1279,6 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((mun: IMunicipio) => this.loadMunicipio(mun), (mun: HttpErrorResponse) => this.onError(mun.message));
   }
-
   loadMunicipio(municipio: IMunicipio) {
     this.municipios.push(municipio);
     this.editForm.get(['dirMunicipio']).setValue(municipio.id);
@@ -1304,5 +1304,9 @@ export class CandidatoUpdateComponent implements OnInit {
   }
   verificarStatusCandidato() {
     this.statusCandidato = true;
+  }
+  calculateAge() {
+    const timeDiff = Math.abs(Date.now() - new Date(this.editForm.get(['fechaNacimiento']).value).getTime());
+    this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
   }
 }

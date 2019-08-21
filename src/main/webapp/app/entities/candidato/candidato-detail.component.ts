@@ -95,6 +95,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   predicateSkillCand: any;
   previousPageSkillCand: any;
   reverseSkillCand: any;
+  age: number;
 
   // Mostrar u ocultar cosas
   mostrarDetalleCandidatoInactivo: boolean;
@@ -315,7 +316,12 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   }
   // fin
   ngOnInit() {
+    this.age = null;
     this.activatedRoute.data.subscribe(({ candidato }) => {
+      if (candidato.fechaNacimiento) {
+        const timeDiff = Math.abs(Date.now() - new Date(candidato.fechaNacimiento.toDate()).getTime());
+        this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+      }
       if (candidato.foto) {
         candidato.foto = CANDIDATO_IMAGE + candidato.foto;
       } else {
