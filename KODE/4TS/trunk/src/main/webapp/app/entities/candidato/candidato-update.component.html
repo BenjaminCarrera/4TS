@@ -69,35 +69,36 @@
                                     </div>
                                 </div>
 
+
                                 <div class="row">
-                                    <div class="col-md-4 espaciado-componentes">
-                                        <div class="form-group">
-                                            <p>
-                                                <label *ngIf="statusCandidato == true" class="label-material"> Estatus
-                                                    del candidato:</label>
-                                                <label *ngIf="statusCandidato == false" class="label-material"
-                                                    style="color: red;"> Estatus del candidato:</label>
-                                                <br>
-                                                <mat-button-toggle-group [value]='estatusCandidatoId' id="field_estatusCandidato"
-                                                    name="estatusCandidato" (change)="selectionChanged($event)"
-                                                    aria-label="Estilo de fuente">
-                                                    <mat-button-toggle [value]="estatusCandidatoOption.id"
-                                                        *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById"
-                                                        (click)="verificarStatusCandidato()">
-                                                        {{estatusCandidatoOption.estatus}}</mat-button-toggle>
-                                                </mat-button-toggle-group>
-                                                <div
-                                                    *ngIf="editForm.get('estatusCandidatoId').invalid && (editForm.get('estatusCandidatoId').dirty || editForm.get('estatusCandidatoId').touched)">
-                                                    <small class="form-text text-danger"
-                                                        *ngIf="editForm.get('estatusCandidatoId').errors.required"
-                                                        jhiTranslate="entity.validation.required">
-                                                        Este campo es requerido.
-                                                    </small>
-                                                </div>
-                                            </p>
+                                        <div class="col-md-4 espaciado-componentes">
+                                            <div class="form-group">
+                                                <p>
+                                                    <label *ngIf="statusCandidato == true" class="label-material"> Estatus del candidato:</label>
+                                                    <label *ngIf="statusCandidato == false" class="label-material" style="color: red;"> Estatus del candidato:</label>
+                                                    <br>
+                                                    <mat-button-toggle-group id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId" aria-label="Estilo de fuente">
+                                                        <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById" (click)="verificarStatusCandidato(estatusCandidatoOption.estatus)">
+                                                            {{estatusCandidatoOption.estatus}}</mat-button-toggle>
+                                                    </mat-button-toggle-group>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 espaciado-componentes" *ngIf="statusCandidatoInactivo == true">
+                                            <div class="form-group">
+                                                <p>
+                                                    <br>
+                                                    <mat-form-field class="full-width">
+                                                        <mat-select id="field_perfil" name="perfil" formControlName="estCanInactivoId" placeholder="Razon del candidato inactivo:">
+                                                            <mat-option [value]="null"></mat-option>
+                                                            <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of estcaninactivos; trackBy: trackPerfilById">
+                                                                {{perfilOption.motivo}}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>

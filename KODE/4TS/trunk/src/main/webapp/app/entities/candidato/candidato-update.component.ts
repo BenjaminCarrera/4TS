@@ -228,6 +228,8 @@ export class CandidatoUpdateComponent implements OnInit {
   statusLaboral = true;
   sexo = true;
   statusCandidato = true;
+  statusCandidatoInactivo = false;
+  verificarEstatusCandidatoInactivo = false;
   actualizarCandidato: boolean;
 
   constructor(
@@ -623,6 +625,15 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         estatusLab = true;
       }
+      if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === null) {
+        console.log('------------------------9');
+        console.log(this.statusCandidatoInactivo);
+        this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
+        this.verificarEstatusCandidatoInactivo = false;
+        this.selecteds.setValue(0);
+      } else {
+        this.verificarEstatusCandidatoInactivo = true;
+      }
       if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true) {
         if (candidato.id) {
           for (const clave of this.skillsCandidato) {
@@ -659,6 +670,17 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = false;
       } else {
         estatusLab = true;
+      }
+      if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === undefined) {
+        console.log('------------------------9');
+        console.log(this.statusCandidatoInactivo);
+        this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
+        this.verificarEstatusCandidatoInactivo = false;
+        this.selecteds.setValue(0);
+      } else {
+        console.log('------------------------91');
+        console.log(this.statusCandidatoInactivo);
+        this.verificarEstatusCandidatoInactivo = true;
       }
       if (estatusCan === true && sex === true && estatusLab === true) {
         if (candidato.id) {
@@ -1243,8 +1265,13 @@ export class CandidatoUpdateComponent implements OnInit {
   verificarSexo() {
     this.sexo = true;
   }
-  verificarStatusCandidato() {
+  verificarStatusCandidato(estatus) {
     this.statusCandidato = true;
+    if (estatus === 'Inactivo') {
+      this.statusCandidatoInactivo = true;
+    } else {
+      this.statusCandidatoInactivo = false;
+    }
   }
   calculateAge() {
     const timeDiff = Math.abs(Date.now() - new Date(this.editForm.get(['fechaNacimiento']).value).getTime());
