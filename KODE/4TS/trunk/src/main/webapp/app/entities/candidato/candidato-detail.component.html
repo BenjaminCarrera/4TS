@@ -187,7 +187,7 @@
                 <label class="form-label">Email principal:</label>
               </div>
               <div class="col-sm-8">
-                <label class="form-label resultado" id="">{{ candidato.emailPrincipal }}</label>
+                <label class="form-label resultado2" id="">{{ candidato.emailPrincipal }}</label>
               </div>
             </div>
             <div class="row">
@@ -195,7 +195,7 @@
                 <label class="form-label">Email adicional:</label>
               </div>
               <div class="col-sm-8">
-                <label class="form-label resultado" id="">{{ candidato.emailAdicional }}</label>
+                <label class="form-label resultado2" id="">{{ candidato.emailAdicional }}</label>
               </div>
             </div>
             <div class="row">
@@ -203,7 +203,7 @@
                 <label class="form-label">Email asignación:</label>
               </div>
               <div class="col-sm-8">
-                <label class="form-label resultado" id="">{{ candidato.emailAsignacion }}</label>
+                <label class="form-label resultado2" id="">{{ candidato.emailAsignacion }}</label>
               </div>
             </div>
             <div class="row">
@@ -211,7 +211,7 @@
                 <label class="form-label">Email KODE:</label>
               </div>
               <div class="col-sm-8">
-                <label class="form-label resultado" id="">{{ candidato.emailKode }}</label>
+                <label class="form-label resultado2" id="">{{ candidato.emailKode }}</label>
               </div>
             </div>
             <div class="row">
@@ -219,7 +219,7 @@
                 <label class="form-label">Web:</label>
               </div>
               <div class="col-sm-8">
-                <label class="form-label resultado" id="">{{ candidato.web }}</label>
+                <label class="form-label resultado2" id="">{{ candidato.web }}</label>
               </div>
             </div>
             <br />
@@ -264,7 +264,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-4">
         <div
           class="panel panel-default"
           style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
@@ -486,7 +486,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <div
           class="panel panel-default"
           style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;"
@@ -538,7 +538,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4" style="padding-right: 0px; font-size: 12px;">
+            <div class="col-sm-4">
               <label class="form-label">Nombre del contacto:</label>
             </div>
             <div class="col-sm-8">
@@ -789,7 +789,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let bitacora of bitacoras">
-            <td>{{ bitacora.fecha | date: 'medium' }}</td>
+            <td>{{ bitacora.fecha | date: 'dd-MMM-yyyy' }}</td>
             <td>{{ bitacora.usuarioFirstName }}</td>
             <td>{{ bitacora.comentario }}</td>
           </tr>
