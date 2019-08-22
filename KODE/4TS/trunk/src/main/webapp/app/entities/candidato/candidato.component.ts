@@ -108,7 +108,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpResponse<ICandidato[]>) => this.paginateCandidatoes(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-
   }
 
   loadPage(page: number) {
@@ -214,6 +213,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
       this.currentAccount = account;
     });
     this.registerChangeInCandidatoes();
+    console.log(this.usuariosAsignado);
   }
 
   ngOnDestroy() {
@@ -297,12 +297,15 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.usuariosAsignado = data;
+    console.log(this.usuariosAsignado);
   }
 
   protected paginateCandidatoes(data: ICandidato[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.candidatoes = data;
+    console.log('------8');
+    console.log(this.candidatoes);
   }
 
   protected paginateEstatusCandidatoes(data: IEstatusCandidato[], headers: HttpHeaders) {
@@ -338,5 +341,13 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.nivelPerfiles = data;
   }
-
+  buscarIniciales(id) {
+    let res = 0;
+    this.usuariosAsignado.forEach(element => {
+      if (element.id === id) {
+        res = element.iniciales;
+      }
+    });
+    return res;
+  }
 }
