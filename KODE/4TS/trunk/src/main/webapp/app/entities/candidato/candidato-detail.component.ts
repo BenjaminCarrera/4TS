@@ -19,7 +19,6 @@ import { BitacoraService } from '../bitacora/bitacora.service';
 import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
 import { CANDIDATO_IMAGE, CANDIDATO_DEFAULT_IMAGE } from 'app/shared/constants/candidato.constants';
-import { formatNumber } from '@angular/common';
 
 export interface Tarea {
   Fecha: string;
