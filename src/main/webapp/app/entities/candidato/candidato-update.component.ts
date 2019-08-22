@@ -472,8 +472,8 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
     if (this.editForm.get(['id']).value !== undefined) {
-      this.actualizarCandidato = true;
-      if (this.editForm.get(['estCanInactivoId']).value === 'Inactivo') {
+      console.log('--------8-8-8-8-8-8');
+      if (this.editForm.get(['estatusCandidatoId']).value === 2) {
         this.statusCandidatoInactivo = true;
       }
     } else {
@@ -601,6 +601,7 @@ export class CandidatoUpdateComponent implements OnInit {
       let nombre: boolean;
       let apPat: boolean;
       let emailPrinc: boolean;
+      let candidatoInactivo: boolean;
       if (this.editForm.get(['nombre']).value === '') {
         nombre = false;
       } else {
@@ -635,14 +636,19 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = true;
       }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === null) {
-        console.log(this.statusCandidatoInactivo);
+        console.log('------234324324324------9');
+        console.log(this.editForm.get(['estCanInactivoId']).value);
         this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
+        candidatoInactivo = false;
       } else {
+        console.log('------234234324324---91');
+        console.log(this.editForm.get(['estCanInactivoId']).value);
         this.verificarEstatusCandidatoInactivo = true;
+        candidatoInactivo = true;
       }
-      if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true) {
+      if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true && candidatoInactivo === true) {
         if (candidato.id) {
           for (const clave of this.skillsCandidato) {
             if (clave.idCandidatoId === this.editForm.get(['id']).value) {
