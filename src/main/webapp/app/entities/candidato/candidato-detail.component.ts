@@ -19,6 +19,7 @@ import { BitacoraService } from '../bitacora/bitacora.service';
 import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candidato.model';
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
 import { CANDIDATO_IMAGE, CANDIDATO_DEFAULT_IMAGE } from 'app/shared/constants/candidato.constants';
+import { moneyFormat } from 'app/shared/util/money-format';
 
 export interface Tarea {
   Fecha: string;
@@ -96,6 +97,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   previousPageSkillCand: any;
   reverseSkillCand: any;
   age: number;
+  formatNumber: any = moneyFormat;
 
   // Mostrar u ocultar cosas
   mostrarDetalleCandidatoInactivo: boolean;
@@ -357,9 +359,9 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       );
     console.log(this.estatusTareas);
     this.imagen = this.candidato.foto;
-     this.candidato.salarioNeto = formatNumber(this.candidato.salarioNeto) ;
-     this.candidato.costoTotal = formatNumber(this.candidato.costoTotal) ;
-     this.candidato.antecedenteSalarioNeto = formatNumber(this.candidato.antecedenteSalarioNeto) ;
+     this.candidato.salarioNeto = this.formatNumber(this.candidato.salarioNeto) ;
+     this.candidato.costoTotal = this.formatNumber(this.candidato.costoTotal) ;
+     this.candidato.antecedenteSalarioNeto = this.formatNumber(this.candidato.antecedenteSalarioNeto) ;
   }
   previousState() {
     window.history.back();
@@ -462,9 +464,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   onUpload() {
     // upload code goes here
   }
-}
-function formatNumber(num) {
-  return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

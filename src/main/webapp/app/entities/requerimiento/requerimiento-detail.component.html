@@ -137,7 +137,7 @@
                                 <label class="form-label">Tarifa / Sueldo neto:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">${{ requerimiento.tarifaSueldoNet }}</label>
+                                <label *ngIf="requerimiento.tarifaSueldoNet" class="form-label resultado" id="">{{ formatNumber(requerimiento.tarifaSueldoNet) }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -150,18 +150,18 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <label class="form-label">Prestaciones:</label>
-                            </div>
-                            <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.prestaciones }}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
                                 <label class="form-label">Esquema de contratación:</label>
                             </div>
                             <div class="col-sm-9">
                                 <label class="form-label resultado" id="">{{ requerimiento.esquemaContratacionEsquema }} </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="form-label">Prestaciones:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="form-label resultado" id="">{{ requerimiento.prestaciones }}</label>
                             </div>
                         </div>
                     </div>
@@ -217,6 +217,16 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-sm-12" style="padding-right: 0px;">
+                            <div class="google-maps" id="mapa">
+                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
+                                    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'"> </agm-marker>
+                                </agm-map>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-sm-3">
                             <label class="form-label">Horario: </label>
                         </div>
@@ -242,25 +252,12 @@
                             <label class="form-label resultado" id="">{{ requerimiento.informacionAdicional }} </label>
                         </div>
                     </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h4>Ubicación</h4>
-                        </div>
-                        <div class="col-sm-12" style="padding-right: 0px;">
-                            <div class="google-maps" id="mapa">
-                                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
-                                    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'"> </agm-marker>
-                                </agm-map>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
-                    <h4>Skills solictados del requerimiento</h4>
+                    <h4>Skills solictados</h4>
                     <br />
                     <label class="form-label">Skills esenciales:</label>
                     <div class="row">
@@ -376,7 +373,7 @@
                             <label class="form-label">Fecha de última entrevista:</label>
                         </div>
                         <div class="col-sm-8">
-                            <label class="form-label resultado" id="">22/07/2019</label>
+                            <label class="form-label resultado" id="">22-Jul-2019</label>
                         </div>
                     </div>
                     <div class="row">
@@ -392,7 +389,7 @@
                             <label class="form-label">Monto de la oportunidad:</label>
                         </div>
                         <div class="col-sm-8">
-                            <label class="form-label resultado" id="">$1600</label>
+                            <label class="form-label resultado" id="">$1,600.00</label>
                         </div>
                     </div>
                     <div class="row">
@@ -400,7 +397,7 @@
                             <label class="form-label">Sueldo neto deseado:</label>
                         </div>
                         <div class="col-sm-8">
-                            <label class="form-label resultado" id="">$18000</label>
+                            <label class="form-label resultado" id="">$18,000.00</label>
                         </div>
                     </div>
                     <div class="row">
@@ -408,7 +405,7 @@
                             <label class="form-label">Sueldo neto máximo:</label>
                         </div>
                         <div class="col-sm-8">
-                            <label class="form-label resultado" id="">$17000</label>
+                            <label class="form-label resultado" id="">$17,000.00</label>
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ import { ALL_ITEMS } from 'app/shared';
 import { filter, map } from 'rxjs/operators';
 import { IBitacora } from '../../shared/model/bitacora.model';
 import { BitacoraService } from '../bitacora/bitacora.service';
+import { moneyFormat } from 'app/shared/util/money-format';
 
 export interface PeriodicElement {
   Id: number;
@@ -71,6 +72,7 @@ export class RequerimientoDetailComponent implements OnInit, OnDestroy {
   predicateBitacora: any;
   previousPageBitacora: any;
   reverseBitacora: any;
+  formatNumber: any = moneyFormat;
 
   // Mostrar u ocultar cosas
   // skills
