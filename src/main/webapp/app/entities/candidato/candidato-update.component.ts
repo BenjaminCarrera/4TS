@@ -473,6 +473,9 @@ export class CandidatoUpdateComponent implements OnInit {
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
     if (this.editForm.get(['id']).value !== undefined) {
       this.actualizarCandidato = true;
+      if (this.editForm.get(['estCanInactivoId']).value === 'Inactivo') {
+        this.statusCandidatoInactivo = true;
+      }
     } else {
       this.actualizarCandidato = false;
     }
@@ -655,6 +658,7 @@ export class CandidatoUpdateComponent implements OnInit {
         this.isSaving = false;
       }
     } else {
+      let candidatoInactivo: boolean;
       let estatusCan: boolean;
       let sex: boolean;
       let estatusLab: boolean;
@@ -682,12 +686,14 @@ export class CandidatoUpdateComponent implements OnInit {
         this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
+        candidatoInactivo = false;
       } else {
         console.log('------------------------91');
         console.log(this.statusCandidatoInactivo);
         this.verificarEstatusCandidatoInactivo = true;
+        candidatoInactivo = true;
       }
-      if (estatusCan === true && sex === true && estatusLab === true) {
+      if (estatusCan === true && sex === true && estatusLab === true && candidatoInactivo === true) {
         if (candidato.id) {
           for (const clave of this.skillsCandidato) {
             if (clave.idCandidatoId === this.editForm.get(['id']).value) {

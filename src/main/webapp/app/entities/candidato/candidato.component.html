@@ -221,8 +221,14 @@
                     <td>{{candidato.nivelPerfilNivel}}</td>
                     <td>{{candidato.fechaAlta | date:'dd-MMM-yyyy'}}</td>
                     <td>{{candidato.esquemaContratacionKodeEsquema}}</td>
-                    <td>{{formatNumber(candidato.salarioNeto)}}</td>
-                    <td>{{formatNumber(candidato.costoTotal)}}</td>
+                    <td>
+                        <div *ngIf="candidato.salarioNeto"> {{formatNumber(candidato.salarioNeto)}}</div>
+                        <div *ngIf="!candidato.salarioNeto"> {{candidato.salarioNeto}}</div>
+                    </td>
+                    <td>
+                        <div *ngIf="candidato.costoTotal"> {{formatNumber(candidato.costoTotal)}}</div>
+                        <div *ngIf="!candidato.costoTotal"> {{candidato.costoTotal}}</div>
+                    </td>
                     <td>{{candidato.estatusLaboralEstatus}}</td>
                     <td>{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</td>
                     <td>{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</td>
