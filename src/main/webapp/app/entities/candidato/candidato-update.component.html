@@ -69,36 +69,52 @@
                                     </div>
                                 </div>
 
-
                                 <div class="row">
-                                        <div class="col-md-4 espaciado-componentes">
-                                            <div class="form-group">
-                                                <p>
-                                                    <label *ngIf="statusCandidato == true" class="label-material"> Estatus del candidato:</label>
-                                                    <label *ngIf="statusCandidato == false" class="label-material" style="color: red;"> Estatus del candidato:</label>
-                                                    <br>
-                                                    <mat-button-toggle-group id="field_estatusCandidato" name="estatusCandidato" formControlName="estatusCandidatoId" aria-label="Estilo de fuente">
-                                                        <mat-button-toggle [value]="estatusCandidatoOption.id" *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById" (click)="verificarStatusCandidato(estatusCandidatoOption.estatus)">
-                                                            {{estatusCandidatoOption.estatus}}</mat-button-toggle>
-                                                    </mat-button-toggle-group>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 espaciado-componentes" *ngIf="statusCandidatoInactivo == true">
-                                            <div class="form-group">
-                                                <p>
-                                                    <br>
-                                                    <mat-form-field class="full-width">
-                                                        <mat-select id="field_perfil" name="perfil" formControlName="estCanInactivoId" placeholder="Razon del candidato inactivo:">
-                                                            <mat-option [value]="null"></mat-option>
-                                                            <mat-option [value]="perfilOption.id" *ngFor="let perfilOption of estcaninactivos; trackBy: trackPerfilById">
-                                                                {{perfilOption.motivo}}</mat-option>
-                                                        </mat-select>
-                                                    </mat-form-field>
-                                                </p>
-                                            </div>
+                                    <div class="col-md-4 espaciado-componentes">
+                                        <div class="form-group">
+                                            <p>
+                                                <label *ngIf="statusCandidato == true" class="label-material"> Estatus
+                                                    del candidato:</label>
+                                                <label *ngIf="statusCandidato == false" class="label-material"
+                                                    style="color: red;"> Estatus del candidato:</label>
+                                                <br>
+                                                <mat-button-toggle-group [value]='estatusCandidatoId'
+                                                    id="field_estatusCandidato" name="estatusCandidato"
+                                                    (change)="selectionChanged($event)" aria-label="Estilo de fuente">
+                                                    <mat-button-toggle [value]="estatusCandidatoOption.id"
+                                                        *ngFor="let estatusCandidatoOption of estatuscandidatoes; trackBy: trackEstatusCandidatoById"
+                                                        (click)="verificarStatusCandidato(estatusCandidatoOption.estatus)">
+                                                        {{estatusCandidatoOption.estatus}}</mat-button-toggle>
+                                                </mat-button-toggle-group>
+                                                <div
+                                                    *ngIf="editForm.get('estatusCandidatoId').invalid && (editForm.get('estatusCandidatoId').dirty || editForm.get('estatusCandidatoId').touched)">
+                                                    <small class="form-text text-danger"
+                                                        *ngIf="editForm.get('estatusCandidatoId').errors.required"
+                                                        jhiTranslate="entity.validation.required">
+                                                        Este campo es requerido.
+                                                    </small>
+                                                </div>
+                                            </p>
                                         </div>
                                     </div>
+                                    <div class="col-md-8 espaciado-componentes" *ngIf="statusCandidatoInactivo == true">
+                                        <div class="form-group">
+                                            <p>
+                                                <br>
+                                                <mat-form-field class="full-width">
+                                                    <mat-select id="field_perfil" name="perfil"
+                                                        formControlName="estCanInactivoId"
+                                                        placeholder="Razon del candidato inactivo:">
+                                                        <mat-option [value]="null"></mat-option>
+                                                        <mat-option [value]="perfilOption.id"
+                                                            *ngFor="let perfilOption of estcaninactivos; trackBy: trackPerfilById">
+                                                            {{perfilOption.motivo}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-4 espaciado-componentes">
                                         <mat-form-field>
@@ -663,11 +679,14 @@
             <div class="row">
                 <div class="col-sm-2">
                     <mat-form-field class="full-width">
-                        <mat-select matInput placeholder="Skill" name="skill" id="field_skill" formControlName="skill">
-                            <mat-option>Skill</mat-option>
-                            <mat-option [value]="skill.id" *ngFor="let skill of skillsFilter; trackBy: trackSkillById">
-                                {{skill.nombre}}</mat-option>
-                        </mat-select>
+                        <input type="text" placeholder="Skill" aria-label="Number" #skillInput matInput
+                            [formControl]="addSkillValue" [matAutocomplete]="autoSkill">
+                        <mat-autocomplete #autoSkill="matAutocomplete" [displayWith]="displayFn" [returnWith]="returnFn"
+                            (optionSelected)="selectedSkillFun($event)">
+                            <mat-option *ngFor="let skill of skillsFilter; trackBy: trackSkillById" [value]="skill">
+                                {{skill.nombre}}
+                            </mat-option>
+                        </mat-autocomplete>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-2">
@@ -759,11 +778,11 @@
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
                             <input placeholder="Cuentas de interés para el candidato" #fruitInput
-                                [formControl]="cuentaIntCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
-                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                                (matChipInputTokenEnd)="addCuentaInt($event)">
+                                [formControl]="cuentaIntCtrl" [matAutocomplete]="autoCuentaInt"
+                                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addCuentaInt($event)">
                         </mat-chip-list>
-                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-autocomplete #autoCuentaInt="matAutocomplete" (optionSelected)="selected($event)">
                             <mat-option *ngFor="let cuentaOption of cuentasInteres; trackBy: trackCuentaById"
                                 [value]="cuentaOption.id">
                                 {{cuentaOption.clave}}
@@ -784,11 +803,11 @@
                                 <mat-icon matChipRemove *ngIf="removable2">cancel</mat-icon>
                             </mat-chip>
                             <input placeholder="Cuentas rechazadas por candidato" #fruitInput2
-                                [formControl]="fruitCtrl2" [matAutocomplete]="auto2" [matChipInputFor]="chipList2"
-                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
+                                [formControl]="fruitCtrl2" [matAutocomplete]="autoCuentaRech"
+                                [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes2"
                                 [matChipInputAddOnBlur]="addOnBlur2" (matChipInputTokenEnd)="add2($event)">
                         </mat-chip-list>
-                        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected2($event)">
+                        <mat-autocomplete #autoCuentaRech="matAutocomplete" (optionSelected)="selected2($event)">
                             <mat-option *ngFor="let cuentaRechazada of cuentasRechazadas; trackBy: trackCuentaById"
                                 [value]="cuentaRechazada.id">
                                 {{cuentaRechazada.clave}}

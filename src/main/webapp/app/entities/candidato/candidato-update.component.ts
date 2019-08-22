@@ -81,6 +81,7 @@ export class CandidatoUpdateComponent implements OnInit {
   selecteds = new FormControl(0);
   matAutocomplete: MatAutocomplete;
   cuentaIntCtrl = new FormControl();
+  addSkillValue = new FormControl();
   cuentasIntSelected: ICuenta[];
   cuentasInteres: ICuenta[];
   cuentasRechSelected: ICuenta[];
@@ -102,6 +103,7 @@ export class CandidatoUpdateComponent implements OnInit {
   geoCoder: any;
   searchElementRef: ElementRef;
   estatusCandidatoId = 1;
+  selectedSkill: number = null;
 
   isSaving: boolean;
 
@@ -222,6 +224,7 @@ export class CandidatoUpdateComponent implements OnInit {
   separatorKeysCodes2: number[] = [ENTER, COMMA];
   fruitCtrl2 = new FormControl();
   @ViewChild('fruitInput2', { static: false }) fruitInput2: ElementRef<HTMLInputElement>;
+  @ViewChild('skillInput', { static: false }) skillInput: ElementRef<HTMLInputElement>;
   @ViewChild('fruitInput', { static: false }) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto2', { static: false }) matAutocomplete2: MatAutocomplete;
   cuentaUsuario: any;
@@ -264,6 +267,9 @@ export class CandidatoUpdateComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.allItems = ALL_ITEMS;
+    this.addSkillValue.valueChanges.subscribe(newValue => {
+      this.skillsFilter = this.filterSkills(newValue);
+    });
     this.cuentaIntCtrl.valueChanges.subscribe(newValue => {
       this.cuentasInteres = this.filterCuentasInteres(newValue);
     });
@@ -903,7 +909,7 @@ export class CandidatoUpdateComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const cuentasIntSelected: ICuenta[] = this.cuentas.filter(c => c.id === event.option.value);
-    const cuentaIntSelected: ISkill = cuentasIntSelected.shift();
+    const cuentaIntSelected: ICuenta = cuentasIntSelected.shift();
     this.cuentasIntSelected.push(cuentaIntSelected);
 
     this.fruitInput.nativeElement.value = '';
@@ -917,6 +923,11 @@ export class CandidatoUpdateComponent implements OnInit {
       this.cuentasIntSelected.splice(index, 1);
     }
     this.updateCuentasInteres();
+  }
+
+  filterSkills(value: string): ISkill[] {
+    const temp: ISkill[] = this.skillsFilter.slice(0);
+    return temp.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
 
   filterCuentasInteres(value: string): ICuenta[] {
@@ -937,9 +948,18 @@ export class CandidatoUpdateComponent implements OnInit {
     }
     this.updateCuentasRechazadas();
   }
+  displayFn(skill: ISkill): string {
+    return skill ? skill.nombre : '';
+  }
+  returnFn(skill: ISkill): number | undefined {
+    return skill ? skill.id : undefined;
+  }
+  selectedSkillFun(event: MatAutocompleteSelectedEvent): void {
+    this.selectedSkill = event.option.value.id;
+  }
   selected2(event: MatAutocompleteSelectedEvent): void {
     const cuentasRechSelected: ICuenta[] = this.cuentas.filter(c => c.id === event.option.value);
-    const cuentaRechSelected: ISkill = cuentasRechSelected.shift();
+    const cuentaRechSelected: ICuenta = cuentasRechSelected.shift();
     this.cuentasRechSelected.push(cuentaRechSelected);
 
     this.fruitInput2.nativeElement.value = '';
@@ -1156,21 +1176,31 @@ export class CandidatoUpdateComponent implements OnInit {
 
   addSkillCandidato() {
     this.errorMessageSkill = null;
+    console.log('------------------------');
+    console.log(this.selectedSkill);
     if (
-      this.editForm.get(['skill']).value != null &&
-      this.editForm.get(['skillDominio']).value != null &&
-      this.editForm.get(['skillCalificacion']).value != null
+      this.selectedSkill != null
     ) {
       const newSkillCandidato: ISkillCandidato = new SkillCandidato();
-      newSkillCandidato.idSkillId = this.editForm.get(['skill']).value;
+      newSkillCandidato.idSkillId = this.selectedSkill;
       const skillSelected = this.skills.find(item => item.id === newSkillCandidato.idSkillId);
       this.skillsSelected.push(skillSelected);
       newSkillCandidato.idSkillNombre = skillSelected.nombre;
-      newSkillCandidato.nivelSkillId = this.editForm.get(['skillDominio']).value;
-      const letdominioSkillSelected = this.dominioSkill.find(item => item.id === newSkillCandidato.nivelSkillId);
-      newSkillCandidato.nivelSkillDominio = letdominioSkillSelected.dominio;
-      newSkillCandidato.calificacionSkill = this.editForm.get(['skillCalificacion']).value;
+
+      if (this.editForm.get(['skillDominio']).value != null) {
+        newSkillCandidato.nivelSkillId = this.editForm.get(['skillDominio']).value;
+        const letdominioSkillSelected = this.dominioSkill.find(item => item.id === newSkillCandidato.nivelSkillId);
+        newSkillCandidato.nivelSkillDominio = letdominioSkillSelected.dominio;
+      }
+
+      if (this.editForm.get(['skillCalificacion']).value != null) {
+        newSkillCandidato.calificacionSkill = this.editForm.get(['skillCalificacion']).value;
+      }
+
       this.skillCandidatoes.push(newSkillCandidato);
+
+      this.selectedSkill = null;
+      this.skillInput.nativeElement.value = '';
       this.editForm.get(['skill']).setValue(null);
       this.editForm.get(['skillDominio']).setValue(null);
       this.editForm.get(['skillCalificacion']).setValue(null);
