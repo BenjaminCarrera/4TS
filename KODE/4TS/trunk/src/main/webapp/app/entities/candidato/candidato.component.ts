@@ -25,6 +25,7 @@ import { IPerfil } from '../../shared/model/perfil.model';
 import { PerfilService } from '../perfil/perfil.service';
 import { INivelPerfil } from '../../shared/model/nivel-perfil.model';
 import { NivelPerfilService } from '../nivel-perfil/nivel-perfil.service';
+import { moneyFormat } from 'app/shared/util/money-format';
 
 @Component({
   selector: 'jhi-candidato',
@@ -48,15 +49,16 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   previousPage: any;
   reverse: any;
   criteriaTemp: any;
-  criteria: any [];
-  estatusCandidatos: IEstatusCandidato [];
-  estatusLaborales: IEstatusLaboral [];
-  esquemaContratacionKodes: IEsquemaContratacionKode [];
-  usuariosAsignado: IUser [];
-  perfiles: IPerfil [];
-  nivelPerfiles: INivelPerfil [];
+  criteria: any[];
+  estatusCandidatos: IEstatusCandidato[];
+  estatusLaborales: IEstatusLaboral[];
+  esquemaContratacionKodes: IEsquemaContratacionKode[];
+  usuariosAsignado: IUser[];
+  perfiles: IPerfil[];
+  nivelPerfiles: INivelPerfil[];
+  formatNumber: any = moneyFormat;
 
-  editForm = this.fb.group ({
+  editForm = this.fb.group({
     estatusCandId: [],
     nombre: [],
     apellidoPaterno: [],
@@ -154,7 +156,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
 
-      this.estatusLaboralService
+    this.estatusLaboralService
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
@@ -165,7 +167,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
 
-      this.esquemaContratacionKodeService
+    this.esquemaContratacionKodeService
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
@@ -176,7 +178,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
 
-      this.userService
+    this.userService
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
@@ -187,7 +189,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
 
-      this.perfilService
+    this.perfilService
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
@@ -198,7 +200,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
         (res: HttpErrorResponse) => this.onError(res.message)
       );
 
-      this.nivelPerfilService
+    this.nivelPerfilService
       .query({
         page: this.page - 1,
         size: this.itemsPerPage,
@@ -242,7 +244,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.criteria = [];
     this.criteriaTemp = {};
-  console.log(this.editForm.get(['estatusCandId']).value);
+    console.log(this.editForm.get(['estatusCandId']).value);
     if (this.editForm.get(['estatusCandId']).value !== null) {
       this.criteriaTemp = { key: 'estatusCandidatoId.equals', value: this.editForm.get(['estatusCandId']).value };
       console.log(this.criteriaTemp);
@@ -269,7 +271,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
       this.criteria.push(this.criteriaTemp);
     }
     if (this.editForm.get(['nombre']).value !== null) {
-      this.criteriaTemp = {key: 'nombre.equals', value: this.editForm.get(['nombre']).value };
+      this.criteriaTemp = { key: 'nombre.equals', value: this.editForm.get(['nombre']).value };
       console.log(this.criteriaTemp);
       this.criteria.push(this.criteriaTemp);
     }
@@ -336,7 +338,5 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.nivelPerfiles = data;
   }
-  formatNumber(num) {
-    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-  }
+
 }
