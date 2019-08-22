@@ -401,7 +401,8 @@
               <label class="form-label">Salario neto mensual:</label>
             </div>
             <div class="col-sm-7">
-              <label class="form-label resultado" id="">{{ formatNumber(candidato.salarioNeto) }}</label>
+              <label class="form-label resultado" id="" *ngIf="candidato.salarioNeto">{{ formatNumber(candidato.salarioNeto) }}</label>
+              <label class="form-label resultado" id="" *ngIf="!candidato.salarioNeto">{{ candidato.salarioNeto }}</label>
             </div>
           </div>
           <div class="row">
@@ -409,7 +410,8 @@
               <label class="form-label">Costo total mensual:</label>
             </div>
             <div class="col-sm-7">
-              <label class="form-label resultado" id="">{{ formatNumber(candidato.costoTotal) }}</label>
+              <label class="form-label resultado" id="" *ngIf="candidato.costoTotal">{{ formatNumber(candidato.costoTotal) }}</label>
+              <label class="form-label resultado" id="" *ngIf="!candidato.costoTotal">{{candidato.costoTotal }}</label>
             </div>
           </div>
           <div class="row">
@@ -520,7 +522,8 @@
               <label class="form-label">Salario neto mensual:</label>
             </div>
             <div class="col-sm-8">
-              <label class="form-label resultado" id=""> {{ candidato.antecedenteSalarioNeto }}</label>
+              <label class="form-label resultado" id="" *ngIf="candidato.antecedenteSalarioNeto"> {{ formatNumber(candidato.antecedenteSalarioNeto) }}</label>
+              <label class="form-label resultado" id="" *ngIf="!candidato.antecedenteSalarioNeto"> {{ candidato.antecedenteSalarioNeto }}</label>
             </div>
           </div>
           <br />
