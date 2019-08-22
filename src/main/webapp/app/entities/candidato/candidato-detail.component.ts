@@ -359,9 +359,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       );
     console.log(this.estatusTareas);
     this.imagen = this.candidato.foto;
-     this.candidato.salarioNeto = this.formatNumber(this.candidato.salarioNeto) ;
-     this.candidato.costoTotal = this.formatNumber(this.candidato.costoTotal) ;
-     this.candidato.antecedenteSalarioNeto = this.formatNumber(this.candidato.antecedenteSalarioNeto) ;
   }
   previousState() {
     window.history.back();
