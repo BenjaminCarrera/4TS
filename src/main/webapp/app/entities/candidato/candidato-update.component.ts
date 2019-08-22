@@ -626,7 +626,6 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = true;
       }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === null) {
-        console.log('------------------------9');
         console.log(this.statusCandidatoInactivo);
         this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
         this.verificarEstatusCandidatoInactivo = false;
