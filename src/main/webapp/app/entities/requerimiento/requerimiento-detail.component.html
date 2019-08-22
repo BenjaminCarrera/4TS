@@ -555,10 +555,10 @@
                 <thead>
                     <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora"
                         [callback]="transitionBitacora.bind(this)">
-                        <td jhiSortBy="fecha"> <span> Fecha </span>
+                        <td jhiSortBy="fecha" style="width: 250px;"> <span> Fecha </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </td>
-                        <td jhiSortBy="usuarioFirstName"> <span> Creador </span>
+                        <td jhiSortBy="usuarioFirstName" style="width: 250px;"> <span> Creador </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </td>
                         <td jhiSortBy="comentario"> <span> Comentario </span>
