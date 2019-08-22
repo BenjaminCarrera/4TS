@@ -5,12 +5,13 @@
                 <h3>Detalle de requerimiento - {{ requerimiento.id }}</h3>
             </div>
             <div class="col" style="display: inline-block; padding-left: 0px;padding-top: 13px;padding-left:25px;">
-                <button type="button" id="cancel-save" class="btn gris"  mat-raised-button  (click)="previousState()">
-          <span style="color:black">Cancelar</span>
-        </button>
-                <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button color="warn">
-          <span class="d-none d-md-inline">Editar</span>
-        </button>
+                <button type="button" id="cancel-save" class="btn gris" mat-raised-button (click)="previousState()">
+                    <span style="color:black">Cancelar</span>
+                </button>
+                <button type="submit" [routerLink]="['/requerimiento', requerimiento.id, 'edit']" mat-raised-button
+                    color="warn">
+                    <span class="d-none d-md-inline">Editar</span>
+                </button>
             </div>
         </div>
     </div>
@@ -20,7 +21,8 @@
         <br />
         <div class="row">
             <div class="col-sm-4">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-4">
@@ -28,11 +30,13 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de alta</label><br />
-                                <label class="form-label resultado" id="">{{ requerimiento.fechaAlda | date: 'dd-MMM-yyyy' }}</label>
+                                <label class="form-label resultado"
+                                    id="">{{ requerimiento.fechaAlda | date: 'dd-MMM-yyyy' }}</label>
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de resolucion</label><br />
-                                <label class="form-label resultado" id="">{{ requerimiento.fechaResolucion | date: 'dd-MMM-yyyy' }}</label>
+                                <label class="form-label resultado"
+                                    id="">{{ requerimiento.fechaResolucion | date: 'dd-MMM-yyyy' }}</label>
                             </div>
                         </div>
 
@@ -41,7 +45,8 @@
                                 <label class="form-label">Ejecutivo asignado:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.usuarioCreadorFirstName }}</label>
+                                <label class="form-label resultado"
+                                    id="">{{ requerimiento.usuarioCreadorFirstName }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +54,8 @@
                                 <label class="form-label">Reclutador asignado:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.usuarioAsignadoFirstName }}</label>
+                                <label class="form-label resultado"
+                                    id="">{{ requerimiento.usuarioAsignadoFirstName }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -57,7 +63,8 @@
                                 <label class="form-label">Estatus del requerimiento:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.estatusRequerimientoEstatus }} </label>
+                                <label class="form-label resultado"
+                                    id="">{{ requerimiento.estatusRequerimientoEstatus }} </label>
                             </div>
                         </div>
                         <div class="row">
@@ -65,7 +72,8 @@
                                 <label class="form-label">Motivo de cierre del requerimiento:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.estatusReqCanMotivo }} </label>
+                                <label class="form-label resultado" id="">{{ requerimiento.estatusReqCanMotivo }}
+                                </label>
                             </div>
                         </div>
                         <div class="row">
@@ -73,7 +81,8 @@
                                 <label class="form-label">Prioridad:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.prioridadPrioridad }} </label>
+                                <label class="form-label resultado" id="">{{ requerimiento.prioridadPrioridad }}
+                                </label>
                             </div>
                         </div>
                         <div class="row">
@@ -81,7 +90,8 @@
                                 <label class="form-label">Tipo de solicitud:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.tipoSolicitudSolicitud }} </label>
+                                <label class="form-label resultado" id="">{{ requerimiento.tipoSolicitudSolicitud }}
+                                </label>
                             </div>
                         </div>
                         <div class="row">
@@ -137,7 +147,8 @@
                                 <label class="form-label">Tarifa / Sueldo neto:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label *ngIf="requerimiento.tarifaSueldoNet" class="form-label resultado" id="">{{ formatNumber(requerimiento.tarifaSueldoNet) }}</label>
+                                <label *ngIf="requerimiento.tarifaSueldoNet" class="form-label resultado"
+                                    id="">{{ formatNumber(requerimiento.tarifaSueldoNet) }}</label>
                             </div>
                         </div>
                         <div class="row">
@@ -153,7 +164,8 @@
                                 <label class="form-label">Esquema de contratación:</label>
                             </div>
                             <div class="col-sm-9">
-                                <label class="form-label resultado" id="">{{ requerimiento.esquemaContratacionEsquema }} </label>
+                                <label class="form-label resultado" id="">{{ requerimiento.esquemaContratacionEsquema }}
+                                </label>
                             </div>
                         </div>
                         <div class="row">
@@ -168,7 +180,8 @@
                 </div>
             </div>
             <div class="col">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <h4>Datos del perfil</h4>
                     <br />
                     <div class="row">
@@ -256,7 +269,8 @@
             </div>
 
             <div class="col">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <h4>Skills solictados</h4>
                     <br />
                     <label class="form-label">Skills esenciales:</label>
@@ -294,7 +308,8 @@
         <br />
         <div class="row">
             <div class="col">
-                <div class="panel panel-default" style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
+                <div class="panel panel-default"
+                    style=" border-style: solid; border-width: 2px 2px 2px 2px;padding: 13px; border-color: #F2F2F2;border-radius: 20px;">
                     <div class="row">
                         <div class="col-sm-12">
                             <h4>Estadísticas del requerimiento</h4>
@@ -307,8 +322,8 @@
                         </div>
                         <div class="col-sm-8">
                             <label class="form-label resultado" id="">
-                {{ requerimiento.vacantesSolicitadas }}
-              </label>
+                                {{ requerimiento.vacantesSolicitadas }}
+                            </label>
                         </div>
                     </div>
 
@@ -318,8 +333,8 @@
                         </div>
                         <div class="col-sm-8">
                             <label class="form-label resultado" id="">
-                5
-              </label>
+                                5
+                            </label>
                         </div>
                     </div>
 
@@ -426,8 +441,8 @@
                     </div>
                     <div class="col-sm-6">
                         <button type="submit" [routerLink]="['/tarea/new']" mat-raised-button color="warn">
-              <span class="d-none d-md-inline">Añadir tarea </span>
-            </button>
+                            <span class="d-none d-md-inline">Añadir tarea </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -435,13 +450,15 @@
         <div class="row">
             <div class="col-sm-12 esp-arriba">
                 <label class="label-material">
-          Filtrar por:
-        </label>
+                    Filtrar por:
+                </label>
             </div>
             <div class="col-sm-12">
                 <p>
                     <mat-button-toggle-group name="fontStyle" aria-label="Estilo de fuente">
-                        <mat-button-toggle *ngFor="let estatusTarea of estatusTareas; trackBy: trackId" value="estatusTarea.estatus" (click)="filtrarTareas(estatusTarea.estatus)">{{ estatusTarea.estatus }}
+                        <mat-button-toggle *ngFor="let estatusTarea of estatusTareas; trackBy: trackId"
+                            value="estatusTarea.estatus" (click)="filtrarTareas(estatusTarea.estatus)">
+                            {{ estatusTarea.estatus }}
                         </mat-button-toggle>
                         <mat-button-toggle value="Todas" (click)="filtrarTareas('Todas')">Todas</mat-button-toggle>
                     </mat-button-toggle-group>
@@ -450,7 +467,7 @@
         </div>
         <br />
         <div class="alert alert-warning" *ngIf="tareas?.length === 0">
-                <span>Candidato sin tareas</span>
+            <span>Candidato sin tareas</span>
         </div>
         <div class="table-responsive" *ngIf="tareas?.length > 0">
             <table class="table table-striped">
@@ -459,7 +476,10 @@
                         <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
-                        <th jhiSortBy="titulo"><span>Tarea</span>
+                        <th jhiSortBy="tipoTareaTipo"><span>Tipo</span>
+                            <fa-icon [icon]="'sort'"></fa-icon>
+                        </th>
+                        <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
                         <th jhiSortBy="usuarioCreadorFirstName"><span>Creador</span>
@@ -468,13 +488,9 @@
                         <th jhiSortBy="usuarioEjecutorFirstName"><span>Destinatario</span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
-                        <th jhiSortBy="estatusTareaEstatus"><span>Estatus</span>
+                        <th jhiSortBy="titulo"><span>Tarea</span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </th>
-                        <th jhiSortBy="tipoTareaTipo"><span>Tipo</span>
-                            <fa-icon [icon]="'sort'"></fa-icon>
-                        </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -482,12 +498,10 @@
                         <td>
                             <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
                         </td>
-                        <td>{{ tarea.titulo }}</td>
                         <td>
-                            {{ tarea.usuarioCreadorFirstName }}
-                        </td>
-                        <td>
-                            {{ tarea.usuarioEjecutorFirstName }}
+                            <div *ngIf="tarea.tipoTareaId">
+                                {{ tarea.tipoTareaTipo }}
+                            </div>
                         </td>
                         <td>
                             <div *ngIf="tarea.estatusTareaId">
@@ -495,20 +509,24 @@
                             </div>
                         </td>
                         <td>
-                            <div *ngIf="tarea.tipoTareaId">
-                                {{ tarea.tipoTareaTipo }}
-                            </div>
+                            {{ tarea.usuarioCreadorFirstName }}
                         </td>
+                        <td>
+                            {{ tarea.usuarioEjecutorFirstName }}
+                        </td>
+                        <td>{{ tarea.titulo }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div [hidden]="tareas?.length === 0">
             <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage">
+                </jhi-item-count>
             </div>
             <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                    [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
             </div>
         </div>
     </mat-tab>
@@ -535,7 +553,8 @@
         <div class="table-responsive" *ngIf="bitacoras?.length > 0">
             <table class="table table-striped">
                 <thead>
-                    <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
+                    <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora"
+                        [callback]="transitionBitacora.bind(this)">
                         <td jhiSortBy="fecha"> <span> Fecha </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
                         </td>
