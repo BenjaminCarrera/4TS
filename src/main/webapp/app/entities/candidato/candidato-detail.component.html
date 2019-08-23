@@ -680,12 +680,16 @@
       <table class="table table-striped">
         <thead>
           <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id">
+            <th jhiSortBy="id" style="width: 100px !important;">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="titulo">
-              <span>Tarea</span>
+            <th jhiSortBy="tipoTareaTipo" style="width: 200px !important;">
+              <span>Tipo</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th jhiSortBy="estatusTareaEstatus" style="width: 200px !important;">
+              <span>Estatus</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
             <th jhiSortBy="usuarioCreadorFirstName">
@@ -696,28 +700,22 @@
               <span>Destinatario</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="estatusTareaEstatus">
-              <span>Estatus</span>
-              <fa-icon [icon]="'sort'"></fa-icon>
-            </th>
-            <th jhiSortBy="tipoTareaTipo">
-              <span>Tipo</span>
+            <th jhiSortBy="titulo" style="width: 700px !important;">
+              <span>Tarea</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style="width: 100%!important;">
           <tr *ngFor="let tarea of tareas; trackBy: trackId">
             <td>
               <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
             </td>
-            <td>{{ tarea.titulo }}</td>
             <td>
-              {{ tarea.usuarioCreadorFirstName }}
-            </td>
-            <td>
-              {{ tarea.usuarioEjecutorFirstName }}
+              <div *ngIf="tarea.tipoTareaId">
+                {{ tarea.tipoTareaTipo }}
+              </div>
             </td>
             <td>
               <div *ngIf="tarea.estatusTareaId">
@@ -725,10 +723,12 @@
               </div>
             </td>
             <td>
-              <div *ngIf="tarea.tipoTareaId">
-                {{ tarea.tipoTareaTipo }}
-              </div>
+              {{ tarea.usuarioCreadorFirstName }}
             </td>
+            <td>
+              {{ tarea.usuarioEjecutorFirstName }}
+            </td>
+            <td style="width: 1000px !important;">{{ tarea.titulo }}</td>
           </tr>
         </tbody>
       </table>
@@ -776,11 +776,11 @@
       <table class="table table-striped">
         <thead>
           <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora" [callback]="transitionBitacora.bind(this)">
-            <th jhiSortBy="fecha">
+            <th jhiSortBy="fecha" style="width: 110px !important;">
               <span> Fecha </span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="usuarioFirstName">
+            <th jhiSortBy="usuarioFirstName" style="width: 300px !important;">
               <span> Creador </span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>

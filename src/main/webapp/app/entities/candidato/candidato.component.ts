@@ -56,7 +56,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   usuariosAsignado: IUser[];
   perfiles: IPerfil[];
   nivelPerfiles: INivelPerfil[];
-  formatNumber: any = moneyFormat;
+  formatNumber: (arg0: string) => String = moneyFormat;
 
   editForm = this.fb.group({
     estatusCandId: [],
