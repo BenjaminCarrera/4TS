@@ -825,19 +825,39 @@
     <br />
     <div class="row">
       <div class="col-sm-8">
+        <h4>Idiomas</h4>
+      </div>
+    </div>
+    <br>
+    <div class="table-responsive tabla-chica2">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              <span>Idioma</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+            <th>
+              <span>Porcentaje</span>
+              <fa-icon [icon]="'sort'"></fa-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ingles</td>
+            <td>{{ candidato.porcentajeIngles }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-8">
         <h4>Conocimientos técnicos</h4>
       </div>
     </div>
     <br />
-    <div class="row">
-      <div class="col-sm-1">
-        <label class="form-label">Inglés:</label>
-      </div>
-      <div class="col-sm-4">
-        <label class="form-label resultado" id="">{{ candidato.porcentajeIngles }}%</label>
-      </div>
-    </div>
-    <br /><br />
     <div class="alert alert-warning" *ngIf="skillsCandidato?.length === 0">
       <span>Candidato sin skills</span>
     </div>
@@ -876,7 +896,7 @@
                 <ngb-pagination [collectionSize]="totalItemsSkillCand" [(page)]="pageSkillCand" [pageSize]="itemsPerPageSkillCand" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPageSkillCand(pageSkillCand)"></ngb-pagination>
             </div>
         </div> -->
-
+    <br>
     <div class="row">
       <div class="col-sm-12">
         <h4>Cuentas</h4>

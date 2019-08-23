@@ -126,7 +126,7 @@
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusCandidatoEstatus">
-                        <span>Estatus Candidato</span>
+                        <span>Estatus</span>
                         <br>
 
                         <fa-icon [icon]="'sort'"></fa-icon>
@@ -137,12 +137,12 @@
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="apellidoPaterno">
-                        <span>Apellido Paterno</span>
+                        <span>Apellido Pat.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="apellidoMaterno">
-                        <span>Apellido Materno</span>
+                        <span>Apellido Mat.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
@@ -172,7 +172,7 @@
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="esquemaContratacionKodeEsquema">
-                        <span>Esquema Contratación</span>
+                        <span>Esquema Cont.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
@@ -187,22 +187,22 @@
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="estatusLaboralEstatus">
-                        <span>Estatus Laboral</span>
+                        <span>Estatus Lab.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="disponibilidadEntrevistaPeriodoTiempoPeriodo">
-                        <span>Disponibilidad Entrevista</span>
+                        <span>Disp. Ent.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="disponibilidadAsignacionPeriodoTiempoPeriodo">
-                        <span> Disponibilidad Asignación</span>
+                        <span> Disp. Asig.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
                     <th jhiSortBy="fechaUltimoSeguimiento">
-                        <span> Último Seguimiento</span>
+                        <span> Último Seg.</span>
                         <br>
                         <fa-icon [icon]="'sort'"></fa-icon>
                     </th>
@@ -232,8 +232,14 @@
                         <div *ngIf="!candidato.costoTotal"> {{candidato.costoTotal}}</div>
                     </td>
                     <td>{{candidato.estatusLaboralEstatus}}</td>
-                    <td>{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</td>
-                    <td>{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</td>
+                    <td>
+                        <div *ngIf="candidato.disponibilidadEntrevistaPeriodo">{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</div>
+                        <div *ngIf="!candidato.disponibilidadEntrevistaPeriodo">{{candidato.disponibilidadEntrevistaFecha  | date: 'dd-MMM-yyyy' }} </div>
+                    </td>
+                    <td>
+                        <div *ngIf="candidato.disponibilidadAsignacionPeriodo">{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</div>
+                        <div *ngIf="!candidato.disponibilidadAsignacionPeriodo">{{candidato.disponibilidadAsignacionFecha  | date: 'dd-MMM-yyyy' }} </div>
+                    </td>
                     <td>{{candidato.fechaUltimoSeguimiento | date:'dd-MMM-yyyy'}}</td>
                 </tr>
             </tbody>
