@@ -342,7 +342,7 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.nivelPerfiles = data;
   }
   buscarIniciales(id) {
-    let res = 0;
+    let res = '';
     this.usuariosAsignado.forEach(element => {
       if (element.id === id) {
         res = element.iniciales;
