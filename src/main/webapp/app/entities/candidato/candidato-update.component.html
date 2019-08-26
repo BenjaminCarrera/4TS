@@ -227,7 +227,7 @@
                                         <mat-form-field>
                                             <input matInput [matDatepicker]="picker2" (dateChange)="calculateAge()"
                                                 name="fechaNacimiento" id="field_fechaNacimiento"
-                                                placeholder="Fecha de nacimiento" formControlName="fechaNacimiento">
+                                                placeholder="Fecha de nacimiento" formControlName="fechaNacimiento" [max]="fechaMaxima">
                                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                             <mat-datepicker #picker2></mat-datepicker>
                                         </mat-form-field>

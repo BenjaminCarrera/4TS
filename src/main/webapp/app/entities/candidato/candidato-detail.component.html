@@ -459,7 +459,7 @@
               <label class="form-label">Disponibilidad de asignación:</label>
             </div>
             <div class="col-sm-7">
-              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha  | date: 'dd-MMM-yyyy'  }}</label>
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha  | date: 'dd-MMMM-yyyy'  }}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
@@ -664,15 +664,15 @@
       <table class="table table-striped">
         <thead>
           <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id" style="width: 100px !important;">
+            <th jhiSortBy="id">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="tipoTareaTipo" style="width: 200px !important;">
+            <th jhiSortBy="tipoTareaTipo">
               <span>Tipo</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="estatusTareaEstatus" style="width: 200px !important;">
+            <th jhiSortBy="estatusTareaEstatus">
               <span>Estatus</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
@@ -684,19 +684,19 @@
               <span>Destinatario</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
-            <th jhiSortBy="titulo" style="width: 700px !important;">
+            <th jhiSortBy="titulo">
               <span>Tarea</span>
               <fa-icon [icon]="'sort'"></fa-icon>
             </th>
             <th></th>
           </tr>
         </thead>
-        <tbody style="width: 100%!important;">
+        <tbody>
           <tr *ngFor="let tarea of tareas; trackBy: trackId">
             <td>
               <a [routerLink]="['/tarea', tarea.id, 'view']">{{ tarea.id }}</a>
             </td>
-            <td>
+            <td style="width: 300px !important;">
               <div *ngIf="tarea.tipoTareaId">
                 {{ tarea.tipoTareaTipo }}
               </div>
@@ -712,7 +712,7 @@
             <td>
               {{ tarea.usuarioEjecutorFirstName }}
             </td>
-            <td style="width: 1000px !important;">{{ tarea.titulo }}</td>
+            <td style="width: 300px !important;">{{ tarea.titulo }}</td>
           </tr>
         </tbody>
       </table>
