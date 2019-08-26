@@ -44,6 +44,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   // Imagen
   selectedFile: File;
   imagen: string | ArrayBuffer;
+  fechaconv1: string;
   // Variables Bitacora
   DATA_BITACORA: Tarea[] = [
     { Fecha: '26/06/2019', Creador: 'Sistema', Comentario: 'MABE eliminó "C#" y "LinQ" de la lista de "Skills requeridos"' },

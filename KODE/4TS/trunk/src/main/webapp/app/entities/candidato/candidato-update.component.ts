@@ -72,6 +72,7 @@ import { AccountService, JhiLanguageHelper } from 'app/core';
   styleUrls: ['agreg-cand.component.scss']
 })
 export class CandidatoUpdateComponent implements OnInit {
+  fechaMaxima = new Date();
   // Variable para la fecha de Alta
   currentDate: moment.Moment;
   // Ocultar
@@ -668,6 +669,7 @@ export class CandidatoUpdateComponent implements OnInit {
       let estatusCan: boolean;
       let sex: boolean;
       let estatusLab: boolean;
+      let fecha: boolean;
       if (this.estatusCandidatoId === undefined) {
         this.statusCandidato = false;
         estatusCan = false;
@@ -686,6 +688,20 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         estatusLab = true;
       }
+      console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
+      console.log('------------------------91');
+      if ( this.editForm.get(['fechaNacimiento']).value === null) {
+        fecha = true;
+      } else {
+        if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
+          console.log('La fecha introducida es mayor a la permitida');
+          this.editForm.get(['fechaNacimiento']).setErrors({'incorrect': true});
+          fecha = false;
+        } else {
+          console.log('La fecha introducida es permitida');
+          fecha = true;
+        }
+      }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === undefined) {
         console.log('------------------------9');
         console.log(this.statusCandidatoInactivo);
@@ -694,12 +710,11 @@ export class CandidatoUpdateComponent implements OnInit {
         this.selecteds.setValue(0);
         candidatoInactivo = false;
       } else {
-        console.log('------------------------91');
         console.log(this.statusCandidatoInactivo);
         this.verificarEstatusCandidatoInactivo = true;
         candidatoInactivo = true;
       }
-      if (estatusCan === true && sex === true && estatusLab === true && candidatoInactivo === true) {
+      if (estatusCan === true && sex === true && estatusLab === true && candidatoInactivo === true && fecha === true) {
         if (candidato.id) {
           for (const clave of this.skillsCandidato) {
             if (clave.idCandidatoId === this.editForm.get(['id']).value) {
