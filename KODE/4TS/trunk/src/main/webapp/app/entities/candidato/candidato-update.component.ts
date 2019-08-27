@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
-import { JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService, JhiAlert } from 'ng-jhipster';
 import { ICandidato, Candidato } from 'app/shared/model/candidato.model';
 import { CandidatoService } from './candidato.service';
 import { ITipoPeriodo } from 'app/shared/model/tipo-periodo.model';
@@ -653,7 +653,6 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         estatusLab = true;
       }
-      console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
       if (this.editForm.get(['fechaNacimiento']).value === null) {
         fecha = true;
       } else {
@@ -712,29 +711,22 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         estatusLab = true;
       }
-      console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
       if (this.editForm.get(['fechaNacimiento']).value === null) {
         fecha = true;
       } else {
-        console.log('hay fecha');
         if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
-          console.log('La fecha introducida es mayor a la permitida');
           this.editForm.get(['fechaNacimiento']).setErrors({ 'incorrect': true });
           fecha = false;
         } else {
-          console.log('La fecha introducida es permitida');
           fecha = true;
         }
       }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === undefined) {
-        console.log('------------------------9');
-        console.log(this.statusCandidatoInactivo);
         this.editForm.get(['estCanInactivoId']).setErrors({ 'incorrect': true });
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
         candidatoInactivo = false;
       } else {
-        console.log(this.statusCandidatoInactivo);
         this.verificarEstatusCandidatoInactivo = true;
         candidatoInactivo = true;
       }
@@ -832,7 +824,10 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccessFinal(r: HttpResponse<any>) {
+    const newAlert: JhiAlert = this.jhiAlertService.get()[0];
     this.isSaving = false;
+    this.jhiAlertService.clear();
+    this.jhiAlertService.addAlert(newAlert, []);
     this.previousState();
   }
 
@@ -1222,8 +1217,6 @@ export class CandidatoUpdateComponent implements OnInit {
 
   addSkillCandidato() {
     this.errorMessageSkill = null;
-    console.log('------------------------');
-    console.log(this.selectedSkill);
     if (
       this.selectedSkill != null
     ) {
