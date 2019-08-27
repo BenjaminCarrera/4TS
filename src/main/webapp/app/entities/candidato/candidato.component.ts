@@ -343,11 +343,13 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   }
   buscarIniciales(id) {
     let res = '';
-    this.usuariosAsignado.forEach(element => {
-      if (element.id === id) {
-        res = element.iniciales;
-      }
-    });
+    if (this.usuariosAsignado) {
+      this.usuariosAsignado.forEach(element => {
+        if (element.id === id) {
+          res = element.iniciales;
+        }
+      });
+    }
     return res;
   }
 }
