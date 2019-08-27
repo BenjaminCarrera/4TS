@@ -65,6 +65,7 @@ import { ISkillCandidato, SkillCandidato } from 'app/shared/model/skill-candidat
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { SkillCandidatoService } from '../skill-candidato';
 import { AccountService, JhiLanguageHelper } from 'app/core';
+import { CANDIDATOS_USER_ROLES } from 'app/shared/constants/candidato.constants';
 
 @Component({
   selector: 'jhi-agreg-cand',
@@ -336,7 +337,8 @@ export class CandidatoUpdateComponent implements OnInit {
     });
     this.skillService
       .query({
-        size: ALL_ITEMS
+        size: ALL_ITEMS,
+        sort: ['nombre']
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
@@ -354,7 +356,8 @@ export class CandidatoUpdateComponent implements OnInit {
       .subscribe((res: ISkillCandidato[]) => this.setSkillsCandidato(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.dominioSkillService
       .query({
-        size: ALL_ITEMS
+        size: ALL_ITEMS,
+        sort: ['dominio']
       })
       .pipe(
         filter((mayBeOk: HttpResponse<IDominioSkill[]>) => mayBeOk.ok),
@@ -369,7 +372,11 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.userService
-      .query()
+      .query({
+        size: ALL_ITEMS,
+        sort: ['iniciales'],
+        'authority.in': CANDIDATOS_USER_ROLES,
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
         map((response: HttpResponse<IUser[]>) => response.body)
@@ -383,14 +390,18 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: IDocumento[]) => (this.documentos = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.cuentaService
-      .query()
+      .query({
+        sort: ['clave']
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<ICuenta[]>) => mayBeOk.ok),
         map((response: HttpResponse<ICuenta[]>) => response.body)
       )
       .subscribe((res: ICuenta[]) => this.setCuentas(res), (res: HttpErrorResponse) => this.onError(res.message));
     this.fuenteReclutamientoService
-      .query()
+      .query({
+        sort: ['fuente']
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IFuenteReclutamiento[]>) => mayBeOk.ok),
         map((response: HttpResponse<IFuenteReclutamiento[]>) => response.body)
@@ -404,21 +415,27 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: IEstatusCandidato[]) => (this.estatuscandidatoes = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.perfilService
-      .query()
+      .query({
+        sort: ['perfil']
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IPerfil[]>) => mayBeOk.ok),
         map((response: HttpResponse<IPerfil[]>) => response.body)
       )
       .subscribe((res: IPerfil[]) => (this.perfils = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.nivelPerfilService
-      .query()
+      .query({
+        sort: ['nivel']
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<INivelPerfil[]>) => mayBeOk.ok),
         map((response: HttpResponse<INivelPerfil[]>) => response.body)
       )
       .subscribe((res: INivelPerfil[]) => (this.nivelperfils = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.institucionAcademicaService
-      .query()
+      .query({
+        sort: ['institucion']
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IInstitucionAcademica[]>) => mayBeOk.ok),
         map((response: HttpResponse<IInstitucionAcademica[]>) => response.body)
@@ -637,18 +654,18 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = true;
       }
       console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
-      if ( this.editForm.get(['fechaNacimiento']).value === null) {
+      if (this.editForm.get(['fechaNacimiento']).value === null) {
         fecha = true;
       } else {
         if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
-          this.editForm.get(['fechaNacimiento']).setErrors({'incorrect': true});
+          this.editForm.get(['fechaNacimiento']).setErrors({ 'incorrect': true });
           fecha = false;
         } else {
           fecha = true;
         }
       }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === null) {
-        this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
+        this.editForm.get(['estCanInactivoId']).setErrors({ 'incorrect': true });
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
         candidatoInactivo = false;
@@ -696,13 +713,13 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = true;
       }
       console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
-      if ( this.editForm.get(['fechaNacimiento']).value === null) {
+      if (this.editForm.get(['fechaNacimiento']).value === null) {
         fecha = true;
       } else {
         console.log('hay fecha');
         if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
           console.log('La fecha introducida es mayor a la permitida');
-          this.editForm.get(['fechaNacimiento']).setErrors({'incorrect': true});
+          this.editForm.get(['fechaNacimiento']).setErrors({ 'incorrect': true });
           fecha = false;
         } else {
           console.log('La fecha introducida es permitida');
@@ -712,7 +729,7 @@ export class CandidatoUpdateComponent implements OnInit {
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === undefined) {
         console.log('------------------------9');
         console.log(this.statusCandidatoInactivo);
-        this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
+        this.editForm.get(['estCanInactivoId']).setErrors({ 'incorrect': true });
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
         candidatoInactivo = false;
