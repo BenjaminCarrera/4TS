@@ -93,7 +93,6 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    console.log(this.criteria);
     this.requerimientoService
       .query({
         criteria: this.criteria,
@@ -212,7 +211,6 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
 
     this.userService
       .query({
-        page: 0,
         size: ALL_ITEMS,
         'authority.in': REQUERIMIENTOS_USER_ROLES,
       })
