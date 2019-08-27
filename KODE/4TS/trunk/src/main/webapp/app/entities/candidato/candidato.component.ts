@@ -8,7 +8,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { ICandidato } from 'app/shared/model/candidato.model';
 import { AccountService } from 'app/core';
 
-import { ITEMS_PER_PAGE } from 'app/shared';
+import { ITEMS_PER_PAGE, ALL_ITEMS } from 'app/shared';
 import { CandidatoService } from './candidato.service';
 import { EstatusCandidato, IEstatusCandidato } from '../../shared/model/estatus-candidato.model';
 import { EstatusCandidatoService } from '../estatus-candidato/estatus-candidato.service';
@@ -26,6 +26,7 @@ import { PerfilService } from '../perfil/perfil.service';
 import { INivelPerfil } from '../../shared/model/nivel-perfil.model';
 import { NivelPerfilService } from '../nivel-perfil/nivel-perfil.service';
 import { moneyFormat } from 'app/shared/util/money-format';
+import { CANDIDATOS_USER_ROLES } from 'app/shared/constants/candidato.constants';
 
 @Component({
   selector: 'jhi-candidato',
@@ -179,36 +180,37 @@ export class CandidatoComponent implements OnInit, OnDestroy {
 
     this.userService
       .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort()
+        size: ALL_ITEMS,
+        sort: ['iniciales'],
+        'authority.in': CANDIDATOS_USER_ROLES,
       })
-      .subscribe(
-        (res: HttpResponse<IUser[]>) => this.paginateUser(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe((res: IUser[]) => (this.usuariosAsignado = res), (res: HttpErrorResponse) => this.onError(res.message));
 
     this.perfilService
       .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort()
+        size: ALL_ITEMS,
+        sort: ['perfil']
       })
-      .subscribe(
-        (res: HttpResponse<IPerfil[]>) => this.paginatePerfils(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .pipe(
+        filter((mayBeOk: HttpResponse<IPerfil[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IPerfil[]>) => response.body)
+      )
+      .subscribe((res: IPerfil[]) => (this.perfiles = res), (res: HttpErrorResponse) => this.onError(res.message));
 
     this.nivelPerfilService
       .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort()
+        size: ALL_ITEMS,
+        sort: ['nivel']
       })
-      .subscribe(
-        (res: HttpResponse<INivelPerfil[]>) => this.paginateNivelPerfils(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .pipe(
+        filter((mayBeOk: HttpResponse<INivelPerfil[]>) => mayBeOk.ok),
+        map((response: HttpResponse<INivelPerfil[]>) => response.body)
+      )
+      .subscribe((res: INivelPerfil[]) => (this.nivelPerfiles = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });
@@ -293,13 +295,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
-  protected paginateUser(data: IUser[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.usuariosAsignado = data;
-    console.log(this.usuariosAsignado);
-  }
-
   protected paginateCandidatoes(data: ICandidato[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
@@ -326,21 +321,10 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.esquemaContratacionKodes = data;
   }
 
-  protected paginatePerfils(data: IPerfil[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.perfiles = data;
-  }
-
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  protected paginateNivelPerfils(data: INivelPerfil[], headers: HttpHeaders) {
-    this.links = this.parseLinks.parse(headers.get('link'));
-    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
-    this.nivelPerfiles = data;
-  }
   buscarIniciales(id) {
     let res = '';
     if (this.usuariosAsignado) {
