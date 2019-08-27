@@ -22,7 +22,8 @@ import { TipoSolicitudService } from '../tipo-solicitud';
 import { IPrioridadReq } from 'app/shared/model/prioridad-req.model';
 import { PrioridadReqService } from '../prioridad-req';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ITEMS_PER_PAGE } from 'app/shared';
+import { ITEMS_PER_PAGE, ALL_ITEMS } from 'app/shared';
+import { REQUERIMIENTOS_USER_ROLES } from 'app/shared/constants/requerimientos.constants';
 
 @Component({
   selector: 'jhi-requerimiento',
@@ -210,7 +211,11 @@ export class RequerimientoComponent implements OnInit, OnDestroy {
     this.registerChangeInRequerimientos();
 
     this.userService
-      .query()
+      .query({
+        page: 0,
+        size: ALL_ITEMS,
+        'authority.in': REQUERIMIENTOS_USER_ROLES,
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
         map((response: HttpResponse<IUser[]>) => response.body)

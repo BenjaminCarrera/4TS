@@ -29,7 +29,7 @@
                 <mat-select id="field_usuarioAsignado" name="usuarioAsignado" formControlName="usuarioAsignadoId" placeholder="Ejecutivo asignado">
                     <mat-option>Ejecutivo asignado</mat-option>
                     <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">
-                        {{userOption.firstName}}</mat-option>
+                        {{userOption.iniciales}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

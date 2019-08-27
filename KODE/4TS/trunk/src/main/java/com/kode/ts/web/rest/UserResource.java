@@ -5,8 +5,11 @@ import com.kode.ts.domain.User;
 import com.kode.ts.repository.UserRepository;
 import com.kode.ts.security.AuthoritiesConstants;
 import com.kode.ts.service.MailService;
+import com.kode.ts.service.UserQueryService;
 import com.kode.ts.service.UserService;
+import com.kode.ts.service.dto.UserCriteria;
 import com.kode.ts.service.dto.UserDTO;
+import com.kode.ts.service.mapper.UserMapper;
 import com.kode.ts.web.rest.errors.BadRequestAlertException;
 import com.kode.ts.web.rest.errors.EmailAlreadyUsedException;
 import com.kode.ts.web.rest.errors.LoginAlreadyUsedException;
@@ -20,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,14 +73,20 @@ public class UserResource {
     private final UserService userService;
 
     private final UserRepository userRepository;
+    
+    private final UserQueryService userQueryService;
+    
+    private final UserMapper userMapper;
 
     private final MailService mailService;
 
-    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService, UserMapper userMapper, UserQueryService userQueryService) {
 
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.userMapper = userMapper;
+        this.userQueryService = userQueryService;
     }
 
     /**
@@ -139,18 +149,20 @@ public class UserResource {
     }
 
     /**
-     * {@code GET /users} : get all users.
+     * {@code GET  /users} : get all the users.
      *
+     * @param pageable the pagination information.
      * @param queryParams a {@link MultiValueMap} query parameters.
      * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
-     * @param pageable the pagination information.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body all users.
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of users in body.
      */
     @GetMapping("/users")
-    public ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder, Pageable pageable) {
-        final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
+    public ResponseEntity<List<UserDTO>> getAllUsers(UserCriteria criteria, Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+    	log.debug("REST request to get Usuarios by criteria: {}", criteria);
+        Page<UserDTO> page = userQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
