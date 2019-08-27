@@ -473,7 +473,6 @@ export class CandidatoUpdateComponent implements OnInit {
       )
       .subscribe((res: IEstCanInactivo[]) => (this.estcaninactivos = res), (res: HttpErrorResponse) => this.onError(res.message));
     if (this.editForm.get(['id']).value !== undefined) {
-      console.log('--------8-8-8-8-8-8');
       if (this.editForm.get(['estatusCandidatoId']).value === 2) {
         this.statusCandidatoInactivo = true;
       }
@@ -603,6 +602,7 @@ export class CandidatoUpdateComponent implements OnInit {
       let apPat: boolean;
       let emailPrinc: boolean;
       let candidatoInactivo: boolean;
+      let fecha: boolean;
       if (this.editForm.get(['nombre']).value === '') {
         nombre = false;
       } else {
@@ -636,20 +636,27 @@ export class CandidatoUpdateComponent implements OnInit {
       } else {
         estatusLab = true;
       }
+      console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
+      if ( this.editForm.get(['fechaNacimiento']).value === null) {
+        fecha = true;
+      } else {
+        if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
+          this.editForm.get(['fechaNacimiento']).setErrors({'incorrect': true});
+          fecha = false;
+        } else {
+          fecha = true;
+        }
+      }
       if (this.statusCandidatoInactivo === true && this.editForm.get(['estCanInactivoId']).value === null) {
-        console.log('------234324324324------9');
-        console.log(this.editForm.get(['estCanInactivoId']).value);
         this.editForm.get(['estCanInactivoId']).setErrors({'incorrect': true});
         this.verificarEstatusCandidatoInactivo = false;
         this.selecteds.setValue(0);
         candidatoInactivo = false;
       } else {
-        console.log('------234234324324---91');
-        console.log(this.editForm.get(['estCanInactivoId']).value);
         this.verificarEstatusCandidatoInactivo = true;
         candidatoInactivo = true;
       }
-      if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true && candidatoInactivo === true) {
+      if (estatusCan === true && sex === true && estatusLab === true && emailPrinc === true && apPat === true && nombre === true && candidatoInactivo === true && fecha === true) {
         if (candidato.id) {
           for (const clave of this.skillsCandidato) {
             if (clave.idCandidatoId === this.editForm.get(['id']).value) {
@@ -689,10 +696,10 @@ export class CandidatoUpdateComponent implements OnInit {
         estatusLab = true;
       }
       console.log('fecha seleccionada: ', this.editForm.get(['fechaNacimiento']).value, 'fecha de hoy: ', new Date());
-      console.log('------------------------91');
       if ( this.editForm.get(['fechaNacimiento']).value === null) {
         fecha = true;
       } else {
+        console.log('hay fecha');
         if (this.editForm.get(['fechaNacimiento']).value >= new Date()) {
           console.log('La fecha introducida es mayor a la permitida');
           this.editForm.get(['fechaNacimiento']).setErrors({'incorrect': true});
@@ -994,7 +1001,6 @@ export class CandidatoUpdateComponent implements OnInit {
     this.updateCuentasRechazadas();
   }
   add2(event: MatChipInputEvent): void {
-    // No se permite agregar elementos que no esten en la base de datos
   }
 
   filterCuentasRechazadas(value: string): ICuenta[] {
@@ -1195,10 +1201,6 @@ export class CandidatoUpdateComponent implements OnInit {
         this.cuentasRechSelected.push(element);
       });
     }
-    // Recorremos todas las cuentas de la bd
-    // for (const cuenta of this.cuentas) {
-    //   if (clave.idRequerimientoId
-    // }
   }
 
   addSkillCandidato() {

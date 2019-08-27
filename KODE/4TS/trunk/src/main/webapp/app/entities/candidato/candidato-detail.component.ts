@@ -360,6 +360,8 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
       );
     console.log(this.estatusTareas);
     this.imagen = this.candidato.foto;
+    this.fechaconv1 = 'nd as';
+    this.fechaconv1.replace(/as/g, ' ');
   }
   previousState() {
     window.history.back();
