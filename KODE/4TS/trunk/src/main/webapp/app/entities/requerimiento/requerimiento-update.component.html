@@ -54,7 +54,7 @@
                   <mat-select placeholder="Ejecutivo asignado" id="field_usuarioAsignado" name="usuarioAsignado"
                     formControlName="usuarioAsignadoId">
                     <mat-option [value]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{
-                            userOption.firstName
+                            userOption.iniciales
                           }}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -213,8 +213,8 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <mat-form-field class="">
-                      <input matInput placeholder="Tarifa / Sueldo neto" name="tarifaSueldoNet" id="field_tarifaSueldoNet"
-                        formControlName="tarifaSueldoNet" />
+                      <input matInput placeholder="Tarifa / Sueldo neto" name="tarifaSueldoNet"
+                        id="field_tarifaSueldoNet" formControlName="tarifaSueldoNet" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -317,23 +317,12 @@
                 <div class="col-sm-12">
                   <!-- app.component.html -->
                   <mat-form-field class="">
-                    <input matInput matGoogleMapsAutocomplete placeholder="Lugar de Residencia"
-                      name="lugarTrabajo" id="field_lugarTrabajo" formControlName="lugarTrabajo"
-                      #search (onLocationSelected)="onLocationSelected($event)" />
+                    <input matInput matGoogleMapsAutocomplete placeholder="Lugar de Residencia" name="lugarTrabajo"
+                      id="field_lugarTrabajo" formControlName="lugarTrabajo" #search
+                      (onLocationSelected)="onLocationSelected($event)" />
                   </mat-form-field>
 
-
-                  <div class="form-group" [hidden]="!editForm.get('id').value">
-                    <div class="container">
-                      <agm-map [latitude]="editForm.get('coorLat').value" [longitude]="editForm.get('coorLong').value"
-                        [zoom]="16">
-                        <agm-marker [latitude]="editForm.get('coorLat').value"
-                          [longitude]="editForm.get('coorLong').value" [markerDraggable]="true"
-                          (dragEnd)="markerDragEnd($event)"></agm-marker>
-                      </agm-map>
-                    </div>
-                  </div>
-                  <div class="form-group" [hidden]="editForm.get('id').value">
+                  <div class="form-group">
                     <div class="container">
                       <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="14">
                         <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"

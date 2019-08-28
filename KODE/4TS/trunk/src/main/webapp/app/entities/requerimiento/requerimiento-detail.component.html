@@ -234,7 +234,7 @@
                         <div class="col-sm-12" style="padding-right: 0px;">
                             <div class="google-maps" id="mapa">
                                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="16">
-                                    <agm-marker [latitude]="lat" [longitude]="lng" [label]="'KODE'"> </agm-marker>
+                                    <agm-marker [latitude]="lat" [longitude]="lng"> </agm-marker>
                                 </agm-map>
                             </div>
                         </div>
@@ -556,15 +556,15 @@
                 <thead>
                     <tr jhiSort [(predicate)]="predicateBitacora" [(ascending)]="reverseBitacora"
                         [callback]="transitionBitacora.bind(this)">
-                        <td jhiSortBy="fecha" style="width: 250px;"> <span> Fecha </span>
+                        <th jhiSortBy="fecha" style="width: 150px;"> <span> Fecha </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
-                        </td>
-                        <td jhiSortBy="usuarioFirstName" style="width: 250px;"> <span> Creador </span>
+                        </th>
+                        <th jhiSortBy="usuarioFirstName" style="width: 150px;"> <span> Creador </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
-                        </td>
-                        <td jhiSortBy="comentario"> <span> Comentario </span>
+                        </th>
+                        <th jhiSortBy="comentario"> <span> Comentario </span>
                             <fa-icon [icon]="'sort'"></fa-icon>
-                        </td>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

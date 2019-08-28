@@ -824,10 +824,13 @@ export class CandidatoUpdateComponent implements OnInit {
   }
 
   protected onSaveSuccessFinal(r: HttpResponse<any>) {
-    const newAlert: JhiAlert = this.jhiAlertService.get()[0];
+    this.jhiAlertService.get().forEach(alertmsg => {
+      const index = this.jhiAlertService.get().indexOf(alertmsg);
+      if (index > 0) {
+        this.jhiAlertService.get().splice(index, 1);
+      }
+    });
     this.isSaving = false;
-    this.jhiAlertService.clear();
-    this.jhiAlertService.addAlert(newAlert, []);
     this.previousState();
   }
 

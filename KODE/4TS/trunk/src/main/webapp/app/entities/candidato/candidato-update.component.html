@@ -282,7 +282,6 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group" [hidden]="!editForm.get('id').value">
-                                            asd
                                             <div class="container">
                                                 <agm-map style="width:100%" [latitude]="editForm.get('coorLat').value"
                                                     [longitude]="editForm.get('coorLong').value" [zoom]="16">
@@ -834,7 +833,7 @@
             <br>
             <div *ngIf="!ocultar">
                 <label jhiTranslate="App.candidato.cuentaInteres" for="field_cuentaInteres">Cuenta Interes</label>
-                <select class="form-control" id="asd" multiple name="cuentaInteres" formControlName="cuentaInteres">
+                <select class="form-control" id="cuentaInteres" multiple name="cuentaInteres" formControlName="cuentaInteres">
                     <option [ngValue]="getSelected(editForm.get('cuentaInteres').value, cuentaOption)"
                         *ngFor="let cuentaOption of cuentas; trackBy: trackCuentaById">{{cuentaOption.clave}}
                     </option>
