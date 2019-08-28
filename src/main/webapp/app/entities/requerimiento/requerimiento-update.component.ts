@@ -38,25 +38,26 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { startWith } from 'rxjs/operators';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
-import {Location, Appearance} from '@angular-material-extensions/google-maps-autocomplete';
+import { Location, Appearance } from '@angular-material-extensions/google-maps-autocomplete';
 import { NgZone } from '@angular/core';
 import { SkillService } from '../skill';
 import { ISkill } from 'app/shared/model/skill.model';
 import { ISkillRequerimiento, SkillRequerimiento } from 'app/shared/model/skill-requerimiento.model';
 import { SkillRequerimientoService } from '../skill-requerimiento';
 import { SkillReqService } from '../../servicios/skill-req.service';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {FormGroupDirective, NgForm} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ALL_ITEMS } from 'app/shared';
 import { AccountService, JhiLanguageHelper } from 'app/core';
+import { REQUERIMIENTOS_USER_ROLES } from 'app/shared/constants/requerimientos.constants';
 
-  // Verificar errores en inputs
-  export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-      const isSubmitted = form && form.submitted;
-      return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-    }
+// Verificar errores en inputs
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
+}
 
 @Component({
   selector: 'jhi-requerimiento-update',
@@ -264,7 +265,7 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.selected1.setValue(1);
   }
   selected(event: MatAutocompleteSelectedEvent): void {
-    const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillsSelectedRequerido: ISkill[] = this.Skill.filter(s => (s.id === event.option.value));
     const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
     this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
     this.fruitInput.nativeElement.value = '';
@@ -277,13 +278,13 @@ export class RequerimientoUpdateComponent implements OnInit {
       this.SkillRequeridosSelected.splice(index, 1);
       this.fruitInputt.splice(index, 1);
     }
-    this.selSkillReq ++ ;
+    this.selSkillReq++;
   }
   add(event: MatChipInputEvent): void {
     // No se permite agregar elementos que no esten en la base de datos
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillsSelectedOpcional: ISkill[] = this.Skill.filter(s => (s.id === event.option.value));
     const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
     this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
     this.fruitInput2.nativeElement.value = '';
@@ -298,7 +299,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         tempOpcionales.splice(index, 1);
       }
     });
-    return tempOpcionales.filter( s => new RegExp(value, 'gi').test(s.nombre));
+    return tempOpcionales.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
   remove2(opcionales: ISkill): void {
     const index = this.SkillOpcionalesSelected.indexOf(opcionales);
@@ -312,7 +313,7 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   selected3(event: MatAutocompleteSelectedEvent): void {
     // Inicio primer chip autocompletable
-    const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === event.option.value));
+    const SkillsSelectedEsencial: ISkill[] = this.Skill.filter(s => (s.id === event.option.value));
     const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
     this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
     this.fruitInput3.nativeElement.value = '';
@@ -327,7 +328,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         tempEscenciales.splice(index, 1);
       }
     });
-    return tempEscenciales.filter( s => new RegExp(value, 'gi').test(s.nombre));
+    return tempEscenciales.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
   remove3(escencial: ISkill): void {
     const index = this.SkillEsencialesSelected.indexOf(escencial);
@@ -354,7 +355,6 @@ export class RequerimientoUpdateComponent implements OnInit {
 
     this.latitude = 19.3909455;
     this.longitude = -99.1664295;
-    this.setCurrentLocation();
 
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder;
@@ -388,21 +388,27 @@ export class RequerimientoUpdateComponent implements OnInit {
         (res: ISkill[]) => this.setSkills(res),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-      this.skillRequerimientoService
-        .query({
-          size: 999999
-        })
-        .pipe(
-          filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-          map((response: HttpResponse<IUser[]>) => response.body)
-        )
-        .subscribe(
-          (res: ISkillRequerimiento[]) => this.setSkillsReq(res),
-          (res: HttpErrorResponse) => this.onError(res.message)
-        );
+    this.skillRequerimientoService
+      .query({
+        size: 999999
+      })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe(
+        (res: ISkillRequerimiento[]) => this.setSkillsReq(res),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ requerimiento }) => {
-      if (requerimiento.fechaAlta ) {
+      if (requerimiento.coorLat) {
+        this.latitude = requerimiento.coorLat;
+        this.longitude = requerimiento.coorLong;
+      }else {
+        this.setCurrentLocation();
+      }
+      if (requerimiento.fechaAlta) {
         this.currentDate = requerimiento.fechaAlta;
       } else {
         this.currentDate = moment();
@@ -417,7 +423,11 @@ export class RequerimientoUpdateComponent implements OnInit {
       )
       .subscribe((res: ICuenta[]) => (this.cuentas = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.userService
-      .query()
+      .query({
+        size: ALL_ITEMS,
+        sort: ['iniciales'],
+        'authority.in': REQUERIMIENTOS_USER_ROLES,
+      })
       .pipe(
         filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
         map((response: HttpResponse<IUser[]>) => response.body)
@@ -496,15 +506,11 @@ export class RequerimientoUpdateComponent implements OnInit {
         map((response: HttpResponse<ITipoPeriodo[]>) => response.body)
       )
       .subscribe((res: ITipoPeriodo[]) => (this.tipoperiodos = res), (res: HttpErrorResponse) => this.onError(res.message));
-      if (this.editForm.get(['id']).value != null) {
-        this.actualizarReq = true;
-      } else {
-        this.actualizarReq = false;
-      }
-      // console.log('------------------------');
-      // console.log(this.actualizarReq);
-      // console.log('------------------------');
-     console.log('-----------', this.reqCancelado);
+    if (this.editForm.get(['id']).value != null) {
+      this.actualizarReq = true;
+    } else {
+      this.actualizarReq = false;
+    }
   }
 
   updateForm(requerimiento: IRequerimiento) {
@@ -559,77 +565,39 @@ export class RequerimientoUpdateComponent implements OnInit {
     const requerimiento = this.createFromForm();
     // Si actualiza
     if (this.actualizarReq === true) {
-      console.log('esta actualizando');
       if (this.editForm.get(['vacantesSolicitadas']).value !== undefined && this.editForm.get(['vacantesSolicitadas']).value !== null && this.editForm.get(['vacantesSolicitadas']).value !== '' &&
-      this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null && this.editForm.get(['nombreContacto']).value !== '' &&
-      this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null && this.editForm.get(['tarifaSueldoNet']).value !== '' &&
-      this.editForm.get(['prestaciones']).value !== undefined && this.editForm.get(['prestaciones']).value !== null && this.editForm.get(['prestaciones']).value !== '' &&
-      this.editForm.get(['duracionAsignacion']).value !== undefined && this.editForm.get(['duracionAsignacion']).value !== null && this.editForm.get(['duracionAsignacion']).value !== '' &&
-      this.editForm.get(['lugarTrabajo']).value !== undefined && this.editForm.get(['lugarTrabajo']).value !== null && this.editForm.get(['lugarTrabajo']).value !== '' &&
-      this.editForm.get(['cuentaId']).value !== undefined && this.editForm.get(['cuentaId']).value !== null && this.editForm.get(['cuentaId']).value !== '' &&
-      this.editForm.get(['usuarioAsignadoId']).value !== undefined && this.editForm.get(['usuarioAsignadoId']).value !== null && this.editForm.get(['usuarioAsignadoId']).value !== '' &&
-      this.editForm.get(['prioridadId']).value !== undefined && this.editForm.get(['prioridadId']).value !== null && this.editForm.get(['prioridadId']).value  !== '' &&
-      this.editForm.get(['esquemaContratacionId']).value !== undefined && this.editForm.get(['esquemaContratacionId']).value !== null && this.editForm.get(['esquemaContratacionId']).value  !== '' &&
-      this.editForm.get(['baseTarifaId']).value !== undefined && this.editForm.get(['baseTarifaId']).value !== null && this.editForm.get(['baseTarifaId']).value !== '' &&
-      this.editForm.get(['perfilId']).value !== undefined && this.editForm.get(['perfilId']).value !== null && this.editForm.get(['perfilId']).value !== '' &&
-      this.editForm.get(['nivelPerfilId']).value !== undefined && this.editForm.get(['nivelPerfilId']).value !== null && this.editForm.get(['nivelPerfilId']).value !== '' &&
-      this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null && this.editForm.get(['tipoPeriodoId']).value  !== '')  {
-        console.log(this.editForm.get(['tarifaSueldoNet']).value);
+        this.editForm.get(['nombreContacto']).value !== undefined && this.editForm.get(['nombreContacto']).value !== null && this.editForm.get(['nombreContacto']).value !== '' &&
+        this.editForm.get(['tarifaSueldoNet']).value !== undefined && this.editForm.get(['tarifaSueldoNet']).value !== null && this.editForm.get(['tarifaSueldoNet']).value !== '' &&
+        this.editForm.get(['prestaciones']).value !== undefined && this.editForm.get(['prestaciones']).value !== null && this.editForm.get(['prestaciones']).value !== '' &&
+        this.editForm.get(['duracionAsignacion']).value !== undefined && this.editForm.get(['duracionAsignacion']).value !== null && this.editForm.get(['duracionAsignacion']).value !== '' &&
+        this.editForm.get(['lugarTrabajo']).value !== undefined && this.editForm.get(['lugarTrabajo']).value !== null && this.editForm.get(['lugarTrabajo']).value !== '' &&
+        this.editForm.get(['cuentaId']).value !== undefined && this.editForm.get(['cuentaId']).value !== null && this.editForm.get(['cuentaId']).value !== '' &&
+        this.editForm.get(['usuarioAsignadoId']).value !== undefined && this.editForm.get(['usuarioAsignadoId']).value !== null && this.editForm.get(['usuarioAsignadoId']).value !== '' &&
+        this.editForm.get(['prioridadId']).value !== undefined && this.editForm.get(['prioridadId']).value !== null && this.editForm.get(['prioridadId']).value !== '' &&
+        this.editForm.get(['esquemaContratacionId']).value !== undefined && this.editForm.get(['esquemaContratacionId']).value !== null && this.editForm.get(['esquemaContratacionId']).value !== '' &&
+        this.editForm.get(['baseTarifaId']).value !== undefined && this.editForm.get(['baseTarifaId']).value !== null && this.editForm.get(['baseTarifaId']).value !== '' &&
+        this.editForm.get(['perfilId']).value !== undefined && this.editForm.get(['perfilId']).value !== null && this.editForm.get(['perfilId']).value !== '' &&
+        this.editForm.get(['nivelPerfilId']).value !== undefined && this.editForm.get(['nivelPerfilId']).value !== null && this.editForm.get(['nivelPerfilId']).value !== '' &&
+        this.editForm.get(['tipoPeriodoId']).value !== undefined && this.editForm.get(['tipoPeriodoId']).value !== null && this.editForm.get(['tipoPeriodoId']).value !== '') {
         let reqCerrado = false;
         let reqReemplazo = false;
         // Estatus del requerimiento
-        if (this.reqCancelado === true && requerimiento.estatusReqCanId === undefined || this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
-          console.log('El requerimiento es cerrado y no tiene un motivo');
-          this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
+        if (this.reqCancelado === true && requerimiento.estatusReqCanId === undefined || this.reqCancelado === true && requerimiento.estatusReqCanId === null) {
+          this.editForm.get(['estatusReqCanId']).setErrors({ 'incorrect': true });
           this.selected1.setValue(0);
-        } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined || this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
-          console.log('El requerimiento es cerrado y tiene un motivo');
+        } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined || this.reqCancelado === true && requerimiento.estatusReqCanId !== null) {
           reqCerrado = true;
-        } else {
-          console.log('El requerimiento no es cerrado');
         }
         // Tipo de ingreso
-        if (this.reemplazo === true && requerimiento.remplazoDe === undefined || this.reemplazo === true && requerimiento.remplazoDe === null ) {
-          console.log('El ingreso es reemplazo y no tiene un motivo');
-          this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
+        if (this.reemplazo === true && requerimiento.remplazoDe === undefined || this.reemplazo === true && requerimiento.remplazoDe === null) {
+          this.editForm.get(['remplazoDe']).setErrors({ 'incorrect': true });
           this.selected1.setValue(0);
-        } else if (this.reemplazo === true && requerimiento.remplazoDe !== undefined || this.reemplazo === true && requerimiento.remplazoDe !== null ) {
-          console.log('El ingreso es reemplazo y tiene un motivo');
+        } else if (this.reemplazo === true && requerimiento.remplazoDe !== undefined || this.reemplazo === true && requerimiento.remplazoDe !== null) {
           reqReemplazo = true;
         } else {
           this.editForm.get(['remplazoDe']).reset();
         }
-        console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
-        // if (this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
-        //   console.log('El requerimiento es cerrado y no tiene un motivo');
-        //   this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
-        // } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
-        //   console.log('El requerimiento es cerrado y tiene un motivo');
-        //   reqCerrado = true;
-        // } else {
-        //   this.selected1.setValue(0);
-        // }
-
-        // if (this.reemplazo === true && requerimiento.remplazoDe !== null) {
-        //   console.log('El requerimiento es reemplazo y tiene un reemplazo, nada mas que hacer');
-        //   console.log(this.editForm.get(['remplazoDe']).value);
-        //   reqReemplazo = true;
-        // } else {
-        //   console.log('El requerimiento es reemplazo y no tiene un reemplazo');
-        //   this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // // console.log(this.editForm.get(['estatusRequerimientoId']).value);
-        // if (this.editForm.get(['tipoIngresoId']).value === 2 &&  this.editForm.get(['remplazoDe']).value === '') {
-        //   this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // if (this.editForm.get(['estatusRequerimientoId']).value === 2 &&  this.editForm.get(['estatusReqCanId']).value === '') {
-        //   this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
-        //   this.selected1.setValue(0);
-        // }
-        // --------------------------------------------
-        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true) {
           if (requerimiento.id !== undefined) {
             this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
           } else {
@@ -637,47 +605,35 @@ export class RequerimientoUpdateComponent implements OnInit {
           }
         }
       } else {
-        console.log('No tiene datos en actualizar');
         this.selected1.setValue(0);
-        console.log(this.editForm.get(['tipoIngresoId']).value, this.editForm.get(['remplazoDe']).value);
-        }
+      }
     } else {
       // Si agrega
-      console.log('esta agregando');
       if (requerimiento.vacantesSolicitadas !== undefined && requerimiento.estatusRequerimientoId !== undefined
         && requerimiento.prioridadId !== undefined && requerimiento.tipoSolicitudId !== undefined &&
         requerimiento.tipoIngresoId !== undefined && requerimiento.vacantesSolicitadas !== undefined && requerimiento.cuentaId !== undefined
         && requerimiento.nombreContacto !== undefined && requerimiento.tarifaSueldoNet !== undefined && requerimiento.baseTarifaId !== undefined
-        && requerimiento.esquemaContratacionId !== undefined && requerimiento.prestaciones !== undefined)  {
+        && requerimiento.esquemaContratacionId !== undefined && requerimiento.prestaciones !== undefined) {
         let reqCerrado = false;
         let reqReemplazo = false;
-        console.log('--------111111', this.reqCancelado, requerimiento.estatusReqCanId);
         // Estatus del requerimiento
-        if (this.reqCancelado === true && requerimiento.estatusReqCanId === undefined || this.reqCancelado === true && requerimiento.estatusReqCanId === null ) {
-          console.log('El requerimiento es cerrado y no tiene un motivo');
-          this.editForm.get(['estatusReqCanId']).setErrors({'incorrect': true});
+        if (this.reqCancelado === true && requerimiento.estatusReqCanId === undefined || this.reqCancelado === true && requerimiento.estatusReqCanId === null) {
+          this.editForm.get(['estatusReqCanId']).setErrors({ 'incorrect': true });
           this.selected1.setValue(0);
-        } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined || this.reqCancelado === true && requerimiento.estatusReqCanId !== null ) {
-          console.log('El requerimiento es cerrado y tiene un motivo');
+        } else if (this.reqCancelado === true && requerimiento.estatusReqCanId !== undefined || this.reqCancelado === true && requerimiento.estatusReqCanId !== null) {
           reqCerrado = true;
         } else {
-          console.log('El requerimiento no es cerrado');
         }
-        console.log('--------5555', requerimiento.remplazoDe);
         // Tipo de ingreso
-        if (this.reemplazo === true && requerimiento.remplazoDe === undefined || this.reemplazo === true && requerimiento.remplazoDe === null ) {
-          console.log('El ingreso es reemplazo y no tiene un motivo');
-          this.editForm.get(['remplazoDe']).setErrors({'incorrect': true});
+        if (this.reemplazo === true && requerimiento.remplazoDe === undefined || this.reemplazo === true && requerimiento.remplazoDe === null) {
+          this.editForm.get(['remplazoDe']).setErrors({ 'incorrect': true });
           this.selected1.setValue(0);
-        } else if (this.reemplazo === true && requerimiento.remplazoDe !== undefined || this.reemplazo === true && requerimiento.remplazoDe !== null ) {
-          console.log('El ingreso es reemplazo y tiene un motivo');
+        } else if (this.reemplazo === true && requerimiento.remplazoDe !== undefined || this.reemplazo === true && requerimiento.remplazoDe !== null) {
           reqReemplazo = true;
         } else {
           this.editForm.get(['remplazoDe']).reset();
         }
-        console.log(this.reqCancelado, reqCerrado, this.reemplazo, reqReemplazo);
-        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false  || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true ) {
-          console.log('tiene datos');
+        if (this.reqCancelado === true && reqCerrado === true && this.reemplazo === true && reqReemplazo === true || this.reqCancelado === false && reqCerrado === false && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === true && reqCerrado === true && this.reemplazo === false && reqReemplazo === false || this.reqCancelado === false && reqCerrado === false && this.reemplazo === true && reqReemplazo === true) {
           if (requerimiento.id !== undefined) {
             this.subscribeToSaveResponse(this.requerimientoService.update(requerimiento));
           } else {
@@ -685,7 +641,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           }
         }
       } else {
-        console.log('No tiene datos en agregar');
         this.selected1.setValue(0);
         this.estReq = false;
         this.datos2 = false;
@@ -769,21 +724,14 @@ export class RequerimientoUpdateComponent implements OnInit {
         addTempReqSkill.push(tempAddEsencial);
       });
     } else {
-      console.log('Es la pantalla de actualizar requerimiento');
       // Si la pantalla es de actualizar requerimiento, debe de verificar los skills
       // Verificamos si hay diferencias en el input de skills opcionales
-      const opcional = this.fruitInput22.filter(item =>  this.skillsOpcionalesBD.indexOf(item) < 0);
-      console.log(this.fruitInput22);
-      console.log(this.skillsOpcionalesBD);
-      console.log(opcional);
-      if (opcional.length > 0 || opcional.length <= 0 ) {
+      const opcional = this.fruitInput22.filter(item => this.skillsOpcionalesBD.indexOf(item) < 0);
+      if (opcional.length > 0 || opcional.length <= 0) {
         // Si hay diferencias borramos todo
-          // console.log('Si hubo cambios');
-          // console.log(this.skillsOpcionalesBD);
-          this.skillsOpcionalesBD.forEach(element => {
-            this.buscaryBorrarSkillsOpcionales(element.id);
-          });
-          // console.log(this.SkillOpcionalesSelected);
+        this.skillsOpcionalesBD.forEach(element => {
+          this.buscaryBorrarSkillsOpcionales(element.id);
+        });
         this.SkillOpcionalesSelected.forEach(opcionall => {
           const tempAddOpcional = new SkillRequerimiento();
           tempAddOpcional.idRequerimientoId = idRequerimiento;
@@ -791,16 +739,10 @@ export class RequerimientoUpdateComponent implements OnInit {
           tempAddOpcional.tipoSkillId = 3;
           addTempReqSkill.push(tempAddOpcional);
         });
-        console.log('Se borraron los skills solo de este requerimiento');
-        console.log('Se insertaron los skills de acueredp a los valores finales del input');
       } else {
-        console.log('No hubo cambios en opcionales');
       }
-      const requeridos = this.fruitInputt.filter(item =>  this.skillsRequeridosBD.indexOf(item) < 0);
-      console.log(this.fruitInputt);
-      console.log(this.skillsRequeridosBD);
-      console.log(requeridos);
-      if (requeridos.length > 0 || requeridos.length <= 0 ) {
+      const requeridos = this.fruitInputt.filter(item => this.skillsRequeridosBD.indexOf(item) < 0);
+      if (requeridos.length > 0 || requeridos.length <= 0) {
         this.skillsRequeridosBD.forEach(element => {
           this.buscaryBorrarSkillsRequeridos(element.id);
         });
@@ -812,13 +754,9 @@ export class RequerimientoUpdateComponent implements OnInit {
           addTempReqSkill.push(tempAddRequerido);
         });
       } else {
-        console.log('No hubo cambios en requeridos');
       }
-      const escencial = this.fruitInput33.filter(item =>  this.skillsEscencialesBD.indexOf(item) < 0);
-      console.log(this.fruitInput33);
-      console.log(this.skillsEscencialesBD);
-      console.log(escencial);
-      if (escencial.length > 0 || escencial.length <= 0 ) {
+      const escencial = this.fruitInput33.filter(item => this.skillsEscencialesBD.indexOf(item) < 0);
+      if (escencial.length > 0 || escencial.length <= 0) {
         this.skillsEscencialesBD.forEach(element => {
           this.buscaryBorrarSkillsEscenciales(element.id);
         });
@@ -830,7 +768,6 @@ export class RequerimientoUpdateComponent implements OnInit {
           addTempReqSkill.push(tempAddEsencial);
         });
       } else {
-        console.log('No hubo cambios en escenciales');
       }
     }
     // ---------------------------------------------------
@@ -907,7 +844,7 @@ export class RequerimientoUpdateComponent implements OnInit {
         temp.splice(index, 1);
       }
     });
-    return temp.filter( s => new RegExp(value, 'gi').test(s.nombre));
+    return temp.filter(s => new RegExp(value, 'gi').test(s.nombre));
   }
   verificarReqEstatus(status: string) {
     if (status === 'Cerrado') {
@@ -947,7 +884,6 @@ export class RequerimientoUpdateComponent implements OnInit {
     this.longitude = $event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
     const clickBot = document.querySelector('#coorLat');
-    alert(clickBot);
   }
   getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -976,95 +912,71 @@ export class RequerimientoUpdateComponent implements OnInit {
   }
   setSkillsReq(res: ISkillRequerimiento[]) {
     this.SkillReq = res;
-    console.log('todos los skill');
-    console.log(this.SkillReq);
     for (const clave of this.SkillReq) {
-      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
-          this.todosSkillReq.push(clave);
-        if ( clave.tipoSkillId === 1) {
-          // console.log('Es escencial' + clave.id);
-          const SkillsSelectedEsencial: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+      if (clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        this.todosSkillReq.push(clave);
+        if (clave.tipoSkillId === 1) {
+          const SkillsSelectedEsencial: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillEsencialesSelectedEscencial: ISkill = SkillsSelectedEsencial.shift();
           this.SkillEsencialesSelected.push(SkillEsencialesSelectedEscencial);
           this.fruitInput3.nativeElement.value = '';
           this.esencialesCtrl.setValue(null);
-          const SkillsSelectedEsencial2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+          const SkillsSelectedEsencial2: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillEsencialesSelectedEscencial2: ISkill = SkillsSelectedEsencial2.shift();
           this.fruitInput33.push(SkillEsencialesSelectedEscencial2);
           this.skillsEscencialesBD.push(SkillEsencialesSelectedEscencial2);
-        } else if ( clave.tipoSkillId === 2) {
-          // console.log('Es requerido' + clave.id);
-          const SkillsSelectedRequerido: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+        } else if (clave.tipoSkillId === 2) {
+          const SkillsSelectedRequerido: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillRequeridosSelectedRequerido: ISkill = SkillsSelectedRequerido.shift();
           this.SkillRequeridosSelected.push(SkillRequeridosSelectedRequerido);
           this.fruitInput.nativeElement.value = '';
           this.requeridosCtrl.setValue(null);
-          const SkillsSelectedRequerido2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+          const SkillsSelectedRequerido2: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillRequeridosSelectedRequerido2: ISkill = SkillsSelectedRequerido2.shift();
           this.fruitInputt.push(SkillRequeridosSelectedRequerido2);
           this.skillsRequeridosBD.push(SkillRequeridosSelectedRequerido2);
-        } else if ( clave.tipoSkillId === 3) {
-          // console.log('Es opcional' + clave.id);
-          const SkillsSelectedOpcional: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+        } else if (clave.tipoSkillId === 3) {
+          const SkillsSelectedOpcional: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillOpcionalesSelectedRequerido: ISkill = SkillsSelectedOpcional.shift();
           this.SkillOpcionalesSelected.push(SkillOpcionalesSelectedRequerido);
           this.fruitInput2.nativeElement.value = '';
           this.opcionalesCtrl.setValue(null);
-          const SkillsSelectedOpcional2: ISkill[] = this.Skill.filter( s => (s.id === clave.idSkillId));
+          const SkillsSelectedOpcional2: ISkill[] = this.Skill.filter(s => (s.id === clave.idSkillId));
           const SkillOpcionalesSelectedRequerido2: ISkill = SkillsSelectedOpcional2.shift();
           this.fruitInput22.push(SkillOpcionalesSelectedRequerido2);
           this.skillsOpcionalesBD.push(SkillOpcionalesSelectedRequerido2);
         } else {
-          console.log('Error');
         }
       }
     }
-    // console.log('input de escenciales');
-    // console.log(this.fruitInput33);
-    // console.log('input de opcionales');
-    // console.log(this.fruitInput22);
-    // console.log('input de requeridos');
-    // console.log(this.fruitInputt);
   }
 
   buscaryBorrarSkillsOpcionales(id) {
     for (const clave of this.SkillReq) {
-      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
-        if ( clave.idSkillId === id && clave.tipoSkillId === 3) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento opcional y es: ');
-          // console.log(clave);
+      if (clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if (clave.idSkillId === id && clave.tipoSkillId === 3) {
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }
   }
   buscaryBorrarSkillsRequeridos(id) {
     for (const clave of this.SkillReq) {
-      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
-        if ( clave.idSkillId === id && clave.tipoSkillId === 2) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento  requerido y es: ');
-          // console.log(clave);
+      if (clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if (clave.idSkillId === id && clave.tipoSkillId === 2) {
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }
   }
   buscaryBorrarSkillsEscenciales(id) {
     for (const clave of this.SkillReq) {
-      if ( clave.idRequerimientoId === this.editForm.get(['id']).value) {
-        if ( clave.idSkillId === id && clave.tipoSkillId === 1) {
-          // console.log('Se busco entre todos los skills, el skill requerimiento escencial y es: ');
-          // console.log(clave);
+      if (clave.idRequerimientoId === this.editForm.get(['id']).value) {
+        if (clave.idSkillId === id && clave.tipoSkillId === 1) {
           this.skillRequerimientoService.delete(clave.id).subscribe(response => {
           });
-        } else {
-          console.log('Error');
         }
       }
     }

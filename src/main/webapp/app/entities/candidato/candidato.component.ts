@@ -97,7 +97,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    console.log(this.criteria);
     this.candidatoService
       .query({
         criteria: this.criteria,
@@ -215,7 +214,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
       this.currentAccount = account;
     });
     this.registerChangeInCandidatoes();
-    console.log(this.usuariosAsignado);
   }
 
   ngOnDestroy() {
@@ -246,10 +244,8 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.page = 0;
     this.criteria = [];
     this.criteriaTemp = {};
-    console.log(this.editForm.get(['estatusCandId']).value);
     if (this.editForm.get(['estatusCandId']).value !== null) {
       this.criteriaTemp = { key: 'estatusCandidatoId.equals', value: this.editForm.get(['estatusCandId']).value };
-      console.log(this.criteriaTemp);
       this.criteria.push(this.criteriaTemp);
     }
     if (this.editForm.get(['estatusLabId']).value !== null) {
@@ -274,7 +270,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     }
     if (this.editForm.get(['nombre']).value !== null) {
       this.criteriaTemp = { key: 'nombre.equals', value: this.editForm.get(['nombre']).value };
-      console.log(this.criteriaTemp);
       this.criteria.push(this.criteriaTemp);
     }
     if (this.editForm.get(['apellidoPaterno']).value !== null) {
@@ -299,8 +294,6 @@ export class CandidatoComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.candidatoes = data;
-    console.log('------8');
-    console.log(this.candidatoes);
   }
 
   protected paginateEstatusCandidatoes(data: IEstatusCandidato[], headers: HttpHeaders) {
