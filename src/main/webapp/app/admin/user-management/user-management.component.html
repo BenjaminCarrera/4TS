@@ -39,9 +39,9 @@
                         <span class="badge badge-info">{{ authority }}</span>
                     </div>
                 </td>
-                <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
+                <td>{{user.createdDate.format('DD-MMM-YYYY hh:mm')}}</td>
                 <td>{{user.lastModifiedBy}}</td>
-                <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
+                <td>{{user.lastModifiedDate.format('DD-MMM-YYYY hh:mm')}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
