@@ -30,7 +30,7 @@
             <tbody>
             <tr *ngFor="let bitacora of bitacoras ;trackBy: trackId">
                 <td><a [routerLink]="['/bitacora', bitacora.id, 'view' ]">{{bitacora.id}}</a></td>
-                <td>{{bitacora.fecha | date:'medium'}}</td>
+                <td>{{bitacora.fecha.format('DD-MMM-YYYY')}}</td>
                 <td>{{bitacora.comentario}}</td>
                 <td>
                     {{bitacora.usuarioFirstName}}

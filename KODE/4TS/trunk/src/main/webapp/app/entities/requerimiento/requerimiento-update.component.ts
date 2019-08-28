@@ -405,7 +405,7 @@ export class RequerimientoUpdateComponent implements OnInit {
       if (requerimiento.coorLat) {
         this.latitude = requerimiento.coorLat;
         this.longitude = requerimiento.coorLong;
-      }else {
+      } else {
         this.setCurrentLocation();
       }
       if (requerimiento.fechaAlta) {
