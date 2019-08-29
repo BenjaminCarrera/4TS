@@ -217,11 +217,11 @@
                     </td>
                     <td>{{candidato.estatusLaboralEstatus}}</td>
                     <td>
-                        <div *ngIf="candidato.disponibilidadEntrevistaPeriodo">{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}(es)</div>
+                        <div *ngIf="candidato.disponibilidadEntrevistaPeriodo">{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}</div>
                         <div *ngIf="!candidato.disponibilidadEntrevistaPeriodo && candidato.disponibilidadEntrevistaFecha">{{candidato.disponibilidadEntrevistaFecha.locale('es').format('DD-MMM-YYYY')}} </div>
                     </td>
                     <td>
-                        <div *ngIf="candidato.disponibilidadAsignacionPeriodo">{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}(es)</div>
+                        <div *ngIf="candidato.disponibilidadAsignacionPeriodo">{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}</div>
                         <div *ngIf="!candidato.disponibilidadAsignacionPeriodo && candidato.disponibilidadAsignacionFecha">{{candidato.disponibilidadAsignacionFecha.locale('es').format('DD-MMM-YYYY')}} </div>
                     </td>
                     <td>
