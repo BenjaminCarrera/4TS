@@ -205,7 +205,7 @@
                     </td>
                     <td>{{candidato.perfilPerfil}}</td>
                     <td>{{candidato.nivelPerfilNivel}}</td>
-                    <td>{{candidato.fechaAlta.format('DD-MMM-YYYY')}}</td>
+                    <td>{{candidato.fechaAlta.locale('es').format('DD-MMM-YYYY')}}</td>
                     <td>{{candidato.esquemaContratacionKodeEsquema}}</td>
                     <td>
                         <div *ngIf="candidato.salarioNeto"> {{formatNumber(candidato.salarioNeto)}}</div>
@@ -218,14 +218,14 @@
                     <td>{{candidato.estatusLaboralEstatus}}</td>
                     <td>
                         <div *ngIf="candidato.disponibilidadEntrevistaPeriodo">{{candidato.disponibilidadEntrevistaPeriodo}} {{candidato.disponibilidadEntrevistaPeriodoTiempoPeriodo}}(es)</div>
-                        <div *ngIf="!candidato.disponibilidadEntrevistaPeriodo && candidato.disponibilidadEntrevistaFecha">{{candidato.disponibilidadEntrevistaFecha.format('DD-MMM-YYYY')}} </div>
+                        <div *ngIf="!candidato.disponibilidadEntrevistaPeriodo && candidato.disponibilidadEntrevistaFecha">{{candidato.disponibilidadEntrevistaFecha.locale('es').format('DD-MMM-YYYY')}} </div>
                     </td>
                     <td>
                         <div *ngIf="candidato.disponibilidadAsignacionPeriodo">{{candidato.disponibilidadAsignacionPeriodo}} {{candidato.disponibilidadAsignacionPeriodoTiempoPeriodo}}(es)</div>
-                        <div *ngIf="!candidato.disponibilidadAsignacionPeriodo && candidato.disponibilidadAsignacionFecha">{{candidato.disponibilidadAsignacionFecha.format('DD-MMM-YYYY')}} </div>
+                        <div *ngIf="!candidato.disponibilidadAsignacionPeriodo && candidato.disponibilidadAsignacionFecha">{{candidato.disponibilidadAsignacionFecha.locale('es').format('DD-MMM-YYYY')}} </div>
                     </td>
                     <td>
-                        <div *ngIf="candidato.fechaUltimoSeguimiento">{{candidato.fechaUltimoSeguimiento.format('DD-MMM-YYYY')}}</div>
+                        <div *ngIf="candidato.fechaUltimoSeguimiento">{{candidato.fechaUltimoSeguimiento.locale('es').format('DD-MMM-YYYY')}}</div>
                     </td>
                 </tr>
             </tbody>

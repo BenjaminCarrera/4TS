@@ -46,11 +46,11 @@
                 <br>
                 <div class="col-sm-12" style="padding: 0px;">
                   <label class="form-label">Fecha de alta</label><br />
-                  <label class="form-label resultado" id="" *ngIf="candidato.fechaAlta">{{ candidato.fechaAlta.format('DD-MMM-YYYY')}}</label>
+                  <label class="form-label resultado" id="" *ngIf="candidato.fechaAlta">{{ candidato.fechaAlta.locale('es').format('DD-MMM-YYYY')}}</label>
                 </div>
                 <div class="col-sm-12" style="padding: 0px;">
                   <label class="form-label">Último seguimiento</label><br />
-                  <label class="form-label resultado" id="" *ngIf="candidato.fechaUltimoSeguimiento">{{ candidato.fechaUltimoSeguimiento.format('DD-MMM-YYYY')}}</label>
+                  <label class="form-label resultado" id="" *ngIf="candidato.fechaUltimoSeguimiento">{{ candidato.fechaUltimoSeguimiento.locale('es').format('DD-MMM-YYYY')}}</label>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@
                 <label class="form-label">Fecha de nacimiento:</label>
               </div>
               <div class="col-sm-7">
-                <label class="form-label resultado" id="" *ngIf="candidato.fechaNacimiento">{{ candidato.fechaNacimiento.format('DD-MMM-YYYY')}}</label>
+                <label class="form-label resultado" id="" *ngIf="candidato.fechaNacimiento">{{ candidato.fechaNacimiento.locale('es').format('DD-MMM-YYYY')}}</label>
               </div>
             </div>
             <div class="row">
@@ -443,7 +443,7 @@
               <label class="form-label">Disponibilidad de entrevista:</label>
             </div>
             <div class="col-sm-7">
-              <label class="form-label resultado" id="" >{{ candidato.disponibilidadEntrevistaFecha.format('DD-MMM-YYYY')}}</label>
+              <label class="form-label resultado" id="" >{{ candidato.disponibilidadEntrevistaFecha.locale('es').format('DD-MMM-YYYY')}}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarDisponibilidadEntrevistaCandidato">
@@ -459,7 +459,7 @@
               <label class="form-label">Disponibilidad de asignación:</label>
             </div>
             <div class="col-sm-7">
-              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha.format('DD-MMM-YYYY')}}</label>
+              <label class="form-label resultado" id="">{{ candidato.disponibilidadAsignacionFecha.locale('es').format('DD-MMM-YYYY')}}</label>
             </div>
           </div>
           <div class="row" *ngIf="mostrarAsignacionCandidato">
@@ -776,7 +776,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let bitacora of bitacoras">
-            <td>{{ bitacora.fecha.format('DD-MMM-YYYY hh:mm')}}</td>
+            <td>{{ bitacora.fecha.locale('es').format('DD-MMM-YYYY hh:mm')}}</td>
             <td>{{ bitacora.usuarioFirstName }}</td>
             <td>{{ bitacora.comentario }}</td>
           </tr>

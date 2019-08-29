@@ -31,12 +31,12 @@
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de alta</label><br />
                                 <label class="form-label resultado"
-                                    id="" *ngIf="requerimiento.fechaAlda">{{ requerimiento.fechaAlda.format('DD-MMM-YYYY')}}</label>
+                                    id="" *ngIf="requerimiento.fechaAlda">{{ requerimiento.fechaAlda.locale('es').format('DD-MMM-YYYY')}}</label>
                             </div>
                             <div class="col-sm-4">
                                 <label class="form-label">Fecha de resolucion</label><br />
                                 <label class="form-label resultado"
-                                    id="" *ngIf="requerimiento.fechaResolucion">{{ requerimiento.fechaResolucion.format('DD-MMM-YYYY')}}</label>
+                                    id="" *ngIf="requerimiento.fechaResolucion">{{ requerimiento.fechaResolucion.locale('es').format('DD-MMM-YYYY')}}</label>
                             </div>
                         </div>
                         <br />
@@ -569,7 +569,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let bitacora of bitacoras">
-                        <td> {{bitacora.fecha.format('DD-MMM-YYYY hh:mm')}} </td>
+                        <td> {{bitacora.fecha.locale('es').format('DD-MMM-YYYY hh:mm')}} </td>
                         <td> {{bitacora.candidatoNombre}} </td>
                         <td> {{bitacora.comentario}} </td>
                     </tr>
