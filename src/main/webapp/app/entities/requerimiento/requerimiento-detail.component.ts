@@ -23,7 +23,6 @@ import { filter, map } from 'rxjs/operators';
 import { IBitacora } from '../../shared/model/bitacora.model';
 import { BitacoraService } from '../bitacora/bitacora.service';
 import { moneyFormat } from 'app/shared/util/money-format';
-import moment = require('moment');
 
 export interface PeriodicElement {
   Id: number;
