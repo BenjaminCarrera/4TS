@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface BitacoraMapper extends EntityMapper<BitacoraDTO, Bitacora> {
 
     @Mapping(source = "usuario.id", target = "usuarioId")
-    @Mapping(source = "usuario.firstName", target = "usuarioFirstName")
+    @Mapping(source = "usuario.iniciales", target = "usuarioFirstName")
     @Mapping(source = "requerimiento.id", target = "requerimientoId")
     @Mapping(source = "requerimiento.proyecto", target = "requerimientoProyecto")
     @Mapping(source = "candidato.id", target = "candidatoId")
