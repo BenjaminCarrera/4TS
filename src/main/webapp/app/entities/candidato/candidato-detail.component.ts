@@ -335,7 +335,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
         this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
       }
       if (candidato.foto) {
-        this.candidatoService.findImage(candidato.foto).subscribe(response => {console.log('-------------');console.log(response);}, () => this.onSaveError());
         this.imagen = this.resourceImageUrl + candidato.foto;
       } else {
         this.imagen = CANDIDATO_IMAGE + CANDIDATO_DEFAULT_IMAGE;
