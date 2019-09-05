@@ -20,6 +20,8 @@ import { SkillCandidato, ISkillCandidato } from '../../shared/model/skill-candid
 import { SkillCandidatoService } from '../skill-candidato/skill-candidato.service';
 import { CANDIDATO_IMAGE, CANDIDATO_DEFAULT_IMAGE } from 'app/shared/constants/candidato.constants';
 import { moneyFormat } from 'app/shared/util/money-format';
+import { CandidatoService } from '.';
+import { SERVER_API_URL } from 'app/app.constants';
 
 export interface Tarea {
   Fecha: string;
@@ -44,6 +46,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   // Imagen
   selectedFile: File;
   imagen: string | ArrayBuffer;
+  resourceImageUrl = SERVER_API_URL + 'api/candidatoes/images/';
   fechaconv1: string;
   // Variables Bitacora
   DATA_BITACORA: Tarea[] = [
@@ -99,6 +102,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   reverseSkillCand: any;
   age: number;
   formatNumber: any = moneyFormat;
+  isSaving: boolean;
 
   // Mostrar u ocultar cosas
   mostrarDetalleCandidatoInactivo: boolean;
@@ -118,6 +122,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
     protected tareaService: TareaService,
     protected bitacoraService: BitacoraService,
     protected skillCandidatoService: SkillCandidatoService,
+    protected candidatoService: CandidatoService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
@@ -322,6 +327,7 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   }
   // fin
   ngOnInit() {
+    this.isSaving = false;
     this.age = null;
     this.activatedRoute.data.subscribe(({ candidato }) => {
       if (candidato.fechaNacimiento) {
@@ -329,9 +335,10 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
         this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
       }
       if (candidato.foto) {
-        candidato.foto = CANDIDATO_IMAGE + candidato.foto;
+        this.candidatoService.findImage(candidato.foto).subscribe(response => {console.log('-------------');console.log(response);}, () => this.onSaveError());
+        this.imagen = this.resourceImageUrl + candidato.foto;
       } else {
-        candidato.foto = CANDIDATO_IMAGE + CANDIDATO_DEFAULT_IMAGE;
+        this.imagen = CANDIDATO_IMAGE + CANDIDATO_DEFAULT_IMAGE;
       }
       this.candidato = candidato;
     });
@@ -358,8 +365,6 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
         (res: IEstatusTarea[]) => (this.setEstatusTarea(res)),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
-    console.log(this.estatusTareas);
-    this.imagen = this.candidato.foto;
     this.fechaconv1 = 'nd as';
     this.fechaconv1.replace(/as/g, ' ');
   }
@@ -456,9 +461,19 @@ export class CandidatoDetailComponent implements OnInit, OnDestroy {
   // Imagen
   onFileChanged(event) {
     const file = event.target.files[0];
+    this.candidatoService.createImage(file, this.candidato.id).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
     const reader = new FileReader();
     reader.onload = e => this.imagen = reader.result;
     reader.readAsDataURL(file);
+  }
+
+  private onSaveSuccess(result) {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  private onSaveError() {
+    this.isSaving = false;
   }
 
   onUpload() {

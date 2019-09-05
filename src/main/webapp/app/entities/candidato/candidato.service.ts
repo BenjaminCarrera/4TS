@@ -16,12 +16,30 @@ type EntityArrayResponseType = HttpResponse<ICandidato[]>;
 export class CandidatoService {
   public resourceUrl = SERVER_API_URL + 'api/candidatoes';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(candidato: ICandidato): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(candidato);
     return this.http
       .post<ICandidato>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  createImage(image: any, userId: any): Observable<EntityResponseType> {
+    const copy: any = {
+      'file':
+        image,
+      'userId':
+        userId
+    };
+    return this.http
+      .post<any>(this.resourceUrl + '/images', copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  findImage(image: String): Observable<EntityResponseType> {
+    return this.http
+      .get<any>(`${this.resourceUrl}/images/${image}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

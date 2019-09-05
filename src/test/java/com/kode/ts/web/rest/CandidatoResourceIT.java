@@ -1,6 +1,7 @@
 package com.kode.ts.web.rest;
 
 import com.kode.ts.Application;
+import com.kode.ts.config.ApplicationProperties;
 import com.kode.ts.domain.Candidato;
 import com.kode.ts.domain.ReferenciasLaborales;
 import com.kode.ts.domain.SkillCandidato;
@@ -203,6 +204,9 @@ public class CandidatoResourceIT {
 
     @Autowired
     private CandidatoService candidatoService;
+    
+    @Autowired
+    private ApplicationProperties applicationProperties;
 
     @Autowired
     private CandidatoQueryService candidatoQueryService;
@@ -229,7 +233,7 @@ public class CandidatoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final CandidatoResource candidatoResource = new CandidatoResource(candidatoService, candidatoQueryService);
+        final CandidatoResource candidatoResource = new CandidatoResource(candidatoService, candidatoQueryService, applicationProperties);
         this.restCandidatoMockMvc = MockMvcBuilders.standaloneSetup(candidatoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -535,7 +539,7 @@ public class CandidatoResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllCandidatoesWithEagerRelationshipsIsEnabled() throws Exception {
-        CandidatoResource candidatoResource = new CandidatoResource(candidatoServiceMock, candidatoQueryService);
+        CandidatoResource candidatoResource = new CandidatoResource(candidatoServiceMock, candidatoQueryService, applicationProperties);
         when(candidatoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         MockMvc restCandidatoMockMvc = MockMvcBuilders.standaloneSetup(candidatoResource)
@@ -552,7 +556,7 @@ public class CandidatoResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllCandidatoesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CandidatoResource candidatoResource = new CandidatoResource(candidatoServiceMock, candidatoQueryService);
+        CandidatoResource candidatoResource = new CandidatoResource(candidatoServiceMock, candidatoQueryService, applicationProperties);
             when(candidatoServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
             MockMvc restCandidatoMockMvc = MockMvcBuilders.standaloneSetup(candidatoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
