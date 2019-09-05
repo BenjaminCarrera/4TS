@@ -8,6 +8,7 @@ import { VERSION } from 'app/app.constants';
 import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { USER_IMAGE } from 'app/shared/constants/user.constants';
+import { REQUERIMIENTOS_ICON } from 'app/shared/constants/requerimientos.constants';
 
 @Component({
   selector: 'jhi-navbar',
@@ -76,5 +77,17 @@ export class NavbarComponent implements OnInit {
 
   getImageUrl() {
     return this.isAuthenticated() ? USER_IMAGE + this.accountService.getImageUrl() : null;
+  }
+
+  getRequerimientoIcon() {
+    return REQUERIMIENTOS_ICON + 'requerimientos.svg';
+  }
+
+  getCandidatoIcon() {
+    return REQUERIMIENTOS_ICON + 'candidato.svg';
+  }
+
+  getCatalogoIcon() {
+    return REQUERIMIENTOS_ICON + 'catalogo.svg';
   }
 }

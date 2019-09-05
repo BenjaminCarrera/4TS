@@ -4,7 +4,9 @@ import com.kode.ts.service.dto.CandidatoDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 /**
@@ -19,6 +21,15 @@ public interface CandidatoService {
      * @return the persisted entity.
      */
     CandidatoDTO save(CandidatoDTO candidatoDTO);
+    
+    /**
+     * Save a candidato image.
+     *
+     * @param file of the image to save.
+     * @param candidatoId for the image to save.
+     * @return the image.
+     */
+    String saveImage(MultipartFile file, Long candidatoId);
 
     /**
      * Get all the candidatoes.

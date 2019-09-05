@@ -20,7 +20,7 @@
             <li *jhiHasAnyAuthority="'2'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/requerimiento" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="tasks"></fa-icon>
+                        <img [src]="getRequerimientoIcon()" width="18px" >
                         <span >Requerimiento</span>
                     </span>
                 </a>
@@ -38,30 +38,6 @@
                             <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                             Agregar un requerimiento
                         </a>
-                    </li>
-                    <li >
-                        <a class="dropdown-item" routerLink="con-req" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
-                            Consultar un requerimiento
-                        </a>
-                    </li>
-                    <li >
-                        <a class="dropdown-item" routerLink="res-conreq" routerLinkActive="active" (click)="collapseNavbar()">
-                            <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
-                            Resultado de la consulta de un requerimiento
-                        </a>
-                    </li>
-                </ul> -->
-            <!-- </li> -->
-
-
-            <!-- <li *jhiHasAnyAuthority="'3'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
-                    <span>
-                        <fa-icon icon="user"></fa-icon>
-                        <span>Candidato</span>
-                    </span>
-                </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="requerimiento-menu">
                     <li >
                         <a class="dropdown-item" routerLink="agreg-cand" routerLinkActive="active" (click)="collapseNavbar()">
@@ -87,7 +63,7 @@
             <li *jhiHasAnyAuthority="'3'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="candidato" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon icon="user"></fa-icon>
+                        <img [src]="getCandidatoIcon()" width="25px" >
                     <span >Candidato</span>
                     </span>
                 </a>
@@ -96,7 +72,7 @@
             <li *jhiHasAnyAuthority="'4'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
-                        <fa-icon icon="th-list"></fa-icon>
+                        <img [src]="getCatalogoIcon()" width="18px" >
                         <span jhiTranslate="global.menu.entities.main">
                             Entities
                         </span>
