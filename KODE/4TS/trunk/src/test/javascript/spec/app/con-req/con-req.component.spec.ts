@@ -1,3 +1,0 @@
-describe('ConReqComponent Tests', () => {
-
-});
