@@ -1,3 +1,0 @@
-describe('ResConcandComponent Tests', () => {
-
-});
